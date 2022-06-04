@@ -280,3 +280,508 @@ lstat함수는 심볼릭 링크에 대한 정보를 리턴하는데, stat함수�
 심볼릭 링크에서 st_mode 멤버변수는 파일타입 매크로들과 사용될때 유용한 정보를 포함한다.
 
 그리고 st_size멤버변수는 심볼릭 링크에 포함된 경로의 길이를 가진다.
+
+# Minishell
+
+## pipe : 파이프 생성
+
+**의존성**: **`#include <unistd.h>`**
+
+**원형**: **`int pipe(int** *pipefd***[2])**`
+
+**설명**: 단방향 데이터 채널인 파이프를 생성한다. 프로세스간 통신에 사용됌.
+배열 인자를 2로 받는 이유: pipefd[0]→파이프의 읽기전용, pipefd[1]→파이프의 쓰기전용이다.
+파이프의 쓰기 끝에 기록된 데이터는 파이프의 읽기 끝에서 읽을 때까지 커널에 의해 버퍼링된다.
+주로 부모프로세스와 자식프로세스간의 통신을 목적으로 사용된다.
+
+**반환값**: 성공→0, 실패→-1 (에러를 나타내도록 errno가 설정)
+
+**에러**:
+
+**EMFILE**
+
+너무 많은 파일 디스크립터가 프로세스에 의해 사용되고 있다.
+
+**ENFILE**
+
+시스템 파일 테이블이 꽉찼을경우
+
+**EFAULT**
+
+filedes 가 유효하지 못하다.
+
+main:
+
+```c
+#include <sys/types.h>
+       #include <sys/wait.h>
+       #include <stdio.h>
+       #include <stdlib.h>
+       #include <unistd.h>
+       #include <string.h>
+
+       int
+       main(int argc, char *argv[])
+       {
+           int pipefd[2];
+           pid_t cpid;
+           char buf;
+
+           if (argc != 2) {
+               fprintf(stderr, "Usage: %s <string>\n", argv[0]);
+               exit(EXIT_FAILURE);
+           }
+
+           if (pipe(pipefd) == -1) {
+               perror("pipe");
+               exit(EXIT_FAILURE);
+           }
+
+           cpid = fork();
+           if (cpid == -1) {
+               perror("fork");
+               exit(EXIT_FAILURE);
+           }
+
+           if (cpid == 0) {    /* Child reads from pipe */
+               close(pipefd[1]);          /* Close unused write end */
+
+               while (read(pipefd[0], &buf, 1) > 0)
+                   write(STDOUT_FILENO, &buf, 1);
+
+               write(STDOUT_FILENO, "\n", 1);
+               close(pipefd[0]);
+               _exit(EXIT_SUCCESS);
+
+           } else {            /* Parent writes argv[1] to pipe */
+               close(pipefd[0]);          /* Close unused read end */
+               write(pipefd[1], argv[1], strlen(argv[1]));
+               close(pipefd[1]);          /* Reader will see EOF */
+               wait(NULL);                /* Wait for child */
+               exit(EXIT_SUCCESS);
+           }
+       }
+```
+
+자식 프로세스는 파이프로부터 쓰지 않으므로 pipefd[1]을 close한다.
+
+부모 프로세스는 파이프로부터 읽지 않으므로 pipefd[0]을 close한다.
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/51396c0f-a40e-458c-9ee2-04ec1b8dd587/Untitled.png)
+
+# DIR
+
+## opendir: 디렉토리 열기
+
+**의존성:** **`#include <sys/types.h>`,** **`#include <dirent.h>`**
+
+**원형:**  `**DIR *opendir(const char **name*)**`
+
+**설명:** name디렉토리를 열고 스트림포인터를 리턴한다. 스트림은 디렉토리의 첫번째 요소의 위치를 가리킨다.
+
+**반환값:** 디렉토리 스트림에대한 포인터를 반환. 에러→NULL
+
+**에러**: 
+
+EACCES
+
+Permission 거부
+
+EMFILE
+
+프로세스에 의해서 너무 많은 파일이 열렸음
+
+ENFILE
+
+최근 시스템에 의해서 너무 많은 파일이 열렸음
+
+ENOENT
+
+**name**이 빈문자열 이거나 혹은 같은 이름의 디렉토리가 없음
+
+ENOMEM
+
+작업을 수행하기 위한 충분한 메모리가 없음
+
+ENOTDIR
+
+**name**이 디렉토리가 아님
+
+main:
+
+```c
+#include <dirent.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    struct dirent *item;
+    DIR *dp;
+
+    dp = opendir("/Users/baggyumin/Desktop/42cursus");
+    if (dp != NULL)
+    {
+        for(;;)
+        {
+            item = readdir(dp);
+            if (item == NULL)
+                break;
+            printf("DIR : %s\n", item->d_name);
+        }
+        closedir(dp);
+    }
+}
+```
+
+## readdir: 디렉토리 읽기
+
+**의존성**: **`#include <dirent.h>`**
+
+**원형**: **`struct dirent *readdir(DIR ****dirp***)**`
+
+**설명**: dirp가 가리키는 디렉토리 스트림의 다음 디렉토리 항목을 나타내는 dirent구조체에 대한 포인터를 반환한다.
+—dirent 구조—
+
+```c
+struct dirent {
+               ino_t          d_ino;       /* Inode number */ 아이오드 번호
+               off_t          d_off;       /* Not an offset; see below */ 오프셋
+               unsigned short d_reclen;    /* Length of this record */ 레코드(엔트리) 길이
+               unsigned char  d_type;      /* Type of file; not supported
+                                              by all filesystem types */ 파일유형
+               char           d_name[256]; /* Null-terminated filename */ 파일이름
+           };
+```
+
+**반환값**: 성공→dirent구조체에 대한 포인터 반환 끝에 도달시 NULL (errno 설정안됌), 실패→NULL (errno가 설정)
+
+**에러**: 
+**EBADF
+유효하지않은 dirp**
+
+[https://man7.org/linux/man-pages/man3/readdir.3.html](https://man7.org/linux/man-pages/man3/readdir.3.html)
+
+## closedir: 디렉토리 닫기
+
+**의존성**:**`#include <sys/types.h>`,** **`#include <dirent.h>`**
+
+**원형**: **`int closedir(DIR *** *dirp* **)**`
+
+**설명**: dirp와 연결된 디렉토리 스트림을 닫는다. dirp와 연결된 fd도 닫는다. 이 함수 호출 이후에 dirp를 사용할 수 없다.
+
+**반환값**: 성공→0, 오류→-1 (errno 설정됌)
+
+**에러**:
+
+**EBADF**
+
+유효하지않은 dirp
+
+# ERROR
+
+## strerror: 오류번호를 설명하는 문자열 반환
+
+**의존성**: **`#include <string.h>`**
+
+**원형**: **`char *strerror(int** *errnum***)**`
+
+**설명**: errnum인수에 전달된 오류코드를 설명하는 문자열에 대한 포인터를 반환한다.
+
+**반환값**: 오류번호에 따른 오류설명 문자열 반환, 오류번호를 알 수 없을경우는 `"Unknown error nnn"` 반환
+
+**에러**:
+**EINVAL**
+errno의 값이 유효한 오류 번호가 아님
+
+main:
+
+```c
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  FILE* pFile;
+  pFile = fopen("unexist.ent", "r");
+  if (pFile == NULL)
+    printf("Error opening file unexist.ent: %s\n", strerror(errno));
+  return 0;
+}
+```
+
+## errno: 에러의 번호
+
+**의존성**: **`#include <errno.h>`**
+
+**원형**: 
+
+**설명**: 호출의 반환값이 오류를 나타날때만(-1, NULL) errno를 사용한다. 성공하는 함수에서 errno를 바꾸는것이 허용한다. 절대 errno의 값을 0으로 설정하지 않는다.
+
+**반환값**:
+
+**에러**:
+[https://man7.org/linux/man-pages/man3/errno.3.html](https://man7.org/linux/man-pages/man3/errno.3.html)
+
+## isatty: 파일 디스크립터가 터미널을 참조하는지 테스트
+
+**의존성**: **`#include <unistd.h>`**
+
+**원형**: **`int isatty(int** *fd* **)**`
+
+**설명**: fd가 터미널을 참조하는 열린 파일 디스크립터인지 여부를 테스트한다.
+
+**반환값**: fd가 ‘’ → 1, 아니면 0 (errno 설정)
+
+**에러**:
+**EBADF**
+fd는 유효한 파일 디스크립터가 아님
+
+main:
+
+```c
+#include <sys/stat.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+int main()
+{
+    int fd;
+    // 표준입력은 터미널에 연결되어 있으므로 1을 출력한다.
+    printf("%d\n", isatty(0));
+
+    // 파일은 터미널에 연결되어 있지 않으므로 0을 출력한다.
+    fd = open("test100", O_RDWR);
+    printf("%d\n", isatty(fd));
+    close(fd);
+
+    fd = open("/dv/ttyS0", O_RDONLY);
+    if (fd < -1)
+    {
+        printf("open error\n");
+		exit(0);
+    }
+    printf("%d\n", isatty(fd));
+    close(fd);
+    exit(0);
+}
+```
+
+## ttyname: 터미널의 이름 반환
+
+**의존성**: **`#include <unistd.h>`**
+
+**원형**: **`char *ttyname(int** *fd* **)**`
+
+**설명**: fd를 열은 터미널 장치의 경로이름에 대한 포인터를 반환한다.=
+
+**반환값**: 성공→경로 이름에대한 포인터 반환, 실패→NULL (errno설정)
+
+**에러**:
+**EBADF**
+
+잘못된 fd
+
+**ENODEV**
+
+해당 경로 이름을 못찾음
+
+**ENOTTY**
+
+fd가 터미널 장치를 참조하지않음
+
+main:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+	printf("%s\n", ttyname(0));
+}
+```
+
+## ttyslot: 현재 사용자 터미널의 슬롯을 찾음
+
+**의존성**: **`#include <unistd.h>`**
+
+**원형**: **`int ttyslot(void)`**
+
+**설명**: ttyslot을 호출한 프로그램이 참조하는 터미널의 index를 반환한다. (터미널의 tty경로)
+
+**반환값**: 성공→슬롯번호(터미널의 index) 반환, 실패→시스템에따라 0또는 -1
+
+**에러**: X
+
+main:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+	printf("%d\n", ttyslot());
+}
+```
+
+## ioctl: 제어장치(control device)
+
+**의존성**: **`#include <sys/ioctl.h>`**
+
+**원형**: **`int ioctl(int** *fd* **, unsigned long** *request* **, ...)**`
+
+**설명**: 시스템콜로 device에게 요청을 보낼때 사용한다. Unix의 모든 장치는 파일로 추상화가 되어서 조작되는데 ioctl함수를 사용할때도 파일 조작을 통해 이뤄지므로 fd는 장치를 참조하는 파일 디스크립터가 된다. 두번째 인자는 fd가 참조하는 장치에게 보낼 코드다. 마지막 가변인자는 메모리 공간을 참조하는 포인터다. 일반적으로 마지막 인자의 가변인자는 `char*` 로 이용된다.
+
+**반환값**: 성공→0 일부 ioctl은 반환값을 출력 매개변수로 사용한다(음수가 아닌값), 실패→-1 (errno 설정)
+
+**에러**: 
+
+**EBADF**
+유효하지않은 fd
+
+[https://richong.tistory.com/254](https://richong.tistory.com/254)
+
+[https://mintnlatte.tistory.com/22](https://mintnlatte.tistory.com/22)
+
+## getenv: 환경변수 가져오기
+
+**의존성**: **`#include <stdlib.h>`**
+
+**원형**: **`char *getenv(const char ****name***)**`
+
+**설명**: name변수에 저장된 환경변수를 읽어온다. 환경변수는 “key=value”형식으로 저장되있으며 name은 key이름이 된다.
+
+**반환값**: 성공→환경변수 값에 대한 포인터 반환, 실패→NULL
+
+**에러**:
+
+main:
+
+```c
+#include <stdlib.h>
+
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    char *value;
+    value = getenv(argv[1]);
+
+    if (value != NULL)
+    {
+        printf("%s=%s\n", argv[1], value);
+    }
+
+    return 0;
+}
+```
+
+## tcsetattr: 터미널파일 fd에 대한 속성 설정
+
+**의존성**: **`#include <termios.h>`,** **`#include <unistd.h>`**
+
+**원형**: **`int tcsetattr(int** *fd***, int** *optional_actions***,**`**`const struct termios ****termios_p***)**`
+
+**설명**: *termios_p 에 의해 참조되는 termios* 구조 에서 터미널과 관련된 매개변수를 설정한다.
+
+fd: 터미널 파일 디스크립터
+
+optional_actions: 동작 선택 (정해진 4가지의 action이 있음)
+
+termios_p: 터미널 속성의 저장 주소
+
+**반환값**: 성공→0, 실패→-1 (errno 설정)
+
+**에러**:
+
+## tcgetattr: 터미널파일 fd에 대한 속성 저장
+
+**의존성**: **`#include <termios.h>`,** **`#include <unistd.h>`**
+
+**원형**: **`int tcgetattr(int** *fd***, struct termios ****termios_p***)**`
+
+**설명**: *fd* 가 참조하는 객체와 관련된 매개변수를 가져와 *termios_p 가 참조하는 termios* 구조 에 저장한다.
+
+fd: 터미널 파일 디스크립터
+
+termios_p: 터미널 속성의 저장 주소
+
+**반환값**: 성공→0, 실패→-1 (errno 설정)
+
+**에러**: 
+
+# **terminfo 기능 데이터베이스에 대한 직접 curses 인터페이스**
+
+**의존성**: **`#include <curses.h>`, `#include <term.h>`**
+
+**반환값**: 
+
+명시적으로 언급된 경우를 제외하고 정수를 반환하는 루틴은 실패 시 **ERR** 을 반환 하고 성공적인 완료 시 **OK**를 반환합니다.
+
+포인터를 반환하는 루틴은 오류가 발생 **하면 NULL 을 반환합니다.**
+
+## tgetent:
+
+**원형**: **`int tgetent(char *bp, const char *name)`**
+
+**설명**: **tgetent**루틴은 name 항목을 로드 *합니다* . 에*뮬레이션은 버퍼 포인터 bp* 를 무시한다.
+
+**반환값**: 성공→1, 항목이 없으면→0, terminfo 데이터베이스를 찾을 수 없으면 -1
+
+**에러**:
+
+## tgetflag:
+
+**원형**: `int tgetflag(char *id)`
+
+**설명**: tgetflag 루틴 은 *id* 에 대한 boolean 항목을 가져오거나 사용할 수 없는 경우 0을 가져옵니다.
+
+**반환값**: 
+
+**에러**:
+
+## tgetnum:
+
+**원형**: `int tgetnum(char *id);`
+
+**설명**: tgetnum 루틴 은 *id* 에 대한 숫자 항목을 가져오거나 사용할 수 없는 경우 -1을 가져옵니다.
+
+**반환값**:
+
+**에러**:
+
+## tgetstr:
+
+**원형**: `char *tgetstr(char *id, char **area)`
+
+**설명**: tgetstr 루틴 은 *id* 에 대한 문자열 항목을 반환 하거나 사용할 수 없는 경우 0을 반환합니다. **tputs** 를 사용 하여 반환된 문자열을 출력합니다. *반환 값은 area* 가 가리키는 버퍼에도 복사되고 area *값* 은 이 값을 끝내는 null을 넘어서 가리키도록 업데이트됩니다.
+
+**반환값**:
+
+**에러**:
+
+## tgoto:
+
+**원형**: `char *tgoto(const char *cap, int col, int row)`
+
+**설명**: tgoto루틴 은 매개변수를 지정된 기능으로 인스턴스화합니다. 이 루틴의 출력은 **tputs** 로 전달됩니다 .
+
+**반환값**:
+
+**에러**:
+
+## tputs:
+
+**원형**: `int tputs(const char *str, int affcnt, int (*putc)(int))`
+
+**설명**: tputs루틴은 터미널 출력결과를 나타낸다. 마지막 putc 함수포인터는 ASCII문자값을 인자로 받아서 표준출력의 쓰기 작업으로 터미널에 ASCII문자를 출력한다.
+
+**반환값**:
+
+**에러**:
