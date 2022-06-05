@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/05 15:55:57 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/05 15:44:52 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/05 16:04:46 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <signal.h>
-# include <unistd.h>
+#include "main.h"
 
-/*
- * signal handler
- * */
-void	sigquit_handler(int sig);
-void	sigint_handler(int sig);
-void	set_handler(void);
+void	display_bash(void)
+{
+	char	*line;
 
-/*
- * display
- * */
-void	display_bash(void);
-
-#endif
+	while (1)
+	{
+		line = readline("bash >");
+		if (!line)
+			return ;
+	}
+}

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/05 15:55:57 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/05 16:01:35 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <signal.h>
-# include <unistd.h>
+#include "main.h"
 
-/*
- * signal handler
- * */
-void	sigquit_handler(int sig);
-void	sigint_handler(int sig);
-void	set_handler(void);
+void	sigquit_handler(int sig)
+{
+	(void)sig;
+	return ;
+}
 
-/*
- * display
- * */
-void	display_bash(void);
+void	sigint_handler(int sig)
+{
+	(void)sig;
+	write(2, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}
 
-#endif
+void	set_handler(void)
+{
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
+}

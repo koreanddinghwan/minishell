@@ -6,11 +6,15 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:34:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/05 14:34:29 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/05 15:54:57 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char **av, char **envp)
+#include "main.h"
+
+int main()
 {
+	set_handler();
+	display_bash();
 	return (0);
 }
