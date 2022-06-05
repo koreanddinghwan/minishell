@@ -416,7 +416,7 @@ lstat함수는 심볼릭 링크에 대한 정보를 리턴하는데, stat함수�
 
 파일 경로에 대해 해당 파일을 삭제하거나, 해당 파일이 참조하는 대상(ex, 심볼릭 링크)을 삭제한다.
 
-### 프로토타입
+### 헤더, 정의
 
 ```c++
 #include <unistd.h>
@@ -442,7 +442,21 @@ int unlink(const char* pathname);
 
 <br>
 
+## execve
 
+### 헤더, 정의
+
+```c++
+#include <unistd.h>
+
+int execve(const char *path, char *const argv[], char *const envp[]);
+```
+
+### 설명
+
+`execve` 함수는 호출한 프로세스를 새로운 프로세스로 변환한다.  
+새로운 프로세스라 함은, path인자로 들어온 경로에 있는 파일에 의해 만들어진 프로세스이다.  
+이 파일은 (1)실행가능하거나, (2)해석기를 위한 데이터 파일이다.   
 
 
 <br
