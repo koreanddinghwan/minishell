@@ -1,5 +1,3 @@
-# 시발쉘
-
 ## readline
 
 < 메뉴얼 해석 >
@@ -16,7 +14,11 @@
 
 ### 헤더
 
-![스크린샷 2022-06-04 오후 3.06.28.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.06.28.png)
+```c++
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+```
 
 readline 헤더의 정의들이 stdio 라이브러리를 사용하기때문에
 
@@ -26,7 +28,7 @@ readline 헤더 이전에 반드시 stdio.h 헤더가 와야한다.
 
 위 헤더들과 더불어서
 
-```c
+```c++
 gcc -lreadline 파일명.c
 ```
 
@@ -39,29 +41,42 @@ gcc -lreadline 파일명.c
 - 사용자가 입력한 문자열을 char *로 리턴해주는데, malloc되어 있으므로, 할당해제는 필수!!!
 - 개행이 삭제된 상태로 리턴해준다(enter키로 입력받기때문에 newline이 입력될 것 같지만, 리턴받는 문자열은 개행 전까지의 문자열만을 포함한다.)
 
-![스크린샷 2022-06-04 오후 3.12.16.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.12.16.png)
+```c++
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+```
 
 ## rl_on_new_line
 
-![스크린샷 2022-06-04 오후 3.52.08.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_3.52.08.png)
+
+```c++
+int rl_one_new_line(void);
+```
 
 업데이트 함수들에게 새로운 라인으로 이동했다고 알린다.
 
 ## rl_redisplay
 
-![스크린샷 2022-06-04 오후 4.01.07.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.01.07.png)
+```c++
+void rl_redisplay(void);
+```
 
 rl_line_buffer 에 현재 들어있는 내용을 반영하기위해 스크린에 있는 내용을 바꾼다.
 
 ## rl_line_buffer
 
-![스크린샷 2022-06-04 오후 4.10.31.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.10.31.png)
+```c++
+char *rl_line_buffer
+```
 
 readline 관련 함수 작성자들이 사용할 수 있는 변수 중 하나이다.
 
 ## rl_replace_line
 
-![스크린샷 2022-06-04 오후 4.05.31.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.05.31.png)
+```c++
+void rl_replace_line(const char *text, int clear_undo);
+```
 
 rl_line_buffer에 있는 내용을 인자로 받은 text 문자열로 대체한다.
 
@@ -71,6 +86,8 @@ rl_line_buffer에 있는 내용을 인자로 받은 text 문자열로 대체한�
 
 1. stackoverflow [https://stackoverflow.com/questions/6727171/using-readline-for-completion](https://stackoverflow.com/questions/6727171/using-readline-for-completion)
 2. readline 라이브러리 메뉴얼 [https://tiswww.case.edu/php/chet/readline/readline.html](https://tiswww.case.edu/php/chet/readline/readline.html)
+
+<br>
 
 ## add_history
 
@@ -98,15 +115,33 @@ history list는 history 객체의 배열이다.
 
 history 객체는 아래와 같다.
 
-![스크린샷 2022-06-04 오후 4.53.48.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.53.48.png)
+```c++
+typedef void *hisdata_t;
+
+typedef struct _hist_entry {
+    char *line;
+    char *timestamp;
+    histdata_t  data;
+} HIST_ENTRY;
+```
 
 그리고 history list는 아래와 같이 정의되어 있다.
 
-![스크린샷 2022-06-04 오후 4.54.26.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.54.26.png)
+```c++
+HIST_ENTRY **the_history_list;
+```
 
 history library의 상태를 가진 구조체도 있는데, 이는 
 
-![스크린샷 2022-06-04 오후 4.55.33.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.55.33.png)
+```c++
+typedef struct _hist_state {
+    HIST_ENTRY **entries;
+    int offset;
+    int length;
+    int size;
+    int flags;
+} HISTORY_STATE;
+```
 
 요로코롬 저장되어있습니다
 
@@ -114,15 +149,23 @@ history library의 상태를 가진 구조체도 있는데, 이는
 
 그래서 add_history함수는 
 
-![스크린샷 2022-06-04 오후 4.56.29.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_4.56.29.png)
+```c++
+void add_history(cont char *string)
+```
 
 이런 형태를 가지고 있는데, string으로 들어온 이 문자를 history list의 마지막 history 객체로 추가해준다.
 
 단, history객체의 data부분은 NULL이다.
 
+<br>
+
 ## fork
 
-![스크린샷 2022-06-04 오후 6.40.49.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_6.40.49.png)
+```c++
+#include <unistd.h>
+
+pid_t fork(void);
+```
 
 새로운 프로세스(자식 프로세스)를 생성.
 
@@ -160,9 +203,18 @@ history library의 상태를 가진 구조체도 있는데, 이는
 
 signal-safe함수들 목록 [https://man7.org/linux/man-pages/man7/signal-safety.7.html](https://man7.org/linux/man-pages/man7/signal-safety.7.html)
 
+<br>
+
 ## wait
 
-![스크린샷 2022-06-04 오후 7.14.55.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7.14.55.png)
+```c++
+#include <sys/wait.h>
+
+pid_t wait(int *stat_loc);
+pid_t wait3(int *stat_loc, int options, struct rusage *rusage);
+pid_t wait4(pid_t pid, int *stat_loc, int options, struct rusage *rusage);
+pid_t waitpid(pid_t pid, int *stat_loc, int options);
+```
 
 ### 개요
 
@@ -208,7 +260,24 @@ wait에서 사용되는 pid인자의 경우 어떤 자식 프로세스가 기다
 
 stat_loc 인자는 자식프로세스의 상태를 나타내는데에 쓰이는데, 이 인자를 아래의 매크로에 던져서 테스트를 하게된다. 
 
-![스크린샷 2022-06-04 오후 7.46.34.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7.46.34.png)
+```c++
+#endif /* _POSIX_SOURCE */
+
+#define	_WSTATUS(x)	(_W_INT(x) & 0177)
+#define	_WSTOPPED	0177		/* _WSTATUS if process is stopped */
+#define WIFSTOPPED(x)	(_WSTATUS(x) == _WSTOPPED)
+#define WSTOPSIG(x)	(_W_INT(x) >> 8)
+#define WIFSIGNALED(x)	(_WSTATUS(x) != _WSTOPPED && _WSTATUS(x) != 0)
+#define WTERMSIG(x)	(_WSTATUS(x))
+#define WIFEXITED(x)	(_WSTATUS(x) == 0)
+#define WEXITSTATUS(x)	(_W_INT(x) >> 8)
+#if !defined(_POSIX_SOURCE)
+#define WCOREDUMP(x)	(_W_INT(x) & WCOREFLAG)
+
+#define	W_EXITCODE(ret, sig)	((ret) << 8 | (sig))
+#define	W_STOPCODE(sig)		((sig) << 8 | _WSTOPPED)
+#endif /* !defined(_POSIX_SOURCE) */
+```
 
 option인자는 bit연산을 통해 2개 중 하나를 가진다.
 
@@ -231,9 +300,15 @@ wait3함수는 wait4함수의 pid값을 -1로 한 것과 같다.
 
 wait으로 기다리는 중에 signal이 발생하면 signal action 루틴이 리턴되면 wait이 Interrupted되거나 재시작된다. 
 
+<br>
+
 ## getcwd
 
-![스크린샷 2022-06-04 오후 8.39.00.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.39.00.png)
+```c++
+#include <unistd.h>
+
+char *getcwd(char *buf, size_t size);
+```
 
 현재 작업중인 디렉터리의 절대경로를 buf 메모리에 넣는다.
 
@@ -245,9 +320,15 @@ size 인자는 buf에 참조된 배열의 바이트단위 크기를 의미한다
 
 → free해줘야함 나중에
 
+<br>
+
 ## chdir
 
-![스크린샷 2022-06-04 오후 8.43.15.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.43.15.png)
+```c++
+#include <unistd.h>
+
+int chdir(const char *path);;
+```
 
 path인자는 디렉터리의 경로에 대한 포인터이다.
 
@@ -257,17 +338,65 @@ chdir함수는 현재 작업 디렉터리(current working directory)를 path로 
 
 → 해석 너무 씹이라서 함수 써보면서 공부해야할 듯
 
+<br>
+
 ## stat
 
 file의 상태를 얻는다.
 
-![스크린샷 2022-06-04 오후 8.47.29.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.47.29.png)
+```c++
+#include <sys/stat.h>
+
+int fstat(int fildes, struct stat *buf);
+int lstat(const char *restrict path, struct stat *restrict buf);
+int stat(const char *restrict path, struct stat *restrict buf);
+```
 
 stat구조체
 
-![스크린샷 2022-06-04 오후 8.55.49.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.55.49.png)
+```c++
+/*stat.h*/
+struct stat {
+	dev_t	  st_dev;		/* inode's device */
+	ino_t	  st_ino;		/* inode's number */
+	mode_t	  st_mode;		/* inode protection mode */
+	nlink_t	  st_nlink;		/* number of hard links */
+	uid_t	  st_uid;		/* user ID of the file's owner */
+	gid_t	  st_gid;		/* group ID of the file's group */
+	dev_t	  st_rdev;		/* device type */
+#ifndef _POSIX_SOURCE
+	struct	timespec st_atimespec;	/* time of last access */
+	struct	timespec st_mtimespec;	/* time of last data modification */
+	struct	timespec st_ctimespec;	/* time of last file status change */
+#else
+	time_t	  st_atime;		/* time of last access */
+	long	  st_atimensec;		/* nsec of last access */
+	time_t	  st_mtime;		/* time of last data modification */
+	long	  st_mtimensec;		/* nsec of last data modification */
+	time_t	  st_ctime;		/* time of last file status change */
+	long	  st_ctimensec;		/* nsec of last file status change */
+#endif
+	off_t	  st_size;		/* file size, in bytes */
+	int64_t	  st_blocks;		/* blocks allocated for file */
+	u_int32_t st_blksize;		/* optimal blocksize for I/O */
+	u_int32_t st_flags;		/* user defined flags for file */
+	u_int32_t st_gen;		/* file generation number */
+	int32_t	  st_lspare;
+	int64_t	  st_qspare[2];
+};
+```
 
-![스크린샷 2022-06-04 오후 8.58.53.png](%E1%84%89%E1%85%B5%E1%84%87%E1%85%A1%E1%86%AF%E1%84%89%E1%85%B0%E1%86%AF%20f4cb3c2bcad04294a38754f798d87660/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-06-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_8.58.53.png)
+```c++
+/*sys/types.h*/
+typedef	u_int32_t	gid_t;		/* group id */
+typedef	u_int32_t	ino_t;		/* inode number */
+typedef	long		key_t;		/* IPC key (for Sys V IPC) */
+typedef	u_int16_t	mode_t;		/* permissions */
+typedef	u_int16_t	nlink_t;	/* link count */
+typedef	quad_t		off_t;		/* file offset */
+typedef	int32_t		pid_t;		/* process id */
+typedef quad_t		rlim_t;		/* resource limit */
+```
 
 stat함수는 path로 지정된 파일에 대한 정보를 획득한다.
 
@@ -280,6 +409,8 @@ lstat함수는 심볼릭 링크에 대한 정보를 리턴하는데, stat함수�
 심볼릭 링크에서 st_mode 멤버변수는 파일타입 매크로들과 사용될때 유용한 정보를 포함한다.
 
 그리고 st_size멤버변수는 심볼릭 링크에 포함된 경로의 길이를 가진다.
+
+<br>
 
 # Minishell
 
