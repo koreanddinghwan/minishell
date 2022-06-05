@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 14:34:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/05 14:34:29 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/05 14:35:50 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int ac, char **av, char **envp)
-{
-	return (0);
-}
+#ifndef MAIN_H
+# define MAIN_H
+# include <stdio.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+#endif
