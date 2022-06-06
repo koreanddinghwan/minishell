@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/05 15:55:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/07 00:43:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include <signal.h>
 # include <unistd.h>
 
+typedef	struct s_data
+{
+	HIST_ENTRY	**history_list;
+}	t_data;
+
 /*
  * signal handler
  * */
@@ -28,6 +33,6 @@ void	set_handler(void);
 /*
  * display
  * */
-void	display_bash(void);
+void	display_bash(t_data *data);
 
 #endif

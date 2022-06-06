@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   error_handler.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 15:44:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 00:43:48 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/07 00:45:52 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/07 00:47:01 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef ERROR_HANDLER
+# define ERROR_HANDLER
 
-void	display_bash(t_data *data)
-{
-	char	*line;
+#include <string.h>
+#include <stdlib.h>
 
-	while (1)
-	{
-		line = readline("bash >");
-		if (!line)
-			return ;
-		add_history(line);
-	}
-}
+void	print_error(int errnum)
+
+#endif
