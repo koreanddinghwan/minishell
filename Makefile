@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/07 00:24:20 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/07 00:30:14 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,11 @@ CFLAGS = -Wall -Wextra -Werror
 INC = ./includes
 
 RDINC = ${HOME}/.brew/opt/readline/include #readline include path
-RDLIB = ${HOME}/.brew/opt/readline/lib
-RDFLAGS = -I${RDINC} -L${RDLIB} -lreadline
+RDLIB = ${HOME}/.brew/opt/readline/lib #readline lib path
+RDFLAGS = -I${RDINC} -L${RDLIB} -lreadline #readline compile flags
 
-LIBFT = ./libft
+FTDIR = ./libft/
+FT = libft.a
 
 MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
@@ -29,17 +30,19 @@ OBJ_FILES = $(MAIN_OBJS)
 all : $(NAME)
 
 $(NAME) : $(OBJ_FILES)
-	make -C 
-	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -o $@ $^
+	make all -C $(FTDIR) #recursively create libft
+	cp $(FTDIR)$(FT) ./$(FT) #copy in root dir
+	make fclean -C $(FTDIR) #fclean libft.a and .o files in ./libft
+	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -o $@ $^ #RFLAGS for readline lib
 
 %.o : %.c
-	$(GCC) $(CFLAGS) -I$(RDINC) -I$(INC) -c $^ -o $@
+	$(GCC) $(CFLAGS) -I$(RDINC) -I$(INC) -c $^ -o $@ #specify readline header in RNINC
 
 fclean : clean
 	rm -rf $(NAME)
 
 clean :
-	rm -rf $(OBJ_FILES)
+	rm -rf $(OBJ_FILES) $(FT)
 
 re : 
 	make fclean;
