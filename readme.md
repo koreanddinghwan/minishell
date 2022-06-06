@@ -1216,7 +1216,23 @@ n이 이정되지 않으면 1로 쓸 수 있게한다.
 	delimiter
 ```
 
-이 타입의 redirection은 쉘이 
+이 타입의 redirection은word로 끝나는 문자를 만날때까지 문자열을 입력받을 수 있다.  
+이걸 테스트해보려면  
+
+```sh
+cat << EOF
+The current working directory is: $PWD
+You are logged in as: $(whoami)
+EOF
+```
+이걸 해보면 EOF로 감싸진 내부의 문자를 cat 커맨드의 stdin으로 바꿔서 날려주는 것을 볼 수 있다.  
+
+EOF말고도, 다른 문자열로도 할 수 있는데, 반드시 `word`와 완전히 동일해야한다.  
+단, word가 `t t`처럼 공백이 포함된 문자열인 경우, 뒤의 t는 씹히고, 앞의 t만 `word`로 인식되어  
+delimiter로는 `t`하나만 입력해야한다.  
+
+
+
 
 
 
