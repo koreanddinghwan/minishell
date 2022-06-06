@@ -1090,3 +1090,47 @@ termios_p: 터미널 속성의 저장 주소
 **반환값**:
 
 **에러**:
+
+
+
+
+
+
+
+#pipeline, redirection, Here Documents
+
+## pipeline
+
+pipeline은 `|`로 구분된 한 개 이상의 일련의 명령어이다.  
+파이프라인의 포맷은  
+
+```c++
+command [| command2]
+```
+
+command의 표준출력은 `pipe`로 연결되어 command2의 표준입력이 된다.  
+`이 연결은 명령어로 식별된 rediections 전에 먼저 수행된다.!!!`
+
+pipeline의 return state는, pipefail옵션이 켜져있지 않으면 `마지막 커맨드의 exit status`가 된다.  
+만약 pipefail옵션이 켜져있다면, pipeline의 return status는 실패한 가장 오른쪽의 명령어의 반환값이 되고,  
+모두 성공적으로 종료되면 0이 된다.  
+
+!옵션이랑 pipefail 옵션, time 옵션, -p 옵션은 서브젝트 요구사항 아니므로 패스.  
+
+pipeline의 각각의 커맨드는 모두 분리된 프로세스로 실행된다.  
+
+<br>
+
+## redirection
+
+command가 실행되기 전에, 쉘에 의해 특수하게 지정된 기능을 통해 input과 output이 `redirect`될 수 있다.  
+이 redirection의 경우, 현재 쉘 실행 환경을 위해 파일을 열거나 닫는데에 사용될 수 있다.  
+`<`, `>`과 같은 redirection 연산자는 간단한 명령어 내에 나타나거나, 명령을 따를 수 있다.  
+`연산 순서는 왼쪽에서 오른쪽으로 가면서 연산자가 나타난 순서대로`이다...  
+
+
+<br>
+
+
+
+
