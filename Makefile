@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/05 16:02:18 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/06 01:06:22 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ_FILES = $(MAIN_OBJS)
 all : $(NAME)
 
 $(NAME) : $(OBJ_FILES)
-	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(RDINC) -o $@ $^
+	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -o $@ $^
 
 %.o : %.c
 	$(GCC) $(CFLAGS) -I$(RDINC) -I$(INC) -c $^ -o $@
