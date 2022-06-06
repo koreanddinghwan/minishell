@@ -1128,8 +1128,102 @@ command가 실행되기 전에, 쉘에 의해 특수하게 지정된 기능을 �
 `<`, `>`과 같은 redirection 연산자는 간단한 명령어 내에 나타나거나, 명령을 따를 수 있다.  
 `연산 순서는 왼쪽에서 오른쪽으로 가면서 연산자가 나타난 순서대로`이다...  
 
+<br>
+
+파일 디스크립터 숫자가 없는 상태에서 redirection 연산자가 `<`라면, 그 redirection은 stdin(fd 0)을 참조한다.  
+만약 `>`라면, 해당 redirection은 stdout(fd 1)을 참조한다.  
 
 <br>
+
+`redirection의 순서는 상당히 중요하다.`  
+
+예를들어,  
+
+```sh
+ls > dirlist 2>&1
+```
+
+위 명령어는 stdout, stderr 모두를 dirlist로 지시한다.  
+
+반면,  
+
+```sh
+ls 2>&1 > dirlist
+```
+
+이 명령어의 경우에는, stdout만을 dirlist에 direct한다.  
+왜냐하면 stderr는, stdout이 dirlist에 redirect되기전에 stdout으로 복제되기 때문이다.  
+
+<br>
+
+bash는 redirection에 사용되는 몇몇 특별한 파일이름들을 컨트롤한다.  
+이에는  
+
+```sh
+/dev/fd/fd -> fd가 유효한 숫자라면, fd는 복제된다.
+/dev/stdin -> fd 0이 복제된다.
+/dev/stdout -> fd 1이 복제된다.
+/dev/stderr -> fd 2가 복제된다.
+/dev/tcp/host/port -> 만약 host가 유효한 호스트이름이거나, 인터넷 주소이고, port가 정수로된 port이름이거나 서비스이름이라면 bash는 해당 소켓에 상응하는 TCP연결을 시도한다.
+/dev/udp/host/port -> 위와 동일한 조건하에 UDP 연결을 시도한다.  
+```
+
+9 이상의 숫자로된 파일디스크립터를 사용한 redirection은 주의되어야하는데, 그 이유가 쉘이 내부적으로 사용하는 파일디스크립터와 충돌할 수 있기 때문이다.  
+
+
+<br>
+
+### Redirecting Input
+
+```sh
+[n]<word
+```
+
+input의 redirection은 word라는 이름을 가진 파일을 fd `n`로 읽어들일 수 있게 하거나,  
+n이 지정되지 않으면 0으로 읽어들일 수 있게 한다.  
+
+<br>
+
+### Redirecting Output
+
+```sh
+[n]>word
+```
+
+output의 redirection은 word라는 이름을 가진 파일을 fd `n`으로 쓸 수 있게 하거나,  
+n이 이정되지 않으면 1로 쓸 수 있게한다.  
+만약 파일이 없다면, 생성되는데, 있다면 크기가 0이된다.(존재하던 데이터 무시한다는 의미)  
+
+<br>
+
+### Appending Redirected Output
+
+```sh
+[n]>>word
+```
+
+이 방식의 redirecction은 fd n을 가진 파일의 끝에 붙인다.  
+이 역시, n이 생략되면 stdout울 redirection하게된다.  
+
+<br>
+
+
+## Here Documents
+
+```sh
+<<[-]word
+		here-document
+	delimiter
+```
+
+이 타입의 redirection은 쉘이 
+
+
+
+
+
+
+
 
 
 
