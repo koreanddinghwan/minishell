@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/07 00:30:14 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/07 00:50:53 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,13 @@ FT = libft.a
 MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
-OBJ_FILES = $(MAIN_OBJS)
+BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
+BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
+
+TOOLS_SRCS = $(addprefix ./srcs/tools/, error_handler.c)
+TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
+
+OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS)
 
 all : $(NAME)
 
