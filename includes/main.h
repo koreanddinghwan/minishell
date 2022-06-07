@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 14:02:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/07 14:24:18 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 typedef	struct s_data
 {
-	HIST_ENTRY	**history_list;
 	char		*command;
 	t_dlst		*lst;
 	t_dlst		*env_key;
