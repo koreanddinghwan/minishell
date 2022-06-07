@@ -8,6 +8,7 @@ BUILTIN_OBJS	Makefile	/^BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)$/;"	m
 BUILTIN_SRCS	Makefile	/^BUILTIN_SRCS = $(addprefix .\/srcs\/builtin_srcs\/, )$/;"	m
 CC	libft/Makefile	/^CC = gcc$/;"	m
 CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	Makefile	/^\\CFLAGS = -fsanitize=address -g3$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror -c$/;"	m
 ERROR_HANDLER	includes/error_handler.h	/^# define ERROR_HANDLER$/;"	d
 FT	Makefile	/^FT = libft.a$/;"	m
@@ -18,7 +19,7 @@ INC	Makefile	/^INC = .\/includes$/;"	m
 LIBFT_H	libft/libft.h	/^# define  LIBFT_H$/;"	d
 MAIN_H	includes/main.h	/^# define MAIN_H$/;"	d
 MAIN_OBJS	Makefile	/^MAIN_OBJS = $(MAIN_SRCS:.c=.o)$/;"	m
-MAIN_SRCS	Makefile	/^MAIN_SRCS = $(addprefix .\/srcs\/main_srcs\/, main.c sig_handler.c display.c, set_env_key.c, initialize_main.c)$/;"	m
+MAIN_SRCS	Makefile	/^MAIN_SRCS = $(addprefix .\/srcs\/main_srcs\/, main.c sig_handler.c display.c set_envkey.c initialize_main.c)$/;"	m
 NAME	Makefile	/^NAME = minishell$/;"	m
 NAME	libft/Makefile	/^NAME = libft.a$/;"	m
 NAME	srcs/builtin_srcs/Makefile	/^NAME = echo$/;"	m
@@ -43,7 +44,9 @@ command	includes/main.h	/^	char		*command;$/;"	m	struct:s_data
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_dlst
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
 display_bash	srcs/main_srcs/display.c	/^void	display_bash(t_data *data)$/;"	f
+env	srcs/builtin_srcs/ft_env.c	/^void	env()$/;"	f
 env_key	includes/main.h	/^	t_dlst		*env_key;$/;"	m	struct:s_data
+exist	srcs/builtin_srcs/ft_env.c	/^	int				exist;$/;"	m	struct:s_env	file:
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, t_size n)$/;"	f
 ft_caldigit	libft/ft_itoa.c	/^static int	ft_caldigit(long n)$/;"	f	file:
@@ -118,8 +121,8 @@ ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start,
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 ft_wd_cnt	libft/ft_split.c	/^static	int	ft_wd_cnt(char *str, char c)$/;"	f	file:
-history_list	includes/main.h	/^	HIST_ENTRY	**history_list;$/;"	m	struct:s_data
 initialize_main	srcs/main_srcs/initialize_main.c	/^void	initialize_main(t_data *data, char **envp)$/;"	f
+key	srcs/builtin_srcs/ft_env.c	/^	char			*key;$/;"	m	struct:s_env	file:
 lst	includes/main.h	/^	t_dlst		*lst;$/;"	m	struct:s_data
 main	srcs/builtin_srcs/ft_echo.c	/^int main(int ac, char *av[])$/;"	f
 main	srcs/builtin_srcs/ft_exit.c	/^int	main(int ac, char *av[])$/;"	f
@@ -128,9 +131,11 @@ make_key	srcs/main_srcs/set_envkey.c	/^char	*make_key(char *envstr)$/;"	f
 make_str	libft/ft_split_charset.c	/^char	*make_str(char *str, int s, char *charset, int *alloc_error)$/;"	f
 next	libft/libft.h	/^	struct s_dlst	*next;$/;"	m	struct:s_dlst	typeref:struct:s_dlst::s_dlst
 next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	srcs/builtin_srcs/ft_env.c	/^	struct s_env	*next;$/;"	m	struct:s_env	typeref:struct:s_env::s_env	file:
 print_error	srcs/tools/error_handler.c	/^void	print_error(int errnum)$/;"	f
 s_data	includes/main.h	/^typedef	struct s_data$/;"	s
 s_dlst	libft/libft.h	/^typedef struct s_dlst$/;"	s
+s_env	srcs/builtin_srcs/ft_env.c	/^typedef struct	s_env$/;"	s	file:
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
 set_data	srcs/main_srcs/display.c	/^void	set_data(t_data *data, char *line)$/;"	f
 set_env_key	srcs/main_srcs/set_envkey.c	/^void	set_env_key(t_data *data, char **envp)$/;"	f
@@ -140,5 +145,7 @@ sigquit_handler	srcs/main_srcs/sig_handler.c	/^void	sigquit_handler(int sig)$/;"
 str_size	libft/ft_split_charset.c	/^int	str_size(char *str, char *charset)$/;"	f
 t_data	includes/main.h	/^}	t_data;$/;"	t	typeref:struct:s_data
 t_dlst	libft/libft.h	/^}	t_dlst;$/;"	t	typeref:struct:s_dlst
+t_env	srcs/builtin_srcs/ft_env.c	/^}	t_env;$/;"	t	typeref:struct:s_env	file:
 t_list	libft/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
 t_size	libft/libft.h	/^typedef unsigned long	t_size;$/;"	t
+value	srcs/builtin_srcs/ft_env.c	/^	char			*value;$/;"	m	struct:s_env	file:
