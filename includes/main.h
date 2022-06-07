@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 17:13:48 by gyumpark         ###   ########.fr       */
+/*   Updated: 2022/06/07 20:54:57 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@
  * HERE_DOC -> <<, APPENDING_TO -> >>
 */
 
-//# define	SPACE 32
+# define	ECHO	"echo"
+# define	CD		"cd"
+# define	PWD		"pwd"
+# define	EXPORT	"export"
+# define	UNSET	"unset"
+# define	ENV		"env"
+# define	EXIT	"exit"
 
 enum	e_type
 {
-	COMMAND, ARG, OPTION, PIPE, REDIRECTION_OUTPUT, REDIRECTION_INPUT,
+	COMMAND, BUILTIN, ARG, OPTION, PIPE, REDIRECTION_OUTPUT, REDIRECTION_INPUT,
 	HERE_DOC, APPENDING_TO 
 };
 
@@ -43,6 +49,7 @@ typedef	struct s_token
 {
 	enum e_type	type;
 	char		*value;
+	int			nth;
 }	t_token;
 
 void	initialize_main(t_data *data, char **envp);
@@ -58,5 +65,20 @@ void	sigint_handler(int sig);
  * display
  * */
 void	display_bash(t_data *data);
+
+/*
+ * set_data
+ * */
+void	initialize_data(t_data *data, char *line);
+void	set_token(t_data *data, char *line);
+
+/*
+ * get_type
+ *
+ * */
+
+int	get_token_type(char *str);
+int	check_builtin(char *str);
+int	is_special_token(int type);
 
 #endif

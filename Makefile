@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/07 14:32:42 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/07 20:51:57 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FTDIR = ./libft/
 FT = libft.a
 FTINC = ./libft/
 
-MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c set_envkey.c initialize_main.c)
+MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c set_envkey.c initialize_main.c get_type.c initialize_data.c set_token.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
@@ -40,7 +40,6 @@ all : $(NAME)
 $(NAME) : $(OBJ_FILES)
 	make all -C $(FTDIR) #recursively create libft
 	cp $(FTDIR)$(FT) ./$(FT) #copy in root dir
-	make fclean -C $(FTDIR) #fclean libft.a and .o files in ./libft
 	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ libft.a #RFLAGS for readline lib
 
 %.o : %.c
