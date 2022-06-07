@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 00:43:37 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/07 14:24:18 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <unistd.h>
+# include "libft.h"
 
 typedef	struct s_data
 {
-	HIST_ENTRY	**history_list;
+	char		*command;
+	t_dlst		*lst;
+	t_dlst		*env_key;
 }	t_data;
 
+void	initialize_main(t_data *data, char **envp);
+void	set_env_key(t_data *data, char **envp);
 /*
  * signal handler
  * */
+void	set_handler(void);
 void	sigquit_handler(int sig);
 void	sigint_handler(int sig);
-void	set_handler(void);
 
 /*
  * display

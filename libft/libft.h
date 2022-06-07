@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/04/23 20:58:06 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/07 13:58:11 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_size			ft_strlcat(char *dest, char *src, t_size size);
 t_size			ft_strlcpy(char *dest, char *src, t_size size);
 int				ft_strncmp(char *s1, char *s2, t_size n);
 char			*ft_strdup(char *src);
+char			*ft_strndup(char *src, int size);
 int				ft_atoi(const char *str);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
