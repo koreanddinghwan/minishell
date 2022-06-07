@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/07 00:55:29 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/07 14:06:06 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ RDFLAGS = -I${RDINC} -L${RDLIB} -lreadline #readline compile flags
 
 FTDIR = ./libft/
 FT = libft.a
-FTINC = ./libft/libft.h
+FTINC = ./libft/
 
-MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c)
+MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c set_envkey.c initialize_main.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
@@ -40,7 +40,7 @@ $(NAME) : $(OBJ_FILES)
 	make all -C $(FTDIR) #recursively create libft
 	cp $(FTDIR)$(FT) ./$(FT) #copy in root dir
 	make fclean -C $(FTDIR) #fclean libft.a and .o files in ./libft
-	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ #RFLAGS for readline lib
+	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ libft.a #RFLAGS for readline lib
 
 %.o : %.c
 	$(GCC) $(CFLAGS) -I$(RDINC) -I$(INC) -I$(FTINC) -c $^ -o $@ #specify readline header in RNINC

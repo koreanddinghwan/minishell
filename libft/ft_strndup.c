@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.h                                    :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 00:45:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 13:32:35 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/07 13:53:07 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/07 14:00:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_HANDLER
-# define ERROR_HANDLER
+#include "libft.h"
 
-#include <string.h>
-#include <stdlib.h>
+char	*ft_strndup(char *src, int size)
+{
+	char	*rtn;
+	int		i;
 
-void	print_error(int errnum);
-
-#endif
+	rtn = malloc(sizeof(char) * size);
+	i = 0;
+	while (src[i] && i < size)
+	{
+		rtn[i] = src[i];
+		i++;
+	}
+	rtn[i] = 0;
+	return (rtn);
+}

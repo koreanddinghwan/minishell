@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 15:44:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 00:57:29 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/07 13:32:53 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	set_data(t_data *data, char *line)
 {
 	add_history(line);
 	data->command = line;
-	
 }
 
 void	display_bash(t_data *data)

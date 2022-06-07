@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.h                                    :+:      :+:    :+:   */
+/*   set_envkey.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 00:45:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 13:32:35 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/07 14:04:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_HANDLER
-# define ERROR_HANDLER
+#include "main.h"
 
-#include <string.h>
-#include <stdlib.h>
 
-void	print_error(int errnum);
+char	*make_key(char *envstr)
+{
+	char	*str;
+	int		i;
+	
+	i = 0;
+	while (envstr[i] != '=')
+		i++;
+	str = ft_strndup(envstr, i);
+	return (str);
+}
 
-#endif
+void	set_env_key(t_data *data, char **envp)
+{
+	t_dlst	*node;
+
+	while (*envp)
+	{
+		node = ft_dlst_new(make_key(*envp));
+		ft_dlst_pushback(&data->env_key, node);
+		envp++;
+	}
+}

@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.h                                    :+:      :+:    :+:   */
+/*   initialize_main.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 00:45:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 13:32:35 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/07 13:33:14 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/07 14:01:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_HANDLER
-# define ERROR_HANDLER
+#include "main.h"
 
-#include <string.h>
-#include <stdlib.h>
-
-void	print_error(int errnum);
-
-#endif
+void	initialize_main(t_data *data, char **envp)
+{
+	set_handler();
+	set_env_key(data, envp);
+	while (data->env_key)
+	{
+		ft_printf("%s\n", data->env_key->content);
+		data->env_key = data->env_key->next;
+	}
+}
