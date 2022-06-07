@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 16:25:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/07 17:13:48 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
  * HERE_DOC -> <<, APPENDING_TO -> >>
 */
 
-# define	SPACE 32
+//# define	SPACE 32
 
 enum	e_type
 {
 	COMMAND, ARG, OPTION, PIPE, REDIRECTION_OUTPUT, REDIRECTION_INPUT,
 	HERE_DOC, APPENDING_TO 
-}
+};
 
 typedef	struct s_data
 {

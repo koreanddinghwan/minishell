@@ -6,23 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 15:44:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 17:10:56 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/07 17:15:01 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-t_dlst	*make_token_lst(char *line)
-{
-	char	**splited;
-	t_dlst	*token_lst;
-
-	splited = ft_split(line, SPACE);
-	while (*splited)
-	{
-		ft_dlst_new
-	}
-}
 
 void	set_data(t_data *data, char *line)
 {
