@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/07 20:51:57 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/07 21:58:26 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ fclean : clean
 	rm -rf $(NAME)
 
 clean :
+	make fclean -C $(FTDIR)
 	rm -rf $(OBJ_FILES) $(FT)
 
 re : 
