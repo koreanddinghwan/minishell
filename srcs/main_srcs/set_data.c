@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 14:34:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 20:40:44 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/07 20:37:47 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int main(int ac, char **av, char **envp)
+void	initialize_data(t_data *data, char *line)
 {
-	t_data	data;
-
-	(void)ac;
-	(void)av;
-	initialize_main(&data, envp);
-	display_bash(&data);
-	return (0);
+	add_history(line);
+	data->command = line;
+	set_token(data, line);
 }
