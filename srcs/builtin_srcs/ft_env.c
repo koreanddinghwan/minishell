@@ -1,27 +1,38 @@
 #include "../../includes/main.h"
 
-typedef struct	s_env
+char	*make_key(char	*envstr)
 {
-	char			*key;
-	char			*value;
-	int				exist;
-	struct s_env	*next;
-}	t_env;
+	char	*str;
 
-void	env()
+	str = ft_strdup(envstr);
+	return (str);
+}
+
+void	set_env_key(t_data	*data, char	**envp)
 {
-	//env 구조체 초기화 해야함
-	t_env	*e;
+	t_dlst	*node;
 
-	while(e)
+	while (*envp)
 	{
-		if (e->exist)
-		{
-			if (e->value)
-				printf("%s=%s\n", e->key, e->value);
-			else
-				printf("%s=\n", e->key);
-		}
-		e = e->next;
+		node = ft_dlst_new(make_key(*envp));
+		ft_dlst_pushback(&data->env, node);
+		printf("%s\n", data->env->content);
+		envp++;
+		data->env = data->env->next;
 	}
+}
+
+void	ft_unset(t_data	*data, t_token *token)
+{
+
+}
+
+int	main(int ac, char **av, char **envp)
+{
+	t_data	data;
+
+	(void)ac;
+	(void)av;
+	set_env_key(&data, envp);
+	return (0);
 }
