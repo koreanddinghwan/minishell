@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_handler.c                                      :+:      :+:    :+:   */
+/*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 18:18:27 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/08 17:42:10 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/08 18:24:28 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef TOKENIZER_H
+# define TOKENIZER_H
+# include "structs.h"
+# include "defines_enums.h"
+# include "libft.h"
+//tmp
+# include "tmp.h"
 
-void	sigquit_handler(int sig)
-{
-	(void)sig;
-	return ;
-}
+void	initialize_data(t_data *data, char *line);
+void	tokenizer(t_data *data, char *line);
+t_dlst	*make_token_lst(char *line);
+int		get_token_type(char *str);
+int		check_builtin(char *str);
 
-void	sigint_handler(int sig)
-{
-	(void)sig;
-	write(2, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void	set_handler(void)
-{
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
-}
+#endif

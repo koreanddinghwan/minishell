@@ -1,34 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_handler.c                                      :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 18:18:27 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/08 18:28:01 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+ * lexer defines the tokens type, nth
+ * */
 
-#include "main.h"
-
-void	sigquit_handler(int sig)
-{
-	(void)sig;
-	return ;
-}
-
-void	sigint_handler(int sig)
-{
-	(void)sig;
-	write(2, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void	set_handler(void)
-{
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
-}

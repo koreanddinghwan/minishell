@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_order.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 00:09:52 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/08 18:27:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+ * parser define the order of commands
+ * */
 
 #include "main.h"
 
-void	set_order(t_data *data)
+void	parser(t_data *data)
 {
 	(void)data;
 }

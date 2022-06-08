@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_handler.c                                      :+:      :+:    :+:   */
+/*   tmp_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 18:18:27 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/08 18:08:58 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/08 18:12:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "tmp.h"
 
-void	sigquit_handler(int sig)
+void	print_token_lst(t_data *data)
 {
-	(void)sig;
-	return ;
-}
-
-void	sigint_handler(int sig)
-{
-	(void)sig;
-	write(2, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void	set_handler(void)
-{
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
+	while (data->token_lst)
+	{
+		printf("type : %d, value : %s\n", ((t_token *)(data->token_lst->content))->type, ((t_token *)(data->token_lst->content))->value);
+		data->token_lst = data->token_lst->next;
+	}
 }
