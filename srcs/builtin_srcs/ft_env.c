@@ -15,16 +15,11 @@ void	set_env_key(t_data	*data, char	**envp)
 	while (*envp)
 	{
 		node = ft_dlst_new(make_key(*envp));
-		ft_dlst_pushback(&data->env, node);
-		printf("%s\n", data->env->content);
+		ft_dlst_pushback(&data->env_lst, node);
+		printf("%s\n", (char *)data->env_lst->content);
 		envp++;
-		data->env = data->env->next;
+		data->env_lst = data->env_lst->next;
 	}
-}
-
-void	ft_unset(t_data	*data, t_token *token)
-{
-
 }
 
 int	main(int ac, char **av, char **envp)
