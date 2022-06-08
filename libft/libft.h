@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 17:26:15 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/08 12:57:29 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_dlst
 
 typedef unsigned long	t_size;
 # endif
+
+# define	ON 1
+# define	OFF 0
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);

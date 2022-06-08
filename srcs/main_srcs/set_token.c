@@ -6,22 +6,21 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 20:32:18 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 01:02:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/08 15:23:32 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_token	*make_token(char **str, int	i)
+t_token	*make_token(char *str)
 {
 	t_token	*token;
 
 	token = malloc(sizeof(t_token) * 1);
 	if (!token)
 		return (NULL);
-	token->type = get_token_type(str[i]);
-	token->value = *(str + i);
-	token->nth = i;
+	token->type = get_token_type(str);
+	token->value = str;
 	return (token);
 }
 
@@ -29,14 +28,14 @@ t_dlst	*make_token_lst(char *line)
 {
 	char	**splited;
 	t_dlst	*token_lst;
-	int		i;
 
-	splited = ft_split(line, SPACE);
-	i = 0;
-	while (splited[i])
+	splited = ft_split(line, '|');
+	while (*splited)
 	{
-		ft_dlst_pushback(&token_lst, ft_dlst_new(make_token(splited, i)));
-		i++;
+		ft_dlst_pushback(&token_lst, ft_dlst_new(make_token(*splited)));
+		splited++;
+		if (*splited)
+			ft_dlst_pushback(&token_lst, ft_dlst_new(make_token("|")));
 	}
 	return (token_lst);
 }
@@ -50,7 +49,6 @@ void	change_type_arg(t_dlst *lst)
 	}
 }
 
-void	
 
 /*
  * builtin 함수나 command명령어를 인식한 경우, 다음 토큰이 옵션이 아니면 해당 그 토큰을 arg로 변경
@@ -74,6 +72,8 @@ void	convert_arg(t_dlst *cur)
  * */
 void	stick_quotes(t_dlst *cur)
 {
+	if (cur)
+		return ;
 }
 
 /*
@@ -98,8 +98,8 @@ void	set_token(t_data *data, char *line)
 	cur = data->token_lst;
 	while (cur)
 	{
-		convert_arg(cur);
 		stick_quotes(cur);
+		convert_arg(cur);
 		convert_file(cur);
 		cur = cur->next;
 	}
