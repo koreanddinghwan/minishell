@@ -6,13 +6,16 @@ void	ft_unset(t_data *data, t_token *token)
 	t_dlst	*env;
 	t_dlst	*link;
 
-	link = 
+	env = data->env_lst;
 	while(data->env)
 	{
 		split = ft_split(*envp, "=");
-		if (!strcmp(av[1] 토큰value, split[0]))
+		if (!strcmp(token->value, split[0]))
 		{
-			free(data->env);
+			link->next = env->next
+			free(data->env_lst);
+			free(split);
+			return ;
 		}
 		envp++;
 		data->env_lst = data->env_lst->next;
