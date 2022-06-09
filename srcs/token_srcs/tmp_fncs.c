@@ -28,15 +28,6 @@ void	convert_arg(t_dlst *cur)
 }
 
 /*
- * 따옴표와 홑따옴표를 가진 경우, 원본 line 보고 체크해야함....
- * */
-void	stick_quotes(t_dlst *cur)
-{
-	if (cur)
-		return ;
-}
-
-/*
  * 리다이렉션과 >> 를 인식한 경우. 다음 토큰은 파일이어야함
  * */
 void	convert_file(t_dlst *cur)

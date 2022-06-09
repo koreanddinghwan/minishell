@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_type.c                                         :+:      :+:    :+:   */
+/*   lexer_decide_w_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 20:27:16 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 19:35:37 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/09 20:02:03 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/09 21:55:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-
-int	get_token_type(char c)
-{
-	if (c == '|')
-		return (PIPE);
-	if (c == '<')
-		return (LESSER);
-	if (c == '>')
-		return (GREATER);
-	if (c == '\"')
-		return (DQUO);
-	if (c == '\'')
-		return (SQUO);
-	return (NORM);
-}
+#include "lexer.h"
 
 int	check_builtin(char *str)
 {
@@ -46,17 +31,35 @@ int	check_builtin(char *str)
 	return (0);
 }
 
-int	is_special_token(int type)
+int	check_spec_token(char *str)
 {
-	if (type == PIPE)
-		return (1);
-	if (type == REDIRECTION_OUTPUT)
-		return (1);
-	if (type == REDIRECTION_INPUT)
-		return (1);
-	if (type == HERE_DOC)
-		return (1);
-	if (type == APPENDING_TO)
-		return (1);
+	if (ft_strcmp(str, "|") == 0)
+		return (W_PIPE);
+	else if (ft_strcmp(str, "<<") == 0)
+		return (W_HERE_DOC);
+	else if (ft_strcmp(str, ">>") == 0)
+		return (W_APPENDING_TO);
+	else if (ft_strcmp(str, "<") == 0)
+		return (W_REDIRECTION_INPUT);
+	else if (ft_strcmp(str, ">") == 0)
+		return (W_REDIRECTION_OUTPUT);
 	return (0);
+}
+
+int	get_word_type(char *str)
+{
+	if (check_builtin(str))
+		return (W_BUILTIN);
+	else if (check_spec_token(str))
+		return (check_spec_token(str));
+	else
+		return (W_COMMAND);
+}
+
+void	lexer_decide_w_type(t_lexer_token	*l_tok)
+{
+	char	*str;
+
+	str = l_tok->buffer;
+	l_tok->w_type = get_word_type(str);
 }

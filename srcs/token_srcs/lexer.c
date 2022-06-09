@@ -6,13 +6,24 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 19:23:19 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 22:04:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	lexer(t_data *data)
+/*tmp*/
+void	lexer_token_printer(t_data *data)
+{
+	while (data->lexer_token_lst)
+	{
+		printf("type : %d\n", ((t_lexer_token *)data->lexer_token_lst->content)->w_type);
+		printf("%s\n", ((t_lexer_token *)data->lexer_token_lst->content)->buffer);
+		data->lexer_token_lst = data->lexer_token_lst->next;
+	}
+}
+
+void	lexer_token_lst_init(t_data *data)
 {
 	t_token			*tok_buf;
 	t_lexer_token	*l_tok;
@@ -35,9 +46,11 @@ void	lexer(t_data *data)
 			i++;
 		}
 	}
-	while (data->lexer_token_lst)
-	{
-		printf("%s\n", ((t_lexer_token *)data->lexer_token_lst->content)->buffer);
-		data->lexer_token_lst = data->lexer_token_lst->next;
-	}
+}
+
+void	lexer(t_data *data)
+{
+	lexer_token_lst_init(data);
+	lexer_w_converter(data);
+	lexer_token_printer(data);
 }

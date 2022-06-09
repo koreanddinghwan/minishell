@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 16:42:33 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 22:46:59 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,17 @@ enum	e_char_type
  * */
 enum	e_word_type
 {
-	COMMAND,
-	BUILTIN,
-	ARG,
-	OPTION,
-	FIL,
-	HERE_DOC,
-	APPENDING_TO,
-	REDIRECTION_INPUT,
-	REDIRECTION_OUTPUT,
+	W_COMMAND = 0,
+	W_BUILTIN = 1,
+	W_ARG = 2,
+	W_OPTION = 3,
+	W_FILE = 4,
+	W_PIPE = 5,
+	W_HERE_DOC = 6,
+	W_APPENDING_TO = 7,
+	W_REDIRECTION_INPUT = 8,
+	W_REDIRECTION_OUTPUT = 9,
+	W_DELIMETER = 10
 };
 
 enum	e_state
