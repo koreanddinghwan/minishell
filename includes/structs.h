@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sig_handler.c                                      :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 18:18:27 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/09 16:52:29 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef STRUCTS_H
+# define STRUCTS_H
+# include "defines_enums.h"
+# include "libft.h"
 
-void	sigquit_handler(int sig)
+typedef	struct s_token
 {
-	(void)sig;
-	return ;
-}
+	enum e_char_type	type;
+	char				c;
+}	t_token;
 
-void	sigint_handler(int sig)
+typedef	struct s_data
 {
-	(void)sig;
-	write(2, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
+	char		*command;
+	char		*trimmed;
+	t_token		*tok_buf;
+	t_dlst		*token_lst;
+	t_dlst		*env_lst;
+	t_dlst		*cmd_order_lst;
+}	t_data;
 
-void	set_handler(void)
+typedef	struct s_cmd_order
 {
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, sigquit_handler);
-}
+	int		nth;
+	t_dlst	*cmd;
+}	t_cmd_order;
+
+#endif

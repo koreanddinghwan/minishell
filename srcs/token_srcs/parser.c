@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_data.c                                         :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 20:54:33 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/08 18:27:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+ * parser define the order of commands
+ * */
 
 #include "main.h"
 
-void	initialize_data(t_data *data, char *line)
+void	parser(t_data *data)
 {
-	add_history(line);
-	data->command = line;
-	set_token(data, line);
+	(void)data;
 }

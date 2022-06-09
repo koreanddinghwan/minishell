@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_order.c                                        :+:      :+:    :+:   */
+/*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 00:09:52 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/08 17:41:46 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/09 16:54:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "tokenizer.h"
 
-void	set_order(t_data *data)
+void	token_init(t_data *data)
 {
-	(void)data;
+	data->tok_buf = ft_calloc(sizeof(t_token), ft_strlen(data->trimmed) + 2);
+}
+
+void	tokenizer(t_data *data)
+{
+	if (!data->trimmed)
+		return ;
+	token_init(data);
+	token_buf_build(data);
+	print_toks(data->tok_buf);
+	//print_token_lst(data);
 }
