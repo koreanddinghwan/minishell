@@ -6,12 +6,12 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:04:06 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 20:20:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 16:57:19 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
-
+/*
 static t_token	*make_token(char c)
 {
 	t_token	*token;
@@ -41,4 +41,4 @@ void	make_token_lst(char *token_buf)
 	return (token_lst);
 }
 
-
+*/

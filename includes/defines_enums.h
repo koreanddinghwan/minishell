@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 20:49:20 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 16:42:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@
  * */
 enum	e_char_type
 {
-	NORM = 0,
+	NORM = 1,
 	PIPE = '|',
 	LESSER = '<',
 	GREATER = '>', 
 	DQUO = '\"',
 	SQUO = '\'',
 	SPC = ' ',
+	END_C = '\0'
 };
 
 /*
@@ -58,7 +59,7 @@ enum	e_word_type
 	APPENDING_TO,
 	REDIRECTION_INPUT,
 	REDIRECTION_OUTPUT,
-}
+};
 
 enum	e_state
 {

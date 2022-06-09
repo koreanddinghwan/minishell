@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 20:55:09 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 16:52:29 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 # include "defines_enums.h"
 # include "libft.h"
 
+typedef	struct s_token
+{
+	enum e_char_type	type;
+	char				c;
+}	t_token;
+
 typedef	struct s_data
 {
 	char		*command;
-	char		*token_buf;
+	char		*trimmed;
+	t_token		*tok_buf;
 	t_dlst		*token_lst;
 	t_dlst		*env_lst;
 	t_dlst		*cmd_order_lst;
 }	t_data;
-
-typedef	struct s_token
-{
-	enum e_type	type;
-	char		*buf;
-	t_token		*next;
-}	t_token;
 
 typedef	struct s_cmd_order
 {
