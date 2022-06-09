@@ -6,29 +6,25 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 20:27:16 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 20:30:07 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/08 19:35:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	get_token_type(char *str)
+int	get_token_type(char c)
 {
-	if (ft_strcmp("|", str) == 0)
+	if (c == '|')
 		return (PIPE);
-	if (ft_strcmp("<", str) == 0)
-		return (REDIRECTION_INPUT);
-	if (ft_strcmp(">", str) == 0)
-		return (REDIRECTION_OUTPUT);
-	if (ft_strcmp("<<", str) == 0)
-		return (HERE_DOC);
-	if (ft_strcmp(">>", str) == 0)
-		return (APPENDING_TO);
-	if (ft_strcmp("-n", str) == 0)
-		return (OPTION);
-	if (check_builtin(str))
-		return (BUILTIN);
-	return (COMMAND);
+	if (c == '<')
+		return (LESSER);
+	if (c == '>')
+		return (GREATER);
+	if (c == '\"')
+		return (DQUO);
+	if (c == '\'')
+		return (SQUO);
+	return (NORM);
 }
 
 int	check_builtin(char *str)

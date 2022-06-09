@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:41:46 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 18:10:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/08 20:40:21 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 void	tokenizer(t_data *data, char *line)
 {
-	data->token_lst = make_token_lst(line);
-	print_token_lst(data);
+	char	*trimed;
+
+	trimed = ft_strtrim(line, " ");
+	data->token_buf = malloc(sizeof(t_token) * ft_strlen(trimed) + 1);
+	if(!data->token_buf)
+		return ;
+	token_buf_build(data->token_buf, trimed);
+	//print_token_lst(data);
+	free(trimed);
 }

@@ -1,22 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp_print.c                                        :+:      :+:    :+:   */
+/*   token_buf_build.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 18:08:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 19:51:40 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/08 20:22:29 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/08 20:54:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tmp.h"
+#include "tokenizer.h"
 
-void	print_token_lst(t_data *data)
+
+void	fill_buf(t_token *buf, char c, int *state)
 {
-	while (data->token_lst)
+	if (c == DQUO)
+		
+}
+
+void	token_buf_build(t_token *buf, char *str)
+{
+	int	state;
+
+	state = STATE_NORMAL;
+	while (*str)
 	{
-		printf("type : %d, value : %c\n", ((t_token *)(data->token_lst->content))->type, ((t_token *)(data->token_lst->content))->value);
-		data->token_lst = data->token_lst->next;
+		if (state == STATE_NORMAL)
+			fill_buf(buf, *str, &state);
+		else if (state == STATE_SQUOTE)
+		{
+		}
+		else if (state == STATE_DQUOTE)
+		{
+		}
+		str++;
 	}
+	*buf = ;
 }

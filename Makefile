@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/08 18:15:16 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/08 20:22:12 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ FTINC = ./libft/
 MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c set_envkey.c initialize_main.c initialize_data.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
-TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, get_type.c parser.c tokenizer.c make_token_lst.c)
+TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, get_type.c parser.c tokenizer.c token_buf_build.c  make_token_lst.c)
 TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
@@ -36,7 +36,7 @@ BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 TOOLS_SRCS = $(addprefix ./srcs/tools/, error_handler.c tmp_print.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
-OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS)
+OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS)
 
 all : $(NAME)
 
