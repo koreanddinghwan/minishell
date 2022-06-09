@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:10 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 16:56:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 17:14:48 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define TOKENIZER_H
 # include "structs.h"
 # include "defines_enums.h"
-# include "libft.h"
 //tmp
 # include "tmp.h"
 

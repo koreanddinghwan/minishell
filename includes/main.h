@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 19:42:50 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 17:13:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "structs.h"
 # include "defines_enums.h"
 # include "tokenizer.h"
+# include "lexer.h"
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);

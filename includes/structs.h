@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 16:52:29 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/09 17:43:58 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@ typedef	struct s_token
 	char				c;
 }	t_token;
 
+typedef	struct s_lexer_token
+{
+	enum e_word_type	w_type;
+	char				*buffer;
+	int					buf_len;
+}	t_lexer_token;
+
 typedef	struct s_data
 {
 	char		*command;
 	char		*trimmed;
 	t_token		*tok_buf;
-	t_dlst		*token_lst;
+	t_dlst		*lexer_token_lst;
 	t_dlst		*env_lst;
 	t_dlst		*cmd_order_lst;
 }	t_data;
