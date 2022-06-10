@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlst_pushback.c                                 :+:      :+:    :+:   */
+/*   initialize_main.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 13:48:54 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 12:49:23 by gyumpark         ###   ########.fr       */
+/*   Created: 2022/06/07 13:33:14 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 10:36:15 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/main.h"
 
-void	ft_dlst_pushback(t_dlst **dlst, t_dlst *new)
+void	initialize_main(t_data *data, char **envp)
 {
-	t_dlst	*last;
-
-	last = ft_dlst_last(*dlst);
-	if (last == 0)
-	{
-		*dlst = new;
-		return ;
-	}
-	last->next = new;
-	new->back = last;
+	set_handler();
+	data->lexer_token_lst = NULL;
+	data->env_lst = NULL;
+	data->cmd_order_lst = NULL;
+	set_env_key(data, envp);
 }

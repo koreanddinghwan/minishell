@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 17:43:58 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 11:46:55 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,13 @@ typedef	struct s_cmd_order
 	int		nth;
 	t_dlst	*cmd;
 }	t_cmd_order;
+
+typedef struct	s_AST
+{
+	char			*data;
+	t_cmd_order		*order;
+	struct	s_AST	*left;
+	struct	s_AST	*right;
+}	t_AST;
 
 #endif

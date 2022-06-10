@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlst_pushback.c                                 :+:      :+:    :+:   */
+/*   initialize_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 13:48:54 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 12:49:23 by gyumpark         ###   ########.fr       */
+/*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 10:44:03 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/main.h"
 
-void	ft_dlst_pushback(t_dlst **dlst, t_dlst *new)
+void	initialize_data(t_data *data, char *line)
 {
-	t_dlst	*last;
-
-	last = ft_dlst_last(*dlst);
-	if (last == 0)
-	{
-		*dlst = new;
-		return ;
-	}
-	last->next = new;
-	new->back = last;
+	add_history(line);
+	data->trimmed = ft_strtrim(line, " ");
+	data->command = line;
+	//tokenizer(data);
+	//lexer(data);
+	//parser(data);
 }
