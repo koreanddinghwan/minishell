@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 22:04:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 11:52:53 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,44 @@ void	lexer_token_printer(t_data *data)
 	}
 }
 
+t_lexer_token	*lexer_space_token()
+{
+	t_lexer_token	*rtn;
+
+	rtn = ft_calloc(sizeof(t_lexer_token), 1);
+	rtn->buf_len = 1;
+	rtn->buffer = ft_calloc(sizeof(char), 2);
+	rtn->buffer[0] = ' ';
+	rtn->buffer[1] = '\0';
+	rtn->w_type = W_ARG;
+	return (rtn);
+}
+
 void	lexer_token_lst_init(t_data *data)
 {
 	t_token			*tok_buf;
 	t_lexer_token	*l_tok;
 	int				i;
+	int				space_add;
 
 	tok_buf = data->tok_buf;
+	space_add = 0;
 	while (tok_buf->type != END_C)
 	{
-		if (tok_buf->type == SPC)
+		if (tok_buf->type == SPC && space_add == 1)
 		{
 			tok_buf++;
-			continue;
+			continue ;
 		}
+		else if (tok_buf->type == SPC && space_add == 0)
+		{
+			l_tok = lexer_space_token();
+			ft_dlst_pushback(&data->lexer_token_lst, ft_dlst_new(l_tok));
+			tok_buf++;
+			space_add = 1;
+			continue ;
+		}
+		space_add = 0;
 		i = 0;
 		l_tok = lexer_token_init(tok_buf);
 		ft_dlst_pushback(&data->lexer_token_lst, ft_dlst_new(l_tok));

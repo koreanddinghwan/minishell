@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 13:36:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 21:51:20 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 12:03:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_dlst	*ft_dlst_last(t_dlst *dlst)
 	if (!dlst)
 		return (0);
 	cur = dlst;
-	while (cur && cur->next != 0)
+	while (cur->next != 0)
 		cur = cur->next;
 	return (cur);
 }

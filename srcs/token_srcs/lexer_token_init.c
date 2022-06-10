@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 19:12:13 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 20:41:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 11:51:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_lexer_token	*lexer_token_init(t_token *tok_buf)
 		return (0);
 	rtn = ft_calloc(sizeof(t_lexer_token), 1);
 	rtn->buf_len = lexer_get_buff_len(tok_buf);
-	rtn->buffer = ft_calloc(sizeof(t_lexer_token), rtn->buf_len + 1);
+	rtn->buffer = ft_calloc(sizeof(char), rtn->buf_len + 1);
 	lexer_cpy_buf(rtn, tok_buf);
 	lexer_decide_w_type(rtn);
 	return (rtn);
