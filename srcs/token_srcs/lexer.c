@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 11:52:53 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 12:48:32 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	lexer_token_lst_init(t_data *data)
 			tok_buf++;
 			i++;
 		}
+		printf("%c\n", tok_buf->c);
 	}
 }
 

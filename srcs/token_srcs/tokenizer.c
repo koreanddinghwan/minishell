@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:41:46 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 11:57:23 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 12:19:55 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,4 @@ void	tokenizer(t_data *data)
 		return ;
 	token_init(data);
 	token_buf_build(data);
-	print_toks(data->tok_buf);
-	//print_token_lst(data);
 }

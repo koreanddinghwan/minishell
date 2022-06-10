@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 19:12:13 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 11:51:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 12:50:17 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	lexer_get_len_quotes(t_token *tok_buf, enum e_char_type compare)
 	int	size;
 
 	size = 0;
+	/*
 	if ((tok_buf + 1)->type == NORM)
 	{
 		tok_buf++;
@@ -39,7 +40,13 @@ int	lexer_get_len_quotes(t_token *tok_buf, enum e_char_type compare)
 		return (size);
 	}
 	else
-		return (0);
+		return (0);*/
+	while (tok_buf->type != compare)
+	{
+		size++;
+		tok_buf++;
+	}
+	return (size);
 }
 
 int	lexer_get_buff_len(t_token *tok_buf)
