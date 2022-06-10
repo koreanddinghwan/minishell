@@ -1,0 +1,17 @@
+Makefile
+a.out
+display.c
+file.txt
+ft_cd.c
+ft_echo.c
+ft_env.c
+ft_exit.c
+ft_export.c
+ft_pwd.c
+ft_unset.c
+initialize_data.c
+initialize_main.c
+main.c
+set_envkey.c
+set_token.c
+sig_handler.c

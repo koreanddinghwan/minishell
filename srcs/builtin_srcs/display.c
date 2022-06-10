@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlst_pushback.c                                 :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 13:48:54 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 12:49:23 by gyumpark         ###   ########.fr       */
+/*   Created: 2022/06/05 15:44:52 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 10:34:26 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/main.h"
 
-void	ft_dlst_pushback(t_dlst **dlst, t_dlst *new)
+void	display_bash(t_data *data)
 {
-	t_dlst	*last;
+	char	*line;
 
-	last = ft_dlst_last(*dlst);
-	if (last == 0)
+	while (1)
 	{
-		*dlst = new;
-		return ;
+		line = readline("bash >");
+		if (!line)
+		{
+			printf(" exit\n");
+			return ;
+		}
+		initialize_data(data, line);
 	}
-	last->next = new;
-	new->back = last;
 }

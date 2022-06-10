@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlst_pushback.c                                 :+:      :+:    :+:   */
+/*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 13:48:54 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 12:49:23 by gyumpark         ###   ########.fr       */
+/*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 10:48:27 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/main.h"
 
-void	ft_dlst_pushback(t_dlst **dlst, t_dlst *new)
+void	sigquit_handler(int sig)
 {
-	t_dlst	*last;
+	(void)sig;
+	return ;
+}
 
-	last = ft_dlst_last(*dlst);
-	if (last == 0)
-	{
-		*dlst = new;
-		return ;
-	}
-	last->next = new;
-	new->back = last;
+void	sigint_handler(int sig)
+{
+	(void)sig;
+	write(2, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+}
+
+void	set_handler(void)
+{
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, sigquit_handler);
 }
