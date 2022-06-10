@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 19:12:13 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 13:06:46 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 13:41:27 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int	lexer_get_len_quotes(t_token *tok_buf, enum e_char_type compare)
 			size++;
 		return (size);
 	}
+	else if ((tok_buf + 1)->type == compare)
+		return (2);
 	else
-		return (0);
+		return (1);
 }
 
 int	lexer_get_buff_len(t_token *tok_buf)
