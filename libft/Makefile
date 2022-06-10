@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/11 17:36:18 by myukang           #+#    #+#              #
-#    Updated: 2022/06/07 17:26:24 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/10 12:22:10 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS = ft_isdigit.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_strlen.c \
 	   ft_dlst_clear.c ft_dlst_new.c ft_dlst_popback.c ft_dlst_popfront.c \
 	   ft_dlst_pushback.c ft_dlst_pushfront.c ft_dlst_size.c
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror -c
+CFLAGS = -Wall -Wextra -Werror -c -g3 -fsanitize=address
 
 OBJ_FILES = $(OBJS)
 

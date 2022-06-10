@@ -56,21 +56,22 @@ STATE_SQUOTE	includes/defines_enums.h	/^	STATE_SQUOTE,$/;"	e	enum:e_state
 STRUCTS_H	includes/structs.h	/^# define STRUCTS_H$/;"	d
 TOKENIZER_H	includes/tokenizer.h	/^# define TOKENIZER_H$/;"	d
 TOKEN_OBJS	Makefile	/^TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)$/;"	m
-TOKEN_SRCS	Makefile	/^TOKEN_SRCS = $(addprefix .\/srcs\/token_srcs\/, get_type.c parser.c tokenizer.c lexer.c token_buf_build.c  make_token_lst.c lexer_token_init.c lexer_decide_w_type.c)$/;"	m
+TOKEN_SRCS	Makefile	/^TOKEN_SRCS = $(addprefix .\/srcs\/token_srcs\/, parser.c tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)$/;"	m
 TOOLS_OBJS	Makefile	/^TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)$/;"	m
 TOOLS_SRCS	Makefile	/^TOOLS_SRCS = $(addprefix .\/srcs\/tools\/, error_handler.c tmp_print.c)$/;"	m
 T_SIZE	libft/libft.h	/^#  define T_SIZE$/;"	d
 UNSET	includes/defines_enums.h	/^# define	UNSET	/;"	d
-W_APPENDING_TO	includes/defines_enums.h	/^	W_APPENDING_TO,$/;"	e	enum:e_word_type
-W_ARG	includes/defines_enums.h	/^	W_ARG,$/;"	e	enum:e_word_type
-W_BUILTIN	includes/defines_enums.h	/^	W_BUILTIN,$/;"	e	enum:e_word_type
-W_COMMAND	includes/defines_enums.h	/^	W_COMMAND,$/;"	e	enum:e_word_type
-W_FIL	includes/defines_enums.h	/^	W_FIL,$/;"	e	enum:e_word_type
-W_HERE_DOC	includes/defines_enums.h	/^	W_HERE_DOC,$/;"	e	enum:e_word_type
-W_OPTION	includes/defines_enums.h	/^	W_OPTION,$/;"	e	enum:e_word_type
-W_PIPE	includes/defines_enums.h	/^	W_PIPE,$/;"	e	enum:e_word_type
-W_REDIRECTION_INPUT	includes/defines_enums.h	/^	W_REDIRECTION_INPUT,$/;"	e	enum:e_word_type
-W_REDIRECTION_OUTPUT	includes/defines_enums.h	/^	W_REDIRECTION_OUTPUT,$/;"	e	enum:e_word_type
+W_APPENDING_TO	includes/defines_enums.h	/^	W_APPENDING_TO = 7,$/;"	e	enum:e_word_type
+W_ARG	includes/defines_enums.h	/^	W_ARG = 2,$/;"	e	enum:e_word_type
+W_BUILTIN	includes/defines_enums.h	/^	W_BUILTIN = 1,$/;"	e	enum:e_word_type
+W_COMMAND	includes/defines_enums.h	/^	W_COMMAND = 0,$/;"	e	enum:e_word_type
+W_DELIMETER	includes/defines_enums.h	/^	W_DELIMETER = 10$/;"	e	enum:e_word_type
+W_FILE	includes/defines_enums.h	/^	W_FILE = 4,$/;"	e	enum:e_word_type
+W_HERE_DOC	includes/defines_enums.h	/^	W_HERE_DOC = 6,$/;"	e	enum:e_word_type
+W_OPTION	includes/defines_enums.h	/^	W_OPTION = 3,$/;"	e	enum:e_word_type
+W_PIPE	includes/defines_enums.h	/^	W_PIPE = 5,$/;"	e	enum:e_word_type
+W_REDIRECTION_INPUT	includes/defines_enums.h	/^	W_REDIRECTION_INPUT = 8,$/;"	e	enum:e_word_type
+W_REDIRECTION_OUTPUT	includes/defines_enums.h	/^	W_REDIRECTION_OUTPUT = 9,$/;"	e	enum:e_word_type
 _ft_recur_nbr	libft/ft_putnbr_unsigned.c	/^static void	_ft_recur_nbr(long long n, int fd, int *rtn)$/;"	f	file:
 back	libft/libft.h	/^	struct s_dlst	*back;$/;"	m	struct:s_dlst	typeref:struct:s_dlst::s_dlst
 buf_len	includes/structs.h	/^	int					buf_len;$/;"	m	struct:s_lexer_token
@@ -181,15 +182,18 @@ get_word_type	srcs/token_srcs/lexer_decide_w_type.c	/^int	get_word_type(char *st
 initialize_data	srcs/main_srcs/initialize_data.c	/^void	initialize_data(t_data *data, char *line)$/;"	f
 initialize_main	srcs/main_srcs/initialize_main.c	/^void	initialize_main(t_data *data, char **envp)$/;"	f
 lexer	srcs/token_srcs/lexer.c	/^void	lexer(t_data *data)$/;"	f
+lexer_convert	srcs/token_srcs/lexer_word_converter.c	/^void	lexer_convert(t_dlst *lexer_t_lst)$/;"	f
 lexer_cpy_buf	srcs/token_srcs/lexer_token_init.c	/^void	lexer_cpy_buf(t_lexer_token *rtn, t_token *tok_buf)$/;"	f
-lexer_decide_w_type	srcs/token_srcs/lexer_decide_w_type.c	/^void	lexer_decide_w_type(t_data *data)$/;"	f
+lexer_decide_w_type	srcs/token_srcs/lexer_decide_w_type.c	/^void	lexer_decide_w_type(t_lexer_token	*l_tok)$/;"	f
 lexer_get_buff_len	srcs/token_srcs/lexer_token_init.c	/^int	lexer_get_buff_len(t_token *tok_buf)$/;"	f
 lexer_get_len_lg	srcs/token_srcs/lexer_token_init.c	/^int	lexer_get_len_lg(t_token *tok_buf, enum e_char_type compare)$/;"	f
 lexer_get_len_quotes	srcs/token_srcs/lexer_token_init.c	/^int	lexer_get_len_quotes(t_token *tok_buf, enum e_char_type compare)$/;"	f
+lexer_space_token	srcs/token_srcs/lexer.c	/^t_lexer_token	*lexer_space_token()$/;"	f
 lexer_token_init	srcs/token_srcs/lexer_token_init.c	/^t_lexer_token	*lexer_token_init(t_token *tok_buf)$/;"	f
 lexer_token_lst	includes/structs.h	/^	t_dlst		*lexer_token_lst;$/;"	m	struct:s_data
 lexer_token_lst_init	srcs/token_srcs/lexer.c	/^void	lexer_token_lst_init(t_data *data)$/;"	f
 lexer_token_printer	srcs/token_srcs/lexer.c	/^void	lexer_token_printer(t_data *data)$/;"	f
+lexer_w_converter	srcs/token_srcs/lexer_word_converter.c	/^void	lexer_w_converter(t_data *data)$/;"	f
 main	srcs/builtin_srcs/ft_cd.c	/^int	main()$/;"	f
 main	srcs/builtin_srcs/ft_echo.c	/^int main(int ac, char *av[])$/;"	f
 main	srcs/builtin_srcs/ft_env.c	/^int	main(int ac, char **av, char **envp)$/;"	f
@@ -225,7 +229,6 @@ set_token	srcs/main_srcs/set_token.c	/^void	set_token(t_data *data, char *line)$
 sigint_handler	srcs/main_srcs/sig_handler.c	/^void	sigint_handler(int sig)$/;"	f
 sigquit_handler	srcs/main_srcs/sig_handler.c	/^void	sigquit_handler(int sig)$/;"	f
 stick_quotes	srcs/main_srcs/set_token.c	/^void	stick_quotes(t_dlst *cur)$/;"	f
-stick_quotes	srcs/token_srcs/tmp_fncs.c	/^void	stick_quotes(t_dlst *cur)$/;"	f
 str_size	libft/ft_split_charset.c	/^int	str_size(char *str, char *charset)$/;"	f
 swap_env	srcs/builtin_srcs/ft_cd.c	/^void	swap_env(t_data *data, char *pwd, char *oldpwd)$/;"	f
 t_cmd_order	includes/structs.h	/^}	t_cmd_order;$/;"	t	typeref:struct:s_cmd_order
