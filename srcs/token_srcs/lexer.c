@@ -6,7 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/10 12:48:32 by myukang          ###   ########.fr       */
+=======
+/*   Updated: 2022/06/10 12:50:53 by gyumpark         ###   ########.fr       */
+>>>>>>> d9fc78325cc58bb04bb6daed0c7619644a06bb73
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +68,8 @@ void	lexer_token_lst_init(t_data *data)
 		i = 0;
 		l_tok = lexer_token_init(tok_buf);
 		ft_dlst_pushback(&data->lexer_token_lst, ft_dlst_new(l_tok));
+		if (l_tok->buf_len == 0)
+			return ;
 		while (i < l_tok->buf_len && tok_buf->type != END_C)
 		{
 			tok_buf++;

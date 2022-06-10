@@ -53,7 +53,7 @@ void	ft_cd(t_data *data, char *str)
 		buf = ft_strdup(str);
 	change = chdir(buf);
 	if (change == -1)
-		printf("bash: cd: %s: No such file or directory\n", str);
+		printf("bash: cd: %s\n", strerror(errno);
 	else
 	{
 		getcwd(loc, 256);
