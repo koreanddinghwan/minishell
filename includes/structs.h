@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 16:09:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 21:13:05 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,9 @@ typedef	struct s_data
 	t_token		*tok_buf;
 	t_dlst		*lexer_token_lst;
 	t_dlst		*env_lst;
-	t_dlst		*cmd_order_lst;
+	char		**env;
+	t_tree		*myukang_tree;
 }	t_data;
-
-typedef	struct s_cmd_order
-{
-	int		nth;
-	t_dlst	*cmd;
-}	t_cmd_order;
-
-typedef struct	s_tree
-{
-	void	*content;
-	t_tree	*left;
-	t_tree	*right;
-}	t_tree;
 
 typedef struct	s_tree_cont
 {

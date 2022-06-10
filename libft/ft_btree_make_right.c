@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_btree_make_right.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 18:27:25 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/10 20:27:25 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 21:34:45 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
- * parser define the order of commands
- * */
 
-#include "main.h"
+#include "libft.h"
 
-void	parser(t_data *data)
+void	ft_btree_make_right(t_tree *main, t_tree *sub, void (del)(void *))
 {
-	(void)data;
+	if (main->right != NULL)
+		ft_btree_inordertrav(main->right, del);
+	main->right = sub;
 }

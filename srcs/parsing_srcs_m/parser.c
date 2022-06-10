@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_envkey.c                                       :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 21:34:37 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 19:53:54 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+ * parser define the order of commands
+ * */
 
 #include "main.h"
 
-char	*make_key(char *envstr)
+void	parser(t_data *data)
 {
-	char	*str;
-
-	str = ft_strdup(envstr);
-	return (str);
-}
-
-void	set_env_key(t_data *data, char **envp)
-{
-	t_dlst	*node;
-
-	while (*envp)
-	{
-		node = ft_dlst_new(make_key(*envp));
-		ft_dlst_pushback(&data->env_lst, node);
-		envp++;
-	}
+	(void)data;
 }

@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/09 22:34:30 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/10 19:02:20 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ FTINC = ./libft/
 MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c set_envkey.c initialize_main.c initialize_data.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
-TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, parser.c tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)
+TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)
 TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )

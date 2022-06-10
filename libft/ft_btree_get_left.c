@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_envkey.c                                       :+:      :+:    :+:   */
+/*   ft_btree_get_left.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 21:34:37 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/10 20:25:22 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 20:52:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "libft.h"
 
-char	*make_key(char *envstr)
+t_tree	*ft_btree_get_left(t_tree *node)
 {
-	char	*str;
-
-	str = ft_strdup(envstr);
-	return (str);
-}
-
-void	set_env_key(t_data *data, char **envp)
-{
-	t_dlst	*node;
-
-	while (*envp)
-	{
-		node = ft_dlst_new(make_key(*envp));
-		ft_dlst_pushback(&data->env_lst, node);
-		envp++;
-	}
+	return (node->left);
 }

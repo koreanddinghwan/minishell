@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/08 12:57:29 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 21:37:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,21 @@ typedef struct s_dlst
 	struct s_dlst	*back;
 }	t_dlst;
 
+typedef struct s_tree
+{
+	void			*content;
+	struct s_tree	*left;
+	struct s_tree	*right;
+}	t_tree;
+
 # ifndef T_SIZE
 #  define T_SIZE
 
 typedef unsigned long	t_size;
 # endif
 
-# define	ON 1
-# define	OFF 0
+# define ON 1
+# define OFF 0
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
@@ -101,4 +108,15 @@ t_dlst			*ft_dlst_popback(t_dlst **dlst);
 t_dlst			*ft_dlst_popfront(t_dlst **dlst);
 void			ft_dlst_pushback(t_dlst **dlst, t_dlst *new);
 void			ft_dlst_pushfront(t_dlst **dlst, t_dlst *new);
+t_tree			*ft_btree_new(void	*content);
+t_tree			*ft_btree_get_left(t_tree *node);
+t_tree			*ft_btree_get_right(t_tree *node);
+void			ft_btree_make_left(t_tree *main,
+					t_tree *sub, void (del)(void *));
+void			ft_btree_make_right(t_tree *main,
+					t_tree *sub, void (del)(void *));
+void			ft_btree_preordertrav(t_tree *node, void (action)(void *));
+void			ft_btree_inordertrav(t_tree *node, void (action)(void *));
+void			ft_btree_postordertrav(t_tree *node,
+					void (action)(void *));
 #endif

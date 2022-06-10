@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_envkey.c                                       :+:      :+:    :+:   */
+/*   ft_btree_preordertrav.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 21:34:37 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/10 21:00:33 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/10 21:34:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "libft.h"
 
-char	*make_key(char *envstr)
+void	ft_btree_preordertrav(t_tree *node, void (action)(void *))
 {
-	char	*str;
-
-	str = ft_strdup(envstr);
-	return (str);
-}
-
-void	set_env_key(t_data *data, char **envp)
-{
-	t_dlst	*node;
-
-	while (*envp)
-	{
-		node = ft_dlst_new(make_key(*envp));
-		ft_dlst_pushback(&data->env_lst, node);
-		envp++;
-	}
+	if (node == NULL)
+		return ;
+	action(node->content);
+	ft_btree_preordertrav(node->left, action);
+	ft_btree_preordertrav(node->right, action);
 }
