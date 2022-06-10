@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 11:46:55 by gyumpark         ###   ########.fr       */
+/*   Updated: 2022/06/10 16:09:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,17 @@ typedef	struct s_cmd_order
 	t_dlst	*cmd;
 }	t_cmd_order;
 
-typedef struct	s_AST
+typedef struct	s_tree
 {
-	char			*data;
-	t_cmd_order		*order;
-	struct	s_AST	*left;
-	struct	s_AST	*right;
-}	t_AST;
+	void	*content;
+	t_tree	*left;
+	t_tree	*right;
+}	t_tree;
+
+typedef struct	s_tree_cont
+{
+	enum e_word_type	type;
+	char				*args;
+}	t_tree_cont;
 
 #endif
