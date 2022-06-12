@@ -68,9 +68,73 @@ parser는 또한, 토큰화된 문자열을 AST로 변환하는 역할을 한다
 
 ![스크린샷 2022-06-09 오후 3 05 12](https://user-images.githubusercontent.com/76278794/172776006-41f46e7c-d551-493e-bbc7-343d07cfbd72.png)  
 
+# case test
+
+## 다중 파이프
+
+### case 1
+
+```sh
+echo t > test | grep t | echo t
+>>t
+```
+
+1. `echo t` 명령어의 결과 출력된다.  
+2. `echo t > test`의 결과로 생성된 test에 t가 저장된다.  
+3. grep t 는 씹힘.
+
+<br>
+
+### case 2
+
+```sh
+echo tt | echo t | echo ttt
+>>ttt
+```
+
+1. `echo ttt`만 가능함.
+2. 앞의 두 명령어는 씹힘
+
+<br>
+
+### case 3
+
+```sh
+cat | cat | cat
+>>asdf
+asdf
+>>
+```
+
+1. cat에 아무런 입력 파일을 주지 않은 것처럼 작동한다.
+2. 단, 여기서 3개의 cat이 모두 살아있다.
+
+```sh
+501 87090 87089   0  3:51PM ttys019    0:00.33 bash
+501 88867 87090   0  4:15PM ttys019    0:00.00 cat
+501 88868 87090   0  4:15PM ttys019    0:00.00 cat
+501 88869 87090   0  4:15PM ttys019    0:00.01 cat
+```
 
 
+### case 4
 
-# 트리 자료구조
+```sh
+echo a >| grep a
+
+>>cat grep
+a a
+```
+
+파이프가 아무런 역할을 하지 않는다.  
+[defence](https://unix.stackexchange.com/questions/45201/bash-what-does-do)
 
 
+```sh
+echo testsetsetsetse |> grep a
+bash: a: command not found
+>>ls
+grep
+>>cat grep
+
+```
