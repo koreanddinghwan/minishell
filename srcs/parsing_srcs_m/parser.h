@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/12 15:24:06 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/11 16:58:20 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
- * parser define the order of commands
- * */
 
-#include "parser.h"
+#ifndef PARSER_H
+# define PARSER_H
+# include "main.h"
 
-void	parser(t_data *data)
+enum	e_node_type
 {
-	
-}
+	N_PIPE = 0;
+	N_ARG,
+	N_REDIRECTION_INPUT,
+	N_REDIRECTION_OUTPUT,
+	N_DELIMETER,
+	N_FILEPATH
+};
+
+typedef struct	s_ast_cont
+{
+	enum e_node_type	type;
+	char				*args;
+}	t_ast_cont;
+
+#endif
