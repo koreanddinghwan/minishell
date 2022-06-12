@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 21:13:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/11 16:54:38 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,5 @@ typedef	struct s_data
 	char		**env;
 	t_tree		*myukang_tree;
 }	t_data;
-
-typedef struct	s_tree_cont
-{
-	enum e_word_type	type;
-	char				*args;
-}	t_tree_cont;
 
 #endif
