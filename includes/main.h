@@ -25,10 +25,11 @@
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
-void	set_env_key(t_data *data, char **envp);
+void	set_env_key(t_data *data, char **envp, int cmd);
 /*
  * display
  * */
-void	display_bash(t_data *data);
+void	display_bash(t_data *data, char **envp);
+void    execve_pull(char **envp);
 
 #endif

@@ -37,6 +37,7 @@ typedef	struct s_data
 	t_dlst		*env_lst;
 	char		**env;
 	t_tree		*myukang_tree;
+	t_dlst		*cmd_order_lst;
 }	t_data;
 
 typedef struct	s_tree_cont

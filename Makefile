@@ -24,7 +24,7 @@ FTDIR = ./libft/
 FT = libft.a
 FTINC = ./libft/
 
-MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c set_envkey.c initialize_main.c initialize_data.c)
+MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c set_envkey.c initialize_main.c initialize_data.c execve.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
 TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)

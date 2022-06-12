@@ -20,7 +20,7 @@ char	*make_key(char *envstr)
 	return (str);
 }
 
-void	set_env_key(t_data *data, char **envp)
+void	set_env_key(t_data *data, char **envp, int cmd)
 {
 	t_dlst	*node;
 

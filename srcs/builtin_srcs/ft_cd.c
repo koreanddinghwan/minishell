@@ -10,7 +10,7 @@ char	*match_env(t_data *data, char* str)
 	{
 		split = ft_split(data->env_lst->content, "=");
 		if (!strcmp(data->env_lst->content, split[0]))
-			return (data->env_lst->contet);
+			return (data->env_lst->content);
 		data->env_lst->next;
 	}
 	return (NULL);
@@ -34,7 +34,7 @@ void	ft_cd(t_data *data, char *str)
 	char	*bef;
 	char	*change;
 
-	loc = (char *)malloc(sizeof(char) * 256)*;
+	loc = (char *)malloc(sizeof(char) * 256);
 	home = (char *)malloc(sizeof(char) * 256);
 	bef = (char *)malloc(sizeof(char) * 256);
 	while(data->env_lst)

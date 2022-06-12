@@ -20,4 +20,5 @@ void	initialize_data(t_data *data, char *line)
 	tokenizer(data);
 	lexer(data);
 	//parser(data);
+	//parse(data);
 }

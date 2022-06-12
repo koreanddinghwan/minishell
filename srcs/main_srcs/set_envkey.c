@@ -20,7 +20,7 @@ char	*make_key(char *envstr)
 	return (str);
 }
 
-void	set_env_key(t_data *data, char **envp)
+void	set_env_key(t_data *data, char **envp, int cmd)
 {
 	t_dlst	*node;
 
@@ -28,6 +28,11 @@ void	set_env_key(t_data *data, char **envp)
 	{
 		node = ft_dlst_new(make_key(*envp));
 		ft_dlst_pushback(&data->env_lst, node);
+		if (cmd == 1)
+		{
+			printf("%s\n", (char *)data->env_lst->content);
+			data->env_lst = data->env_lst->next;
+		}
 		envp++;
 	}
 }

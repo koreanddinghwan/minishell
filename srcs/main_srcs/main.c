@@ -19,6 +19,6 @@ int main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	initialize_main(&data, envp);
-	display_bash(&data);
+	display_bash(&data, envp);
 	return (0);
 }
