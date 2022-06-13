@@ -30,7 +30,7 @@ MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)
 TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 
-BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
+BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
 TOOLS_SRCS = $(addprefix ./srcs/tools/, error_handler.c tmp_print.c)

@@ -31,5 +31,5 @@ void	set_env_key(t_data *data, char **envp, int cmd);
  * */
 void	display_bash(t_data *data, char **envp);
 void    execve_pull(char **envp);
-
+void	ft_cd(t_data *data, char *path);
 #endif

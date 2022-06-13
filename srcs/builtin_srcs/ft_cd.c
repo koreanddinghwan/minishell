@@ -1,38 +1,37 @@
 #include "../../includes/main.h"
+#include <errno.h>
 
-char	*match_env(t_data *data, char* str)
+void	del(void *data)
 {
-	char	**split;
-	t_dlst	*node;
-
-	node = ft_dlst_new(str);
-	while (data->env_lst)
-	{
-		split = ft_split(data->env_lst->content, "=");
-		if (!strcmp(data->env_lst->content, split[0]))
-			return (data->env_lst->content);
-		data->env_lst->next;
-	}
-	return (NULL);
+	free(data);
 }
 
 void	swap_env(t_data *data, char *pwd, char *oldpwd)
 {
-	t_dlst	*node;
+	t_dlst	*node_c;
+	t_dlst	*node_o;
 
-	node = ft_dlst_new("swap");
-	node = pwd노드;
-	pwd노드 = oldpwd노드;
-	oldpwd노드 = node;
+	node_c = ft_dlst_new(pwd);
+	node_o = ft_dlst_new(oldpwd);
+	while (data->env_lst)
+	{
+		if (!ft_strncmp(data->env_lst->content, "PWD", 3))
+			ft_lstclear(data->env_lst->content, del);
+		if (!ft_strncmp(data->env_lst->content, "OLDPWD", 6))
+			ft_lstclear(data->env_lst->content, del);
+		data->env_lst = data->env_lst->next;
+	}
+	ft_dlst_pushback(&data->env_lst, node_c);
+	ft_dlst_pushback(&data->env_lst, node_o);
 }
 
-void	ft_cd(t_data *data, char *str)
+void	ft_cd(t_data *data, char *path)
 {
 	char	*buf;
 	char	*loc;
 	char	*home;
 	char	*bef;
-	char	*change;
+	int		change;
 
 	loc = (char *)malloc(sizeof(char) * 256);
 	home = (char *)malloc(sizeof(char) * 256);
@@ -45,26 +44,18 @@ void	ft_cd(t_data *data, char *str)
 			bef = data->env_lst->content;
 		data->env_lst = data->env_lst->next;
 	}
-	if (!strcmp(str, "~"))
+	if (!strcmp(path, "~"))
 		buf = ft_strdup(home);
-	else if (!strcmp(str, "-"))
+	else if (!strcmp(path, "-"))
 		buf = ft_strdup(bef);
 	else
-		buf = ft_strdup(str);
+		buf = ft_strdup(path);
 	change = chdir(buf);
 	if (change == -1)
-		printf("bash: cd: %s\n", strerror(errno);
+		printf("bash: cd: %s\n", strerror(errno));
 	else
 	{
 		getcwd(loc, 256);
 		swap_env(data, "PWD", "OLDPWD");
 	}
-}
-
-int	main()
-{ 
-	char s[100];
-	printf("%s\n", getcwd(s, 100));
-	ft_cd();
-	printf("%s\n", getcwd(s, 100));
 }

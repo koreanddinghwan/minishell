@@ -34,7 +34,7 @@ void	display_bash(t_data *data, char **envp)
 		}
 		if (!strcmp(data->command, CD))
 		{
-			ft_cd(data, envp);
+			ft_cd(data, "~");
 		}
 	}
 }
