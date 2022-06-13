@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/13 16:44:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/10 14:01:21 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 /*tmp*/
 void	lexer_token_printer(t_data *data)
 {
-	t_dlst	*lst;
-
-	lst = data->lexer_token_lst;
-	while (lst)
+	while (data->lexer_token_lst)
 	{
-		printf("type : %d ", (GET_TOKEN_TYPE(lst)));
-		printf("%s\n", (GET_TOKEN_BUFFER(lst)));
-		lst = lst->next;
+		printf("type : %d\n", ((t_lexer_token *)data->lexer_token_lst->content)->w_type);
+		printf("%s\n", ((t_lexer_token *)data->lexer_token_lst->content)->buffer);
+		data->lexer_token_lst = data->lexer_token_lst->next;
 	}
 }
 
@@ -78,7 +75,6 @@ void	lexer_token_lst_init(t_data *data)
 void	lexer(t_data *data)
 {
 	lexer_token_lst_init(data);
-	lexer_token_printer(data);
 	lexer_w_converter(data);
 	lexer_token_printer(data);
 }
