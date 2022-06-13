@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 22:04:44 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 15:48:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/13 16:40:18 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,66 +37,87 @@ void	lexer_convert(t_dlst *lexer_t_lst)
 		((t_lexer_token *)lexer_t_lst->next->content)->w_type = W_FILE;
 }*/
 
-void	change_type_arg(t_dlst *lst)
+void	set_file(t_dlst *lexer_t_lst)
 {
 	enum e_word_type	type;
+	t_dlst	*next;
 
-	type = ((t_lexer_token *)lst->content)->w_type;
-	while (lst && !(type > 5))
+	while (lexer_t_lst)
 	{
-		if (((t_lexer_token *)lst->content)->w_type == W_SPACE)
+		type = GET_TOKEN_TYPE(lexer_t_lst);
+		next = lexer_t_lst->next;
+		if (type >= 8 && type <= 10)
 		{
-			lst = lst->next;
+			if (next)
+				GET_TOKEN_TYPE(next) = W_FILE;
+		}
+		else if (type == 7)
+		{
+			if (next)
+				GET_TOKEN_TYPE(next) = W_DELIMETER;
+		}
+		lexer_t_lst = lexer_t_lst->next;
+	}
+}
+
+void	set_blt_cmd(t_dlst *lexer_t_lst)
+{
+	enum e_word_type	type;
+	t_dlst	*next;
+
+	while (lexer_t_lst)
+	{
+		type = GET_TOKEN_TYPE(lexer_t_lst);
+		next = lexer_t_lst->next;
+		if (next)
+		{
+			if (type == W_PIPE)
+			{
+				if (GET_TOKEN_TYPE(next) >= 7 && GET_TOKEN_TYPE(next) <= 1)
+					GET_TOKEN_TYPE(next) = W_ARG;
+			}
+		}
+		lexer_t_lst = lexer_t_lst->next;
+	}
+}
+
+void	change_arg(t_dlst *lexer_t_lst)
+{
+	lexer_t_lst = lexer_t_lst->next;
+	if (!lexer_t_lst)
+		return ;
+	while (GET_TOKEN_TYPE(lexer_t_lst) == W_SPACE || GET_TOKEN_TYPE(lexer_t_lst) < 6)
+	{
+		if (GET_TOKEN_TYPE(lexer_t_lst) == W_SPACE)
+		{
+			lexer_t_lst = lexer_t_lst->next;
+			if (!lexer_t_lst)
+				return ;
 			continue ;
 		}
-		((t_lexer_token *)lst->content)->w_type = W_ARG;
-		lst = lst->next;
-		if (!lst)
+		else
+		{
+			GET_TOKEN_TYPE(lexer_t_lst) = W_ARG;
+			lexer_t_lst = lexer_t_lst->next;
+			if (!lexer_t_lst)
 			return ;
-		type = ((t_lexer_token *)lst->content)->w_type;
+		}
 	}
 }
 
-t_dlst	*get_notspace_next_node(t_dlst *cur)
+void	set_arg(t_dlst *lexer_t_lst)
 {
-	enum e_word_type	type;
-
-	type = ((t_lexer_token *)cur->content)->w_type;
-	while (type != W_SPACE)
+	while (lexer_t_lst)
 	{
-		cur = cur->next;
-		if (!cur)
-			return (NULL);
-		type = ((t_lexer_token *)cur->content)->w_type;
+		if (GET_TOKEN_TYPE(lexer_t_lst) <= 1)
+		{
+			if (lexer_t_lst->next)
+				change_arg(lexer_t_lst->next);
+			else
+				break ;
+		}
+		lexer_t_lst = lexer_t_lst->next;
 	}
-	return (cur);
-}
-
-enum e_word_type	get_type_cmd_blt(t_dlst *node)
-{
-	if (check_builtin(((t_lexer_token *)node->content)->buffer))
-		return (W_BUILTIN);
-	else
-		return (W_COMMAND);
-}
-
-void	convert(t_dlst *cur)
-{
-	enum e_word_type		type;
-	t_dlst			*next_node;
-
-	next_node = get_notspace_next_node(cur);
-	if (!next_node)
-		return ;
-	type = ((t_lexer_token *)next_node->content)->w_type;
-	if (type == W_COMMAND || type == W_BUILTIN)
-		change_type_arg(next_node);
-	else if (type == W_PIPE)
-		((t_lexer_token *)next_node->content)->w_type = get_type_cmd_blt(next_node);
-	else if (type >= 8 && type <= 10)
-		((t_lexer_token *)next_node->content)->w_type = W_FILE;
-	else if (type == 7)
-		((t_lexer_token *)next_node->content)->w_type = W_DELIMETER;
 }
 
 void	lexer_w_converter(t_data *data)
@@ -104,9 +125,7 @@ void	lexer_w_converter(t_data *data)
 	t_dlst	*lexer_t_lst;
 
 	lexer_t_lst = data->lexer_token_lst;
-	while (lexer_t_lst)
-	{
-		convert(lexer_t_lst);
-		lexer_t_lst = lexer_t_lst->next;
-	}
+	set_arg(lexer_t_lst);
+	//set_blt_cmd(lexer_t_lst);
+	//set_file(lexer_t_lst);
 }

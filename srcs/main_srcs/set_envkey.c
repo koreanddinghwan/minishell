@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/12 15:32:22 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/13 10:07:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*make_key(char *envstr)
 	char	*str;
 
 	str = ft_strdup(envstr);
-	if (ft_strncmp("OLDPWD=", 7) == 0)
+	if (ft_strncmp("OLDPWD=", str, 7) == 0)
 	{
 		free(str);
 		return (NULL);

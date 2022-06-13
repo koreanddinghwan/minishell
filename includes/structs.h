@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/11 16:54:38 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/13 10:37:53 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef	struct s_lexer_token
 	int					buf_len;
 }	t_lexer_token;
 
+# define GET_TOKEN_TYPE(lexer_t_lst) (((t_lexer_token *)lexer_t_lst->content)->w_type)
+
+# define GET_TOKEN_BUFFER(lexer_t_lst) (((t_lexer_token *)lexer_t_lst->content)->buffer)
 typedef	struct s_data
 {
 	char		*command;
