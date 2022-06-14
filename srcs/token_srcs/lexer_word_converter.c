@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 22:04:44 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 15:48:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/13 17:48:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	change_type_arg(t_dlst *lst)
 	enum e_word_type	type;
 
 	type = ((t_lexer_token *)lst->content)->w_type;
+	i = 0;
 	while (lst && !(type > 5))
 	{
 		if (((t_lexer_token *)lst->content)->w_type == W_SPACE)
@@ -49,11 +50,14 @@ void	change_type_arg(t_dlst *lst)
 			lst = lst->next;
 			continue ;
 		}
-		((t_lexer_token *)lst->content)->w_type = W_ARG;
-		lst = lst->next;
-		if (!lst)
-			return ;
-		type = ((t_lexer_token *)lst->content)->w_type;
+		else
+		{
+			((t_lexer_token *)lst->content)->w_type = W_ARG;
+			lst = lst->next;
+			if (!lst)
+				return ;
+			type = ((t_lexer_token *)lst->content)->w_type;
+		}
 	}
 }
 
@@ -62,7 +66,7 @@ t_dlst	*get_notspace_next_node(t_dlst *cur)
 	enum e_word_type	type;
 
 	type = ((t_lexer_token *)cur->content)->w_type;
-	while (type != W_SPACE)
+	while (type == W_SPACE)
 	{
 		cur = cur->next;
 		if (!cur)
@@ -82,31 +86,76 @@ enum e_word_type	get_type_cmd_blt(t_dlst *node)
 
 void	convert(t_dlst *cur)
 {
-	enum e_word_type		type;
-	t_dlst			*next_node;
+	enum e_word_type		cur_type;
+	enum e_word_type		next_type;
+	t_dlst					*next_node;
 
 	next_node = get_notspace_next_node(cur);
 	if (!next_node)
 		return ;
-	type = ((t_lexer_token *)next_node->content)->w_type;
-	if (type == W_COMMAND || type == W_BUILTIN)
+	cur_type = GET_TOKEN_TYPE(cur);
+	if (cur_type == W_COMMAND || cur_type == W_BUILTIN)
 		change_type_arg(next_node);
-	else if (type == W_PIPE)
+	else if (cur_type == W_PIPE)
 		((t_lexer_token *)next_node->content)->w_type = get_type_cmd_blt(next_node);
-	else if (type >= 8 && type <= 10)
+	else if (cur_type >= 8 && type <= 10)
 		((t_lexer_token *)next_node->content)->w_type = W_FILE;
-	else if (type == 7)
+	else if (cur_type == 7)
 		((t_lexer_token *)next_node->content)->w_type = W_DELIMETER;
+}
+
+///////////////////////////////////////////////////////
+
+int		is_special_tok(enum e_word_type type)
+{
+	if (type >= 6)
+		return (1);
+	else
+		return (0);
+}
+
+int		find_next_node(t_dlst *lst)
+{
+	int					i;
+	enum e_word_type	type;
+
+	i = 0;
+	while (lst)
+	{
+		type = GET_TOKEN_TYPE(lst);
+		if (is_special_tok(type))
+			i++;
+		else
+			return (i);
+		lst = lst->next;
+	}
+	return (0);
 }
 
 void	lexer_w_converter(t_data *data)
 {
-	t_dlst	*lexer_t_lst;
+	t_dlst	*lst;
 
-	lexer_t_lst = data->lexer_token_lst;
-	while (lexer_t_lst)
+	lst = data->lexer_token_lst;
+	while (lst)
 	{
-		convert(lexer_t_lst);
-		lexer_t_lst = lexer_t_lst->next;
+		enum e_word_type	cur_type;
+		int					i;
+		cur_type = GET_TOKEN_TYPE(lst);
+		i = 0;
+		if (cur_type == W_SPACE)
+			lst = lst->next;
+		else if (cur_type == W_COMMAND || cur_type == W_BUILTIN)
+		{
+			i = find_next_node(lst);
+			while (i)
+			{
+				if (GET_TOKEN_TYPE(lst) == W_SPACE)
+					lst = lst->next;
+				else
+					GET_TOKEN_TYPE(lst) = W_ARG;
+				i--;
+			}
+		}
 	}
 }

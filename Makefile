@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/10 19:02:20 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/13 17:38:37 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS)
 all : $(NAME)
 
 $(NAME) : $(OBJ_FILES)
-	make all -C $(FTDIR) #recursively create libft
+	make all -j 4 -C $(FTDIR) #recursively create libft
 	cp $(FTDIR)$(FT) ./$(FT) #copy in root dir
 	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ libft.a #RFLAGS for readline lib
 
