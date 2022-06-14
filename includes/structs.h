@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/14 15:32:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/14 16:46:32 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef	struct s_data
 	t_dlst		*lexer_token_lst;
 	t_dlst		*env_lst;
 	char		**env;
-	t_tree		*myukang_tree;
-	int			error_state;
+	t_tree		*ast;
+	int			exit_status;
 }	t_data;
 
 #endif
