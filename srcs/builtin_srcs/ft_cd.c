@@ -6,23 +6,29 @@ void	del(void *data)
 	free(data);
 }
 
-void	swap_env(t_data *data, char *pwd, char *oldpwd)
+void	change_env(t_data *data, char *pwd, char *oldpwd)
 {
-	t_dlst	*node_c;
-	t_dlst	*node_o;
+	t_envlst	*node_c;
+	t_envlst	*node_o;
 
-	node_c = ft_dlst_new(pwd);
-	node_o = ft_dlst_new(oldpwd);
+	node_c = ft_envlst_new(pwd);
+	node_o = ft_envlst_new(oldpwd);
 	while (data->env_lst)
 	{
-		if (!ft_strncmp(data->env_lst->content, "PWD", 3))
-			ft_lstclear(data->env_lst->content, del);
-		if (!ft_strncmp(data->env_lst->content, "OLDPWD", 6))
-			ft_lstclear(data->env_lst->content, del);
+		if (!ft_strncmp(data->env_lst->key, "PWD", 3))
+		{
+			ft_lstclear(data->env_lst->value, del);
+			printf("ONE\n");
+		}
+		if (!ft_strncmp(data->env_lst->key, "OLDPWD", 6))
+		{
+			ft_lstclear(data->env_lst->value, del);
+			printf("TWO\n");
+		}
 		data->env_lst = data->env_lst->next;
 	}
-	ft_dlst_pushback(&data->env_lst, node_c);
-	ft_dlst_pushback(&data->env_lst, node_o);
+	ft_envlst_pushback(&data->env_lst, node_c);
+	ft_envlst_pushback(&data->env_lst, node_o);
 }
 
 void	ft_cd(t_data *data, char *path)
@@ -30,24 +36,22 @@ void	ft_cd(t_data *data, char *path)
 	char	*buf;
 	char	*loc;
 	char	*home;
-	char	*bef;
+	char	*old;
 	int		change;
 
 	loc = (char *)malloc(sizeof(char) * 256);
 	home = (char *)malloc(sizeof(char) * 256);
-	bef = (char *)malloc(sizeof(char) * 256);
+	old = (char *)malloc(sizeof(char) * 256);
 	while(data->env_lst)
 	{
-		if(!strncmp(data->env_lst->content, "HOME", 4))
-			home = data->env_lst->content;
-		if(!strncmp(data->env_lst->content, "OLDPWD", 6))
-			bef = data->env_lst->content;
+		if(!strcmp(data->env_lst->key, "HOME"))
+			home = data->env_lst->value;
 		data->env_lst = data->env_lst->next;
 	}
 	if (!strcmp(path, "~"))
 		buf = ft_strdup(home);
 	else if (!strcmp(path, "-"))
-		buf = ft_strdup(bef);
+		buf = ft_strdup(old);
 	else
 		buf = ft_strdup(path);
 	change = chdir(buf);
@@ -56,6 +60,7 @@ void	ft_cd(t_data *data, char *path)
 	else
 	{
 		getcwd(loc, 256);
-		swap_env(data, "PWD", "OLDPWD");
+		printf("loc: %s\n", loc);
+		change_env(data, loc, old);
 	}
 }

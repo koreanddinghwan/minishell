@@ -17,6 +17,15 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+typedef struct s_envlst
+{
+	void			*key;
+	void			*value;
+	struct s_envlst	*next;
+	struct s_envlst	*back;
+	struct s_envlst *head;
+}	t_envlst;
+
 typedef struct s_list
 {
 	void			*content;

@@ -34,7 +34,7 @@ typedef	struct s_data
 	char		*trimmed;
 	t_token		*tok_buf;
 	t_dlst		*lexer_token_lst;
-	t_dlst		*env_lst;
+	t_envlst	*env_lst;
 	char		**env;
 	t_tree		*myukang_tree;
 	t_dlst		*cmd_order_lst;

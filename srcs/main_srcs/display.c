@@ -12,12 +12,12 @@
 
 #include "main.h"
 
-void	display_bash(t_data *data, char **envp)
+void	display_bash(t_data *data)
 {
 	char	*line;
-	int		cmd;
+	t_dlst	*lst;
 
-	cmd = 0;
+	lst = data->env_lst;
 	while (1)
 	{
 		line = readline("bash >");
@@ -29,8 +29,13 @@ void	display_bash(t_data *data, char **envp)
 		initialize_data(data, line);
 		if (!strcmp(data->command, ENV))
 		{
-			cmd = 1;
-			set_env_key(data, envp, cmd);
+			while (lst)
+			{
+				printf("%s ", (char *)lst->key);
+				printf("%s\n", (char *)lst->value);
+				lst = lst->next;
+			}
+			lst = lst->head;
 		}
 		if (!strcmp(data->command, CD))
 		{

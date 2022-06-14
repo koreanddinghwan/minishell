@@ -25,11 +25,19 @@
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
-void	set_env_key(t_data *data, char **envp, int cmd);
+void	set_env(t_data *data, char **envp);
 /*
  * display
  * */
-void	display_bash(t_data *data, char **envp);
+void	display_bash(t_data *data);
 void    execve_pull(char **envp);
+
+/*
+ * ft_cd
+ * */
 void	ft_cd(t_data *data, char *path);
+t_envlst	*ft_envlst_last(t_envlst *envlst);
+void	ft_envlst_pushback(t_envlst **envlst, t_envlst *new);
+t_envlst	*ft_envlst_new(void *c);
+
 #endif

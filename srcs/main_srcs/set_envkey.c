@@ -12,7 +12,7 @@
 
 #include "main.h"
 
-char	*make_key(char *envstr)
+static char	*make_key(char *envstr)
 {
 	char	*str;
 
@@ -20,17 +20,19 @@ char	*make_key(char *envstr)
 	return (str);
 }
 
+
 void	set_env_key(t_data *data, char **envp, int cmd)
 {
-	t_dlst	*node;
+	t_envlst	*node;
 
 	while (*envp)
 	{
-		node = ft_dlst_new(make_key(*envp));
-		ft_dlst_pushback(&data->env_lst, node);
+		node = ft_envlst_new(make_key(*envp));
+		ft_envlst_pushback(&data->env_lst, node);
 		if (cmd == 1)
 		{
-			printf("%s\n", (char *)data->env_lst->content);
+			printf("%s\n", (char *)data->env_lst->key);
+			printf("%s\n", (char *)data->env_lst->value);
 			data->env_lst = data->env_lst->next;
 		}
 		envp++;
