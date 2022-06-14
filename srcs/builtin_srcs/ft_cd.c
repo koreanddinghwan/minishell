@@ -8,27 +8,28 @@ void	del(void *data)
 
 void	change_env(t_data *data, char *pwd, char *oldpwd)
 {
-	t_envlst	*node_c;
-	t_envlst	*node_o;
+	t_envlst	*node;
+	t_envlst	*last;
 
-	node_c = ft_envlst_new(pwd);
-	node_o = ft_envlst_new(oldpwd);
-	while (data->env_lst)
+	node = data->env_lst;
+	last = ft_envlst_last(node);
+	while (node)
 	{
-		if (!ft_strncmp(data->env_lst->key, "PWD", 3))
+		if (strcmp(last->key, "OLDPWD"))
 		{
-			ft_lstclear(data->env_lst->value, del);
-			printf("ONE\n");
+			node = ft_envlst_new("OLDPWD=OLDPWD");
+			ft_envlst_pushback(&data->env_lst, node);
 		}
-		if (!ft_strncmp(data->env_lst->key, "OLDPWD", 6))
+		if (!ft_strncmp(node->key, "PWD", 3))
 		{
-			ft_lstclear(data->env_lst->value, del);
-			printf("TWO\n");
+			node->value = pwd;
 		}
-		data->env_lst = data->env_lst->next;
+		if (!ft_strncmp(node->key, "OLDPWD", 6))
+		{
+			node->value = oldpwd;
+		}
+		node = node->next;
 	}
-	ft_envlst_pushback(&data->env_lst, node_c);
-	ft_envlst_pushback(&data->env_lst, node_o);
 }
 
 void	ft_cd(t_data *data, char *path)
@@ -38,15 +39,19 @@ void	ft_cd(t_data *data, char *path)
 	char	*home;
 	char	*old;
 	int		change;
+	t_envlst	*node;
 
+	node = data->env_lst;
+	buf = (char *)malloc(sizeof(char) * 256);
 	loc = (char *)malloc(sizeof(char) * 256);
 	home = (char *)malloc(sizeof(char) * 256);
 	old = (char *)malloc(sizeof(char) * 256);
-	while(data->env_lst)
+	getcwd(old, 256);
+	while(node)
 	{
-		if(!strcmp(data->env_lst->key, "HOME"))
-			home = data->env_lst->value;
-		data->env_lst = data->env_lst->next;
+		if(!strcmp(node->key, "HOME"))
+			home = node->value;
+		node = node->next;
 	}
 	if (!strcmp(path, "~"))
 		buf = ft_strdup(home);
@@ -61,6 +66,7 @@ void	ft_cd(t_data *data, char *path)
 	{
 		getcwd(loc, 256);
 		printf("loc: %s\n", loc);
-		change_env(data, loc, old);
+		change_env(data, loc, old); // loc: pwd, old: oldpwd
 	}
+	free(buf);
 }

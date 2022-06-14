@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 10:45:35 by gyumpark         ###   ########.fr       */
+/*   Updated: 2022/06/14 18:52:50 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,17 @@ t_envlst	*ft_envlst_new(void *c)
 {
 	t_envlst	*node;
 	char	**split;
-	
+
 	node = malloc(1 * sizeof(t_envlst));
-	split = ft_split((char *)c, '=');
 	if (!node)
 		return (0);
+	split = ft_split((char *)c, '=');
 	node->key = split[0];
 	node->value = split[1];
+	node->env_line = (char *)c;
 	node->next = 0;
 	node->back = 0;
+
 	return (node);
 }
 
@@ -82,7 +84,13 @@ void	set_env(t_data *data, char **envp)
 	while (*envp)
 	{
 		node = ft_envlst_new(make_key(*envp));
-		ft_envlst_pushback(&data->env_lst, node);
+		if (!strcmp(node->key, "OLDPWD"))
+		{
+			envp++;
+			free(node);
+		}
+		else
+			ft_envlst_pushback(&data->env_lst, node);
 		envp++;
 	}
 	data->env_lst->head = data->env_lst;

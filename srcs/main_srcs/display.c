@@ -15,11 +15,11 @@
 void	display_bash(t_data *data)
 {
 	char	*line;
-	t_dlst	*lst;
+	t_envlst	*lst;
 
-	lst = data->env_lst;
 	while (1)
 	{
+		lst = data->env_lst;
 		line = readline("bash >");
 		if (!line)
 		{
@@ -35,7 +35,6 @@ void	display_bash(t_data *data)
 				printf("%s\n", (char *)lst->value);
 				lst = lst->next;
 			}
-			lst = lst->head;
 		}
 		if (!strcmp(data->command, CD))
 		{

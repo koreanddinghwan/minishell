@@ -21,6 +21,7 @@ typedef struct s_envlst
 {
 	void			*key;
 	void			*value;
+	void			*env_line;
 	struct s_envlst	*next;
 	struct s_envlst	*back;
 	struct s_envlst *head;
