@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/13 17:38:37 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/14 13:55:28 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,16 @@ MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)
 TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 
+PARSE_SRCS = $(addprefix ./srcs/parsing_srcs_m/, parser.c)
+PARSE_OBJS = $(PARSE_SRCS:.c=.o)
+
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
 TOOLS_SRCS = $(addprefix ./srcs/tools/, error_handler.c tmp_print.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
-OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS)
+OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(PARSE_OBJS)
 
 all : $(NAME)
 

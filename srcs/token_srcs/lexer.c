@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/13 16:57:47 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/14 15:32:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	lexer_token_printer(t_data *data)
 	}
 }
 
-t_lexer_token	*lexer_space_token()
+t_lexer_token	*lexer_space_token(void)
 {
 	t_lexer_token	*rtn;
 
@@ -77,6 +77,9 @@ void	lexer_token_lst_init(t_data *data)
 void	lexer(t_data *data)
 {
 	lexer_token_lst_init(data);
+	ft_printf("before convert\n");
+	lexer_token_printer(data);
 	lexer_w_converter(data);
+	ft_printf("after convert\n");
 	lexer_token_printer(data);
 }

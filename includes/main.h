@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 17:13:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/14 13:56:04 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	set_env_key(t_data *data, char **envp);
  * display
  * */
 void	display_bash(t_data *data);
-
+void	parser(t_data *data);
 #endif
