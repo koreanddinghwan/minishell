@@ -1,35 +1,38 @@
-#include "../../includes/main.h"
+#include "main.h"
 #include <string.h>
 
-void	check_option(char *av[], int *flag, int *i)
+char	*last_null(char *str)
 {
-	if (!strcmp(av[*i], "-n"))
+	char *copy;
+
+	copy = strdup(str);
+	while (*copy)
 	{
-		*flag = 1;
-		*i = 2;
+		if (*copy == ' ')
+		{
+			copy = str;
+			break;
+		}
+		printf("|%c|\n", *copy);
+		copy++;
 	}
+	copy = 0;
+	return (copy);
 }
 
-void	ft_echo(int ac, char *av[], int flag)
+void	ft_echo(t_data *data, int flag, char *str)
 {
-	int	i;
-
-	i = 1;
-	check_option(av, &flag, &i);
-	while (i < ac)
+	(void) data;
+	if (flag == 1)
+		last_null(str);
+	while (str)
 	{
-		write(1, av[i], strlen(av[i]));
-		if (i < ac - 1)
+		printf("%c", *str);
+		if (*str == 0)
 			write(1, " ", 1);
-		i++;
+		str++;
 	}
 	if (flag == 0)
 		write(1, "\n", 1);
+	free(str);
 }
-
-int main(int ac, char *av[])
-{
-	//ft_echo(ac, av, 0);
-	ft_echo(ac, av, 0);
-}
-

@@ -1,32 +1,21 @@
-#include "../../includes/main.h"
+#include "main.h"
 
-void	ft_unset(t_data *data, t_token *token)
+void	ft_unset(t_data *data, char *key)
 {
-	char	**split;
-	t_dlst	*env;
-	t_dlst	*link;
+	t_envlst	*rem_node;
+	t_envlst	*node;
 
-	env = data->env_lst;
-	while(data->env)
+	rem_node = data->env_lst->next;
+	node = data->env_lst;
+	while(rem_node)
 	{
-		split = ft_split(*envp, "=");
-		if (!strcmp(token->value, split[0]))
+		if (!strcmp(rem_node->key, key))
 		{
-			link->next = env->next
-			free(data->env_lst);
-			free(split);
+			node->next = rem_node->next;
+			free(rem_node);
 			return ;
 		}
-		envp++;
-		data->env_lst = data->env_lst->next;
+		rem_node = rem_node->next;
+		node = node->next;
 	}
-}
-
-int	main(int ac, char **av)
-{
-	t_data	data;
-	t_token	*token;
-
-	ft_unset(&data, token);
-	return (0);
 }

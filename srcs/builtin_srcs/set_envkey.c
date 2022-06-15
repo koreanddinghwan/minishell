@@ -93,5 +93,4 @@ void	set_env(t_data *data, char **envp)
 			ft_envlst_pushback(&data->env_lst, node);
 		envp++;
 	}
-	data->env_lst->head = data->env_lst;
 }

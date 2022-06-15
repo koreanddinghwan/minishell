@@ -12,7 +12,7 @@
 
 #include "main.h"
 
-void	display_bash(t_data *data)
+void	display_bash(t_data *data, int ac, char **av)
 {
 	char	*line;
 	t_envlst	*lst;
@@ -31,7 +31,7 @@ void	display_bash(t_data *data)
 		{
 			while (lst)
 			{
-				printf("%s ", (char *)lst->key);
+				printf("%s=", (char *)lst->key);
 				printf("%s\n", (char *)lst->value);
 				lst = lst->next;
 			}
@@ -39,6 +39,31 @@ void	display_bash(t_data *data)
 		if (!strcmp(data->command, CD))
 		{
 			ft_cd(data, "~");
+		}
+		if (!strcmp(data->command, PWD))
+		{
+			ft_pwd();
+		}
+		if (!strcmp(data->command, EXIT))
+		{
+			ft_exit(ac, av); // 수정: ac는 exit 이후의 av개수(파싱이후), 지금은 exit만 됌
+		}
+		if (!strcmp(data->command, EXPORT))
+		{
+			ft_export(data, "key=value");
+		}
+		if (!strcmp(data->command, UNSET))
+		{
+			ft_unset(data, "key");
+		}
+		if (!strcmp(data->command, ECHO))
+		{
+			int flag = 0; // no option
+			//flag = 1; // (-n) option
+			if (flag == 0)
+				ft_echo(data, flag, "HI");
+			else
+				ft_echo(data, flag, "-nnn HI");
 		}
 	}
 }

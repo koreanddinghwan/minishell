@@ -1,10 +1,5 @@
-#include "../../includes/main.h"
+#include "main.h"
 #include <errno.h>
-
-void	del(void *data)
-{
-	free(data);
-}
 
 void	change_env(t_data *data, char *pwd, char *oldpwd)
 {
@@ -15,14 +10,14 @@ void	change_env(t_data *data, char *pwd, char *oldpwd)
 	last = ft_envlst_last(node);
 	while (node)
 	{
-		if (strcmp(last->key, "OLDPWD"))
-		{
-			node = ft_envlst_new("OLDPWD=OLDPWD");
-			ft_envlst_pushback(&data->env_lst, node);
-		}
 		if (!ft_strncmp(node->key, "PWD", 3))
 		{
 			node->value = pwd;
+			if (strcmp(last->key, "OLDPWD"))
+			{
+				node = ft_envlst_new("OLDPWD=OLDPWD");
+				ft_envlst_pushback(&data->env_lst, node);
+			}
 		}
 		if (!ft_strncmp(node->key, "OLDPWD", 6))
 		{

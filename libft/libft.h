@@ -24,7 +24,6 @@ typedef struct s_envlst
 	void			*env_line;
 	struct s_envlst	*next;
 	struct s_envlst	*back;
-	struct s_envlst *head;
 }	t_envlst;
 
 typedef struct s_list
