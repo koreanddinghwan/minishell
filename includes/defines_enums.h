@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/14 15:32:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/15 15:36:16 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ enum	e_state
 
 # define GET_TOKEN_TYPE(lst) (((t_lexer_token *)lst->content)->w_type)
 # define GET_TOKEN_BUFFER(lst) (((t_lexer_token *)lst->content)->buffer)
+# define GET_TOKEN_NTH(lst) (((t_lexer_token *)lst->content)->nth)
 
 #endif

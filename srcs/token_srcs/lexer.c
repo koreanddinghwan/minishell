@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/14 15:32:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/15 15:38:17 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	lexer_token_printer(t_data *data)
 	lst = data->lexer_token_lst;
 	while (lst)
 	{
-		printf("type : %d %s\n", GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
+		printf("nth : %d, type : %d %s\n",  GET_TOKEN_NTH(lst), GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
 		lst = lst->next;
 	}
 }
@@ -74,12 +74,26 @@ void	lexer_token_lst_init(t_data *data)
 	}
 }
 
+void	lexer_add_nth(t_data *data)
+{
+	t_dlst	*lst;
+	int		i;
+
+	lst = data->lexer_token_lst;
+	i = 0;
+	while (lst)
+	{
+		GET_TOKEN_NTH(lst) = i;
+		lst = lst->next;
+		i++;
+	}
+}
+
 void	lexer(t_data *data)
 {
 	lexer_token_lst_init(data);
-	ft_printf("before convert\n");
-	lexer_token_printer(data);
 	lexer_w_converter(data);
+	lexer_add_nth(data);
 	ft_printf("after convert\n");
 	lexer_token_printer(data);
 }

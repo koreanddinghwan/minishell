@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree_new.c                                     :+:      :+:    :+:   */
+/*   parser_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 20:07:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/15 14:31:52 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/15 16:12:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parser.h"
 
-t_tree	*ft_btree_new(void	*content)
+int	can_slice(t_tmp_head *head)
 {
-	t_tree	*new;
+	int		i;
+	t_dlst	*start_node;
 
-	new = malloc(sizeof(t_tree) * 1);
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->left = NULL;
-	new->right = NULL;
-	return (new);
+	i = head->left_index;
+	start_node = head->start_node;
+	while (i <= head->right_index)
+	{
+		if (GET_TOKEN_TYPE(start_node) >= 6 && GET_TOKEN_TYPE(start_node) <= 10)
+			return (1);
+		start_node = start_node->next;
+		i++;
+	}
+	return (0);
 }

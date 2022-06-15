@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/14 16:46:32 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/15 14:32:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef	struct s_lexer_token
 	enum e_word_type	w_type;
 	char				*buffer;
 	int					buf_len;
+	int					nth;
 }	t_lexer_token;
 
 typedef	struct s_data
