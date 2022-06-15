@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlst_delone.c                                  :+:      :+:    :+:   */
+/*   ft_dlst_delete.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/18 13:33:47 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/15 21:07:09 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/15 21:04:17 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/15 21:08:06 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dlst_delone(t_dlst *dlst, void (*del)(void *))
+void	*ft_dlst_delete(t_dlst *cur, void (*del)(void *))
 {
-	if (!dlst)
-		return ;
-	if (!del)
-		return ;
-	if (dlst->content)
-		del(dlst->content);
-	free(dlst);
+	t_dlst	*next;
+	t_dlst	*back;
+
+	next = cur->next;
+	back = cur->back;
+	if (next)
+		next->back = back;
+	if (back)
+		back->next = next;
+	del(cur);
 }

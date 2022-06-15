@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/11 17:36:18 by myukang           #+#    #+#              #
-#    Updated: 2022/06/10 21:08:38 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/15 21:08:05 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS = ft_isdigit.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_strlen.c \
 	   ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 	   ft_lstiter.c ft_lstmap.c ft_dlst_delone.c ft_dlst_last.c \
 	   ft_dlst_clear.c ft_dlst_new.c ft_dlst_popback.c ft_dlst_popfront.c \
-	   ft_dlst_pushback.c ft_dlst_pushfront.c ft_dlst_size.c \
+	   ft_dlst_pushback.c ft_dlst_pushfront.c ft_dlst_size.c ft_dlst_delete.c \
 	   ft_btree_postordertrav.c ft_btree_inordertrav.c ft_btree_preordertrav.c ft_btree_get_right.c ft_btree_get_left.c ft_btree_make_left.c ft_btree_make_right.c ft_btree_clear.c ft_btree_new.c 
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror -c -g3 -fsanitize=address

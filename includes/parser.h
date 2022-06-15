@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/15 16:07:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/15 22:00:32 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,28 @@ union	u_node_data
 	char	*delimeter;
 };
 
-typedef struct	s_ast_cont
+typedef struct	s_parse_cont
 {
 	enum e_node_type	type;
 	char				*cmd;
 	union u_node_data	data;
 	int					infile;
 	int					outfile;
-}	t_ast_cont;
+	t_parse_cont		*next_pipe_cmd;
+}	t_parse_cont;
 
-typedef struct	s_tmp_head
+
+typedef struct	s_cmd
 {
-	int		left_index;
-	int		right_index;
-	t_dlst	*start_node;
-}	t_tmp_head;
+	typedef struct	*next;
+	char			**argv;
+	t_input_lst		*input_lst;
+	t_output_lst	*output_lst;
+}	t_cmd;
 
-t_tree	*make_simple_cmd(t_dlst *lst);
+typedef struct	s_parse_head
+{
+	t_cmd	*cmd;
+}
 
 #endif
