@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 20:08:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 01:00:20 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
-void	set_env_key(t_data *data, char **envp);
+void	set_env_list(t_data *data, char **envp);
+void    set_env_arr(t_data *data, char **envp);
 /*
  * display
  * */

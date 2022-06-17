@@ -1,32 +1,37 @@
-#include "../../includes/main.h"
+#include "main.h"
 
-void	ft_unset(t_data *data, t_token *token)
+void	recursive_unset(t_envlst *rem_node, t_envlst *node, char **args)
 {
-	char	**split;
-	t_dlst	*env;
-	t_dlst	*link;
-
-	env = data->env_lst;
-	while(data->env)
+	while(rem_node)
 	{
-		split = ft_split(*envp, "=");
-		if (!strcmp(token->value, split[0]))
+		if (!strcmp(rem_node->key, *args))
 		{
-			link->next = env->next
-			free(data->env_lst);
-			free(split);
+			node->next = rem_node->next;
+			free(rem_node);
+			recursive_unset(rem_node, node, args);
 			return ;
 		}
-		envp++;
-		data->env_lst = data->env_lst->next;
+		rem_node = rem_node->next;
+		node = node->next;
 	}
 }
 
-int	main(int ac, char **av)
+void	ft_unset(t_data *data, char **args)
 {
-	t_data	data;
-	t_token	*token;
+	t_envlst	*rem_node;
+	t_envlst	*node;
 
-	ft_unset(&data, token);
-	return (0);
+	rem_node = data->env_lst->next;
+	node = data->env_lst;
+	while(rem_node)
+	{
+		if (!strcmp(rem_node->key, *args))
+		{
+			node->next = rem_node->next;
+			free(rem_node);
+			return ;
+		}
+		rem_node = rem_node->next;
+		node = node->next;
+	}
 }

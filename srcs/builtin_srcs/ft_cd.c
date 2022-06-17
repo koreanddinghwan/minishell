@@ -1,70 +1,67 @@
-#include "../../includes/main.h"
+#include "main.h"
+#include <errno.h>
 
-char	*match_env(t_data *data, char* str)
+void	change_env(t_data *data, char *pwd, char *oldpwd)
 {
-	char	**split;
-	t_dlst	*node;
+	t_envlst	*node;
+	t_envlst	*last;
 
-	node = ft_dlst_new(str);
-	while (data->env_lst)
+	node = data->env_lst;
+	last = ft_envlst_last(node);
+	while (node)
 	{
-		split = ft_split(data->env_lst->content, "=");
-		if (!strcmp(data->env_lst->content, split[0]))
-			return (data->env_lst->contet);
-		data->env_lst->next;
+		if (!ft_strncmp(node->key, "PWD", 3))
+		{
+			node->value = pwd;
+			if (strcmp(last->key, "OLDPWD"))
+			{
+				node = ft_envlst_new("OLDPWD=OLDPWD");
+				ft_envlst_pushback(&data->env_lst, node);
+			}
+		}
+		if (!ft_strncmp(node->key, "OLDPWD", 6))
+		{
+			node->value = oldpwd;
+		}
+		node = node->next;
 	}
-	return (NULL);
 }
 
-void	swap_env(t_data *data, char *pwd, char *oldpwd)
-{
-	t_dlst	*node;
-
-	node = ft_dlst_new("swap");
-	node = pwd노드;
-	pwd노드 = oldpwd노드;
-	oldpwd노드 = node;
-}
-
-void	ft_cd(t_data *data, char *str)
+void	ft_cd(t_data *data, char *path)
 {
 	char	*buf;
 	char	*loc;
 	char	*home;
-	char	*bef;
-	char	*change;
+	char	*old;
+	int		change;
+	t_envlst	*node;
 
-	loc = (char *)malloc(sizeof(char) * 256)*;
+	node = data->env_lst;
+	buf = (char *)malloc(sizeof(char) * 256);
+	loc = (char *)malloc(sizeof(char) * 256);
 	home = (char *)malloc(sizeof(char) * 256);
-	bef = (char *)malloc(sizeof(char) * 256);
-	while(data->env_lst)
+	old = (char *)malloc(sizeof(char) * 256);
+	getcwd(old, 256);
+	while(node)
 	{
-		if(!strncmp(data->env_lst->content, "HOME", 4))
-			home = data->env_lst->content;
-		if(!strncmp(data->env_lst->content, "OLDPWD", 6))
-			bef = data->env_lst->content;
-		data->env_lst = data->env_lst->next;
+		if(!strcmp(node->key, "HOME"))
+			home = node->value;
+		node = node->next;
 	}
-	if (!strcmp(str, "~"))
+	if (!strcmp(path, "~"))
 		buf = ft_strdup(home);
-	else if (!strcmp(str, "-"))
-		buf = ft_strdup(bef);
+	else if (!strcmp(path, "-"))
+		buf = ft_strdup(old);
 	else
-		buf = ft_strdup(str);
+		buf = ft_strdup(path);
 	change = chdir(buf);
 	if (change == -1)
-		printf("bash: cd: %s\n", strerror(errno);
+		printf("bash: cd: %s\n", strerror(errno));
 	else
 	{
 		getcwd(loc, 256);
-		swap_env(data, "PWD", "OLDPWD");
+		printf("loc: %s\n", loc);
+		change_env(data, loc, old); // loc: pwd, old: oldpwd
 	}
-}
-
-int	main()
-{ 
-	char s[100];
-	printf("%s\n", getcwd(s, 100));
-	ft_cd();
-	printf("%s\n", getcwd(s, 100));
+	free(buf);
 }

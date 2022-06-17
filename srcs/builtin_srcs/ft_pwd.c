@@ -1,4 +1,4 @@
-#include "../../includes/main.h"
+#include "main.h"
 
 void	ft_pwd()
 {
@@ -8,11 +8,6 @@ void	ft_pwd()
 	if (!getcwd(loc, 256))
 		return ;
 	else
-		printf("%s\n", loc);
+		printf("current loc: %s\n", loc);
 	free(loc);
-}
-
-int main()
-{
-	ft_pwd();
 }

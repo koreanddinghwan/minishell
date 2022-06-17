@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:33:14 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 21:06:36 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 00:57:21 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ void	initialize_main(t_data *data, char **envp)
 	data->env_lst = NULL;
 	data->cmd_lst = NULL;
 	data->exit_status = 0;
-	set_env_key(data, envp);
+	data->cmd_order_lst = NULL;
+	set_env_arr(data, envp);
+	set_env_list(data, envp);
 }
