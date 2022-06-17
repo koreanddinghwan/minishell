@@ -18,5 +18,6 @@ void	initialize_main(t_data *data, char **envp)
 	data->lexer_token_lst = NULL;
 	data->env_lst = NULL;
 	data->cmd_order_lst = NULL;
-	set_env(data, envp);
+	set_env_arr(data, envp);
+	set_env_list(data, envp);
 }
