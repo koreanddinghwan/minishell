@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:22:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/14 16:30:29 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 02:54:31 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,5 @@ void	token_buf_build(t_data *data)
 	tok_buf->type = END_C;
 	tok_buf->c = '\0';
 	if (state == STATE_DQUOTE || state == STATE_SQUOTE)
-	{
 		printf("error\n");
-	}
 }

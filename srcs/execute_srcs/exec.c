@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_data.c                                  :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 02:31:46 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/18 02:32:00 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/18 02:36:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "execute.h"
 
-void	initialize_data(t_data *data, char *line)
+int	get_process_num(t_dlst *cmd_lst)
 {
-	if (ft_strlen(line) == 0)
-		return ;
-	add_history(line);
-	data->trimmed = ft_strtrim(line, " ");
-	data->command = line;
-	tokenizer(data);
-	lexer(data);
-	parser(data);
-	exec(data);
+	int	i;
+
+	i = 0;
+	while (cmd_lst)
+	{	
+		i++;
+		cmd_lst = cmd_lst->next;
+	}
+	return (i);
+}
+
+void	exec(t_data *data)
+{
+	t_dlst	*cmd_lst;
+	int		process_num;
+
+	cmd_lst = data->cmd_lst;
+	process_num = get_process_num(cmd_lst);
 }

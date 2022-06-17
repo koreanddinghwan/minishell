@@ -6,36 +6,47 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 19:41:58 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 03:09:48 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+char	*check_env(t_data *data, char *buffer)
+{
+	-char	*dollar;
+
+	dollar = ft_strchr(buffer, '$');
+	if (!dollar)
+		return (buffer);
+	else
+	{
+
+	}
+}
+
 void	join_args(char **rtn, t_data *data)
 {
-	int		i;
-	t_dlst	*next;
-	t_dlst	*tok_lst;
+	int					i;
+	t_dlst				*next;
+	t_dlst				*tok_lst;
+	enum e_word_type	type;
 
 	i = 0;
 	tok_lst = data->lexer_token_lst;
 	while (tok_lst)
 	{
+		type = GET_TOKEN_TYPE(tok_lst);
 		next = tok_lst->next;
-		if (GET_TOKEN_TYPE(tok_lst) == W_PIPE)
-		{
+		if (type == W_PIPE || type == W_SPACE)
 			ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
+		if (type == W_PIPE)
 			break ;
-		}
-		else if (GET_TOKEN_TYPE(tok_lst) == W_SPACE)
-		{
-			ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
+		else if (type == W_SPACE)
 			tok_lst = next;
-		}
 		else
 		{
-			rtn[i] = ft_strdup(GET_TOKEN_BUFFER(tok_lst));
+			rtn[i] = ft_strdup(check_env(data, GET_TOKEN_BUFFER(tok_lst)));
 			ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
 			tok_lst = next;
 			i++;

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 01:00:20 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 03:07:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	tokenizer(t_data *data);
 void	lexer(t_data *data);
 void	parser(t_data *data);
 void	execute(t_data *data);
+void	exec(t_data *data);
 #endif
