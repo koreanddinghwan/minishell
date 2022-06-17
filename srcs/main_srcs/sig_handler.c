@@ -6,11 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/10 10:48:27 by gyumpark         ###   ########.fr       */
+/*   Updated: 2022/06/17 23:30:27 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/main.h"
+#include "main.h"
 
 void	sigquit_handler(int sig)
 {

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 23:24:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 23:37:49 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@ typedef	struct s_lexer_token
 	int					buf_len;
 	int					nth;
 }	t_lexer_token;
+
+typedef struct s_envlst
+{
+	void			*key;
+	void			*value;
+	void			*env_line;
+	struct s_envlst	*next;
+	struct s_envlst	*back;
+}	t_envlst;
 
 typedef	struct s_data
 {

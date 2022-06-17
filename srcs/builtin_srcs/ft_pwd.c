@@ -1,6 +1,6 @@
-#include "main.h"
+#include "builtin.h"
 
-void	ft_pwd()
+void	ft_pwd(void)
 {
 	char	*loc; // ulimit -n
 

@@ -1,4 +1,4 @@
-#include "../../includes/main.h"
+#include "builtin.h"
 
 char	*make_key(char	*envstr)
 {
@@ -20,14 +20,4 @@ void	set_env_key(t_data	*data, char	**envp)
 		envp++;
 		data->env_lst = data->env_lst->next;
 	}
-}
-
-int	main(int ac, char **av, char **envp)
-{
-	t_data	data;
-
-	(void)ac;
-	(void)av;
-	set_env_key(&data, envp);
-	return (0);
 }

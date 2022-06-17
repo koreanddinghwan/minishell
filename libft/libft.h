@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 16:22:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 23:31:53 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-
-typedef struct s_envlst
-{
-	void			*key;
-	void			*value;
-	void			*env_line;
-	struct s_envlst	*next;
-	struct s_envlst	*back;
-}	t_envlst;
 
 typedef struct s_list
 {

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "builtin.h"
 #include <string.h>
 
 char	*last_null(char *str)
