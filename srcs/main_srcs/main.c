@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:34:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 20:40:44 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 01:02:55 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 	initialize_main(&data, envp);
-	display_bash(&data, ac, av);
+	display_bash(&data);
 	return (0);
 }
