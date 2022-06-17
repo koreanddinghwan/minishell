@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/15 21:50:29 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 16:45:35 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -32,14 +32,13 @@ int		there_is_pipe(t_dlst *lst)
 
 void	parser(t_data *data)
 {
-	t_dlst	*lst;
-	t_dlst	*parsed;
+	t_dlst	*tok_lst;
 
 	if (!data)
 		return ;
-	lst = data->lexer_token_lst;
-	if (there_is_pipe(lst))
-		simple_cmd(data, lst);
-	else
-		pipe_cmd(data, lst);
+	tok_lst = data->lexer_token_lst;
+	if (!there_is_pipe(tok_lst))
+		simple_cmd(data, tok_lst);
+	//else
+	//	pipe_cmd(data, tok_lst);
 }

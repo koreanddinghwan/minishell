@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/15 21:07:38 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 16:22:04 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int				ft_putnbr_hex(int n, int big_small);
 int				ft_print_pointer(void *p);
 t_dlst			*ft_dlst_new(void *content);
 t_dlst			*ft_dlst_last(t_dlst *dlst);
-void			*ft_dlst_delete(t_dlst *cur, void (*del)(void *));
+void			ft_dlst_delete(t_dlst *cur, t_dlst **origin, void (*del)(void *));
 void			ft_dlst_delone(t_dlst *dlst, void (*del)(void *));
 void			ft_dlst_clear(t_dlst **dlst, void (*del)(void *));
 int				ft_dlst_size(t_dlst *lst);
