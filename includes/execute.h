@@ -6,13 +6,12 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:02:37 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 20:08:31 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 01:09:41 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
-# include "defines_enums.h"
-# include "structs.h"
+# include "builtin.h"
 
 #endif
