@@ -48,12 +48,12 @@ void	ft_pwd();
 /*
  * export
  * */
-void	ft_export(t_data *data, char *str);
+void	ft_export(t_data *data, char **args);
 
 /*
  * unset
  * */
-void	ft_unset(t_data *data, char *key);
+void	ft_unset(t_data *data, char **args);
 
 /*
  * echo

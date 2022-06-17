@@ -50,11 +50,29 @@ void	display_bash(t_data *data, int ac, char **av)
 		}
 		if (!strcmp(data->command, EXPORT))
 		{
-			ft_export(data, "key=value");
+			char **args = (char **)malloc(sizeof(char *) * 3);
+			args[0] = (char *)malloc(sizeof(char) * 10);
+			args[1] = (char *)malloc(sizeof(char) * 10);
+			args[2] = (char *)malloc(sizeof(char) * 10);
+			// args[0] = "key=value";
+			// args[1] = "value=key";
+			// args[0] = "key";
+			// args[1] = "value";
+			args[0] = "key=";
+			args[1] = "value=";
+			args[2] = 0;
+			ft_export(data, args);
 		}
 		if (!strcmp(data->command, UNSET))
 		{
-			ft_unset(data, "key");
+			char **args = (char **)malloc(sizeof(char *) * 3);
+			args[0] = (char *)malloc(sizeof(char) * 10);
+			args[1] = (char *)malloc(sizeof(char) * 10);
+			args[2] = (char *)malloc(sizeof(char) * 10);
+			args[0] = "key";
+			args[1] = "value";
+			args[2] = 0;
+			ft_unset(data, args);
 		}
 		if (!strcmp(data->command, ECHO))
 		{
