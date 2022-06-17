@@ -38,7 +38,8 @@ void	set_env_arr(t_data *data, char **envp)
 	int	i;
 
 	i = 0;
-	data->env = (char **)malloc(sizeof(char *) * size_envp(envp));
+	data->env_size = sizeof(char *) * size_envp(envp);
+	data->env = (char **)malloc(data->env_size);
 	while (*envp)
 	{
 		if (!ft_strncmp(*envp, "OLDPWD=", 7))
@@ -50,6 +51,7 @@ void	set_env_arr(t_data *data, char **envp)
 		envp++;
 		i++;
 	}
+	data->env[i] = ft_strdup("");
 }
 
 void	set_env_list(t_data *data, char **envp)
