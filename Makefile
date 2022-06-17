@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/17 17:10:48 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/17 17:46:46 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)
 TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 
-PARSE_SRCS = $(addprefix ./srcs/parsing_srcs_m/, parser.c parser_tools.c simple_cmd_parsing.c make_input_lst.c make_output_lst.c make_heredoc_lst.c)
+PARSE_SRCS = $(addprefix ./srcs/parsing_srcs_m/, parser.c parser_tools.c simple_cmd_parsing.c make_input_lst.c make_output_lst.c make_heredoc_lst.c make_append_lst.c)
 PARSE_OBJS = $(PARSE_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
