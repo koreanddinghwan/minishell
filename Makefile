@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/17 20:07:26 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/17 23:48:56 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 
 PARSE_SRCS = $(addprefix ./srcs/parsing_srcs_m/, parser.c parser_tools.c  \
 			 simple_cmd.c pipe_cmd.c make_input_lst.c make_output_lst.c \
-			 make_heredoc_lst.c make_append_lst.c make_cmd.c make_args.c)
+			 make_heredoc_lst.c make_append_lst.c make_cmd.c make_args.c \
+			 get_cmdtype.c)
+
 PARSE_OBJS = $(PARSE_SRCS:.c=.o)
 
 EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c)
