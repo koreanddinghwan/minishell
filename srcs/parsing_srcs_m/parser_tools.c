@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 17:38:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 19:38:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,19 @@ void	print_heredoc_lst(t_dlst *lst)
 		lst = lst->next;
 	}
 }
+
+t_cmd_cont	*init_cmd_cont(void)
+{
+	t_cmd_cont	*rtn;
+
+	rtn = malloc(sizeof(t_cmd_cont) * 1);
+	if (!rtn)
+		return (NULL);
+	rtn->args = NULL;
+	rtn->input_lst = NULL;
+	rtn->output_lst = NULL;
+	rtn->append_lst = NULL;
+	rtn->heredoc_lst = NULL;
+	return (rtn);
+}
+

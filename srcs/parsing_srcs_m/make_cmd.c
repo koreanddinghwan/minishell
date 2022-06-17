@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   make_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 19:30:43 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/17 18:54:49 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/17 19:25:04 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
- * parser define the order of commands
- * */
 
 #include "parser.h"
 
-/*
- * cmd(builtin)  args | cmd(builtin) args
- * */
-
-int		there_is_pipe(t_dlst *lst)
-{
-	while (lst)
-	{
-		if (GET_TOKEN_TYPE(lst) == W_PIPE)
-			return (1);
-		lst = lst->next;
-	}
-	return (0);
-}
-
-void	parser(t_data *data)
+char	*make_cmd(t_data *data)
 {
 	t_dlst	*tok_lst;
+	t_dlst	*next;
+	char	*rtn;
 
-	if (!data)
-		return ;
 	tok_lst = data->lexer_token_lst;
-	if (!there_is_pipe(tok_lst))
-		simple_cmd(data);
+	while (tok_lst && GET_TOKEN_TYPE(tok_lst) == W_SPACE)
+	{
+		next = tok_lst->next;
+		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
+		tok_lst = next;
+	}
+	if (tok_lst)
+		rtn = ft_strdup(GET_TOKEN_BUFFER(tok_lst));
 	else
-		pipe_cmd(data);
+		rtn = NULL;
+	ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
+	ft_printf("cmd : %s\n", rtn);
+	return (rtn);
 }

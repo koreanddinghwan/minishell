@@ -6,10 +6,9 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:57:49 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 17:39:18 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 18:56:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "parser.h"
 
@@ -19,6 +18,8 @@ int	check_redirection_output(t_dlst *tok_lst)
 	{
 		if (GET_TOKEN_TYPE(tok_lst) == W_REDIRECTION_OUTPUT)
 			return (1);
+		if (GET_TOKEN_TYPE(tok_lst) == W_PIPE)
+			return (0);
 		tok_lst = tok_lst->next;
 	}
 	return (0);

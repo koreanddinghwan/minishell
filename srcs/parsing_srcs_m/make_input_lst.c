@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:34:10 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 17:31:00 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 19:39:41 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_redirection_input(t_dlst *tok_lst)
 	{
 		if (GET_TOKEN_TYPE(tok_lst) == W_REDIRECTION_INPUT)
 			return (1);
+		if (GET_TOKEN_TYPE(tok_lst) == W_PIPE)
+			return (0);
 		tok_lst = tok_lst->next;
 	}
 	return (0);
@@ -52,11 +54,13 @@ t_io_cont	*make_input_cont(t_data *data, t_dlst *tok_lst)
 	return (rtn);
 }
 
-t_dlst	*make_input_lst(t_data *data, t_dlst *tok_lst)
+t_dlst	*make_input_lst(t_data *data)
 {
 	t_dlst	*rtn;
+	t_dlst	*tok_lst;
 
 	rtn = NULL;
+	tok_lst = data->lexer_token_lst;
 	while (check_redirection_input(tok_lst))
 	{
 		while (GET_TOKEN_TYPE(tok_lst) != W_REDIRECTION_INPUT)

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:06:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 17:39:36 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 18:44:11 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_heredoc(t_dlst *tok_lst)
 	{
 		if (GET_TOKEN_TYPE(tok_lst) == W_HERE_DOC)
 			return (1);
+		if (GET_TOKEN_TYPE(tok_lst) == W_PIPE)
+			return (0);
 		tok_lst = tok_lst->next;
 	}
 	return (0);

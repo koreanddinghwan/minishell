@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 17:47:14 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 18:44:05 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_append(t_dlst *tok_lst)
 	{
 		if (GET_TOKEN_TYPE(tok_lst) == W_APPENDING_TO)
 			return (1);
+		if (GET_TOKEN_TYPE(tok_lst) == W_PIPE)
+			return (0);
 		tok_lst = tok_lst->next;
 	}
 	return (0);
