@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 14:00:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 21:23:36 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define	UNSET	"unset"
 # define	ENV		"env"
 # define	EXIT	"exit"
-
 
 /*
  * char_type used in tokenizer

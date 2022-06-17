@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/17 19:28:53 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/17 20:07:26 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,13 +35,16 @@ PARSE_SRCS = $(addprefix ./srcs/parsing_srcs_m/, parser.c parser_tools.c  \
 			 make_heredoc_lst.c make_append_lst.c make_cmd.c make_args.c)
 PARSE_OBJS = $(PARSE_SRCS:.c=.o)
 
+EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c)
+EXEC_OBJS = $(EXEC_SRCS:.c=.o)
+
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, )
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
 TOOLS_SRCS = $(addprefix ./srcs/tools/, error_handler.c tmp_print.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
-OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(PARSE_OBJS)
+OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(PARSE_OBJS) $(EXEC_OBJS)
 
 all : $(NAME)
 

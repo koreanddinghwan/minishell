@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/14 13:56:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/17 20:08:27 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@
 # include <readline/history.h>
 # include <unistd.h>
 # include <signal.h>
-# include "libft.h"
 # include "structs.h"
 # include "defines_enums.h"
-# include "tokenizer.h"
-# include "lexer.h"
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
@@ -30,5 +27,9 @@ void	set_env_key(t_data *data, char **envp);
  * display
  * */
 void	display_bash(t_data *data);
+void	initialize_data(t_data *data, char *line);
+void	tokenizer(t_data *data);
+void	lexer(t_data *data);
 void	parser(t_data *data);
+void	execute(t_data *data);
 #endif
