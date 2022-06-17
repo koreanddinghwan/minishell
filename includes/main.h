@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 17:13:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 00:52:48 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,5 @@ void    set_env_arr(t_data *data, char **envp);
 /*
  * display
  * */
-void	display_bash(t_data *data, int ac, char **av);
-void    execve_pull(char **envp);
-
-/*
- * cd
- * */
-void	ft_cd(t_data *data, char *path);
-t_envlst	*ft_envlst_last(t_envlst *envlst);
-void	ft_envlst_pushback(t_envlst **envlst, t_envlst *new);
-t_envlst	*ft_envlst_new(void *c);
-
-/*
- * pwd
- * */
-void	ft_pwd();
-
-/*
- * export
- * */
-void	ft_export(t_data *data, char **args);
-
-/*
- * unset
- * */
-void	ft_unset(t_data *data, char **args);
-
-/*
- * echo
- * */
-void	ft_echo(t_data *data, int flag, char *str);
-
-/*
- * exit
- * */
-void	ft_exit(int ac, char *av[]);
-
+void	display_bash(t_data *data);
 #endif
