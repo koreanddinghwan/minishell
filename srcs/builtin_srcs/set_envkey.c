@@ -62,7 +62,7 @@ t_envlst	*ft_envlst_new(void *c)
 	split = ft_split((char *)c, '=');
 	if (split[1] == (void *)0)
 	{
-		split[1] = ft_strdup(0);
+		split[1] = ft_strdup("");
 	}
 	node->key = split[0];
 	node->value = split[1];
