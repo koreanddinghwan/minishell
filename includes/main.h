@@ -25,7 +25,8 @@
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
-void	set_env(t_data *data, char **envp);
+void	set_env_list(t_data *data, char **envp);
+void    set_env_arr(t_data *data, char **envp);
 /*
  * display
  * */
@@ -48,12 +49,12 @@ void	ft_pwd();
 /*
  * export
  * */
-void	ft_export(t_data *data, char *str);
+void	ft_export(t_data *data, char **args);
 
 /*
  * unset
  * */
-void	ft_unset(t_data *data, char *key);
+void	ft_unset(t_data *data, char **args);
 
 /*
  * echo
