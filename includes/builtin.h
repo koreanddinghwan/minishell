@@ -2,6 +2,9 @@
 # define BUILTIN_H
 
 #include "structs.h"
+#include "libft.h"
+#include <stdio.h>
+#include <string.h>
 /*
  * cd
  * */
