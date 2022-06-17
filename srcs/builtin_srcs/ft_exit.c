@@ -19,8 +19,3 @@ void	ft_exit(int ac, char *av[])
 	else
 		printf("miniminisherl: exit: too many arguments\n");
 }
-
-int	main(int ac, char *av[])
-{
-	ft_exit(ac, av);
-}
