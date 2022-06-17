@@ -1,21 +1,20 @@
-#include "../../includes/main.h"
+#include "main.h"
 
-
-
-void	ft_export(t_data *data, char *str)
+void	ft_export(t_data *data, char **args)
 {
-	char	**split;
-	t_dlst	*node;
+	t_envlst	*node;
 	
-	split = ft_split(str, "=");
-	if (*(split+1) != "=")
+	while (*args)
 	{
-		printf("bash: export: '%s': not ad valid indentifier\n", str);
-		return ;
-	}
-	else
-	{
-		node = ft_dlst_new(str);
-		ft_dlst_pushback(&data->env_lst, node);
+		if (!strchr(*args, '='))
+		{
+			return ;
+		}
+		else
+		{
+			node = ft_envlst_new(*args);
+			ft_envlst_pushback(&data->env_lst, node);
+		}
+		args++;
 	}
 }
