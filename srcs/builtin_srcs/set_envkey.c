@@ -60,6 +60,10 @@ t_envlst	*ft_envlst_new(void *c)
 	if (!node)
 		return (0);
 	split = ft_split((char *)c, '=');
+	if (split[1] == (void *)0)
+	{
+		split[1] = ft_strdup("");
+	}
 	node->key = split[0];
 	node->value = split[1];
 	node->env_line = (char *)c;
@@ -77,10 +81,42 @@ char	*make_key(char *envstr)
 	return (str);
 }
 
-void	set_env(t_data *data, char **envp)
+int	size_envp(char **envp)
+{
+	int	size;
+
+	size = 0;
+	while (*envp)
+	{
+		size++;
+		envp++;
+	}
+	return (size);
+}
+
+void	set_env_arr(t_data *data, char **envp)
+{
+	int	i;
+
+	i = 0;
+	data->env = (char **)malloc(sizeof(char *) * size_envp(envp));
+	while (*envp)
+	{
+		if (!ft_strncmp(*envp, "OLDPWD=", 7))
+		{
+			envp++;
+			continue;
+		}
+		data->env[i] = ft_strdup(*envp);
+		envp++;
+		i++;
+	}
+}
+
+void	set_env_list(t_data *data, char **envp)
 {
 	t_envlst	*node;
-
+	
 	while (*envp)
 	{
 		node = ft_envlst_new(make_key(*envp));
