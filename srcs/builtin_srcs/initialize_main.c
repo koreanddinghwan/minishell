@@ -19,5 +19,5 @@ void	initialize_main(t_data *data, char **envp)
 	data->env_lst = NULL;
 	data->cmd_order_lst = NULL;
 	set_env_arr(data, envp);
-	set_env_list(data, envp);
+	set_env_lst(data, envp);
 }

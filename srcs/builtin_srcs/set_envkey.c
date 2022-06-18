@@ -79,7 +79,7 @@ void	set_env_arr(t_data *data, char **envp)
 	data->env[i] = 0;
 }
 
-void	set_env_list(t_data *data, char **envp)
+void	set_env_lst(t_data *data, char **envp)
 {
 	t_envlst	*node;
 	
