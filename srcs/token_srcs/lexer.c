@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 20:59:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 05:19:59 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	lexer_token_printer(t_data *data)
 	lst = data->lexer_token_lst;
 	while (lst)
 	{
-		printf("nth : %d, type : %d %s\n",  GET_TOKEN_NTH(lst), GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
+		printf("nth : %d, type : %d , buffer : %s\n",  GET_TOKEN_NTH(lst), GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
 		lst = lst->next;
 	}
 }

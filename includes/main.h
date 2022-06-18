@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 03:07:33 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 00:53:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    set_env_arr(t_data *data, char **envp);
  * */
 void	display_bash(t_data *data);
 void	initialize_data(t_data *data, char *line);
-void	tokenizer(t_data *data);
+int		tokenizer(t_data *data);
 void	lexer(t_data *data);
 void	parser(t_data *data);
 void	execute(t_data *data);
