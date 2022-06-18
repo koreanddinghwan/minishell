@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/15 15:38:17 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/18 20:59:51 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	lexer(t_data *data)
 {
 	lexer_token_lst_init(data);
 	lexer_w_converter(data);
+	lexer_replacer(data);
 	lexer_add_nth(data);
 	ft_printf("after convert\n");
 	lexer_token_printer(data);

@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/18 03:14:46 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/18 03:35:38 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ PARSE_SRCS = $(addprefix ./srcs/parsing_srcs_m/, parser.c parser_tools.c  \
 
 PARSE_OBJS = $(PARSE_SRCS:.c=.o)
 
-EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c)
+EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c exec.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c set_envkey.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c)

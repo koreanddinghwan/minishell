@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   lexer_replacer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/18 02:32:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 03:41:16 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/18 21:00:01 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/18 21:10:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
+#include "lexer.h"
 
-int	get_process_num(t_dlst *cmd_lst)
+int		isthere_dollar_sign(char *buffer)
 {
 	int	i;
+	int	size;
 
 	i = 0;
-	while (cmd_lst)
-	{	
+	size = ft_strlen(buffer);
+	while (buffer[i])
+	{
+		if (buffer[i] == '$' && i != size)
+			return (0);
+		else
+			return (1);
 		i++;
-		cmd_lst = cmd_lst->next;
 	}
-	return (i);
 }
 
-void	exec(t_data *data)
+void	lexer_replacer(t_data *data)
 {
-	t_dlst	*cmd_lst;
-	int		process_num;
+	t_dlst	*ltok_lst;
 
-	cmd_lst = data->cmd_lst;
-	process_num = get_process_num(cmd_lst);
-	ft_printf("process num :%d\n", process_num);
+	ltok_lst = data->lexer_token_lst;
+	while (ltok_lst)
+	{
+		if (isthere_dollar_sign(GET_TOKEN_BUFFER(ltok_lst)));
+			replace_dollarsign(ltok_lst);
+		ltok_lst = ltok_lst->next;
+	}
 }
