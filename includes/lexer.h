@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 17:11:40 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 05:34:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 07:24:28 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int				check_builtin(char *str);
 void			lexer_replacer(t_data *data);
 int				get_replaced_len(char *str, t_data *data);
 void			cpy_replaced(char *rtn, char *str, t_data *data, int len);
-char	*make_possible_cp(char *str);
+char			*make_possible_cp(char *str);
 #endif

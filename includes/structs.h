@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 21:05:23 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 07:40:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,33 @@ typedef	struct s_data
 	t_dlst		*cmd_lst;
 	int			exit_status;
 }	t_data;
+
+enum e_cmdtype
+{
+	E_CMD,
+	E_BUILTIN,
+};
+
+typedef struct	s_io_cont
+{
+	int		fd;
+	char	*filepath;
+}	t_io_cont;
+
+typedef struct	s_heredoc_cont
+{
+	char	*delimeter;
+}	t_heredoc_cont;
+
+typedef struct	s_cmd_cont
+{
+	enum e_cmdtype	cmdtype;
+	char			*cmd;
+	char			**args;
+	t_dlst			*input_lst;
+	t_dlst			*output_lst;
+	t_dlst			*append_lst;
+	t_dlst			*heredoc_lst;
+}	t_cmd_cont;
 
 #endif

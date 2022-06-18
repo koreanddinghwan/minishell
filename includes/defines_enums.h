@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 02:41:07 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 07:41:11 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,13 @@ enum	e_state
 # define GET_TOKEN_TYPE(lst) (((t_lexer_token *)lst->content)->w_type)
 # define GET_TOKEN_BUFFER(lst) (((t_lexer_token *)lst->content)->buffer)
 # define GET_TOKEN_NTH(lst) (((t_lexer_token *)lst->content)->nth)
+# define GET_CMD(lst) (((t_cmd_cont *)lst->content)->cmd)
+# define GET_ARGS(lst) (((t_cmd_cont *)lst->content)->args)
+# define GET_INPUT_LIST(lst) (((t_cmd_cont *)lst->content)->input_lst)
+# define GET_OUTPUT_LIST(lst) (((t_cmd_cont *)lst->content)->output_lst)
+# define GET_APP_LIST(lst) (((t_cmd_cont *)lst->content)->append_lst)
+# define GET_HEREDOC_LIST(lst) (((t_cmd_cont *)lst->content)->heredoc_lst)
+# define GET_FILEPATH(lst) (((t_io_cont *)lst->content)->filepath)
+# define GET_DELIMETER(lst) (((t_heredoc_cont *)lst->content)->delimeter)
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:40:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 18:44:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 07:42:47 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,5 @@ t_dlst	*make_append_lst(t_data *data)
 		ft_dlst_pushback(&rtn, ft_dlst_new(make_append_cont(data, tok_lst)));
 		tok_lst = data->lexer_token_lst;
 	}
-	ft_printf("appending lst\n");
-	print_input_lst(rtn);
 	return (rtn);
 }

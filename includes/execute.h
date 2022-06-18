@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:02:37 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 01:09:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 07:38:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,5 @@
 # define EXECUTE_H
 # include "builtin.h"
 
+void	print_cmddata(t_data *data);
 #endif

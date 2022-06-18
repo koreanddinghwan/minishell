@@ -6,16 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 20:43:34 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 07:46:23 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-/*
- * 버퍼크기를 정해놔야하나..?
- * 버퍼크기
- * */
 
 void	join_args_next(t_dlst **tok_lst, t_dlst *next,
 			char **rtn, char **buffer)
@@ -93,24 +88,10 @@ char	**make_args(t_data *data)
 		return (NULL);
 	count = get_args_count(data->lexer_token_lst);
 	rtn = malloc(sizeof(char *) * (count + 2));
-	/*
-	 * 나중에 실행경로 찾아서 변경해줘야함~
-	 * */
-	rtn[0] = ft_strdup("program name");
-	/*
-	 * space밀어주세요~
-	 * */
+	rtn[0] = ft_strdup("###program name 나중에 변경해줘요~");
 	tok_lst = data->lexer_token_lst;
 	if (tok_lst && GET_TOKEN_TYPE(tok_lst) == W_SPACE)
 		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
 	join_args(rtn, data);
-	ft_printf("args : \n");
-	int	i;
-	i = 0;
-	while (rtn[i])
-	{
-		ft_printf("%s\n", rtn[i]);
-		i++;
-	}
 	return (rtn);
 }
