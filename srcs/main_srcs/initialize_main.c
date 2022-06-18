@@ -20,5 +20,5 @@ void	initialize_main(t_data *data, char **envp)
 	data->cmd_lst = NULL;
 	data->exit_status = 0;
 	set_env_arr(data, envp);
-	set_env_list(data, envp);
+	set_env_lst(data, envp);
 }
