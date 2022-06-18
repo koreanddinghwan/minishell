@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.h                                        :+:      :+:    :+:   */
+/*   replacer_tool.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 17:42:10 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 00:52:37 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/19 04:48:19 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIZER_H
-# define TOKENIZER_H
-# include "structs.h"
-# include "defines_enums.h"
-//tmp
-# include "tmp.h"
+#include "lexer.h"
 
-int	token_buf_build(t_data *data);
+char	*make_possible_cp(char *str)
+{
+	int		i;
 
-//int		get_token_type(char c);
-//int		is_special_token(int type);
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]))
+			break ;
+		i++;
+	}
+	return (ft_strndup(str, i));
+}

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 00:57:46 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 02:30:45 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	initialize_data(t_data *data, char *line)
 	add_history(line);
 	data->trimmed = ft_strtrim(line, " ");
 	data->command = line;
-	tokenizer(data);
+	if (tokenizer(data) == FAIL)
+		return ;
 	lexer(data);
 	parser(data);
-	execute(data);
+	exec(data);
+	//clear(data);
 }
