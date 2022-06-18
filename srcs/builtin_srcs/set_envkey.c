@@ -33,13 +33,38 @@ int	size_envp(char **envp)
 	return (size);
 }
 
+char	**add_env_arr(t_data *data, char **args)
+{
+	char	**copy;
+	int i = 0;
+	int j = 0;
+
+	copy = (char **)malloc(sizeof(char *) * data->env_size * 10);
+	if (!strchr(*args, '='))
+		return 0;
+	while (data->env[i])
+	{
+		copy[j] = ft_strdup(data->env[i]);
+		j++;
+		i++;
+	}
+	while (*args)
+	{
+		copy[j] = ft_strdup(*args);
+		j++;
+		args++;
+	}
+	copy[j] = 0;
+	return (copy);
+}
+
 void	set_env_arr(t_data *data, char **envp)
 {
 	int	i;
 
 	i = 0;
-	data->env_size = sizeof(char *) * size_envp(envp);
-	data->env = (char **)malloc(data->env_size);
+	data->env_size = size_envp(envp);
+	data->env = (char **)malloc(sizeof(char *) * data->env_size * 10);
 	while (*envp)
 	{
 		if (!ft_strncmp(*envp, "OLDPWD=", 7))
@@ -51,7 +76,7 @@ void	set_env_arr(t_data *data, char **envp)
 		envp++;
 		i++;
 	}
-	data->env[i] = ft_strdup("");
+	data->env[i] = 0;
 }
 
 void	set_env_list(t_data *data, char **envp)
