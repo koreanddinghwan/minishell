@@ -11,7 +11,6 @@ char	**remove_env_arr(t_data *data, char **args)
 	while (data->env[i])
 	{
 		split = ft_split(data->env[i], '=');
-		printf("arr: %s\nspl: %s\n", data->env[i], *args);
 		if (!ft_strcmp(split[0], *args))
 		{
 			data->env++;
