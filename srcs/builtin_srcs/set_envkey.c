@@ -64,7 +64,7 @@ void	set_env_arr(t_data *data, char **envp)
 
 	i = 0;
 	data->env_size = size_envp(envp);
-	data->env = (char **)malloc(sizeof(char *) * data->env_size * 10);
+	data->env = (char **)malloc(sizeof(char *) * data->env_size);
 	while (*envp)
 	{
 		if (!ft_strncmp(*envp, "OLDPWD=", 7))
