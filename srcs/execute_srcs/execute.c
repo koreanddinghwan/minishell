@@ -16,14 +16,21 @@ void	execute(t_data *data)
 {
 	t_envlst	*lst;
 
+	int i;
+
+	i = 0;
 	lst = data->env_lst;
 	if (!strcmp(data->command, ENV))
 	{
-		while (lst)
+		while (lst)	//lst
 		{
-			printf("%s=", (char *)lst->key);
-			printf("%s\n", (char *)lst->value);
+			printf("list: %s\n", (char*)lst->env_line);
 			lst = lst->next;
+		}
+		while (data->env[i])	//arr
+		{
+			printf("arr: %s\n", data->env[i]);
+			i++;
 		}
 	}
 	if (!strcmp(data->command, CD))

@@ -37,6 +37,7 @@ typedef	struct s_data
 	t_dlst		*lexer_token_lst;
 	t_envlst	*env_lst;
 	char		**env;
+	size_t		env_size;
 	t_dlst		*cmd_lst;
 	int			exit_status;
 }	t_data;
