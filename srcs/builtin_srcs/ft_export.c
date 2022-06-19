@@ -6,6 +6,17 @@ void	ft_export(t_data *data, char **args)
 	char		**copy;
 
 	copy = args;
+	while(*args)
+		{
+			printf("%s\n", *args);
+			while(**args)
+			{
+				printf("%c ", **args);
+				(*args)++;
+			}
+			printf("\n");
+			(args)++;
+		}
 	while (*args)
 	{
 		if (!strchr(*args, '='))
