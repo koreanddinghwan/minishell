@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:34:10 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 19:39:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 20:17:51 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,39 @@ t_io_cont	*make_input_cont(t_data *data, t_dlst *tok_lst)
 {
 	t_io_cont	*rtn;
 	t_dlst		*cur;
-	t_dlst	*next;
-	int			cur_n;
-	int			delete_n;
+	t_dlst		*next;
+	int			offset;
 
 	cur = tok_lst;
-	if (!cur->next)
-		return (NULL);
-	rtn = malloc(sizeof(t_io_cont) * 1);
-	if (!rtn)
-		return (NULL);
-	cur_n = GET_TOKEN_NTH(cur);
+	offset = 0;
+	rtn = NULL;
 	while (cur && GET_TOKEN_TYPE(cur) != W_FILE)
+	{
 		cur = cur->next;
-	rtn->filepath = ft_strdup(GET_TOKEN_BUFFER(cur));
-	delete_n = GET_TOKEN_NTH(cur);
-	while (cur_n <= delete_n)
+		offset++;
+	}
+	if (cur)
+	{
+		rtn = malloc(sizeof(t_io_cont) * 1);
+		if (!rtn)
+			return (NULL);
+		rtn->filepath = ft_strdup(GET_TOKEN_BUFFER(cur));
+	}
+	while (tok_lst && offset + 1)
 	{
 		next = tok_lst->next;
 		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
-		cur_n++;
 		tok_lst = next;
+		offset--;
 	}
 	return (rtn);
 }
 
 t_dlst	*make_input_lst(t_data *data)
 {
-	t_dlst	*rtn;
-	t_dlst	*tok_lst;
+	t_dlst		*rtn;
+	t_dlst		*tok_lst;
+	t_io_cont	*new;
 
 	rtn = NULL;
 	tok_lst = data->lexer_token_lst;
@@ -65,8 +69,13 @@ t_dlst	*make_input_lst(t_data *data)
 	{
 		while (GET_TOKEN_TYPE(tok_lst) != W_REDIRECTION_INPUT)
 			tok_lst = tok_lst->next;
-		ft_dlst_pushback(&rtn, ft_dlst_new(make_input_cont(data, tok_lst)));
-		tok_lst = data->lexer_token_lst;
+		if (tok_lst)
+		{
+			new = make_input_cont(data, tok_lst);
+			if (new)
+				ft_dlst_pushback(&rtn, ft_dlst_new(new));
+			tok_lst = data->lexer_token_lst;
+		}
 	}
 	ft_printf("input lst\n");
 	print_input_lst(rtn);
