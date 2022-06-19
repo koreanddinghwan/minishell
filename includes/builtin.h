@@ -5,6 +5,14 @@
 #include "libft.h"
 #include <stdio.h>
 #include <string.h>
+
+#include "lexer.h"
+
+/*
+ * env
+ * */
+void    ft_env(t_data   *data);
+
 /*
  * cd
  * */

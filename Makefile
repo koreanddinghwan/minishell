@@ -40,7 +40,7 @@ PARSE_OBJS = $(PARSE_SRCS:.c=.o)
 EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c exec.c print_cmddata.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 
-BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c set_envkey.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c)
+BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c set_envkey.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
 TOOLS_SRCS = $(addprefix ./srcs/tools/, error_handler.c tmp_print.c)
