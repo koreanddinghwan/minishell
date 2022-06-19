@@ -12,9 +12,9 @@ void    ft_env(t_data   *data)
 			printf("list: %s\n", (char*)lst->env_line);
 			lst = lst->next;
 		}
-	while (data->env[i])	//arr
-		{
-			printf("arr: %s\n", data->env[i]);
-			i++;
-		}
+	// while (data->env[i])	//arr
+	// 	{
+	// 		printf("arr: %s\n", data->env[i]);
+	// 		i++;
+	// 	}
 }

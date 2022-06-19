@@ -44,27 +44,17 @@ void	execute_builtin(t_data *data, char *cmd)
 
 void	execute(t_data *data)
 {
-	t_envlst	*lst;
-
-	int i;
 	t_dlst *cmdlst;
 	cmdlst = data->cmd_lst;
 
-
 	// // t_envlst	*lst;
-	// char		*cmd;
 	// t_dlst		*cmd_lst;
 
 	// // lst = data->env_lst;
-	// cmd = (char *)data->cmd_lst->content;
 	// cmd_lst = data->cmd_lst;
-	while(cmdlst)
-	{
-		printf("cmd: %s\n", (char *)cmdlst->content);
-		cmdlst = cmdlst->next;
-	}
-	// if (builtin(cmd))
-	// 	execute_builtin(data, cmd);
+	char *cmd = GET_CMD(cmdlst);
+	if (builtin(cmd))
+		execute_builtin(data, cmd);
 
 	// else if (!builtin(cmd))
 	// 	execute_execve();

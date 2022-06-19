@@ -23,6 +23,7 @@ void	initialize_data(t_data *data, char *line)
 		return ;
 	lexer(data);
 	parser(data);
-	exec(data);
+	execute(data);
+	//exec(data);
 	//clear(data);
 }
