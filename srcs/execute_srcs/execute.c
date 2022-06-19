@@ -23,21 +23,20 @@ int		builtin(char *cmd)
 	return (0);
 }
 
-void	execute_builtin(t_data *data, char *cmd)
+void	execute_builtin(t_data *data, char *cmd, char **args)
 {
-	printf("123\n");
+	if (ft_strcmp(PWD, cmd) == 0)
+		ft_pwd();
 	if (ft_strcmp(ENV, cmd) == 0)
 		ft_env(data);
+	if (ft_strcmp(EXPORT, cmd) == 0)
+		ft_export(data, args);
+	if (ft_strcmp(UNSET, cmd) == 0)
+		ft_unset(data, args);
 	// if (ft_strcmp(ECHO, str) == 0)
 	// 	ft_echo();
 	// if (ft_strcmp(CD, str) == 0)
 	// 	ft_cd();
-	// if (ft_strcmp(PWD, str) == 0)
-	// 	ft_pwd();
-	// if (ft_strcmp(EXPORT, str) == 0)
-	// 	ft_export();
-	// if (ft_strcmp(UNSET, str) == 0)
-	// 	ft_unset();
 	// if (ft_strcmp(EXIT, str) == 0)
 	// 	ft_exit();
 }
@@ -53,8 +52,10 @@ void	execute(t_data *data)
 	// // lst = data->env_lst;
 	// cmd_lst = data->cmd_lst;
 	char *cmd = GET_CMD(cmdlst);
+	char **args = GET_ARGS(cmdlst);
+	printf("%s\n", cmd);
 	if (builtin(cmd))
-		execute_builtin(data, cmd);
+		execute_builtin(data, cmd, args);
 
 	// else if (!builtin(cmd))
 	// 	execute_execve();
