@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 22:04:44 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/14 21:10:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 20:09:35 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,15 @@ void	do_change_file_deli(t_dlst *lst)
 		lst = lst->next;
 	else
 		return ;
-	while (GET_TOKEN_TYPE(lst) == W_SPACE)
+	while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
 		lst = lst->next;
-	if (type == 7)
-		GET_TOKEN_TYPE(lst) = W_DELIMETER;
-	else if (type >= 8 && type <= 10)
-		GET_TOKEN_TYPE(lst) = W_FILE;
+	if (lst)
+	{
+		if (type == 7)
+			GET_TOKEN_TYPE(lst) = W_DELIMETER;
+		else if (type >= 8 && type <= 10)
+			GET_TOKEN_TYPE(lst) = W_FILE;
+	}
 }
 
 void	convert_file_delimeter(t_dlst *lst)
