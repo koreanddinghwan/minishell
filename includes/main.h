@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 05:46:36 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 18:43:10 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	lexer(t_data *data);
 void	parser(t_data *data);
 void	execute(t_data *data);
 void	exec(t_data *data);
+void	print_toks(t_token *tok_buf);
 #endif

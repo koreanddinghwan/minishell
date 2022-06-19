@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 07:40:34 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 18:28:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef	struct s_lexer_token
 typedef	struct s_data
 {
 	char		*command;
-	char		*trimmed;
 	t_token		*tok_buf;
 	t_dlst		*lexer_token_lst;
 	t_envlst	*env_lst;
