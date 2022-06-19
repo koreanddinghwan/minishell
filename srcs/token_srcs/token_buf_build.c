@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:22:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 02:30:24 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/19 18:28:30 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int	token_buf_build(t_data *data)
 
 	state = STATE_NORMAL;
 	tok_buf = data->tok_buf;
-	str = data->trimmed;
+	str = data->command;
+	while (*str == '\n')
+		str++;
 	if (!str || !tok_buf)
 		return (FAIL);
 	while (*str)
@@ -88,7 +90,7 @@ int	token_buf_build(t_data *data)
 	tok_buf->c = '\0';
 	if (state == STATE_DQUOTE || state == STATE_SQUOTE)
 	{
-		printf("this shell does not support single quotes\n");
+		printf("this shell does not support solo quotes\n");
 		//free all the resources
 		return (FAIL);
 	}
