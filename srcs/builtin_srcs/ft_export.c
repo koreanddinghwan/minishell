@@ -5,18 +5,8 @@ void	ft_export(t_data *data, char **args)
 	t_envlst	*node;
 	char		**copy;
 
+	args++;
 	copy = args;
-	while(*args)
-		{
-			printf("%s\n", *args);
-			while(**args)
-			{
-				printf("%c ", **args);
-				(*args)++;
-			}
-			printf("\n");
-			(args)++;
-		}
 	while (*args)
 	{
 		if (!strchr(*args, '='))

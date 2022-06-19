@@ -50,6 +50,7 @@ void	ft_unset(t_data *data, char **args)
 {
 	char		**copy;
 
+	args++;
 	copy = args;
 	while(*args)
 	{
