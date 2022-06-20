@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 12:51:22 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/20 15:52:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ char	**make_args(t_data *data)
 	if (tok_lst && GET_TOKEN_TYPE(tok_lst) == W_SPACE)
 		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
 	join_args(rtn, data);
+	print_args_cmd(rtn);
 	return (rtn);
 }

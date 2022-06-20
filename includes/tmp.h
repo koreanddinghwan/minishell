@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:11:20 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/09 16:33:23 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/20 15:37:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,3 @@
 #include "tokenizer.h"
 # include <stdio.h>
 void	print_token_lst(t_data *data);
-void	print_toks(t_token *token_buf);
