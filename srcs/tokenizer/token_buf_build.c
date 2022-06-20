@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:22:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 18:28:30 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 00:27:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	token_buf_build(t_data *data)
 	if (state == STATE_DQUOTE || state == STATE_SQUOTE)
 	{
 		printf("this shell does not support solo quotes\n");
+		data->exit_status = EX_USAGE;
 		//free all the resources
 		return (FAIL);
 	}

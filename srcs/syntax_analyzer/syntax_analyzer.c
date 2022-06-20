@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:01:22 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:45:19 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 01:26:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@
 
 #include "syntax_analyzer.h"
 
+int	syntax_error(t_dlst *lst)
+{
+	if (pipe_err(lst))
+		return (FAIL);
+	return (SUCESS);
+}
+
 int	syntax_analyzer(t_data *data)
 {
 	t_dlst	*lexer_token_lst;
@@ -42,12 +49,14 @@ int	syntax_analyzer(t_data *data)
 	lexer_token_lst = data->lexer_token_lst;
 	if (!lexer_token_lst)
 		return (FAIL);
-	//1. '>|' -> '>' not '> |'
-	//-> noclobber 옵션을 무시하는 리다이렉션임
-	//무슨 의미냐면, set -o noclobber를 하면 일반적인 > 리다이렉션으로는 존재하는 파일을 덮어씌우지 못함. 하지만 >|를 사용하면 덮어씌우기가 가능해짐
 	//2. '> |' -> syntax error in |
 	//3. echo t <| test ->syntax error in |
 	//4. echo t < | test -> ''
 	//
+	if (syntax_error(lexer_token_lst))
+	{
+		data->exit_status = EX_USAGE;
+		return (FAIL);
+	}
 	return (SUCESS);
 }

@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_analyzer.h                                  :+:      :+:    :+:   */
+/*   syntax_error_printer.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 13:20:12 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 01:25:23 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/20 21:10:34 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/21 01:26:48 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SYNTAX_ANALYZER_H
-# define SYNTAX_ANALYZER_H
-# include "structs.h"
-# include "tools.h"
-# define ERR_NEWLINE "\'newline\'"
-# define ERR_PIPE "\'|\'"
-# define ERR_REDIR_IN "\'<\'"
-# define ERR_REDIR_OUT "\'>\'"
-# define ERR_HEREDOC "\'<<\'"
-# define ERR_APPEND "\'>>\'"
+#include "syntax_analyzer.h"
 
-int	pipe_err(t_dlst *lst);
-int	syntax_error_printer(char *str);
-#endif
+int	syntax_error_printer(char *str)
+{
+	ft_printf("bash : syntax error near unexpected token %s\n", str);
+	return (FAIL);
+}
