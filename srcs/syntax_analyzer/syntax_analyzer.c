@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_data.c                                  :+:      :+:    :+:   */
+/*   systax_analyzer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 13:14:07 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/20 13:01:22 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/20 13:19:46 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "syntax_analyzer.h"
 
-void	initialize_data(t_data *data, char *line)
+int	syntax_analyzer(t_data *data)
 {
-	if (ft_strlen(line) == 0)
-		return ;
-	add_history(line);
-	data->command = line;
-	if (tokenizer(data) == FAIL)
-		return ;
-	lexer(data);
-	if (syntax_analyzer(data) == FAIL)
-		return ;
-	parser(data);
-	execute(data);
-	//exec(data);
-	//clear(data);
+	if (!data)
+		return (FAIL);
+	return (SUCESS);
 }
