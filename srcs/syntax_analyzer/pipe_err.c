@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 01:27:43 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 01:43:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 02:11:39 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -17,21 +17,55 @@
 
 #include "syntax_analyzer.h"
 
+/*
+int	ismultiline(t_dlst *lst)
+{
+	t_dlst	*pipe_lst;
+
+	pipe_lst = 0;
+	while (lst)
+	{
+		if (GET_TOKEN_TYPE(lst) == W_PIPE)
+		{
+
+		}
+	}
+}
+*/
+
+int	double_pipe(t_dlst *lst)
+{
+	while (lst)
+	{
+		if (GET_TOKEN_TYPE(lst) == W_PIPE)
+		{
+			while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+				lst = lst->next;
+			if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
+				return (syntax_error_printer(ERR_PIPE));
+		}
+		lst = lst->next;
+	}
+	return (FALSE);
+}
+
 int	startwith_pipe(t_dlst *lst)
 {
-	if (lst)
+	if (GET_TOKEN_TYPE(lst) == W_SPACE || GET_TOKEN_TYPE(lst) == W_PIPE)
 	{
-		while (GET_TOKEN_TYPE(lst) == W_SPACE)
+		while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
 			lst = lst->next;
 		if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
-			return (1);
+			return (TRUE);
 	}
-	return (0);
+	return (FALSE);
 }
 
 int	pipe_err(t_dlst *lst)
 {
-	if (startwith_pipe(lst))
+	if (startwith_pipe(lst) == TRUE)
+		return (syntax_error_printer(ERR_PIPE));
+	if (double_pipe(lst) == TRUE)
 		return (syntax_error_printer(ERR_PIPE));
 	return (SUCESS);
 }
