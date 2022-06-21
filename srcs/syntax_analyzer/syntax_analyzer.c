@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:01:22 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 14:11:08 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 14:52:55 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 int	syntax_error(t_dlst *lst)
 {
 	if (pipe_err(lst) == FAIL)
+		return (FAIL);
+	if (io_err(lst) == FAIL)
 		return (FAIL);
 	return (SUCESS);
 }
