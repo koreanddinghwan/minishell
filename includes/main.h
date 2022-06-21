@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 13:02:00 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 17:01:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ char	**add_env_arr(t_data *data, char **args);
 void	display_bash(t_data *data);
 void	initialize_data(t_data *data, char *line);
 int		tokenizer(t_data *data);
-void	lexer(t_data *data);
+int		lexer(t_data *data);
 void	parser(t_data *data);
-int		syntax_analyzer(t_data *data);
 void	execute(t_data *data);
 void	exec(t_data *data);
 void	print_toks(t_token *tok_buf);

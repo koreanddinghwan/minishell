@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 01:27:43 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 16:24:14 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 00:59:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -16,6 +16,18 @@
  * */
 
 #include "syntax_analyzer.h"
+
+int	startwith_pipe(t_dlst *lst)
+{
+	if (GET_TOKEN_TYPE(lst) == W_SPACE || GET_TOKEN_TYPE(lst) == W_PIPE)
+	{
+		while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+			lst = lst->next;
+		if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
+			return (TRUE);
+	}
+	return (FALSE);
+}
 
 int	double_pipe(t_dlst *lst)
 {
@@ -34,18 +46,6 @@ int	double_pipe(t_dlst *lst)
 		}
 		if (lst)
 			lst = lst->next;
-	}
-	return (FALSE);
-}
-
-int	startwith_pipe(t_dlst *lst)
-{
-	if (GET_TOKEN_TYPE(lst) == W_SPACE || GET_TOKEN_TYPE(lst) == W_PIPE)
-	{
-		while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
-			lst = lst->next;
-		if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
-			return (TRUE);
 	}
 	return (FALSE);
 }
