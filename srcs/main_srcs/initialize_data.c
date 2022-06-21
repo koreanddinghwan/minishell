@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:33:29 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 14:09:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	initialize_data(t_data *data, char *line)
 		return ;
 	lexer(data);
 	if (syntax_analyzer(data) == FAIL)
+	{
+		ft_printf("syntax analyze fail\n");
 		return ;
+	}
 	parser(data);
 	execute(data);
 	//exec(data);

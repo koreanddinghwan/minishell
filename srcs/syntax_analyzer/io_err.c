@@ -6,8 +6,13 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 00:46:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 01:27:52 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 13:57:16 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "syntax_analyzer.h"
 
+int	io_err(t_dlst *lst)
+{
+	if (
+}

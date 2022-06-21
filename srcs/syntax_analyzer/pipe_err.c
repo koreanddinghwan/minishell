@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 01:27:43 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 02:11:39 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 14:35:42 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -17,34 +17,23 @@
 
 #include "syntax_analyzer.h"
 
-/*
-int	ismultiline(t_dlst *lst)
-{
-	t_dlst	*pipe_lst;
-
-	pipe_lst = 0;
-	while (lst)
-	{
-		if (GET_TOKEN_TYPE(lst) == W_PIPE)
-		{
-
-		}
-	}
-}
-*/
-
 int	double_pipe(t_dlst *lst)
 {
 	while (lst)
 	{
 		if (GET_TOKEN_TYPE(lst) == W_PIPE)
 		{
-			while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
-				lst = lst->next;
-			if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
-				return (syntax_error_printer(ERR_PIPE));
+			lst = lst->next;
+			if (lst)
+			{
+				while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+					lst = lst->next;
+				if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
+					return (TRUE);
+			}
 		}
-		lst = lst->next;
+		if (lst)
+			lst = lst->next;
 	}
 	return (FALSE);
 }
@@ -61,11 +50,30 @@ int	startwith_pipe(t_dlst *lst)
 	return (FALSE);
 }
 
+int	endwith_pipe(t_dlst *lst)
+{
+	t_dlst	*last;
+
+	last = ft_dlst_last(lst);
+	if (GET_TOKEN_TYPE(last) == W_SPACE)
+	{
+		while (GET_TOKEN_TYPE(last) == W_SPACE)
+			last = last->back;
+		if (GET_TOKEN_TYPE(last) == W_PIPE)
+			return (TRUE);
+	}
+	else if (GET_TOKEN_TYPE(last) == W_PIPE)
+		return (TRUE);
+	return (FALSE);
+}
+
 int	pipe_err(t_dlst *lst)
 {
 	if (startwith_pipe(lst) == TRUE)
 		return (syntax_error_printer(ERR_PIPE));
 	if (double_pipe(lst) == TRUE)
+		return (syntax_error_printer(ERR_PIPE));
+	if (endwith_pipe(lst) == TRUE)
 		return (syntax_error_printer(ERR_PIPE));
 	return (SUCESS);
 }
