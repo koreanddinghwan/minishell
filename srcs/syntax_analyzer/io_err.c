@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 00:46:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 14:58:12 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 15:35:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,32 @@
  * */
 
 #include "syntax_analyzer.h"
+
+static int	is_io(t_dlst *lst)
+{
+	enum e_word_type	type;
+
+	type = GET_TOKEN_TYPE(lst);
+	if (type >= 7 && type <= 10)
+		return (TRUE);
+	else
+		return (FALSE);
+}
+
+int	ioafter_io(t_dlst *lst)
+{
+	while (lst)
+	{
+		if (is_io(lst) == TRUE)
+		{
+			while (GET_TOKEN_TYPE(lst) == W_SPACE)
+				lst = lst->next;
+			if (lst && is_io(lst) == TRUE)
+				return (TRUE);
+		}
+	}
+	return (FALSE);
+}
 
 int	endwith_io(t_dlst *lst)
 {
@@ -25,7 +51,7 @@ int	endwith_io(t_dlst *lst)
 	{
 		while (GET_TOKEN_TYPE(last) == W_SPACE)
 			last = last->back;
-		if (GET_TOKEN_TYPE(last) >= 7 && GET_TOKEN_TYPE(last) <= 10)
+		if (is_io(last) == TRUE)
 			return (TRUE);
 	}
 	else if (GET_TOKEN_TYPE(last) >= 7 && GET_TOKEN_TYPE(last) <= 10)
