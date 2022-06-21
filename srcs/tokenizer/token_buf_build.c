@@ -91,10 +91,7 @@ int	token_buf_build(t_data *data)
 	if (state == STATE_DQUOTE || state == STATE_SQUOTE)
 	{
 		printf("this shell does not support solo quotes\n");
-<<<<<<< HEAD:srcs/token_srcs/token_buf_build.c
-=======
 		data->exit_status = EX_USAGE;
->>>>>>> 63634fb76e3f0399e1efdbcd9e94ab1f91e0384d:srcs/tokenizer/token_buf_build.c
 		//free all the resources
 		return (FAIL);
 	}

@@ -75,14 +75,17 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 	// 	ft_cd();
 	// if (ft_strcmp(EXIT, str) == 0)
 	// 	ft_exit();
-	t_dlst *redirect;
-	redirect = data->cmd_lst;
-	if (GET_OUTPUT_LIST(redirect))
+	t_dlst *cmd_list;
+	t_dlst *out_re;
+	
+	cmd_list = data->cmd_lst;
+
+	out_re = GET_OUTPUT_LIST(cmd_list);
+	if (out_re)
 	{
-		printf("start redirect: %s\n", (char *)GET_OUTPUT_LIST(redirect)->content);
-		output_redirection(data, cmd, GET_OUTPUT_LIST(redirect)->content, args, data->env);
-		printf("FINISH\n");
+		output_redirection(data, cmd, GET_FILEPATH(out_re), args, data->env);
 	}
+
 	// if (ft_strcmp(ENV, cmd) == 0)
 	// 	ft_env(data);
 }
