@@ -8,6 +8,7 @@
         "vector": "c",
         "lexer.h": "c",
         "ios": "c",
-        "parser.h": "c"
+        "parser.h": "c",
+        "tokenizer.h": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 20:43:27 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 19:39:20 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/20 15:27:41 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	pipe_cmd(t_data *data)
 		ft_dlst_pushback(&data->cmd_lst, ft_dlst_new(cur_cmd_cont));
 	}
 	t_dlst *tok_lst = data->lexer_token_lst;
-	ft_printf("left tokens\n");
+	ft_printf("==left tokens==\n");
 	while (tok_lst)
 	{
 		ft_printf("%d\n", GET_TOKEN_TYPE(tok_lst));
 		ft_printf("%s\n", GET_TOKEN_BUFFER(tok_lst));
 		tok_lst = tok_lst->next;
 	}
+	ft_printf("=========\n");
 }

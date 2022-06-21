@@ -89,11 +89,33 @@ void	lexer_add_nth(t_data *data)
 	}
 }
 
+void	set_clobber(t_data *data, t_dlst *lst)
+{
+	t_dlst	*next;
+	char	*buffer;
+
+	while (lst)
+	{
+		if (GET_TOKEN_TYPE(lst) == W_REDIRECTION_OUTPUT)
+		{
+			next = lst->next;
+			if (next)
+			{
+				buffer = GET_TOKEN_BUFFER(next);
+				if (ft_strcmp("|", buffer) == 0)
+					ft_dlst_delete(next, &data->lexer_token_lst, lexer_tok_free);
+			}
+		}
+		lst = lst->next;
+	}
+}
+
 void	lexer(t_data *data)
 {
 	lexer_token_lst_init(data);
+	set_clobber(data, data->lexer_token_lst);
 	lexer_w_converter(data);
-	lexer_replacer(data);
+	replacer(data);
 	lexer_add_nth(data);
 	ft_printf("after convert\n");
 	lexer_token_printer(data);

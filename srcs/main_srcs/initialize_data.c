@@ -21,6 +21,8 @@ void	initialize_data(t_data *data, char *line)
 	if (tokenizer(data) == FAIL)
 		return ;
 	lexer(data);
+	if (syntax_analyzer(data) == FAIL)
+		return ;
 	parser(data);
 	execute(data);
 	//exec(data);

@@ -6,20 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 19:38:34 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/20 15:51:57 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-void	lexer_tok_free(void *cur)
-{
-	t_dlst	*node;
-
-	node = (t_dlst *)cur;
-	free(GET_TOKEN_BUFFER(node));
-	free(node);
-}
 
 void	print_input_lst(t_dlst *lst)
 {
@@ -37,6 +28,23 @@ void	print_heredoc_lst(t_dlst *lst)
 		ft_printf("%s\n", ((t_heredoc_cont *)lst->content)->delimeter);
 		lst = lst->next;
 	}
+}
+
+void	print_args_cmd(char **args)
+{
+	int		i;
+
+	if (!args)
+		return ;
+	i = 0;
+	ft_printf("========args======\n");
+	while (*args)
+	{
+		ft_printf("%d 번째 args %s\n",i ,*args);
+		args++;
+		i++;
+	}
+	ft_printf("==========\n");
 }
 
 t_cmd_cont	*init_cmd_cont(void)

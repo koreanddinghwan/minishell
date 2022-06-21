@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replacer_tool.c                                    :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 04:48:19 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/20 15:12:35 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/20 15:13:04 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "tools.h"
 
-char	*make_possible_cp(char *str)
+void	lexer_tok_free(void *cur)
 {
-	int		i;
+	t_dlst	*node;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isalnum(str[i]))
-			break ;
-		i++;
-	}
-	return (ft_strndup(str, i));
+	node = (t_dlst *)cur;
+	free(GET_TOKEN_BUFFER(node));
+	free(node);
 }

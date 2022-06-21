@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.c                                        :+:      :+:    :+:   */
+/*   replacer_tool.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 17:41:46 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 18:27:14 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/20 12:47:13 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
+#include "replacer.h"
 
-void	token_init(t_data *data)
+char	*make_possible_cp(char *str)
 {
-	data->tok_buf = ft_calloc(sizeof(t_token), ft_strlen(data->command) + 1);
-}
+	int		i;
 
-int	tokenizer(t_data *data)
-{
-	if (!data->command)
-		return (FAIL);
-	token_init(data);
-	if (token_buf_build(data) == FAIL)
-		return (FAIL);
-	else
-		return (SUCESS);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]))
+			break ;
+		i++;
+	}
+	return (ft_strndup(str, i));
 }

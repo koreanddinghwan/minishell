@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/19 07:23:08 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/21 01:25:01 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,15 +27,23 @@ FTINC = ./libft/
 MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c initialize_main.c initialize_data.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
-TOKEN_SRCS = $(addprefix ./srcs/token_srcs/, tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c lexer_replacer.c get_replaced_len.c cpy_replaced.c replacer_tool.c)
+TOKEN_SRCS = $(addprefix ./srcs/tokenizer/, tokenizer.c token_buf_build.c)
 TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 
-PARSE_SRCS = $(addprefix ./srcs/parsing_srcs_m/, parser.c parser_tools.c  \
+LEXER_SRCS = $(addprefix ./srcs/lexer/, lexer.c lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)
+LEXER_OBJS = $(LEXER_SRCS:.c=.o)
+
+SYNTAX_SRCS = $(addprefix ./srcs/syntax_analyzer/, syntax_analyzer.c pipe_err.c syntax_error_printer.c)
+SYNTAX_OBJS = $(SYNTAX_SRCS:.c=.o)
+
+PARSE_SRCS = $(addprefix ./srcs/parser/, parser.c parser_tools.c  \
 			 simple_cmd.c pipe_cmd.c make_input_lst.c make_output_lst.c \
 			 make_heredoc_lst.c make_append_lst.c make_cmd.c make_args.c \
 			 get_cmdtype.c)
-
 PARSE_OBJS = $(PARSE_SRCS:.c=.o)
+
+REPLAC_SRCS = $(addprefix ./srcs/replacer_module/, replacer.c get_replaced_len.c cpy_replaced.c replacer_tool.c)
+REPLAC_OBJS = $(REPLAC_SRCS:.c=.o)
 
 EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c exec.c print_cmddata.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
@@ -43,10 +51,10 @@ EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c set_envkey.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
-TOOLS_SRCS = $(addprefix ./srcs/tools/, error_handler.c tmp_print.c)
+TOOLS_SRCS = $(addprefix ./srcs/tools/, free.c error_handler.c tmp_print.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
-OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(PARSE_OBJS) $(EXEC_OBJS)
+OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(LEXER_OBJS) $(SYNTAX_OBJS) $(REPLAC_OBJS) $(PARSE_OBJS) $(EXEC_OBJS)
 
 all : $(NAME)
 

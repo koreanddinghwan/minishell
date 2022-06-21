@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp.h                                              :+:      :+:    :+:   */
+/*   syntax_analyzer.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 18:11:20 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:37:52 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/20 13:20:12 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/21 02:00:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef SYNTAX_ANALYZER_H
+# define SYNTAX_ANALYZER_H
+# include "structs.h"
+# include "tools.h"
+# define ERR_NEWLINE "`newline\'"
+# define ERR_PIPE "`|\'"
+# define ERR_REDIR_IN "`<\'"
+# define ERR_REDIR_OUT "`>\'"
+# define ERR_HEREDOC "`<<\'"
+# define ERR_APPEND "`>>\'"
 
-//출력 로그를 찍어보기위한 함수들 헤더
-#include "tokenizer.h"
-# include <stdio.h>
-void	print_token_lst(t_data *data);
+int	pipe_err(t_dlst *lst);
+int	syntax_error_printer(char *str);
+#endif

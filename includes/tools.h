@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp.h                                              :+:      :+:    :+:   */
+/*   tools.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 18:11:20 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:37:52 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/20 15:13:29 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/20 15:23:41 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef	TOOLS_H
+# define TOOLS_H
+# include "structs.h"
 
-//출력 로그를 찍어보기위한 함수들 헤더
-#include "tokenizer.h"
-# include <stdio.h>
-void	print_token_lst(t_data *data);
+void	lexer_tok_free(void *cur);
+#endif

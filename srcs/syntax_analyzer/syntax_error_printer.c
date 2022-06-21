@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tmp.h                                              :+:      :+:    :+:   */
+/*   syntax_error_printer.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 18:11:20 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:37:52 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/20 21:10:34 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/21 02:04:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "syntax_analyzer.h"
 
-//출력 로그를 찍어보기위한 함수들 헤더
-#include "tokenizer.h"
-# include <stdio.h>
-void	print_token_lst(t_data *data);
+int	syntax_error_printer(char *str)
+{
+	ft_printf("bash : syntax error near unexpected token %s\n", str);
+	return (FAIL);
+}

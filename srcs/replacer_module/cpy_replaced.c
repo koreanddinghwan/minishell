@@ -6,11 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 03:52:22 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 05:45:01 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/20 12:49:46 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "replacer.h"
 
 void	cpy_exitstatus(char **rtn, char **str, t_data *data)
 {
