@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:01:22 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 14:52:55 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 16:24:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@
 int	syntax_error(t_dlst *lst)
 {
 	if (pipe_err(lst) == FAIL)
-		return (FAIL);
+		return (TRUE);
 	if (io_err(lst) == FAIL)
-		return (FAIL);
-	return (SUCESS);
+		return (TRUE);
+	return (FALSE);
 }
 
 int	syntax_analyzer(t_data *data)
@@ -55,7 +55,7 @@ int	syntax_analyzer(t_data *data)
 	//3. echo t <| test ->syntax error in |
 	//4. echo t < | test -> ''
 	//
-	if (syntax_error(lexer_token_lst) == FAIL)
+	if (syntax_error(lexer_token_lst) == TRUE)
 	{
 		data->exit_status = EX_USAGE;
 		return (FAIL);

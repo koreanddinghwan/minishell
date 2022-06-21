@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 00:46:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 15:35:37 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 16:32:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
  * */
 
 #include "syntax_analyzer.h"
+
+char	*get_err_message(enum e_word_type type)
+{
+	if (type == W_REDIRECTION_INPUT)
+		return (ERR_REDIR_IN);
+	if (type == W_REDIRECTION_OUTPUT)
+		return (ERR_REDIR_OUT);
+	if (type == W_APPENDING_TO)
+		return (ERR_APPEND);
+	if (type == W_HERE_DOC)
+		return (ERR_HEREDOC);
+	return (NULL);
+}
 
 static int	is_io(t_dlst *lst)
 {
@@ -25,21 +38,6 @@ static int	is_io(t_dlst *lst)
 		return (TRUE);
 	else
 		return (FALSE);
-}
-
-int	ioafter_io(t_dlst *lst)
-{
-	while (lst)
-	{
-		if (is_io(lst) == TRUE)
-		{
-			while (GET_TOKEN_TYPE(lst) == W_SPACE)
-				lst = lst->next;
-			if (lst && is_io(lst) == TRUE)
-				return (TRUE);
-		}
-	}
-	return (FALSE);
 }
 
 int	endwith_io(t_dlst *lst)
