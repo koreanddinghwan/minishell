@@ -18,9 +18,13 @@ void	simple_cmd(t_data *data)
 
 	cur_cmd_cont = init_cmd_cont();
 	cur_cmd_cont->input_lst = make_input_lst(data);
+	ft_printf("1\n");
 	cur_cmd_cont->output_lst = make_output_lst(data);
+	ft_printf("2\n");
 	cur_cmd_cont->heredoc_lst = make_heredoc_lst(data);
+	ft_printf("3\n");
 	cur_cmd_cont->append_lst = make_append_lst(data);
+	ft_printf("4\n");
 	cur_cmd_cont->cmd = make_cmd(data);
 	cur_cmd_cont->cmdtype = get_cmdtype(cur_cmd_cont->cmd);
 	cur_cmd_cont->args = make_args(data);
