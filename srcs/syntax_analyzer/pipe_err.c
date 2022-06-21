@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 01:27:43 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 14:35:42 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 14:44:22 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -74,6 +74,6 @@ int	pipe_err(t_dlst *lst)
 	if (double_pipe(lst) == TRUE)
 		return (syntax_error_printer(ERR_PIPE));
 	if (endwith_pipe(lst) == TRUE)
-		return (syntax_error_printer(ERR_PIPE));
+		return (syntax_error_printer(ERR_NEWLINE));
 	return (SUCESS);
 }

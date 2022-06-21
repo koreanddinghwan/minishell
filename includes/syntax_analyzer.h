@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:20:12 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 02:00:52 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 14:56:42 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 # define ERR_APPEND "`>>\'"
 
 int	pipe_err(t_dlst *lst);
+int	io_err(t_dlst *lst);
 int	syntax_error_printer(char *str);
 #endif

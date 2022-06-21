@@ -18,14 +18,38 @@ ECHO	includes/defines_enums.h	/^# define	ECHO	/;"	d
 END_C	includes/defines_enums.h	/^	END_C = '\\0'$/;"	e	enum:e_char_type
 ENV	includes/defines_enums.h	/^# define	ENV	/;"	d
 ERROR_HANDLER	includes/error_handler.h	/^# define ERROR_HANDLER$/;"	d
+ERR_APPEND	includes/syntax_analyzer.h	/^# define ERR_APPEND /;"	d
+ERR_HEREDOC	includes/syntax_analyzer.h	/^# define ERR_HEREDOC /;"	d
+ERR_NEWLINE	includes/syntax_analyzer.h	/^# define ERR_NEWLINE /;"	d
+ERR_PIPE	includes/syntax_analyzer.h	/^# define ERR_PIPE /;"	d
+ERR_REDIR_IN	includes/syntax_analyzer.h	/^# define ERR_REDIR_IN /;"	d
+ERR_REDIR_OUT	includes/syntax_analyzer.h	/^# define ERR_REDIR_OUT /;"	d
 EXECUTE_H	includes/execute.h	/^# define EXECUTE_H$/;"	d
+EXECUTION_FAILURE	includes/defines_enums.h	/^#define EXECUTION_FAILURE /;"	d
+EXECUTION_SUCCESS	includes/defines_enums.h	/^#define EXECUTION_SUCCESS /;"	d
 EXEC_OBJS	Makefile	/^EXEC_OBJS = $(EXEC_SRCS:.c=.o)$/;"	m
 EXEC_SRCS	Makefile	/^EXEC_SRCS = $(addprefix .\/srcs\/execute_srcs\/, execute.c exec.c print_cmddata.c)$/;"	m
 EXIT	includes/defines_enums.h	/^# define	EXIT	/;"	d
 EXPORT	includes/defines_enums.h	/^# define	EXPORT	/;"	d
+EX_BADASSIGN	includes/defines_enums.h	/^#define EX_BADASSIGN	/;"	d
+EX_BADSYNTAX	includes/defines_enums.h	/^#define EX_BADSYNTAX	/;"	d
+EX_BADUSAGE	includes/defines_enums.h	/^#define EX_BADUSAGE	/;"	d
+EX_BINARY_FILE	includes/defines_enums.h	/^#define EX_BINARY_FILE	/;"	d
+EX_DISKFALLBACK	includes/defines_enums.h	/^#define EX_DISKFALLBACK	/;"	d
+EX_EXPFAIL	includes/defines_enums.h	/^#define EX_EXPFAIL	/;"	d
+EX_MISCERROR	includes/defines_enums.h	/^#define EX_MISCERROR	/;"	d
+EX_NOEXEC	includes/defines_enums.h	/^#define EX_NOEXEC	/;"	d
+EX_NOINPUT	includes/defines_enums.h	/^#define EX_NOINPUT	/;"	d
+EX_NOTFOUND	includes/defines_enums.h	/^#define EX_NOTFOUND	/;"	d
+EX_REDIRFAIL	includes/defines_enums.h	/^#define EX_REDIRFAIL	/;"	d
+EX_RETRYFAIL	includes/defines_enums.h	/^#define EX_RETRYFAIL	/;"	d
+EX_SHERRBASE	includes/defines_enums.h	/^#define EX_SHERRBASE	/;"	d
+EX_USAGE	includes/defines_enums.h	/^#define EX_USAGE	/;"	d
+EX_WEXPCOMSUB	includes/defines_enums.h	/^#define EX_WEXPCOMSUB	/;"	d
 E_BUILTIN	includes/structs.h	/^	E_BUILTIN,$/;"	e	enum:e_cmdtype
 E_CMD	includes/structs.h	/^	E_CMD,$/;"	e	enum:e_cmdtype
 FAIL	includes/defines_enums.h	/^# define	FAIL	/;"	d
+FALSE	includes/defines_enums.h	/^#define FALSE /;"	d
 FT	Makefile	/^FT = libft.a$/;"	m
 FTDIR	Makefile	/^FTDIR = .\/libft\/$/;"	m
 FTINC	Makefile	/^FTINC = .\/libft\/$/;"	m
@@ -45,6 +69,8 @@ GREATER	includes/defines_enums.h	/^	GREATER = '>', $/;"	e	enum:e_char_type
 INC	Makefile	/^INC = .\/includes$/;"	m
 LESSER	includes/defines_enums.h	/^	LESSER = '<',$/;"	e	enum:e_char_type
 LEXER_H	includes/lexer.h	/^# define LEXER_H$/;"	d
+LEXER_OBJS	Makefile	/^LEXER_OBJS = $(LEXER_SRCS:.c=.o)$/;"	m
+LEXER_SRCS	Makefile	/^LEXER_SRCS = $(addprefix .\/srcs\/lexer\/, lexer.c lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)$/;"	m
 LIBFT_H	libft/libft.h	/^# define  LIBFT_H$/;"	d
 MAIN_H	includes/main.h	/^# define MAIN_H$/;"	d
 MAIN_OBJS	Makefile	/^MAIN_OBJS = $(MAIN_SRCS:.c=.o)$/;"	m
@@ -55,18 +81,21 @@ NAME	srcs/builtin_srcs/Makefile	/^NAME = a.out$/;"	m
 NORM	includes/defines_enums.h	/^	NORM = 1,$/;"	e	enum:e_char_type
 OBJS	libft/Makefile	/^OBJS = $(SRCS:.c=.o)$/;"	m
 OBJS	srcs/builtin_srcs/Makefile	/^OBJS = $(SRCS:.c=.o)$/;"	m
-OBJ_FILES	Makefile	/^OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(PARSE_OBJS) $(EXEC_OBJS)$/;"	m
+OBJ_FILES	Makefile	/^OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(LEXER_OBJS) $(SYNTAX_OBJS) $(REPLAC_OBJS) $(PARSE_OBJS) $(EXEC_OBJS)$/;"	m
 OBJ_FILES	libft/Makefile	/^OBJ_FILES = $(OBJS)$/;"	m
 OFF	libft/libft.h	/^# define OFF /;"	d
 ON	libft/libft.h	/^# define ON /;"	d
 PARSER_H	includes/parser.h	/^# define PARSER_H$/;"	d
 PARSE_OBJS	Makefile	/^PARSE_OBJS = $(PARSE_SRCS:.c=.o)$/;"	m
-PARSE_SRCS	Makefile	/^PARSE_SRCS = $(addprefix .\/srcs\/parsing_srcs_m\/, parser.c parser_tools.c  \\$/;"	m
+PARSE_SRCS	Makefile	/^PARSE_SRCS = $(addprefix .\/srcs\/parser\/, parser.c parser_tools.c  \\$/;"	m
 PIPE	includes/defines_enums.h	/^	PIPE = '|',$/;"	e	enum:e_char_type
 PWD	includes/defines_enums.h	/^# define	PWD	/;"	d
 RDFLAGS	Makefile	/^RDFLAGS = -I${RDINC} -L${RDLIB} -lreadline #readline compile flags$/;"	m
 RDINC	Makefile	/^RDINC = ${HOME}\/.brew\/opt\/readline\/include #readline include path$/;"	m
 RDLIB	Makefile	/^RDLIB = ${HOME}\/.brew\/opt\/readline\/lib #readline lib path$/;"	m
+REPLACER_H	includes/replacer.h	/^# define REPLACER_H$/;"	d
+REPLAC_OBJS	Makefile	/^REPLAC_OBJS = $(REPLAC_SRCS:.c=.o)$/;"	m
+REPLAC_SRCS	Makefile	/^REPLAC_SRCS = $(addprefix .\/srcs\/replacer_module\/, replacer.c get_replaced_len.c cpy_replaced.c replacer_tool.c)$/;"	m
 SPC	includes/defines_enums.h	/^	SPC = ' ',$/;"	e	enum:e_char_type
 SQUO	includes/defines_enums.h	/^	SQUO = '\\'',$/;"	e	enum:e_char_type
 SRCS	libft/Makefile	/^SRCS = ft_isdigit.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_strlen.c \\$/;"	m
@@ -76,11 +105,16 @@ STATE_NORMAL	includes/defines_enums.h	/^	STATE_NORMAL$/;"	e	enum:e_state
 STATE_SQUOTE	includes/defines_enums.h	/^	STATE_SQUOTE,$/;"	e	enum:e_state
 STRUCTS_H	includes/structs.h	/^# define STRUCTS_H$/;"	d
 SUCESS	includes/defines_enums.h	/^# define	SUCESS	/;"	d
+SYNTAX_ANALYZER_H	includes/syntax_analyzer.h	/^# define SYNTAX_ANALYZER_H$/;"	d
+SYNTAX_OBJS	Makefile	/^SYNTAX_OBJS = $(SYNTAX_SRCS:.c=.o)$/;"	m
+SYNTAX_SRCS	Makefile	/^SYNTAX_SRCS = $(addprefix .\/srcs\/syntax_analyzer\/, syntax_analyzer.c pipe_err.c syntax_error_printer.c)$/;"	m
 TOKENIZER_H	includes/tokenizer.h	/^# define TOKENIZER_H$/;"	d
 TOKEN_OBJS	Makefile	/^TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)$/;"	m
-TOKEN_SRCS	Makefile	/^TOKEN_SRCS = $(addprefix .\/srcs\/token_srcs\/, tokenizer.c lexer.c token_buf_build.c  lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c lexer_replacer.c get_replaced_len.c cpy_replaced.c replacer_tool.c)$/;"	m
+TOKEN_SRCS	Makefile	/^TOKEN_SRCS = $(addprefix .\/srcs\/tokenizer\/, tokenizer.c token_buf_build.c)$/;"	m
+TOOLS_H	includes/tools.h	/^# define TOOLS_H$/;"	d
 TOOLS_OBJS	Makefile	/^TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)$/;"	m
-TOOLS_SRCS	Makefile	/^TOOLS_SRCS = $(addprefix .\/srcs\/tools\/, error_handler.c tmp_print.c)$/;"	m
+TOOLS_SRCS	Makefile	/^TOOLS_SRCS = $(addprefix .\/srcs\/tools\/, free.c error_handler.c tmp_print.c)$/;"	m
+TRUE	includes/defines_enums.h	/^#define TRUE /;"	d
 T_SIZE	libft/libft.h	/^#  define T_SIZE$/;"	d
 UNSET	includes/defines_enums.h	/^# define	UNSET	/;"	d
 W_APPENDING_TO	includes/defines_enums.h	/^	W_APPENDING_TO = 8,$/;"	e	enum:e_word_type
@@ -97,6 +131,7 @@ W_REDIRECTION_OUTPUT	includes/defines_enums.h	/^	W_REDIRECTION_OUTPUT = 10,$/;"	
 W_SPACE	includes/defines_enums.h	/^	W_SPACE = 3,$/;"	e	enum:e_word_type
 _ft_recur_nbr	libft/ft_putnbr_unsigned.c	/^static void	_ft_recur_nbr(long long n, int fd, int *rtn)$/;"	f	file:
 add_env_arr	srcs/builtin_srcs/set_envkey.c	/^char	**add_env_arr(t_data *data, char **args)$/;"	f
+all_space	srcs/tokenizer/tokenizer.c	/^int	all_space(t_token *tok_buf)$/;"	f
 append_lst	includes/structs.h	/^	t_dlst			*append_lst;$/;"	m	struct:s_cmd_cont
 args	includes/structs.h	/^	char			**args;$/;"	m	struct:s_cmd_cont
 back	libft/libft.h	/^	struct s_dlst	*back;$/;"	m	struct:s_dlst	typeref:struct:s_dlst::s_dlst
@@ -106,19 +141,19 @@ buffer	includes/structs.h	/^	char				*buffer;$/;"	m	struct:s_lexer_token
 builtin	srcs/execute_srcs/execute.c	/^int		builtin(char *cmd)$/;"	f
 c	includes/structs.h	/^	char				c;$/;"	m	struct:s_token
 cal_size	libft/ft_split_charset.c	/^int	cal_size(char *str, char *charset)$/;"	f
-case_dquote	srcs/token_srcs/token_buf_build.c	/^void	case_dquote(t_token *tok_buf, char c, int *state)$/;"	f
-case_squote	srcs/token_srcs/token_buf_build.c	/^void	case_squote(t_token *tok_buf, char c, int *state)$/;"	f
+case_dquote	srcs/tokenizer/token_buf_build.c	/^void	case_dquote(t_token *tok_buf, char c, int *state)$/;"	f
+case_squote	srcs/tokenizer/token_buf_build.c	/^void	case_squote(t_token *tok_buf, char c, int *state)$/;"	f
 change_env	srcs/builtin_srcs/ft_cd.c	/^void	change_env(t_data *data, char *pwd, char *oldpwd)$/;"	f
 change_type_arg	srcs/builtin_srcs/set_token.c	/^void	change_type_arg(t_dlst *lst)$/;"	f
-check_append	srcs/parsing_srcs_m/make_append_lst.c	/^int	check_append(t_dlst *tok_lst)$/;"	f
-check_builtin	srcs/parsing_srcs_m/get_cmdtype.c	/^static int	check_builtin(char *str)$/;"	f	file:
-check_builtin	srcs/token_srcs/lexer_decide_w_type.c	/^int	check_builtin(char *str)$/;"	f
+check_append	srcs/parser/make_append_lst.c	/^int	check_append(t_dlst *tok_lst)$/;"	f
+check_builtin	srcs/lexer/lexer_decide_w_type.c	/^int	check_builtin(char *str)$/;"	f
+check_builtin	srcs/parser/get_cmdtype.c	/^static int	check_builtin(char *str)$/;"	f	file:
 check_charset	libft/ft_split_charset.c	/^int	check_charset(char c, char *charset)$/;"	f
-check_env	srcs/token_srcs/cpy_replaced.c	/^void	check_env(char **rtn, char **str, t_envlst *envlst)$/;"	f
-check_heredoc	srcs/parsing_srcs_m/make_heredoc_lst.c	/^int	check_heredoc(t_dlst *tok_lst)$/;"	f
-check_redirection_input	srcs/parsing_srcs_m/make_input_lst.c	/^int	check_redirection_input(t_dlst *tok_lst)$/;"	f
-check_redirection_output	srcs/parsing_srcs_m/make_output_lst.c	/^int	check_redirection_output(t_dlst *tok_lst)$/;"	f
-check_spec_token	srcs/token_srcs/lexer_decide_w_type.c	/^int	check_spec_token(char *str)$/;"	f
+check_env	srcs/replacer_module/cpy_replaced.c	/^void	check_env(char **rtn, char **str, t_envlst *envlst)$/;"	f
+check_heredoc	srcs/parser/make_heredoc_lst.c	/^int	check_heredoc(t_dlst *tok_lst)$/;"	f
+check_redirection_input	srcs/parser/make_input_lst.c	/^int	check_redirection_input(t_dlst *tok_lst)$/;"	f
+check_redirection_output	srcs/parser/make_output_lst.c	/^int	check_redirection_output(t_dlst *tok_lst)$/;"	f
+check_spec_token	srcs/lexer/lexer_decide_w_type.c	/^int	check_spec_token(char *str)$/;"	f
 cmd	includes/structs.h	/^	char			*cmd;$/;"	m	struct:s_cmd_cont
 cmd_lst	includes/structs.h	/^	t_dlst		*cmd_lst;$/;"	m	struct:s_data
 cmdtype	includes/structs.h	/^	enum e_cmdtype	cmdtype;$/;"	m	struct:s_cmd_cont	typeref:enum:s_cmd_cont::e_cmdtype
@@ -128,23 +163,25 @@ content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
 content	libft/libft.h	/^	void			*content;$/;"	m	struct:s_tree
 convert_arg	srcs/builtin_srcs/set_token.c	/^void	convert_arg(t_dlst *cur)$/;"	f
 convert_file	srcs/builtin_srcs/set_token.c	/^void	convert_file(t_dlst *cur)$/;"	f
-convert_file_delimeter	srcs/token_srcs/lexer_word_converter.c	/^void	convert_file_delimeter(t_dlst *lst)$/;"	f
-convert_to_arg	srcs/token_srcs/lexer_word_converter.c	/^void	convert_to_arg(t_dlst *lst)$/;"	f
-cpy_env	srcs/token_srcs/cpy_replaced.c	/^void	cpy_env(char **rtn, char *value)$/;"	f
-cpy_exitstatus	srcs/token_srcs/cpy_replaced.c	/^void	cpy_exitstatus(char **rtn, char **str, t_data *data)$/;"	f
-cpy_replaced	srcs/token_srcs/cpy_replaced.c	/^void	cpy_replaced(char *rtn, char *str, t_data *data, int len)$/;"	f
+convert_file_delimeter	srcs/lexer/lexer_word_converter.c	/^void	convert_file_delimeter(t_dlst *lst)$/;"	f
+convert_to_arg	srcs/lexer/lexer_word_converter.c	/^void	convert_to_arg(t_dlst *lst)$/;"	f
+cpy_env	srcs/replacer_module/cpy_replaced.c	/^void	cpy_env(char **rtn, char *value)$/;"	f
+cpy_exitstatus	srcs/replacer_module/cpy_replaced.c	/^void	cpy_exitstatus(char **rtn, char **str, t_data *data)$/;"	f
+cpy_replaced	srcs/replacer_module/cpy_replaced.c	/^void	cpy_replaced(char *rtn, char *str, t_data *data, int len)$/;"	f
 delimeter	includes/structs.h	/^	char	*delimeter;$/;"	m	struct:s_heredoc_cont
 display_bash	srcs/builtin_srcs/display.c	/^void	display_bash(t_data *data, int ac, char **av)$/;"	f
 display_bash	srcs/main_srcs/display.c	/^void	display_bash(t_data *data)$/;"	f
-do_change	srcs/token_srcs/lexer_word_converter.c	/^void	do_change(int i, t_dlst	**cur)$/;"	f
-do_change_file_deli	srcs/token_srcs/lexer_word_converter.c	/^void	do_change_file_deli(t_dlst *lst)$/;"	f
-dollar_question_len	srcs/token_srcs/get_replaced_len.c	/^int	dollar_question_len(char *str, t_data *data)$/;"	f
+do_change	srcs/lexer/lexer_word_converter.c	/^void	do_change(int i, t_dlst	**cur)$/;"	f
+do_change_file_deli	srcs/lexer/lexer_word_converter.c	/^void	do_change_file_deli(t_dlst *lst)$/;"	f
+dollar_question_len	srcs/replacer_module/get_replaced_len.c	/^int	dollar_question_len(char *str, t_data *data)$/;"	f
+double_pipe	srcs/syntax_analyzer/pipe_err.c	/^int	double_pipe(t_dlst *lst)$/;"	f
 e_char_type	includes/defines_enums.h	/^enum	e_char_type$/;"	g
 e_cmdtype	includes/structs.h	/^enum e_cmdtype$/;"	g
 e_state	includes/defines_enums.h	/^enum	e_state$/;"	g
 e_word_type	includes/defines_enums.h	/^enum	e_word_type$/;"	g
+endwith_pipe	srcs/syntax_analyzer/pipe_err.c	/^int	endwith_pipe(t_dlst *lst)$/;"	f
 env	includes/structs.h	/^	char		**env;$/;"	m	struct:s_data
-env_len	srcs/token_srcs/get_replaced_len.c	/^int	env_len(char *str, t_data *data)$/;"	f
+env_len	srcs/replacer_module/get_replaced_len.c	/^int	env_len(char *str, t_data *data)$/;"	f
 env_line	libft/libft.h	/^	void			*env_line;$/;"	m	struct:s_envlst
 env_lst	includes/structs.h	/^	t_envlst	*env_lst;$/;"	m	struct:s_data
 env_size	includes/structs.h	/^	size_t		env_size;$/;"	m	struct:s_data
@@ -154,8 +191,8 @@ execute_builtin	srcs/execute_srcs/execute.c	/^void	execute_builtin(t_data *data,
 exit_status	includes/structs.h	/^	int			exit_status;$/;"	m	struct:s_data
 fd	includes/structs.h	/^	int		fd;$/;"	m	struct:s_io_cont
 filepath	includes/structs.h	/^	char	*filepath;$/;"	m	struct:s_io_cont
-fill_buf	srcs/token_srcs/token_buf_build.c	/^void	fill_buf(t_token *tok_buf, char c, int *state)$/;"	f
-find_env	srcs/token_srcs/get_replaced_len.c	/^int	find_env(char *str, t_envlst *env_lst)$/;"	f
+fill_buf	srcs/tokenizer/token_buf_build.c	/^void	fill_buf(t_token *tok_buf, char c, int *state)$/;"	f
+find_env	srcs/replacer_module/get_replaced_len.c	/^int	find_env(char *str, t_envlst *env_lst)$/;"	f
 free_env_lst	srcs/builtin_srcs/ft_unset.c	/^void	free_env_lst(t_data *data, char **args)$/;"	f
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f
 ft_btree_get_left	libft/ft_btree_get_left.c	/^t_tree	*ft_btree_get_left(t_tree *node)$/;"	f
@@ -247,58 +284,58 @@ ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 ft_unset	srcs/builtin_srcs/ft_unset.c	/^void	ft_unset(t_data *data, char **args)$/;"	f
 ft_wd_cnt	libft/ft_split.c	/^static	int	ft_wd_cnt(char *str, char c)$/;"	f	file:
-get_args_count	srcs/parsing_srcs_m/make_args.c	/^int	get_args_count(t_dlst *tok_lst)$/;"	f
-get_cmdtype	srcs/parsing_srcs_m/get_cmdtype.c	/^enum e_cmdtype	get_cmdtype(char *cmd)$/;"	f
-get_next_token	srcs/token_srcs/lexer_word_converter.c	/^int	get_next_token(t_dlst *lst)$/;"	f
+get_args_count	srcs/parser/make_args.c	/^int	get_args_count(t_dlst *tok_lst)$/;"	f
+get_cmdtype	srcs/parser/get_cmdtype.c	/^enum e_cmdtype	get_cmdtype(char *cmd)$/;"	f
+get_next_token	srcs/lexer/lexer_word_converter.c	/^int	get_next_token(t_dlst *lst)$/;"	f
 get_process_num	srcs/execute_srcs/exec.c	/^int	get_process_num(t_dlst *cmd_lst)$/;"	f
-get_replaced	srcs/token_srcs/lexer_replacer.c	/^char	*get_replaced(t_data *data, char *str)$/;"	f
-get_replaced_len	srcs/token_srcs/get_replaced_len.c	/^int	get_replaced_len(char *str, t_data *data)$/;"	f
-get_word_type	srcs/token_srcs/lexer_decide_w_type.c	/^int	get_word_type(char *str)$/;"	f
+get_replaced	srcs/replacer_module/replacer.c	/^char	*get_replaced(t_data *data, char *str)$/;"	f
+get_replaced_len	srcs/replacer_module/get_replaced_len.c	/^int	get_replaced_len(char *str, t_data *data)$/;"	f
+get_word_type	srcs/lexer/lexer_decide_w_type.c	/^int	get_word_type(char *str)$/;"	f
 here_document	srcs/builtin_srcs/redirection.c	/^int	here_document()$/;"	f
 heredoc_lst	includes/structs.h	/^	t_dlst			*heredoc_lst;$/;"	m	struct:s_cmd_cont
-init_cmd_cont	srcs/parsing_srcs_m/parser_tools.c	/^t_cmd_cont	*init_cmd_cont(void)$/;"	f
+init_cmd_cont	srcs/parser/parser_tools.c	/^t_cmd_cont	*init_cmd_cont(void)$/;"	f
 initialize_data	srcs/builtin_srcs/initialize_data.c	/^void	initialize_data(t_data *data, char *line)$/;"	f
 initialize_data	srcs/main_srcs/initialize_data.c	/^void	initialize_data(t_data *data, char *line)$/;"	f
 initialize_main	srcs/builtin_srcs/initialize_main.c	/^void	initialize_main(t_data *data, char **envp)$/;"	f
 initialize_main	srcs/main_srcs/initialize_main.c	/^void	initialize_main(t_data *data, char **envp)$/;"	f
 input_lst	includes/structs.h	/^	t_dlst			*input_lst;$/;"	m	struct:s_cmd_cont
-join_args	srcs/parsing_srcs_m/make_args.c	/^void	join_args(char **rtn, t_data *data)$/;"	f
-join_args_next	srcs/parsing_srcs_m/make_args.c	/^void	join_args_next(t_dlst **tok_lst, t_dlst *next,$/;"	f
-join_args_set	srcs/parsing_srcs_m/make_args.c	/^void	join_args_set(t_data *data, t_dlst **tok_lst,$/;"	f
+io_err	srcs/syntax_analyzer/io_err.c	/^int	io_err(t_dlst *lst)$/;"	f
+join_args	srcs/parser/make_args.c	/^void	join_args(char **rtn, t_data *data)$/;"	f
+join_args_next	srcs/parser/make_args.c	/^void	join_args_next(t_dlst **tok_lst, t_dlst *next,$/;"	f
+join_args_set	srcs/parser/make_args.c	/^void	join_args_set(t_data *data, t_dlst **tok_lst,$/;"	f
 key	libft/libft.h	/^	void			*key;$/;"	m	struct:s_envlst
 last_null	srcs/builtin_srcs/ft_echo.c	/^char	*last_null(char *str)$/;"	f
 left	libft/libft.h	/^	struct s_tree	*left;$/;"	m	struct:s_tree	typeref:struct:s_tree::s_tree
-lexer	srcs/token_srcs/lexer.c	/^void	lexer(t_data *data)$/;"	f
-lexer_add_nth	srcs/token_srcs/lexer.c	/^void	lexer_add_nth(t_data *data)$/;"	f
-lexer_cpy_buf	srcs/token_srcs/lexer_token_init.c	/^void	lexer_cpy_buf(t_lexer_token *rtn, t_token *tok_buf)$/;"	f
-lexer_decide_w_type	srcs/token_srcs/lexer_decide_w_type.c	/^void	lexer_decide_w_type(t_lexer_token	*l_tok)$/;"	f
-lexer_get_buff_len	srcs/token_srcs/lexer_token_init.c	/^int	lexer_get_buff_len(t_token *tok_buf)$/;"	f
-lexer_get_len_lg	srcs/token_srcs/lexer_token_init.c	/^int	lexer_get_len_lg(t_token *tok_buf, enum e_char_type compare)$/;"	f
-lexer_get_len_quotes	srcs/token_srcs/lexer_token_init.c	/^int	lexer_get_len_quotes(t_token *tok_buf, enum e_char_type compare)$/;"	f
-lexer_replacer	srcs/token_srcs/lexer_replacer.c	/^void	lexer_replacer(t_data *data)$/;"	f
-lexer_space_token	srcs/token_srcs/lexer.c	/^t_lexer_token	*lexer_space_token(void)$/;"	f
-lexer_tok_free	srcs/parsing_srcs_m/parser_tools.c	/^void	lexer_tok_free(void *cur)$/;"	f
-lexer_token_init	srcs/token_srcs/lexer_token_init.c	/^t_lexer_token	*lexer_token_init(t_token *tok_buf)$/;"	f
+lexer	srcs/lexer/lexer.c	/^void	lexer(t_data *data)$/;"	f
+lexer_add_nth	srcs/lexer/lexer.c	/^void	lexer_add_nth(t_data *data)$/;"	f
+lexer_cpy_buf	srcs/lexer/lexer_token_init.c	/^void	lexer_cpy_buf(t_lexer_token *rtn, t_token *tok_buf)$/;"	f
+lexer_decide_w_type	srcs/lexer/lexer_decide_w_type.c	/^void	lexer_decide_w_type(t_lexer_token	*l_tok)$/;"	f
+lexer_get_buff_len	srcs/lexer/lexer_token_init.c	/^int	lexer_get_buff_len(t_token *tok_buf)$/;"	f
+lexer_get_len_lg	srcs/lexer/lexer_token_init.c	/^int	lexer_get_len_lg(t_token *tok_buf, enum e_char_type compare)$/;"	f
+lexer_get_len_quotes	srcs/lexer/lexer_token_init.c	/^int	lexer_get_len_quotes(t_token *tok_buf, enum e_char_type compare)$/;"	f
+lexer_space_token	srcs/lexer/lexer.c	/^t_lexer_token	*lexer_space_token(void)$/;"	f
+lexer_tok_free	srcs/tools/free.c	/^void	lexer_tok_free(void *cur)$/;"	f
+lexer_token_init	srcs/lexer/lexer_token_init.c	/^t_lexer_token	*lexer_token_init(t_token *tok_buf)$/;"	f
 lexer_token_lst	includes/structs.h	/^	t_dlst		*lexer_token_lst;$/;"	m	struct:s_data
-lexer_token_lst_init	srcs/token_srcs/lexer.c	/^void	lexer_token_lst_init(t_data *data)$/;"	f
-lexer_token_printer	srcs/token_srcs/lexer.c	/^void	lexer_token_printer(t_data *data)$/;"	f
-lexer_w_converter	srcs/token_srcs/lexer_word_converter.c	/^void	lexer_w_converter(t_data *data)$/;"	f
+lexer_token_lst_init	srcs/lexer/lexer.c	/^void	lexer_token_lst_init(t_data *data)$/;"	f
+lexer_token_printer	srcs/lexer/lexer.c	/^void	lexer_token_printer(t_data *data)$/;"	f
+lexer_w_converter	srcs/lexer/lexer_word_converter.c	/^void	lexer_w_converter(t_data *data)$/;"	f
 main	srcs/builtin_srcs/main.c	/^int main(int ac, char **av, char **envp)$/;"	f
 main	srcs/builtin_srcs/redirection.c	/^int main(int ac, char **av, char **envp)$/;"	f
 main	srcs/main_srcs/main.c	/^int main(int ac, char **av, char **envp)$/;"	f
-make_append_cont	srcs/parsing_srcs_m/make_append_lst.c	/^t_io_cont	*make_append_cont(t_data *data, t_dlst *tok_lst)$/;"	f
-make_append_lst	srcs/parsing_srcs_m/make_append_lst.c	/^t_dlst	*make_append_lst(t_data *data)$/;"	f
-make_args	srcs/parsing_srcs_m/make_args.c	/^char	**make_args(t_data *data)$/;"	f
-make_cmd	srcs/parsing_srcs_m/make_cmd.c	/^char	*make_cmd(t_data *data)$/;"	f
-make_heredoc_cont	srcs/parsing_srcs_m/make_heredoc_lst.c	/^t_heredoc_cont	*make_heredoc_cont(t_data *data, t_dlst *tok_lst)$/;"	f
-make_heredoc_lst	srcs/parsing_srcs_m/make_heredoc_lst.c	/^t_dlst	*make_heredoc_lst(t_data *data)$/;"	f
-make_input_cont	srcs/parsing_srcs_m/make_input_lst.c	/^t_io_cont	*make_input_cont(t_data *data, t_dlst *tok_lst)$/;"	f
-make_input_lst	srcs/parsing_srcs_m/make_input_lst.c	/^t_dlst	*make_input_lst(t_data *data)$/;"	f
+make_append_cont	srcs/parser/make_append_lst.c	/^t_io_cont	*make_append_cont(t_data *data, t_dlst *tok_lst)$/;"	f
+make_append_lst	srcs/parser/make_append_lst.c	/^t_dlst	*make_append_lst(t_data *data)$/;"	f
+make_args	srcs/parser/make_args.c	/^char	**make_args(t_data *data)$/;"	f
+make_cmd	srcs/parser/make_cmd.c	/^char	*make_cmd(t_data *data)$/;"	f
+make_heredoc_cont	srcs/parser/make_heredoc_lst.c	/^t_heredoc_cont	*make_heredoc_cont(t_data *data, t_dlst *tok_lst)$/;"	f
+make_heredoc_lst	srcs/parser/make_heredoc_lst.c	/^t_dlst	*make_heredoc_lst(t_data *data)$/;"	f
+make_input_cont	srcs/parser/make_input_lst.c	/^t_io_cont	*make_input_cont(t_data *data, t_dlst *tok_lst)$/;"	f
+make_input_lst	srcs/parser/make_input_lst.c	/^t_dlst	*make_input_lst(t_data *data)$/;"	f
 make_key	srcs/builtin_srcs/set_envkey.c	/^char	*make_key(char *envstr)$/;"	f
 make_key	srcs/main_srcs/set_envkey.c	/^char	*make_key(char *envstr)$/;"	f
-make_output_cont	srcs/parsing_srcs_m/make_output_lst.c	/^t_io_cont	*make_output_cont(t_data *data, t_dlst *tok_lst)$/;"	f
-make_output_lst	srcs/parsing_srcs_m/make_output_lst.c	/^t_dlst	*make_output_lst(t_data *data)$/;"	f
-make_possible_cp	srcs/token_srcs/replacer_tool.c	/^char	*make_possible_cp(char *str)$/;"	f
+make_output_cont	srcs/parser/make_output_lst.c	/^t_io_cont	*make_output_cont(t_data *data, t_dlst *tok_lst)$/;"	f
+make_output_lst	srcs/parser/make_output_lst.c	/^t_dlst	*make_output_lst(t_data *data)$/;"	f
+make_possible_cp	srcs/replacer_module/replacer_tool.c	/^char	*make_possible_cp(char *str)$/;"	f
 make_str	libft/ft_split_charset.c	/^char	*make_str(char *str, int s, char *charset, int *alloc_error)$/;"	f
 make_token	srcs/builtin_srcs/set_token.c	/^t_token	*make_token(char *str)$/;"	f
 make_token_lst	srcs/builtin_srcs/set_token.c	/^t_dlst	*make_token_lst(char *line)$/;"	f
@@ -307,21 +344,24 @@ next	libft/libft.h	/^	struct s_envlst	*next;$/;"	m	struct:s_envlst	typeref:struc
 next	libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
 nth	includes/structs.h	/^	int					nth;$/;"	m	struct:s_lexer_token
 output_lst	includes/structs.h	/^	t_dlst			*output_lst;$/;"	m	struct:s_cmd_cont
-parser	srcs/parsing_srcs_m/parser.c	/^void	parser(t_data *data)$/;"	f
-pipe_cmd	srcs/parsing_srcs_m/pipe_cmd.c	/^void	pipe_cmd(t_data *data)$/;"	f
+parser	srcs/parser/parser.c	/^void	parser(t_data *data)$/;"	f
+pipe_cmd	srcs/parser/pipe_cmd.c	/^void	pipe_cmd(t_data *data)$/;"	f
+pipe_err	srcs/syntax_analyzer/pipe_err.c	/^int	pipe_err(t_dlst *lst)$/;"	f
 print_appendlst	srcs/execute_srcs/print_cmddata.c	/^void	print_appendlst(t_dlst *cmdlst)$/;"	f
 print_args	srcs/execute_srcs/print_cmddata.c	/^void	print_args(t_dlst *cmdlst)$/;"	f
+print_args_cmd	srcs/parser/parser_tools.c	/^void	print_args_cmd(char **args)$/;"	f
 print_cmddata	srcs/execute_srcs/print_cmddata.c	/^void	print_cmddata(t_data *data)$/;"	f
 print_error	srcs/tools/error_handler.c	/^void	print_error(int errnum)$/;"	f
-print_heredoc_lst	srcs/parsing_srcs_m/parser_tools.c	/^void	print_heredoc_lst(t_dlst *lst)$/;"	f
+print_heredoc_lst	srcs/parser/parser_tools.c	/^void	print_heredoc_lst(t_dlst *lst)$/;"	f
 print_heredoclst	srcs/execute_srcs/print_cmddata.c	/^void	print_heredoclst(t_dlst *cmdlst)$/;"	f
-print_input_lst	srcs/parsing_srcs_m/parser_tools.c	/^void	print_input_lst(t_dlst *lst)$/;"	f
+print_input_lst	srcs/parser/parser_tools.c	/^void	print_input_lst(t_dlst *lst)$/;"	f
 print_inputlst	srcs/execute_srcs/print_cmddata.c	/^void	print_inputlst(t_dlst *cmdlst)$/;"	f
 print_outputlst	srcs/execute_srcs/print_cmddata.c	/^void	print_outputlst(t_dlst *cmdlst)$/;"	f
 print_token_lst	srcs/tools/tmp_print.c	/^void	print_token_lst(t_data *data)$/;"	f
-print_toks	srcs/tools/tmp_print.c	/^void	print_toks(t_token *tok_buf)$/;"	f
+print_toks	srcs/tokenizer/tokenizer.c	/^void	print_toks(t_token *tok_buf)$/;"	f
 remove_env_arr	srcs/builtin_srcs/ft_unset.c	/^char	**remove_env_arr(t_data *data, char **args)$/;"	f
-replacer	srcs/token_srcs/lexer_replacer.c	/^void	replacer(t_data *data, t_dlst *tok_lst)$/;"	f
+replacer	srcs/replacer_module/replacer.c	/^void	replacer(t_data *data)$/;"	f
+replacer_exec	srcs/replacer_module/replacer.c	/^void	replacer_exec(t_data *data, t_dlst *tok_lst)$/;"	f
 right	libft/libft.h	/^	struct s_tree	*right;$/;"	m	struct:s_tree	typeref:struct:s_tree::s_tree
 s_cmd_cont	includes/structs.h	/^typedef struct	s_cmd_cont$/;"	s
 s_data	includes/structs.h	/^typedef	struct s_data$/;"	s
@@ -333,6 +373,7 @@ s_lexer_token	includes/structs.h	/^typedef	struct s_lexer_token$/;"	s
 s_list	libft/libft.h	/^typedef struct s_list$/;"	s
 s_token	includes/structs.h	/^typedef	struct s_token$/;"	s
 s_tree	libft/libft.h	/^typedef struct s_tree$/;"	s
+set_clobber	srcs/lexer/lexer.c	/^void	set_clobber(t_data *data, t_dlst *lst)$/;"	f
 set_env_arr	srcs/builtin_srcs/set_envkey.c	/^void	set_env_arr(t_data *data, char **envp)$/;"	f
 set_env_arr	srcs/main_srcs/set_envkey.c	/^void	set_env_arr(t_data *data, char **envp)$/;"	f
 set_env_list	srcs/main_srcs/set_envkey.c	/^void	set_env_list(t_data *data, char **envp)$/;"	f
@@ -344,11 +385,15 @@ sigint_handler	srcs/builtin_srcs/sig_handler.c	/^void	sigint_handler(int sig)$/;
 sigint_handler	srcs/main_srcs/sig_handler.c	/^void	sigint_handler(int sig)$/;"	f
 sigquit_handler	srcs/builtin_srcs/sig_handler.c	/^void	sigquit_handler(int sig)$/;"	f
 sigquit_handler	srcs/main_srcs/sig_handler.c	/^void	sigquit_handler(int sig)$/;"	f
-simple_cmd	srcs/parsing_srcs_m/simple_cmd.c	/^void	simple_cmd(t_data *data)$/;"	f
+simple_cmd	srcs/parser/simple_cmd.c	/^void	simple_cmd(t_data *data)$/;"	f
 size_envp	srcs/builtin_srcs/set_envkey.c	/^int	size_envp(char **envp)$/;"	f
 size_envp	srcs/main_srcs/set_envkey.c	/^int	size_envp(char **envp)$/;"	f
+startwith_pipe	srcs/syntax_analyzer/pipe_err.c	/^int	startwith_pipe(t_dlst *lst)$/;"	f
 stick_quotes	srcs/builtin_srcs/set_token.c	/^void	stick_quotes(t_dlst *cur)$/;"	f
 str_size	libft/ft_split_charset.c	/^int	str_size(char *str, char *charset)$/;"	f
+syntax_analyzer	srcs/syntax_analyzer/syntax_analyzer.c	/^int	syntax_analyzer(t_data *data)$/;"	f
+syntax_error	srcs/syntax_analyzer/syntax_analyzer.c	/^int	syntax_error(t_dlst *lst)$/;"	f
+syntax_error_printer	srcs/syntax_analyzer/syntax_error_printer.c	/^int	syntax_error_printer(char *str)$/;"	f
 t_cmd_cont	includes/structs.h	/^}	t_cmd_cont;$/;"	t	typeref:struct:s_cmd_cont
 t_data	includes/structs.h	/^}	t_data;$/;"	t	typeref:struct:s_data
 t_dlst	libft/libft.h	/^}	t_dlst;$/;"	t	typeref:struct:s_dlst
@@ -360,11 +405,11 @@ t_list	libft/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
 t_size	libft/libft.h	/^typedef unsigned long	t_size;$/;"	t
 t_token	includes/structs.h	/^}	t_token;$/;"	t	typeref:struct:s_token
 t_tree	libft/libft.h	/^}	t_tree;$/;"	t	typeref:struct:s_tree
-there_is_pipe	srcs/parsing_srcs_m/parser.c	/^int		there_is_pipe(t_dlst *lst)$/;"	f
+there_is_pipe	srcs/parser/parser.c	/^int		there_is_pipe(t_dlst *lst)$/;"	f
 tok_buf	includes/structs.h	/^	t_token		*tok_buf;$/;"	m	struct:s_data
-token_buf_build	srcs/token_srcs/token_buf_build.c	/^int	token_buf_build(t_data *data)$/;"	f
-token_init	srcs/token_srcs/tokenizer.c	/^void	token_init(t_data *data)$/;"	f
-tokenizer	srcs/token_srcs/tokenizer.c	/^int	tokenizer(t_data *data)$/;"	f
+token_buf_build	srcs/tokenizer/token_buf_build.c	/^int	token_buf_build(t_data *data)$/;"	f
+token_init	srcs/tokenizer/tokenizer.c	/^void	token_init(t_data *data)$/;"	f
+tokenizer	srcs/tokenizer/tokenizer.c	/^int	tokenizer(t_data *data)$/;"	f
 type	includes/structs.h	/^	enum e_char_type	type;$/;"	m	struct:s_token	typeref:enum:s_token::e_char_type
 value	libft/libft.h	/^	void			*value;$/;"	m	struct:s_envlst
 w_type	includes/structs.h	/^	enum e_word_type	w_type;$/;"	m	struct:s_lexer_token	typeref:enum:s_lexer_token::e_word_type
