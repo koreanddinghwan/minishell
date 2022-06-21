@@ -52,6 +52,7 @@ int output_redirection(t_data *data, char *command, char *target, char **args, c
 		ft_env(data);
 		// printf("%d\n", execve("usr/bin/env", ag, envp));
 		printf("%s\n", strerror(errno));
+		exit(1);
 	}
 	else
 	{
@@ -60,6 +61,36 @@ int output_redirection(t_data *data, char *command, char *target, char **args, c
 	}
 	return (1);
 }
+
+// int	input_redirection(char *command, char *target, char **envp) // ex) cat < test.txt
+// {
+// 	int	fd;
+// 	// char **ag;
+// 	pid_t	pid;
+// 	int		status;
+
+// 	// ag = (char **)malloc(sizeof(char *) * 2);
+// 	// ag[0] = "-e";
+// 	fd = open(target, O_RDONLY);
+// 	pid = fork();
+// 	if (pid < 0)
+// 		exit(1);
+// 	if (fd < 0)
+// 		return (-1);
+// 	if (pid == 0)
+// 	{
+// 		dup2(fd, STDIN_FILENO);
+
+// 		// execve(command, ag, envp);
+// 	}
+// 	else
+// 	{
+// 		close(fd);
+// 		waitpid(pid, &status, 0);
+// 		printf("부모 종료 %d %d %d\n", pid, WIFEXITED(status), WEXITSTATUS(status)); // 1, 0(자식)
+// 	}
+// 	return (1);
+// }
 
 void	execute_builtin(t_data *data, char *cmd, char **args)
 {
@@ -71,20 +102,26 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 		ft_unset(data, args);
 	// if (ft_strcmp(ECHO, str) == 0)
 	// 	ft_echo();
-	// if (ft_strcmp(CD, str) == 0)
-	// 	ft_cd();
+	if (ft_strcmp(CD, cmd) == 0)
+		ft_cd(data, args);
 	// if (ft_strcmp(EXIT, str) == 0)
 	// 	ft_exit();
 	t_dlst *cmd_list;
 	t_dlst *out_re;
+	t_dlst *input_re;
 	
 	cmd_list = data->cmd_lst;
 
 	out_re = GET_OUTPUT_LIST(cmd_list);
+	input_re = GET_INPUT_LIST(cmd_list);
 	if (out_re)
 	{
 		output_redirection(data, cmd, GET_FILEPATH(out_re), args, data->env);
 	}
+	// if (input_re)
+	// {
+	// 	input_redirection();
+	// }
 
 	// if (ft_strcmp(ENV, cmd) == 0)
 	// 	ft_env(data);
@@ -100,18 +137,24 @@ void	execute(t_data *data)
 
 	// // lst = data->env_lst;
 	// cmd_lst = data->cmd_lst;
-
-	// char *cmd = GET_CMD(cmdlst);
 	char *cmd = GET_CMD(cmd_lst);
 	char **args = GET_ARGS(cmd_lst);
 
-	printf("%s\n", cmd);
+	// if (파이프X)
+	// {
+	// 	단일커맨드 처리
+	// }
+	// else (파이프O)
+	// {
+
+	// }
+
 	if (builtin(cmd))
 		execute_builtin(data, cmd, args);
+	// else if (!builtin(commd))
+	// 	execute_execve();
 	cmd_lst = cmd_lst->next;
 	data->cmd_lst = data->cmd_lst->next;
-	// else if (!builtin(commd))
-		//execute_execve();
 
 
 
@@ -178,3 +221,36 @@ void	execute(t_data *data)
 	// 		ft_echo(data, flag, "-nnn HI");
 	// }
 }
+
+no_builtin()
+{
+	pid_t pid;
+	pid = fork();
+	if (pid == 0)
+	{
+		if (pipe_exist)
+			execute_pipe();
+		else
+			execve();
+		exit($?);
+	}
+	else
+	{
+		waitpid();
+		close(fd);
+	}
+}
+
+example()
+{
+		if (builtin)
+			builtin_redirect_function();
+		else
+			no_builtin();
+}
+
+echo 123 > test.txt | cat test.txt
+builtin_redirect_function()
+pipe_exist()
+no_builtin()
+fork()
