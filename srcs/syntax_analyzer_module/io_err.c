@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 00:46:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 15:35:37 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 01:44:53 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
  * */
 
 #include "syntax_analyzer.h"
+
+char	*get_err_message(enum e_word_type type)
+{
+	if (type == W_REDIRECTION_INPUT)
+		return (ERR_REDIR_IN);
+	else if (type == W_REDIRECTION_OUTPUT)
+		return (ERR_REDIR_OUT);
+	else if (type == W_APPENDING_TO)
+		return (ERR_APPEND);
+	else if (type == W_HERE_DOC)
+		return (ERR_HEREDOC);
+	else
+		return (ERR_PIPE);
+}
 
 static int	is_io(t_dlst *lst)
 {
@@ -25,21 +39,6 @@ static int	is_io(t_dlst *lst)
 		return (TRUE);
 	else
 		return (FALSE);
-}
-
-int	ioafter_io(t_dlst *lst)
-{
-	while (lst)
-	{
-		if (is_io(lst) == TRUE)
-		{
-			while (GET_TOKEN_TYPE(lst) == W_SPACE)
-				lst = lst->next;
-			if (lst && is_io(lst) == TRUE)
-				return (TRUE);
-		}
-	}
-	return (FALSE);
 }
 
 int	endwith_io(t_dlst *lst)
@@ -59,8 +58,39 @@ int	endwith_io(t_dlst *lst)
 	return (FALSE);
 }
 
+int	ioafter_io(t_dlst *lst, enum e_word_type *type)
+{
+	enum e_word_type	cur;
+
+	while (lst)
+	{
+		if (is_io(lst) == TRUE)
+		{
+			lst = lst->next;
+			while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+				lst = lst->next;
+			if (lst)
+			{
+				cur = GET_TOKEN_TYPE(lst);
+				if (cur >= 5 && cur <= 10)
+				{
+					*type = cur;
+					return (TRUE);
+				}
+			}
+		}
+		if (lst)
+			lst = lst->next;
+	}
+	return (FALSE);
+}
+
 int	io_err(t_dlst *lst)
 {
+	enum e_word_type	type;
+
+	if (ioafter_io(lst, &type) == TRUE)
+		return (syntax_error_printer(get_err_message(type)));
 	if (endwith_io(lst) == TRUE)
 		return (syntax_error_printer(ERR_NEWLINE));
 	return (SUCESS);

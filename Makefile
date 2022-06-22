@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/21 14:56:26 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/22 01:42:13 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)
 LEXER_SRCS = $(addprefix ./srcs/lexer/, lexer.c lexer_token_init.c lexer_decide_w_type.c lexer_word_converter.c)
 LEXER_OBJS = $(LEXER_SRCS:.c=.o)
 
-SYNTAX_SRCS = $(addprefix ./srcs/syntax_analyzer/, syntax_analyzer.c pipe_err.c io_err.c syntax_error_printer.c)
+SYNTAX_SRCS = $(addprefix ./srcs/syntax_analyzer_module/, syntax_analyzer.c syntax_error_printer.c pipe_err.c io_err.c)
 SYNTAX_OBJS = $(SYNTAX_SRCS:.c=.o)
 
 PARSE_SRCS = $(addprefix ./srcs/parser/, parser.c parser_tools.c  \

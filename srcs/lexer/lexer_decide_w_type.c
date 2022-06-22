@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 20:02:03 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 21:22:08 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/21 16:56:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	check_builtin(char *str)
 
 int	check_spec_token(char *str)
 {
+	if (ft_strcmp(str, " ") == 0)
+		return (0);
 	if (ft_strcmp(str, "|") == 0)
 		return (W_PIPE);
 	else if (ft_strcmp(str, "<<") == 0)
