@@ -46,12 +46,15 @@ int output_redirection(t_data *data, char *command, char *target, char **args, c
 		exit(1);
 	if (pid == 0)
 	{
+<<<<<<< HEAD
 		if (fd < 0)
 		{
 			printf("%s\n", strerror(errno));
 			return (-1);
 		}
 		printf("[cat > text.txt] start!\nStop: ctrl+c\n");
+=======
+>>>>>>> 1d36f38 ("FEAT: X")
 		dup2(fd, STDOUT_FILENO);
 		ft_env(data);
 		// printf("%d\n", execve("usr/bin/env", ag, envp));
@@ -208,6 +211,7 @@ void	execute(t_data *data)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // example()
 // {
 // 	if (builtin)
@@ -274,6 +278,35 @@ void	execute(t_data *data)
 // }
 
 >>>>>>> f3f0255 ("FEAT: X")
+=======
+// no_builtin()
+// {
+// 	pid_t pid;
+// 	pid = fork();
+// 	if (pid == 0)
+// 	{
+// 		if (pipe_exist)
+// 			execute_pipe();
+// 		else
+// 			execve();
+// 		exit($?);
+// 	}
+// 	else
+// 	{
+// 		waitpid();
+// 		close(fd);
+// 	}
+// }
+
+// example()
+// {
+// 		if (builtin)
+// 			builtin_redirect_function();
+// 		else
+// 			no_builtin();
+// }
+
+>>>>>>> 1d36f38 ("FEAT: X")
 // echo 123 > test.txt | cat test.txt
 // builtin_redirect_function()
 // pipe_exist()
