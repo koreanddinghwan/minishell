@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 01:41:54 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:16:00 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ int	lexer(t_data *data)
 {
 	lexer_token_lst_init(data);
 	set_clobber(data, data->lexer_token_lst);
-	lexer_token_printer(data);
 	if (syntax_analyzer(data) == FAIL)
 		return (FAIL);
 	lexer_w_converter(data);

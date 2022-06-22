@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 17:01:07 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:38:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <signal.h>
 # include "structs.h"
 # include "defines_enums.h"
+# include "cleaner.h"
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
