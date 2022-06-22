@@ -113,12 +113,12 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 	// 	ft_exit();
 	t_dlst *cmd_list;
 	t_dlst *out_re;
-	t_dlst *input_re;
+	// t_dlst *input_re;
 	
 	cmd_list = data->cmd_lst;
 
 	out_re = GET_OUTPUT_LIST(cmd_list);
-	input_re = GET_INPUT_LIST(cmd_list);
+	// input_re = GET_INPUT_LIST(cmd_list);
 	if (out_re)
 	{
 		output_redirection(data, cmd, GET_FILEPATH(out_re), args, data->env);
@@ -206,6 +206,7 @@ void	execute(t_data *data)
 // 	}
 // }
 
+<<<<<<< HEAD
 // example()
 // {
 // 	if (builtin)
@@ -214,6 +215,35 @@ void	execute(t_data *data)
 // 		no_builtin();
 // }
 
+=======
+// no_builtin()
+// {
+// 	pid_t pid;
+// 	pid = fork();
+// 	if (pid == 0)
+// 	{
+// 		if (pipe_exist)
+// 			execute_pipe();
+// 		else
+// 			execve();
+// 		exit($?);
+// 	}
+// 	else
+// 	{
+// 		waitpid();
+// 		close(fd);
+// 	}
+// }
+
+// example()
+// {
+// 		if (builtin)
+// 			builtin_redirect_function();
+// 		else
+// 			no_builtin();
+// }
+
+>>>>>>> 3a8b1e7 ("FEAT: X")
 // echo 123 > test.txt | cat test.txt
 // builtin_redirect_function()
 // pipe_exist()
