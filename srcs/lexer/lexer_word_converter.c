@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 22:04:44 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 20:09:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 20:07:11 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,20 @@ void	do_change_file_deli(t_dlst *lst)
 		lst = lst->next;
 	if (lst)
 	{
+		/*
 		if (type == 7)
 			GET_TOKEN_TYPE(lst) = W_DELIMETER;
 		else if (type >= 8 && type <= 10)
 			GET_TOKEN_TYPE(lst) = W_FILE;
+			*/
+		while (lst && GET_TOKEN_TYPE(lst) != W_SPACE)
+		{
+			if (type == 7)
+				GET_TOKEN_TYPE(lst) = W_DELIMETER;
+			else if (type >= 8 && type <= 10)
+				GET_TOKEN_TYPE(lst) = W_FILE;
+			lst = lst->next;
+		}
 	}
 }
 
