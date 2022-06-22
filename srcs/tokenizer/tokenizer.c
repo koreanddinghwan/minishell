@@ -6,21 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:41:46 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 02:19:00 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:19:36 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tokenizer.h"
-
-void	print_toks(t_token *tok_buf)
-{
-	while (tok_buf->c != 0)
-	{
-		printf("type : %d\n", tok_buf->type);
-		printf("\'%c\'\n", tok_buf->c);
-		tok_buf++;
-	}
-}
 
 int	all_space(t_token *tok_buf)
 {

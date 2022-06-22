@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 17:11:40 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 01:41:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:14:49 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LEXER_H
 
 # include "structs.h"
-# include "tools.h"
+# include "cleaner.h"
 #include <stdio.h>
 t_lexer_token	*lexer_token_init(t_token *tok_buf);
 int				syntax_analyzer(t_data *data);

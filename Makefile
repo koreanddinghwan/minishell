@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/22 01:42:13 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/22 17:18:44 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,9 @@ PARSE_OBJS = $(PARSE_SRCS:.c=.o)
 REPLAC_SRCS = $(addprefix ./srcs/replacer_module/, replacer.c get_replaced_len.c cpy_replaced.c replacer_tool.c)
 REPLAC_OBJS = $(REPLAC_SRCS:.c=.o)
 
+CLEANER_SRCS = $(addprefix ./srcs/cleaner/, cleaner.c cmd_cont_free.c)
+CLEANER_OBJS = $(CLEANER_SRCS:.c=.o)
+
 EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c exec.c print_cmddata.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 
@@ -54,7 +57,7 @@ BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 TOOLS_SRCS = $(addprefix ./srcs/tools/, free.c error_handler.c tmp_print.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
-OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(LEXER_OBJS) $(SYNTAX_OBJS) $(REPLAC_OBJS) $(PARSE_OBJS) $(EXEC_OBJS)
+OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(LEXER_OBJS) $(SYNTAX_OBJS) $(REPLAC_OBJS) $(PARSE_OBJS) $(CLEANER_OBJS) $(EXEC_OBJS)
 
 all : $(NAME)
 

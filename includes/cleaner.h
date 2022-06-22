@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlst_delete.c                                   :+:      :+:    :+:   */
+/*   cleaner.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 21:04:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 19:30:13 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/22 15:47:04 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/22 17:13:18 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef CLEANER_H
+# define CLEANER_H
+# include "structs.h"
 
-void	ft_dlst_delete(t_dlst *cur, t_dlst **origin, void (*del)(void *))
-{
-	t_dlst	*next;
-	t_dlst	*back;
+void	lexer_tok_free(void *cur);
+void	cleaner(t_data *data);
+void	lexer_free(t_data *data);
+void	token_free(t_data *data);
+void	cmd_cont_free(void *param);
 
-	next = cur->next;
-	back = cur->back;
-	if (next)
-		next->back = back;
-	if (back)
-		back->next = next;
-	else
-		*origin = next;
-	ft_dlst_delone(cur, del);
-}
+#endif

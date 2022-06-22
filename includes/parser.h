@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:57:28 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:15:00 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSER_H
 # include "structs.h"
 # include "defines_enums.h"
-# include "tools.h"
+# include "cleaner.h"
 
 void			simple_cmd(t_data *data);
 void			pipe_cmd(t_data *data);
