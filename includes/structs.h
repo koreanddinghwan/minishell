@@ -49,7 +49,7 @@ enum e_cmdtype
 
 typedef struct	s_io_cont
 {
-	int		fd;
+	int		fd[2];
 	char	*filepath;
 }	t_io_cont;
 
