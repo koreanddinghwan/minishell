@@ -207,6 +207,7 @@ void	execute(t_data *data)
 // }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // example()
 // {
 // 	if (builtin)
@@ -244,6 +245,35 @@ void	execute(t_data *data)
 // }
 
 >>>>>>> 3a8b1e7 ("FEAT: X")
+=======
+// no_builtin()
+// {
+// 	pid_t pid;
+// 	pid = fork();
+// 	if (pid == 0)
+// 	{
+// 		if (pipe_exist)
+// 			execute_pipe();
+// 		else
+// 			execve();
+// 		exit($?);
+// 	}
+// 	else
+// 	{
+// 		waitpid();
+// 		close(fd);
+// 	}
+// }
+
+// example()
+// {
+// 		if (builtin)
+// 			builtin_redirect_function();
+// 		else
+// 			no_builtin();
+// }
+
+>>>>>>> f3f0255 ("FEAT: X")
 // echo 123 > test.txt | cat test.txt
 // builtin_redirect_function()
 // pipe_exist()
