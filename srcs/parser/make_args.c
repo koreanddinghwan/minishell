@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 18:54:22 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 20:02:23 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char	**make_args(t_data *data)
 	if (!data->lexer_token_lst)
 		return (NULL);
 	count = get_args_count(data->lexer_token_lst);
+	ft_printf("args : %d\n", count);
 	rtn = malloc(sizeof(char *) * (count + 2));
 	rtn[0] = ft_strdup("###program name 나중에 변경해줘요~");
 	tok_lst = data->lexer_token_lst;
