@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:04:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/17 17:38:24 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 19:30:13 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	ft_dlst_delete(t_dlst *cur, t_dlst **origin, void (*del)(void *))
 		back->next = next;
 	else
 		*origin = next;
-	del(cur);
+	ft_dlst_delone(cur, del);
 }

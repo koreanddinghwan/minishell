@@ -6,53 +6,53 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:40:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 17:23:28 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 19:00:39 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cleaner.h"
 
-void	fnc_free_deli(void *param)
+void	fnc_free_deli(void *cont)
 {
-	t_dlst	*lst;
+	t_heredoc_cont	*content;
 
-	lst = (t_dlst *)param;
-	if (GET_DELIMETER(lst))
-		free(GET_DELIMETER(lst));
+	content = cont;
+	if (content->delimeter)
+		free(content->delimeter);
 }
 
-void	free_deli(t_dlst *cmdlst)
+void	free_deli(t_cmd_cont *content)
 {
-	ft_dlst_clear(&(GET_HEREDOC_LIST(cmdlst)), fnc_free_deli);
+	ft_dlst_clear(&(content->heredoc_lst), fnc_free_deli);
 }
 
-void	fnc_free_filepath(void *param)
+void	fnc_free_filepath(void *cont)
 {
-	t_dlst	*lst;
+	t_io_cont	*content;
 
-	lst = (t_dlst *)param;
-	if (GET_FILEPATH(lst))
-		free(GET_FILEPATH(lst));
+	content = cont;
+	if (content->filepath)
+		free(content->filepath);
 }
 
-void	free_path(t_dlst *cmdlst)
+void	free_path(t_cmd_cont *content)
 {
-	ft_dlst_clear(&(GET_INPUT_LIST(cmdlst)), fnc_free_filepath);
-	ft_dlst_clear(&(GET_OUTPUT_LIST(cmdlst)), fnc_free_filepath);
-	ft_dlst_clear(&(GET_APP_LIST(cmdlst)), fnc_free_filepath);
+	ft_dlst_clear(&(content->input_lst), fnc_free_filepath);
+	ft_dlst_clear(&(content->output_lst), fnc_free_filepath);
+	ft_dlst_clear(&(content->append_lst), fnc_free_filepath);
 }
 
-void	cmd_cont_free(void *param)
+void	cmd_cont_free(void *cont)
 {
-	t_dlst	*cmd_lst;
-	char	**args;
+	char		**args;
+	t_cmd_cont	*content;
 
-	cmd_lst = (t_dlst *)param;
-	if (!cmd_lst)
+	if (!cont)
 		return ;
-	if (GET_CMD(cmd_lst))
-		free(GET_CMD(cmd_lst));
-	args = GET_ARGS(cmd_lst);
+	content = cont;
+	if (content->cmd)
+		free(content->cmd);
+	args = content->args;
 	if (args)
 	{
 		while (*args)
@@ -60,8 +60,7 @@ void	cmd_cont_free(void *param)
 			free(*args);
 			args++;
 		}
-		free(args);
 	}
-	free_path(cmd_lst);
-	free_deli(cmd_lst);
+	free_path(content);
+	free_deli(content);
 }

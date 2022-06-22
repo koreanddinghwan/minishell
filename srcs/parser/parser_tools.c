@@ -6,11 +6,12 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:51:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 19:00:36 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+#include <stdio.h>
 
 void	print_input_lst(t_dlst *lst)
 {
@@ -37,14 +38,14 @@ void	print_args_cmd(char **args)
 	if (!args)
 		return ;
 	i = 0;
-	ft_printf("========args======\n");
+	printf("========args======\n");
 	while (*args)
 	{
-		ft_printf("%d 번째 args %s\n",i ,*args);
+		printf("%d 번째 args %s\n",i ,*args);
 		args++;
 		i++;
 	}
-	ft_printf("==========\n");
+	printf("==========\n");
 }
 
 t_cmd_cont	*init_cmd_cont(void)
@@ -54,6 +55,7 @@ t_cmd_cont	*init_cmd_cont(void)
 	rtn = malloc(sizeof(t_cmd_cont) * 1);
 	if (!rtn)
 		return (NULL);
+	rtn->cmd = NULL;
 	rtn->args = NULL;
 	rtn->input_lst = NULL;
 	rtn->output_lst = NULL;

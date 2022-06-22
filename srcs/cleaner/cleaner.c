@@ -6,19 +6,21 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:46:42 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 18:16:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 19:28:59 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cleaner.h"
 
-void	lexer_tok_free(void *cur)
+void	lexer_tok_free(void *param)
 {
-	t_dlst	*node;
+	t_lexer_token	*cur;
 
-	node = (t_dlst *)cur;
-	free(GET_TOKEN_BUFFER(node));
-	free(node);
+	cur = param;
+	if (!cur)
+		return ;
+	if (cur->buffer)
+		free(cur->buffer);
 }
 
 void	token_free(t_data *data)
@@ -48,16 +50,10 @@ void	lexer_free(t_data *data)
 	}
 }
 
-void	cmd_free(t_data *data)
+void	cleaner(t_data *data)
 {
 	if (!data->cmd_lst)
 		return ;
-	ft_dlst_clear(&data->cmd_lst, cmd_cont_free);
-}
-
-void	cleaner(t_data *data)
-{
-	lexer_free(data);
-	cmd_free(data);
+	ft_dlst_clear(&(data->cmd_lst), cmd_cont_free);
 	data->cmd_lst = NULL;
 }

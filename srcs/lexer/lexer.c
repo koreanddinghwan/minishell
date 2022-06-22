@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 16:16:00 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/22 19:25:19 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,18 @@ void	set_clobber(t_data *data, t_dlst *lst)
 
 	while (lst)
 	{
-		if (GET_TOKEN_TYPE(lst) == W_REDIRECTION_OUTPUT)
+		if (lst && GET_TOKEN_TYPE(lst) == W_REDIRECTION_OUTPUT)
 		{
 			next = lst->next;
 			if (next)
 			{
 				buffer = GET_TOKEN_BUFFER(next);
 				if (ft_strcmp("|", buffer) == 0)
+				{
 					ft_dlst_delete(next, &data->lexer_token_lst, lexer_tok_free);
+					lst = data->lexer_token_lst;
+					continue ;
+				}
 			}
 		}
 		lst = lst->next;
