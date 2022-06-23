@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:34:10 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 20:17:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 20:14:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,15 @@ t_io_cont	*make_input_cont(t_data *data, t_dlst *tok_lst)
 	int			offset;
 
 	cur = tok_lst;
-	offset = 0;
 	rtn = NULL;
-	while (cur && GET_TOKEN_TYPE(cur) != W_FILE)
-	{
-		cur = cur->next;
-		offset++;
-	}
+	offset = get_offset(cur, W_FILE);
+	cur = wget_startpoint(cur, W_FILE);
 	if (cur)
 	{
 		rtn = malloc(sizeof(t_io_cont) * 1);
 		if (!rtn)
 			return (NULL);
-		rtn->filepath = ft_strdup(GET_TOKEN_BUFFER(cur));
+		rtn->filepath = wget_join(cur, W_FILE);
 	}
 	while (tok_lst && offset + 1)
 	{

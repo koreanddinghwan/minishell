@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 19:00:36 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 20:33:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,51 @@ void	print_args_cmd(char **args)
 		i++;
 	}
 	printf("==========\n");
+}
+
+char	*wget_join(t_dlst *cur, enum e_word_type type)
+{
+	char	*rtn;
+	char	*ex;
+	char	*buffer;
+
+	rtn = ft_strdup("");
+	while (cur && GET_TOKEN_TYPE(cur) == type)
+	{
+		ex = rtn;
+		buffer = GET_TOKEN_BUFFER(cur);
+		rtn = ft_strjoin(rtn, buffer);
+		free(ex);
+		cur = cur->next;
+	}
+	return (rtn);
+}
+
+t_dlst	*wget_startpoint(t_dlst *cur, enum e_word_type type)
+{
+	while (cur && GET_TOKEN_TYPE(cur) != type)
+		cur = cur->next;
+	return (cur);
+}
+
+int	get_offset(t_dlst *tok_lst, enum e_word_type type)
+{
+	int		offset;
+	t_dlst	*cur;
+
+	offset = 0;
+	cur = tok_lst;
+	while (cur && GET_TOKEN_TYPE(cur) != type)
+	{
+		cur = cur->next;
+		offset++;
+	}
+	while (cur && GET_TOKEN_TYPE(cur) == type)
+	{
+		cur = cur->next;
+		offset++;
+	}
+	return (offset);
 }
 
 t_cmd_cont	*init_cmd_cont(void)

@@ -6,76 +6,35 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 22:04:44 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 20:09:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 20:00:49 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-int	get_next_token(t_dlst *lst)
+void	convert_to_arg(t_dlst *lst)
 {
-	int		i;
-
-	i = 0;
-	while (lst)
+	while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+		lst = lst->next;
+	while (lst && GET_TOKEN_TYPE(lst) == W_COMMAND)
+		lst = lst->next;
+	while (lst && (GET_TOKEN_TYPE(lst) != W_PIPE))
 	{
-		if (GET_TOKEN_TYPE(lst) == W_SPACE)
+		if (GET_TOKEN_TYPE(lst) == W_SPACE || (GET_TOKEN_TYPE(lst) >= 7 && GET_TOKEN_TYPE(lst) <= 10))
 		{
 			lst = lst->next;
-			continue;
-		}
-		else if (GET_TOKEN_TYPE(lst) >= 6)
-			return (i);
-		i++;
-		lst = lst->next;
-	}
-	return (i);
-}
-
-void	do_change(int i, t_dlst	**cur)
-{
-	t_dlst	*lst;
-
-	while (i)
-	{
-		lst = *cur;
-		if (GET_TOKEN_TYPE(lst) == W_SPACE)
-		{
-			*cur = (*cur)->next;
 			continue ;
 		}
 		else
 		{
 			GET_TOKEN_TYPE(lst) = W_ARG;
-			*cur = (*cur)->next;
-			i--;
-		}
-	}
-
-}
-
-void	convert_to_arg(t_dlst *lst)
-{
-	enum e_word_type	type;
-	int					i;
-
-	while (lst)
-	{
-		i = 0;
-		type = GET_TOKEN_TYPE(lst);
-		if (type == W_COMMAND || type == W_BUILTIN)
-		{
 			lst = lst->next;
-			if (lst)
-			{
-				i = get_next_token(lst);
-				do_change(i, &lst);
-			}
 		}
-		if (!lst)
-			break ;
-		lst = lst->next;
 	}
+	if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
+		lst = lst->next;
+	if (lst)
+		convert_to_arg(lst);
 }
 
 void	do_change_file_deli(t_dlst *lst)
@@ -91,10 +50,14 @@ void	do_change_file_deli(t_dlst *lst)
 		lst = lst->next;
 	if (lst)
 	{
-		if (type == 7)
-			GET_TOKEN_TYPE(lst) = W_DELIMETER;
-		else if (type >= 8 && type <= 10)
-			GET_TOKEN_TYPE(lst) = W_FILE;
+		while (lst && GET_TOKEN_TYPE(lst) != W_SPACE)
+		{
+			if (type == 7)
+				GET_TOKEN_TYPE(lst) = W_DELIMETER;
+			else if (type >= 8 && type <= 10)
+				GET_TOKEN_TYPE(lst) = W_FILE;
+			lst = lst->next;
+		}
 	}
 }
 

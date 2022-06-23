@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 17:15:00 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 20:21:39 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ char			**make_args(t_data *data);
 /*
  * tools
  * */
-t_cmd_cont		*init_cmd_cont(void);
-void			print_input_lst(t_dlst *lst);
-void			print_heredoc_lst(t_dlst *lst);
-void			print_args_cmd(char **args);
-
+t_cmd_cont	*init_cmd_cont(void);
+int			get_offset(t_dlst *tok_lst, enum e_word_type type);
+t_dlst		*wget_startpoint(t_dlst *cur, enum e_word_type type);
+char		*wget_join(t_dlst *cur, enum e_word_type type);
+void		print_input_lst(t_dlst *lst);
+void		print_heredoc_lst(t_dlst *lst);
+void		print_args_cmd(char **args);
 
 #endif
