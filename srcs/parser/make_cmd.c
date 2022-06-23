@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:54:49 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/23 20:48:49 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 21:44:05 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*make_cmd(t_data *data)
 	tok_lst = wget_startpoint(tok_lst, W_COMMAND);
 	if (tok_lst)
 		rtn = wget_join(tok_lst, W_COMMAND);
-	ft_printf("cmd : %s\n", rtn);
 	tok_lst = data->lexer_token_lst;
 	while (tok_lst && offset + 1)
 	{
