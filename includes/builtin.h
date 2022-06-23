@@ -16,7 +16,7 @@ void    ft_env(t_data   *data);
 /*
  * cd
  * */
-void	ft_cd(t_data *data, char *path);
+void	ft_cd(t_data *data, char **path);
 
 /*
  * pwd
