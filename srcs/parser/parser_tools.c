@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 20:42:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 20:33:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	print_args_cmd(char **args)
 	printf("==========\n");
 }
 
-char	*wfile_join(t_dlst *cur)
+char	*wget_join(t_dlst *cur, enum e_word_type type)
 {
 	char	*rtn;
 	char	*ex;
 	char	*buffer;
 
 	rtn = ft_strdup("");
-	while (cur && GET_TOKEN_TYPE(cur) == W_FILE)
+	while (cur && GET_TOKEN_TYPE(cur) == type)
 	{
 		ex = rtn;
 		buffer = GET_TOKEN_BUFFER(cur);
@@ -66,26 +66,26 @@ char	*wfile_join(t_dlst *cur)
 	return (rtn);
 }
 
-t_dlst	*wfile_startpoint(t_dlst *cur)
+t_dlst	*wget_startpoint(t_dlst *cur, enum e_word_type type)
 {
-	while (cur && GET_TOKEN_TYPE(cur) != W_FILE)
+	while (cur && GET_TOKEN_TYPE(cur) != type)
 		cur = cur->next;
 	return (cur);
 }
 
-int	get_offset(t_dlst *tok_lst)
+int	get_offset(t_dlst *tok_lst, enum e_word_type type)
 {
 	int		offset;
 	t_dlst	*cur;
 
 	offset = 0;
 	cur = tok_lst;
-	while (cur && GET_TOKEN_TYPE(cur) != W_FILE)
+	while (cur && GET_TOKEN_TYPE(cur) != type)
 	{
 		cur = cur->next;
 		offset++;
 	}
-	while (cur && GET_TOKEN_TYPE(cur) == W_FILE)
+	while (cur && GET_TOKEN_TYPE(cur) == type)
 	{
 		cur = cur->next;
 		offset++;

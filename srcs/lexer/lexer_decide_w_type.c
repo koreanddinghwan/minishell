@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 20:02:03 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/21 16:56:52 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 19:17:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,13 @@ int	check_spec_token(char *str)
 
 int	get_word_type(char *str)
 {
-	if (check_builtin(str))
-		return (W_BUILTIN);
-	else if (check_spec_token(str))
+	if (check_spec_token(str))
 		return (check_spec_token(str));
 	else
 		return (W_COMMAND);
 }
 
-void	lexer_decide_w_type(t_lexer_token	*l_tok)
+void	lexer_decide_w_type(t_lexer_token *l_tok)
 {
 	char	*str;
 

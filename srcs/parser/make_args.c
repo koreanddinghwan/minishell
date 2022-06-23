@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/23 17:44:47 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 20:48:24 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,14 @@ int	get_args_count(t_dlst *tok_lst)
 	{
 		if (GET_TOKEN_TYPE(tok_lst) == W_PIPE)
 			return (i);
-		if (GET_TOKEN_TYPE(tok_lst) == W_SPACE)
+		else if (GET_TOKEN_TYPE(tok_lst) == W_ARG)
+		{
 			i++;
-		tok_lst = tok_lst->next;
+			while (tok_lst && GET_TOKEN_TYPE(tok_lst) == W_ARG)
+				tok_lst = tok_lst->next;
+		}
+		else
+			tok_lst = tok_lst->next;
 	}
 	return (i);
 }
@@ -89,7 +94,7 @@ char	**make_args(t_data *data)
 	count = get_args_count(data->lexer_token_lst);
 	ft_printf("args : %d\n", count);
 	rtn = malloc(sizeof(char *) * (count + 2));
-	rtn[0] = ft_strdup("###program name 나중에 변경해줘요~");
+	rtn[0] = NULL;
 	tok_lst = data->lexer_token_lst;
 	if (tok_lst && GET_TOKEN_TYPE(tok_lst) == W_SPACE)
 		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
