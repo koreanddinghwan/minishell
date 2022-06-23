@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:06:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 20:10:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/23 20:21:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,15 @@ t_heredoc_cont	*make_heredoc_cont(t_data *data, t_dlst *tok_lst)
 	int				offset;
 
 	cur = tok_lst;
-	offset = 0;
 	rtn = NULL;
-	while (cur && GET_TOKEN_TYPE(cur) != W_DELIMETER)
-	{
-		cur = cur->next;
-		offset++;
-	}
+	offset = get_offset(cur, W_DELIMETER);
+	cur = wget_startpoint(cur, W_DELIMETER);
 	if (cur)
 	{
 		rtn = malloc(sizeof(t_heredoc_cont) * 1);
 		if (!rtn)
 			return (NULL);
-		rtn->delimeter = ft_strdup(GET_TOKEN_BUFFER(cur));
+		rtn->delimeter = wget_join(cur, W_DELIMETER);
 	}
 	while (tok_lst && offset + 1)
 	{
