@@ -35,20 +35,20 @@ void exec_command(char *command, int pipefd[2], int flags) {
 
 
 int main() {
-        int pipefd1[2], pipefd2[2];
-        pipe(pipefd1);
-        pipe(pipefd2);
+        int prefd1[2], nextfd2[2];
+        pipe(prefd1);
+        pipe(nextfd2);
 
-        exec_command("/bin/ls", pipefd1, STDOUT_PIPE);
-        close(pipefd1[1]);
-        exec_command("/usr/bin/wc", pipefd2, STDIN_PIPE);
-        close(pipefd2[0]);
+        exec_command("/bin/ls", prefd1, STDOUT_PIPE);
+        close(prefd1[1]);
+        exec_command("/usr/bin/wc", nextfd2, STDIN_PIPE);
+        close(nextfd2[0]);
 
         int temp_pipefd[] = {pipefd1[0], pipefd2[1]};
         exec_command("/usr/bin/wc", temp_pipefd, STDIN_PIPE | STDOUT_PIPE);
 
-        close(pipefd1[0]);
-        close(pipefd2[1]);
+        close(prefd1[0]);
+        close(nextfd2[1]);
 
         int wstatus;
         while (wait(&wstatus) > 0);

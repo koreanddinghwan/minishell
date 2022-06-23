@@ -209,7 +209,7 @@ void	execute(t_data *data)
 	int redirc = 0;
 	while (cmd_lst)
 	{
-		if (redirc && pipe_num == 0)			// 리다이렉션이 있고 파이프가 없으면
+		if (redirc)			// 리다이렉션이 있으면
 		{
 			// execute_redirect(data);			// 리다이렉션 처리
 			break;
