@@ -167,7 +167,6 @@ void	execute_child()
 int execute_pipe(t_data *data)
 {
 	// pid_t pid;
-	// int status;
 	t_dlst	*cmd;
 	t_io_cont *node;
 	char	*next_cmd;
@@ -219,7 +218,7 @@ void	execute(t_data *data)
 		else
 			execute_pipe(data);					// 파이프처리
 		cmd_lst = cmd_lst->next;
-		data->cmd_lst = data->cmd_lst->next;
+		// data->cmd_lst = data->cmd_lst->next;
 		cmd = GET_CMD(cmd_lst);
 	}
 }
