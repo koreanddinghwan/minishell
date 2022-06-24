@@ -148,7 +148,6 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	char *ag[] = {GET_CMD(cmd), NULL};
 
 	(void) pipe_exist;
-	(void) pipe_num;
 	if (*pipe_num > 0 || *pipe_num == 0)	// 다음 파이프가 있으면		
 	{
 		printf("dup2(OUT)\n");
@@ -183,7 +182,8 @@ void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, in
 		printf("자식 시작\n");
 		execute_child(data, cmd, next_cmd, fd, &(*pipe_num), pipe_exist);
 	}
-	if (*pipe_num > 0 || pipe_exist)
+	printf("pipe_num = %d\n", *pipe_num);
+	if (*pipe_num > 0 || *pipe_num == 0)
 	{
 		printf("입력한 커맨드가 이거? %s\n", GET_CMD(cmd));
 		printf("dup2(IN)\n");
@@ -227,9 +227,11 @@ void	execute(t_data *data)
 		}
 		else
 		{
-			printf("파이프처리\n");
 			if (next_pipe > 0)
+			{
 				pipe(fd);
+				printf("파이프 뚫음\n");
+			}
 			printf("[-------START--------]\n");
 			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist);		// 파이프처리
 			printf("[--------END---------]\n");
