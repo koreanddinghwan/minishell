@@ -83,6 +83,8 @@ enum	e_state
 # define GET_FILEPATH(lst) (((t_io_cont *)lst->content)->filepath)
 # define GET_DELIMETER(lst) (((t_heredoc_cont *)lst->content)->delimeter)
 
+// # define GET_FD(lst) (((t_io_cont *)lst->content)->fd)
+
 #define TRUE 1
 #define FALSE 0
 
