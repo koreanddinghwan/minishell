@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/23 20:01:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 01:57:17 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,8 @@ enum	e_state
 #define EX_BADASSIGN	260	/* variable assignment error */
 #define EX_EXPFAIL	261	/* word expansion failed */
 #define EX_DISKFALLBACK	262	/* fall back to disk command from builtin */
+
+# define FS_EXISTS		0x1
+# define FS_EXECABLE 	0x2
+# define S_ISEXEC(m)	((m) && (S_IXUSR))
 #endif

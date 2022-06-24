@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/23 20:21:39 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 01:54:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ t_dlst			*make_output_lst(t_data *data);
 t_dlst			*make_heredoc_lst(t_data *data);
 t_dlst			*make_append_lst(t_data *data);
 char			*make_cmd(t_data *data);
+char			*path_finder(t_envlst *envlst, char *cmd);
 enum e_cmdtype	get_cmdtype(char *cmd);
-char			**make_args(t_data *data);
+char			**make_args(t_data *data, char *cmd);
 /*
  * tools
  * */

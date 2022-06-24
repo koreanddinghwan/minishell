@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 21:08:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 20:07:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 01:55:59 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	simple_cmd(t_data *data)
 	cur_cmd_cont->append_lst = make_append_lst(data);
 	cur_cmd_cont->cmd = make_cmd(data);
 	cur_cmd_cont->cmdtype = get_cmdtype(cur_cmd_cont->cmd);
-	cur_cmd_cont->args = make_args(data);
+	if (cur_cmd_cont->cmdtype != E_BUILTIN)
+		cur_cmd_cont->cmd = path_finder(data->env_lst, cur_cmd_cont->cmd);
+	cur_cmd_cont->args = make_args(data, cur_cmd_cont->cmd);
 	ft_dlst_pushback(&data->cmd_lst, ft_dlst_new(cur_cmd_cont));
 	t_dlst *tok_lst = data->lexer_token_lst;
 	ft_printf("==left tokens==\n");
