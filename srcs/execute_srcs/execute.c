@@ -148,7 +148,7 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	char *ag[] = {GET_CMD(cmd), NULL};
 
 	(void) pipe_exist;
-	if (*pipe_num > 0 || *pipe_num == 0)	// 다음 파이프가 있으면		
+	if (*pipe_num > 0 || *pipe_num == 0)
 	{
 		printf("dup2(OUT)\n");
 		close(fd[0]);
@@ -179,20 +179,19 @@ void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, in
 		exit(1);
 	if (pid == 0)
 	{
-		printf("자식 시작\n");
 		execute_child(data, cmd, next_cmd, fd, &(*pipe_num), pipe_exist);
 	}
 	printf("pipe_num = %d\n", *pipe_num);
-	if (*pipe_num > 0 || *pipe_num == 0)
+	if (*pipe_num > 0)
 	{
 		printf("입력한 커맨드가 이거? %s\n", GET_CMD(cmd));
 		printf("dup2(IN)\n");
-		close(fd[1]);
+		// close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);			// 현재 프로세스의 STDIN을 fd[0]으로 설정
 	}
-	waitpid(pid, &status, 0);
+	// waitpid(pid, &status, 0);
 	printf("%d %d\n", fd[0], fd[1]);
-	// while (wait(&status) > 0);
+	while (wait(&status) > 0);
 }
 
 void	execute(t_data *data)
@@ -235,16 +234,24 @@ void	execute(t_data *data)
 			printf("[-------START--------]\n");
 			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist);		// 파이프처리
 			printf("[--------END---------]\n");
-			if (next_pipe > 0)
-				close(fd[1]);
-			else
-				close(fd[0]);
 		}
+		// if (next_pipe > 0)
+		// {
+		// 	printf("close: fd[1]\n");
+		// 	close(fd[1]);
+		// }
+		// else
+		// {
+		// 	printf("close: fd[0]\n");
+		// 	close(fd[0]);
+		// }
 		cmd_lst = cmd_lst->next;
 		if (next_cmd_lst)
 		{
 			if (next_cmd_lst->next && next_cmd_lst)
+			{
 				next_cmd_lst = next_cmd_lst->next;
+			}
 		}
 		next_pipe--;
 	}

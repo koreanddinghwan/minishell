@@ -14,7 +14,7 @@ void    execve_com(char *com, int fd[2], int flag, char **envp)
 
         if (pid == 0)
         {
-                close(fd[0]);
+                // close(fd[0]);
                 printf("dup2(OUT)\n");
                 dup2(fd[1], STDOUT_FILENO);
                 execve(com, ag, envp);
@@ -22,7 +22,7 @@ void    execve_com(char *com, int fd[2], int flag, char **envp)
         // waitpid(pid, 0, 0);
         if (flag == 0)
         {
-                close(fd[1]);
+                // close(fd[1]);
                 printf("dup2(IN)\n");
                 dup2(fd[0], STDIN_FILENO);
                 
@@ -52,15 +52,17 @@ int main(int ac, char *av[], char **envp)
         pipe(fd);
         // pipe(n_fd);
 
-        execve_com(ls, fd, pipe_flag, envp);           // STDIN이 들어오는 명령어는 dup2 STDIN_FILENO를 쓰면 안됌
+        execve_com(pwd, fd, pipe_flag, envp);           // STDIN이 들어오는 명령어는 dup2 STDIN_FILENO를 쓰면 안됌
         // --pipe_flag;                                    // STDIN이 들어오지않는 명령어는 dup2사용
+        printf("close: fd[1]\n");
         close(fd[1]);
 
         // execve_com(ls, n_fd, pipe_flag, envp);
         // ++pipe_flag;
         // close(n_fd[0]);
         
-        execve_com(wc, fd, pipe_flag, envp);
+        execve_com(pwd, fd, pipe_flag, envp);
+        printf("close: fd[0]\n");
         close(fd[0]);
         printf("%d %d\n", fd[0], fd[1]);
 
