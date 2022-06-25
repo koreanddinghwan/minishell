@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 01:13:39 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:09:21 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,21 +248,14 @@ void	execute(t_data *data)
 			if (next_pipe > 0)
 			{
 				pipe(fd);
-<<<<<<< HEAD
-=======
-				printf("파이프 뚫음\n");
->>>>>>> b2855603c19ec475be8a669159ee2ae09a5a5ddf
 			}
 			printf("[-------START--------]\n");
 			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist, std);		// 파이프처리
 			printf("[--------END---------]\n");
-<<<<<<< HEAD
 			// if (next_pipe > 0)
 			// 	close(fd[1]);
 			// else
 			// 	close(fd[0]);
-=======
->>>>>>> b2855603c19ec475be8a669159ee2ae09a5a5ddf
 		}
 		// if (next_pipe > 0)
 		// {
