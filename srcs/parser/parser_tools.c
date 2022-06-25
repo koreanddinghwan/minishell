@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 14:25:17 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:42:54 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ void	print_args_cmd(char **args)
 		i++;
 	}
 	printf("==========\n");
+}
+
+void	delete_multiple_tokens(t_data *data, enum e_word_type type)
+{
+	t_dlst	*tok_lst;
+	t_dlst	*next;
+
+	tok_lst = data->lexer_token_lst;
+	while (tok_lst && GET_TOKEN_TYPE(tok_lst) == type)
+	{
+		next = tok_lst->next;
+		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
+		tok_lst = next;
+	}
 }
 
 char	*wget_join(t_dlst *cur, enum e_word_type type)
@@ -104,11 +118,9 @@ t_cmd_cont	*init_cmd_cont(void)
 	rtn->args = NULL;
 	rtn->input_lst = NULL;
 	rtn->output_lst = NULL;
-	rtn->append_lst = NULL;
 	rtn->heredoc_lst = NULL;
 	rtn->input_n = 0;
 	rtn->output_n = 0;
-	rtn->append_n = 0;
 	rtn->heredoc_n = 0;
 	return (rtn);
 }

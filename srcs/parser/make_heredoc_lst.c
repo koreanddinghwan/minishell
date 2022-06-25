@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:06:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/23 20:21:40 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:54:21 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,5 @@ t_dlst	*make_heredoc_lst(t_data *data)
 			tok_lst = data->lexer_token_lst;
 		}
 	}
-	ft_printf("heredoc lst\n");
-	print_heredoc_lst(rtn);
 	return (rtn);
 }
