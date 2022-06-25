@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:32:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 14:21:33 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:39:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	**set_pipe(int num)
 	}
 	return (rtn);
 }
+/*
 void	exec(t_data *data)
 {
 	t_dlst	*cmd_lst;
@@ -72,4 +73,4 @@ void	exec(t_data *data)
 	print_cmddata(data);
 	if (child_num > 1)
 		pipe = set_pipe(child_num);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 16:46:58 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:37:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef	struct s_data
 	char		**env;
 	size_t		env_size;
 	t_dlst		*cmd_lst;
+	int			cmd_size;
 	int			exit_status;
 }	t_data;
 

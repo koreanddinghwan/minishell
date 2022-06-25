@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 17:53:58 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:39:31 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -52,10 +52,9 @@ void	make_cmdcont(t_data *data)
 
 void	parser(t_data *data)
 {
-	t_dlst	*tok_lst;
-
 	if (!data)
 		return ;
-	tok_lst = data->lexer_token_lst;
 	make_cmdcont(data);
+	data->cmd_size = ft_dlst_size(data->cmd_lst);
+	ft_printf("cmd size%d\n", data->cmd_size);
 }
