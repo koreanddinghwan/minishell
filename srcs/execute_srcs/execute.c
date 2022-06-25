@@ -147,29 +147,41 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
 	(void) pipe_exist;
-	if (*pipe_num > 0)
+	int pipes =data->cmd_size - 1;
+	if (*pipe_num == pipes)
 	{
-		printf("첫번째\n");
+		printf("시작\n");
 		dup2(std[0], STDIN_FILENO);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
 	}
-	else if (*pipe_num == 0)
+	else if (*pipe_num == 0 && pipe_exist)
 	{
-		printf("두번째\n");
+		printf("마지막\n");
 		dup2(fd[0], STDIN_FILENO);
 		dup2(std[1], STDOUT_FILENO);
 		close(fd[1]);
 		close(fd[0]);
 	}
+	else
+	{
+		printf("중간\n");
+		dup2(fd[0], STDIN_FILENO);
+		dup2(std[1], STDOUT_FILENO);
+		close(fd[1]);
+		close(fd[0]);
+	}
+	printf("fd[0]: %d, fd[1]: %d, std[0]: %d, std[1]: %d\n", fd[0], fd[1], std[0], std[1]);
 	if (builtin(GET_CMD(cmd)))
 	{
 		execute_builtin(data, GET_CMD(cmd), GET_ARGS(cmd));
+		printf("빌트인\n");
 	}
 	else
 	{
 		// 커맨드 에러처리
+		printf("!!!!!!출력!!!!!!!!\n");
 		status = execve(GET_CMD(cmd), ag, data->env);
 	}
 	if (status == -1)
@@ -183,27 +195,32 @@ void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, in
 	pid_t pid;
 	int	status;
 
+	printf("입력한 커맨드가 이거? %s\n", GET_CMD(cmd));
 	pid = fork();
 	if (pid < 0)
 		exit(1);
 	if (pid == 0)
 	{
+		dup2(std[0], STDIN_FILENO);
+		dup2(std[1], STDOUT_FILENO);
 		printf("자식 시작\n");
 		execute_child(data, cmd, next_cmd, fd, &(*pipe_num), pipe_exist, std);
 	}
 	waitpid(pid, &status, 0);
 	if (*pipe_num > 0)
 	{
-		printf("입력한 커맨드가 이거? %s\n", GET_CMD(cmd));
 		close(std[0]);
 		close(fd[1]);
 	}
-	else
+	else if (pipe_exist != 0)
 	{
 		close(std[1]);
 		close(fd[0]);
 	}
-	printf("%d %d\n", fd[0], fd[1]);
+	else
+	{
+		printf("엥\n");
+	}
 	// waitpid(pid, &status, 0);
 	// while(wait(&status) > 0);
 }
@@ -225,10 +242,15 @@ void	execute(t_data *data)
 	char **args = GET_ARGS(cmd_lst);
 	// out_re = GET_OUTPUT_LIST(cmd_lst);
 
-	dup2(std[0], STDIN_FILENO);
-	dup2(std[1], STDOUT_FILENO);
-	int pipe_exist = 1; // 파이프 존재
-	int next_pipe = 1;	// 파이프 갯수
+	int pipe_exist; // 파이프 존재
+	int next_pipe;	// 파이프 갯수
+	next_pipe = data->cmd_size - 1;
+	int s;
+	s = next_pipe;
+	if (next_pipe == 0)
+		pipe_exist = 0;
+	else
+		pipe_exist = 1;
 
 	// int redirc = 0;
 	while (cmd_lst)
@@ -245,12 +267,13 @@ void	execute(t_data *data)
 		}
 		else
 		{
-			if (next_pipe > 0)
+			if (next_pipe == s)
 			{
 				pipe(fd);
+				printf("###파이프 개방###\n");
 			}
 			printf("[-------START--------]\n");
-			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist, std);		// 파이프처리
+			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist, std);
 			printf("[--------END---------]\n");
 			// if (next_pipe > 0)
 			// 	close(fd[1]);
