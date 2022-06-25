@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 18:37:37 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 21:54:03 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ enum e_cmdtype
 
 typedef struct	s_io_cont
 {
-	int					fd[2];
 	char				*filepath;
 	enum e_word_type	type;
 }	t_io_cont;
@@ -66,12 +65,10 @@ typedef struct	s_cmd_cont
 	char			*cmd;
 	char			**args;
 	int				nth;
-	t_dlst			*input_lst;
-	int				input_n;
-	t_dlst			*output_lst;
-	int				output_n;
-	t_dlst			*heredoc_lst;
-	int				heredoc_n;
+	t_dlst			*iolst;
+	int				fd[2];
+	int				redir_in_fd;
+	int				redir_out_fd;
 }	t_cmd_cont;
 
 #endif

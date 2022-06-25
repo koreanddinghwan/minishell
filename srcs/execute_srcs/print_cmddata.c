@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 07:22:50 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 16:49:39 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 21:39:57 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	print_args(t_dlst *cmdlst)
 
 	args = GET_ARGS(cmdlst);
 	if (!args)
+	{
 		return ;
+	}
 	i = 0;
 	while (*args)
 	{
@@ -29,43 +31,19 @@ void	print_args(t_dlst *cmdlst)
 	}
 }
 
-void	print_inputlst(t_dlst *cmdlst)
+
+
+void	print_iolst(t_dlst *cmdlst)
 {
 	t_dlst	*lst;
 
-	lst = GET_INPUT_LIST(cmdlst);
+	lst = GET_IO_LIST(cmdlst);
 	while (lst)
 	{
-		ft_printf("input lst : %s\n", GET_FILEPATH(lst));
+		ft_printf("iolst : type : %d, path : %s\n", GET_IOTYPE(lst), GET_FILEPATH(lst));
 		lst = lst->next;
 	}
 }
-
-void	print_outputlst(t_dlst *cmdlst)
-{
-	t_dlst	*lst;
-
-	lst = GET_OUTPUT_LIST(cmdlst);
-	while (lst)
-	{
-		ft_printf("output lst : %s\n", GET_FILEPATH(lst));
-		lst = lst->next;
-	}
-}
-
-void	print_heredoclst(t_dlst *cmdlst)
-{
-	t_dlst	*lst;
-
-	lst = GET_HEREDOC_LIST(cmdlst);
-	while (lst)
-	{
-		ft_printf("heredoc lst : %s\n", GET_HEREDOC_LIST(lst));
-		lst = lst->next;
-	}
-
-}
-
 
 void	print_cmddata(t_data *data)
 {
@@ -79,12 +57,9 @@ void	print_cmddata(t_data *data)
 		ft_printf("#######\n");
 		ft_printf("#######\n");
 		ft_printf("%d번째 데이터\n", i);
-		ft_printf("%s\n", GET_CMD(cmdlst));
-
+		ft_printf("cmd : %s\n", GET_CMD(cmdlst));
 		print_args(cmdlst);
-		print_inputlst(cmdlst);
-		print_outputlst(cmdlst);
-		print_heredoclst(cmdlst);
+		print_iolst(cmdlst);
 		cmdlst = cmdlst->next;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 17:42:54 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 21:14:58 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ char	*wget_join(t_dlst *cur, enum e_word_type type)
 	char	*buffer;
 
 	rtn = ft_strdup("");
+	if (type >= 8 && type <= 10)
+		type = W_FILE;
+	else if (type == 7)
+		type = W_DELIMETER;
 	while (cur && GET_TOKEN_TYPE(cur) == type)
 	{
 		ex = rtn;
@@ -82,6 +86,10 @@ char	*wget_join(t_dlst *cur, enum e_word_type type)
 
 t_dlst	*wget_startpoint(t_dlst *cur, enum e_word_type type)
 {
+	if (type >= 8 && type <= 10)
+		type = W_FILE;
+	else if (type == 7)
+		type = W_DELIMETER;
 	while (cur && GET_TOKEN_TYPE(cur) != type)
 		cur = cur->next;
 	return (cur);
@@ -93,7 +101,12 @@ int	get_offset(t_dlst *tok_lst, enum e_word_type type)
 	t_dlst	*cur;
 
 	offset = 0;
+	if (type >= 8 && type <= 10)
+		type = W_FILE;
+	else if (type == 7)
+		type = W_DELIMETER;
 	cur = tok_lst;
+	printf("type : %d\n", type);
 	while (cur && GET_TOKEN_TYPE(cur) != type)
 	{
 		cur = cur->next;
@@ -116,12 +129,7 @@ t_cmd_cont	*init_cmd_cont(void)
 		return (NULL);
 	rtn->cmd = NULL;
 	rtn->args = NULL;
-	rtn->input_lst = NULL;
-	rtn->output_lst = NULL;
-	rtn->heredoc_lst = NULL;
-	rtn->input_n = 0;
-	rtn->output_n = 0;
-	rtn->heredoc_n = 0;
+	rtn->iolst = NULL;
 	return (rtn);
 }
 

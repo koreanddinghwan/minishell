@@ -6,25 +6,12 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:40:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 16:51:13 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 20:58:16 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cleaner.h"
 
-void	fnc_free_deli(void *cont)
-{
-	t_heredoc_cont	*content;
-
-	content = cont;
-	if (content->delimeter)
-		free(content->delimeter);
-}
-
-void	free_deli(t_cmd_cont *content)
-{
-	ft_dlst_clear(&(content->heredoc_lst), fnc_free_deli);
-}
 
 void	fnc_free_filepath(void *cont)
 {
@@ -37,8 +24,7 @@ void	fnc_free_filepath(void *cont)
 
 void	free_path(t_cmd_cont *content)
 {
-	ft_dlst_clear(&(content->input_lst), fnc_free_filepath);
-	ft_dlst_clear(&(content->output_lst), fnc_free_filepath);
+	ft_dlst_clear(&(content->iolst), fnc_free_filepath);
 }
 
 void	cmd_cont_free(void *cont)
@@ -61,5 +47,4 @@ void	cmd_cont_free(void *cont)
 		}
 	}
 	free_path(content);
-	free_deli(content);
 }
