@@ -147,7 +147,7 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
 	(void) pipe_exist;
-	if (*pipe_num > 0 || *pipe_num == 0)
+	if (*pipe_num > 0)
 	{
 		printf("첫번째\n");
 		dup2(std[0], STDIN_FILENO);
@@ -165,8 +165,6 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	}
 	if (builtin(GET_CMD(cmd)))
 	{
-		close(std[1]);
-		close(fd[0]);
 		execute_builtin(data, GET_CMD(cmd), GET_ARGS(cmd));
 	}
 	else
@@ -213,7 +211,8 @@ void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, in
 void	execute(t_data *data)
 {
 	t_dlst *cmd_lst;
-	t_dlst	*next_cmd_lst;
+	t_dlst *next_cmd_lst;
+
 	int fd[2];
 	int std[2]; // std[0] = STDIN, std[1] = STDOUT
 // t_dlst *out_re;
@@ -230,6 +229,7 @@ void	execute(t_data *data)
 	dup2(std[1], STDOUT_FILENO);
 	int pipe_exist = 1; // 파이프 존재
 	int next_pipe = 1;	// 파이프 갯수
+
 	// int redirc = 0;
 	while (cmd_lst)
 	{
@@ -257,16 +257,6 @@ void	execute(t_data *data)
 			// else
 			// 	close(fd[0]);
 		}
-		// if (next_pipe > 0)
-		// {
-		// 	printf("close: fd[1]\n");
-		// 	close(fd[1]);
-		// }
-		// else
-		// {
-		// 	printf("close: fd[0]\n");
-		// 	close(fd[0]);
-		// }
 		cmd_lst = cmd_lst->next;
 		if (next_cmd_lst)
 		{

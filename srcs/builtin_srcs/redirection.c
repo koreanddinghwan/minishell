@@ -95,37 +95,37 @@ int output_redirection(char *command, char *target, char **envp)
 // 	return (1);
 // }
 
-// int	here_document()
-// {
-// 	int fd;
-// 	pid_t pid;
-// 	char *line;
-// 	char *ag[]={"/bin/cat", NULL};
+int	here_document()
+{
+	int fd;
+	pid_t pid;
+	char *line;
+	char *ag[]={"/bin/cat", NULL};
 
-// 	fd = open("hi", O_CREAT | O_RDWR | O_TRUNC, 0644);
-// 	pid = fork();
-// 	if (pid == 0)
-// 	{
-// 		printf("[cat << hi]: start!\n");
-// 		dup2(fd, STDIN_FILENO);
-// 		execve("bin/cat", ag, 0);
-// 		while (1)
-// 		{
-// 			line = readline("heredoc> ");
-// 			if (!strcmp(line, "hi"))
-// 			{
-// 				printf(" exit\n");
-// 				return (0);
-// 			}
-// 		}
-// 	}
-// 	else
-// 	{
-// 		waitpid(pid, NULL, 0);
-// 		close(fd);
-// 	}
-// 	return (1);
-// }
+	fd = open("hi", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	pid = fork();
+	if (pid == 0)
+	{
+		printf("[cat << hi]: start!\n");
+		dup2(fd, STDIN_FILENO);
+		execve("bin/cat", ag, 0);
+		while (1)
+		{
+			line = readline("heredoc> ");
+			if (!strcmp(line, "hi"))
+			{
+				printf(" exit\n");
+				return (0);
+			}
+		}
+	}
+	else
+	{
+		waitpid(pid, NULL, 0);
+		close(fd);
+	}
+	return (1);
+}
 
 int main(int ac, char **av, char **envp)
 {
@@ -135,9 +135,9 @@ int main(int ac, char **av, char **envp)
 	char env[12] = "/usr/bin/env"; // not a directory: ?????????
 	char tar[9] = "test.txt";
 	// input_redirection(env, tar, envp);
-	output_redirection(cat, tar, envp);
+	// output_redirection(cat, tar, envp);
 	// double_output_redirection(cat, tar, envp);
-	// here_document();
+	here_document();
 	// here document: '<<'
 
 	// output_redirection: '>' ex) echo abc > test.txt == > test.txt echo abc
