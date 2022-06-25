@@ -10,6 +10,7 @@
         "ios": "c",
         "parser.h": "c",
         "tokenizer.h": "c",
-        "locale": "c"
+        "locale": "c",
+        "random": "c"
     }
 }

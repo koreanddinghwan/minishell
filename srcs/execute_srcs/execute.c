@@ -147,8 +147,12 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
 	(void) pipe_exist;
+<<<<<<< HEAD
 	(void) pipe_num;
 	if (*pipe_num > 0)	
+=======
+	if (*pipe_num > 0 || *pipe_num == 0)
+>>>>>>> b2855603c19ec475be8a669159ee2ae09a5a5ddf
 	{
 		printf("첫번째\n");
 		dup2(std[0], STDIN_FILENO);
@@ -246,24 +250,42 @@ void	execute(t_data *data)
 		}
 		else
 		{
-			printf("파이프처리\n");
 			if (next_pipe > 0)
 			{
 				pipe(fd);
+<<<<<<< HEAD
+=======
+				printf("파이프 뚫음\n");
+>>>>>>> b2855603c19ec475be8a669159ee2ae09a5a5ddf
 			}
 			printf("[-------START--------]\n");
 			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist, std);		// 파이프처리
 			printf("[--------END---------]\n");
+<<<<<<< HEAD
 			// if (next_pipe > 0)
 			// 	close(fd[1]);
 			// else
 			// 	close(fd[0]);
+=======
+>>>>>>> b2855603c19ec475be8a669159ee2ae09a5a5ddf
 		}
+		// if (next_pipe > 0)
+		// {
+		// 	printf("close: fd[1]\n");
+		// 	close(fd[1]);
+		// }
+		// else
+		// {
+		// 	printf("close: fd[0]\n");
+		// 	close(fd[0]);
+		// }
 		cmd_lst = cmd_lst->next;
 		if (next_cmd_lst)
 		{
 			if (next_cmd_lst->next && next_cmd_lst)
+			{
 				next_cmd_lst = next_cmd_lst->next;
+			}
 		}
 		next_pipe--;
 	}

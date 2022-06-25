@@ -95,7 +95,7 @@ char	**make_args(t_data *data, char *cmd)
 	ft_printf("args : %d\n", count);
 	rtn = malloc(sizeof(char *) * (count + 3));
 	rtn[0] = ft_strdup(cmd);
-	tok_lst = data->lexer_token_lst;
+ 	tok_lst = data->lexer_token_lst;
 	if (tok_lst && GET_TOKEN_TYPE(tok_lst) == W_SPACE)
 		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
 	join_args(rtn, data);
