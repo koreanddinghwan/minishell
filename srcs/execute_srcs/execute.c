@@ -147,12 +147,7 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
 	(void) pipe_exist;
-<<<<<<< HEAD
-	(void) pipe_num;
-	if (*pipe_num > 0)	
-=======
 	if (*pipe_num > 0 || *pipe_num == 0)
->>>>>>> b2855603c19ec475be8a669159ee2ae09a5a5ddf
 	{
 		printf("첫번째\n");
 		dup2(std[0], STDIN_FILENO);
