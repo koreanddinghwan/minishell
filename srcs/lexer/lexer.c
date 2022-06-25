@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/23 20:01:46 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:55:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,5 @@ int	lexer(t_data *data)
 	lexer_w_converter(data);
 	replacer(data);
 	lexer_add_nth(data);
-	ft_printf("after convert\n");
-	lexer_token_printer(data);
 	return (SUCESS);
 }

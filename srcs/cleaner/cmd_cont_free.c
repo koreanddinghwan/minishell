@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:40:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 15:18:16 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 16:51:13 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	free_path(t_cmd_cont *content)
 {
 	ft_dlst_clear(&(content->input_lst), fnc_free_filepath);
 	ft_dlst_clear(&(content->output_lst), fnc_free_filepath);
-	ft_dlst_clear(&(content->append_lst), fnc_free_filepath);
 }
 
 void	cmd_cont_free(void *cont)

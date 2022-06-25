@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:08:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 15:37:45 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:51:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	print_token_lst(t_data *data)
 {
-	if (data)
-		return ;
-	/*
-	while (data->token_lst)
+	t_dlst	*tok_lst;
+
+	tok_lst = data->lexer_token_lst;
+	while (tok_lst)
 	{
-		printf("type : %d, value : %c\n", ((t_token *)(data->token_lst->content))->type, ((t_token *)(data->token_lst->content))->value);
-		data->token_lst = data->token_lst->next;
-	}*/
+		printf("tok type : %d, buffer : %s\n", GET_TOKEN_TYPE(tok_lst), GET_TOKEN_BUFFER(tok_lst));
+		tok_lst = tok_lst->next;
+	}
 }

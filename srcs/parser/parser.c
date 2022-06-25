@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 15:15:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 17:53:58 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -14,6 +14,7 @@
  * */
 
 #include "parser.h"
+#include "tmp.h"
 
 /*
  * cmd(builtin)  args | cmd(builtin) args
@@ -22,7 +23,6 @@ void	get_lst_size(t_cmd_cont *cur)
 {
 	cur->input_n = ft_dlst_size(cur->input_lst);
 	cur->output_n = ft_dlst_size(cur->output_lst);
-	cur->append_n = ft_dlst_size(cur->append_lst);
 	cur->heredoc_n = ft_dlst_size(cur->heredoc_lst);
 }
 
@@ -38,7 +38,6 @@ void	make_cmdcont(t_data *data)
 		cur_cmd_cont->input_lst = make_input_lst(data);
 		cur_cmd_cont->output_lst = make_output_lst(data);
 		cur_cmd_cont->heredoc_lst = make_heredoc_lst(data);
-		cur_cmd_cont->append_lst = make_append_lst(data);
 		cur_cmd_cont->cmd = make_cmd(data);
 		cur_cmd_cont->cmdtype = get_cmdtype(cur_cmd_cont->cmd);
 		if (cur_cmd_cont->cmdtype != E_BUILTIN)

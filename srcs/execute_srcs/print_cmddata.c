@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 07:22:50 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 07:45:13 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 16:49:39 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,6 @@ void	print_outputlst(t_dlst *cmdlst)
 	}
 }
 
-void	print_appendlst(t_dlst *cmdlst)
-{
-	t_dlst	*lst;
-
-	lst = GET_APP_LIST(cmdlst);
-	while (lst)
-	{
-		ft_printf("append lst : %s\n", GET_FILEPATH(lst));
-		lst = lst->next;
-	}
-}
-
 void	print_heredoclst(t_dlst *cmdlst)
 {
 	t_dlst	*lst;
@@ -96,7 +84,6 @@ void	print_cmddata(t_data *data)
 		print_args(cmdlst);
 		print_inputlst(cmdlst);
 		print_outputlst(cmdlst);
-		print_appendlst(cmdlst);
 		print_heredoclst(cmdlst);
 		cmdlst = cmdlst->next;
 		i++;
