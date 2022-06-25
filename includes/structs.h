@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 18:28:40 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 14:33:50 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,15 @@ typedef struct	s_cmd_cont
 	enum e_cmdtype	cmdtype;
 	char			*cmd;
 	char			**args;
+	int				nth;
 	t_dlst			*input_lst;
+	int				input_n;
 	t_dlst			*output_lst;
+	int				output_n;
 	t_dlst			*append_lst;
+	int				append_n;
 	t_dlst			*heredoc_lst;
+	int				heredoc_n;
 }	t_cmd_cont;
 
 #endif

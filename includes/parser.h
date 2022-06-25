@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 01:54:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 14:23:29 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "defines_enums.h"
 # include "cleaner.h"
 
-void			simple_cmd(t_data *data);
-void			pipe_cmd(t_data *data);
 t_dlst			*make_input_lst(t_data *data);
 t_dlst			*make_output_lst(t_data *data);
 t_dlst			*make_heredoc_lst(t_data *data);

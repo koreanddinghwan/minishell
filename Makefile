@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/25 01:56:32 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/25 14:22:55 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SYNTAX_SRCS = $(addprefix ./srcs/syntax_analyzer_module/, syntax_analyzer.c synt
 SYNTAX_OBJS = $(SYNTAX_SRCS:.c=.o)
 
 PARSE_SRCS = $(addprefix ./srcs/parser/, parser.c parser_tools.c  \
-			 simple_cmd.c pipe_cmd.c make_input_lst.c make_output_lst.c \
+			 make_input_lst.c make_output_lst.c \
 			 make_heredoc_lst.c make_append_lst.c make_cmd.c make_args.c \
 			 get_cmdtype.c)
 PARSE_OBJS = $(PARSE_SRCS:.c=.o)
