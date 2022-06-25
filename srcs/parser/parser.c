@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 19:49:32 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 18:39:31 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -21,6 +21,8 @@
  * */
 void	get_lst_size(t_cmd_cont *cur)
 {
+	cur->input_n = ft_dlst_size(cur->input_lst);
+	cur->output_n = ft_dlst_size(cur->output_lst);
 	cur->heredoc_n = ft_dlst_size(cur->heredoc_lst);
 }
 
@@ -33,7 +35,8 @@ void	make_cmdcont(t_data *data)
 	while (data->lexer_token_lst)
 	{
 		cur_cmd_cont = init_cmd_cont();
-		cur_cmd_cont->iolst = make_iolst(data);
+		cur_cmd_cont->input_lst = make_input_lst(data);
+		cur_cmd_cont->output_lst = make_output_lst(data);
 		cur_cmd_cont->heredoc_lst = make_heredoc_lst(data);
 		cur_cmd_cont->cmd = make_cmd(data);
 		cur_cmd_cont->cmdtype = get_cmdtype(cur_cmd_cont->cmd);
@@ -54,5 +57,4 @@ void	parser(t_data *data)
 	make_cmdcont(data);
 	data->cmd_size = ft_dlst_size(data->cmd_lst);
 	ft_printf("cmd size%d\n", data->cmd_size);
-	print_cmddata(data);
 }
