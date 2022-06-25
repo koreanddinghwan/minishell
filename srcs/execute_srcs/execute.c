@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 18:09:21 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/25 19:50:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,18 +106,18 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 		ft_cd(data, args);
 	// if (ft_strcmp(EXIT, str) == 0)
 	// 	ft_exit();
-	t_dlst *cmd_list;
-	t_dlst *out_re;
+	//t_dlst *cmd_list;
+//	t_dlst *out_re;
 	// t_dlst *input_re;
 	
-	cmd_list = data->cmd_lst;
+	//cmd_list = data->cmd_lst;
 
-	out_re = GET_OUTPUT_LIST(cmd_list);
+	//out_re = GET_OUTPUT_LIST(cmd_list);
 	// input_re = GET_INPUT_LIST(cmd_list);
-	if (out_re)
+/*	if (out_re)
 	{
 		output_redirection(data, cmd, GET_FILEPATH(out_re), args, data->env);
-	}
+	}*/
 	// if (input_re)
 	// {
 	// 	input_redirection();
