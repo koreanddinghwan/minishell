@@ -129,6 +129,8 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 		close(fd[0]);
 		close(std[1]);
 	}
+	///////////////////////////////
+	
 	printf("fd[0]: %d, fd[1]: %d, std[0]: %d, std[1]: %d\n", fd[0], fd[1], std[0], std[1]);
 	if (builtin(GET_CMD(cmd)))
 	{
@@ -202,6 +204,8 @@ void	execute(t_data *data)
 
 	while (cmd_lst)
 	{
+		//
+
 		// if (redirc)			// 리다이렉션이 있으면
 		// {
 		// 	execute_redirect(data);			// 리다이렉션 처리
