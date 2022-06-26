@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:02:37 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 07:38:40 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 00:13:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,6 @@
 # include "builtin.h"
 
 void	print_cmddata(t_data *data);
+int	set_redir(t_cmd_cont *cmd, t_data *data);
+int	set_heredoc(t_cmd_cont *cmd, t_data *data);
 #endif

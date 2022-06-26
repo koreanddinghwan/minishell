@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_heredoc.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 00:13:46 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/27 00:13:51 by myukang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "exec.h"
 
 int	set_heredocnum(t_dlst *iolst)
@@ -22,28 +34,25 @@ int	exec_heredoc(t_heredoc_cont *new, t_data *data)
 	char	*replaced;
 
 	fd = open(new->tmpname, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (fd > 0)
-	{
-		while (1)
-		{
-			input = get_next_line(0);
-			trimmed = ft_strtrim(input, "\n");
-			if (!input || ft_strcmp(new->delimeter, trimmed) == 0)
-			{
-				free(input);
-				free(trimmed);
-				break ;
-			}
-			replaced = get_replaced(data, input);
-			write(fd, replaced, ft_strlen(replaced));
-			free(replaced);
-			free(trimmed);
-		}
-		close(fd);
-		return (SUCESS);
-	}
-	else
+	if (fd < 0)
 		return (FAIL);
+	while (1)
+	{
+		input = get_next_line(0);
+		trimmed = ft_strtrim(input, "\n");
+		if (!input || ft_strcmp(new->delimeter, trimmed) == 0)
+		{
+			free(input);
+			free(trimmed);
+			break ;
+		}
+		replaced = get_replaced(data, input);
+		write(fd, replaced, ft_strlen(replaced));
+		free(replaced);
+		free(trimmed);
+	}
+	close(fd);
+	return (SUCESS);
 }
 
 int	set_heredoc_cont(t_dlst *iolst, t_data *data, int i)
@@ -72,8 +81,11 @@ int	set_heredoc(t_cmd_cont *cmd, t_data *data)
 		while (iolst)
 		{
 			if (GET_IOTYPE(iolst) == W_HERE_DOC)
-				set_heredoc_cont(iolst, data, i++);
+			{
+				if (set_heredoc_cont(iolst, data, i++) == FAIL)
+					return (FAIL);
 			iolst = iolst->next;
 		}
 	}
+	return (SUCESS);
 }

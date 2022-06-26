@@ -6,48 +6,35 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 21:40:46 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 00:16:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_ENUMS_H
 # define DEFINES_ENUMS_H
 
-/*
- * PIPE -> '|', REDIRECTION_OUTPUT -> '>', REDIRECTION_INPUT -> '<'
- * HERE_DOC -> <<, APPENDING_TO -> >>
-*/
+# define ECHO	"echo"
+# define CD		"cd"
+# define PWD		"pwd"
+# define EXPORT	"export"
+# define UNSET	"unset"
+# define ENV		"env"
+# define EXIT	"exit"
+# define SUCESS	1
+# define FAIL	0
 
-/*
- * builtin string literals
- * */
-# define	ECHO	"echo"
-# define	CD		"cd"
-# define	PWD		"pwd"
-# define	EXPORT	"export"
-# define	UNSET	"unset"
-# define	ENV		"env"
-# define	EXIT	"exit"
-# define	SUCESS	1
-# define	FAIL	0
-/*
- * char_type used in tokenizer
- * */
 enum	e_char_type
 {
 	NORM = 1,
 	PIPE = '|',
 	LESSER = '<',
-	GREATER = '>', 
+	GREATER = '>',
 	DQUO = '\"',
 	SQUO = '\'',
 	SPC = ' ',
 	END_C = '\0'
 };
 
-/*
- * word_type used in lexer
- * */
 enum	e_word_type
 {
 	W_COMMAND = 0,
@@ -81,38 +68,25 @@ enum	e_state
 # define GET_IOTYPE(lst) (((t_io_cont *)lst->content)->type)
 # define GET_TMPNAME(lst) (((t_io_cont *)lst->content)->tmpname)
 # define GET_FD(lst) (((t_io_cont *)lst->content)->fd)
-
-// # define GET_FD(lst) (((t_io_cont *)lst->content)->fd)
-
-#define TRUE 1
-#define FALSE 0
-
-/* Values that can be returned by execute_command (). */
-#define EXECUTION_FAILURE 1
-#define EXECUTION_SUCCESS 0
-
-/* Usage messages by builtins result in a return status of 2. */
-#define EX_BADUSAGE	2
-
-#define EX_MISCERROR	2
-
-/* Special exit statuses used by the shell, internally and externally. */
-#define EX_RETRYFAIL	124
-#define EX_WEXPCOMSUB	125
-#define EX_BINARY_FILE	126
-#define EX_NOEXEC	126
-#define EX_NOINPUT	126
-#define EX_NOTFOUND	127
-
-#define EX_SHERRBASE	256	/* all special error values are > this. */
-
-#define EX_BADSYNTAX	257	/* shell syntax error */
-#define EX_USAGE	258	/* syntax error in usage */
-#define EX_REDIRFAIL	259	/* redirection failed */
-#define EX_BADASSIGN	260	/* variable assignment error */
-#define EX_EXPFAIL	261	/* word expansion failed */
-#define EX_DISKFALLBACK	262	/* fall back to disk command from builtin */
-
+# define TRUE 1
+# define FALSE 0
+# define EXECUTION_FAILURE 1
+# define EXECUTION_SUCCESS 0
+# define EX_BADUSAGE	2
+# define EX_MISCERROR	2
+# define EX_RETRYFAIL	124
+# define EX_WEXPCOMSUB	125
+# define EX_BINARY_FILE	126
+# define EX_NOEXEC	126
+# define EX_NOINPUT	126
+# define EX_NOTFOUND	127
+# define EX_SHERRBASE	256	/* all special error values are > this. */
+# define EX_BADSYNTAX	257	/* shell syntax error */
+# define EX_USAGE	258	/* syntax error in usage */
+# define EX_REDIRFAIL	259	/* redirection failed */
+# define EX_BADASSIGN	260	/* variable assignment error */
+# define EX_EXPFAIL	261	/* word expansion failed */
+# define EX_DISKFALLBACK	262	/* fall back to disk command from builtin */
 # define FS_EXISTS		0x1
 # define FS_EXECABLE 	0x2
 # define S_ISEXEC(m)	((m) && (S_IXUSR))
