@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   replacer_tool.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:53:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 03:30:07 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/26 12:10:53 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "replacer.h"
 
-char	*ft_strndup(char *src, int size)
+char	*make_possible_cp(char *str)
 {
-	char	*rtn;
-	int		i;
+	t_size	i;
 
-	rtn = malloc(sizeof(char) * size + 1);
 	i = 0;
-	while (src[i] && i < size)
+	while (str[i])
 	{
-		rtn[i] = src[i];
+		if (!ft_isalnum(str[i]))
+			break ;
 		i++;
 	}
-	rtn[i] = 0;
-	return (rtn);
+	return (ft_strndup(str, i));
 }

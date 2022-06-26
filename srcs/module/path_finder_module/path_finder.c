@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:27:24 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 13:38:59 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 16:03:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*find_env_key(t_envlst *envlst, char *key)
 	return (NULL);
 }
 
-char	*path_finder(t_envlst *envlst, char *cmd)
+char	*cmdpath_finder(t_envlst *envlst, char *cmd)
 {
 	char	*rtn;
 
@@ -56,5 +56,27 @@ char	*path_finder(t_envlst *envlst, char *cmd)
 			return (rtn);
 		else
 			return (cmd);
+	}
+}
+
+char	*iopath_finder(char *path, int type)
+{
+	char *rtn;
+
+	rtn = NULL;
+	if (type == W_HERE_DOC)
+		return (path);
+	if (exist_slash(path) == TRUE)
+		return (path);
+	else
+	{
+		rtn = ft_strjoin("./", path);
+		if (rtn)
+		{
+			free(path);
+			return (rtn);
+		}
+		else
+			return (path);
 	}
 }

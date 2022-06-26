@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 18:39:31 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:44:28 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -19,11 +19,19 @@
 /*
  * cmd(builtin)  args | cmd(builtin) args
  * */
-void	get_lst_size(t_cmd_cont *cur)
+
+void	printleft(t_data *data)
 {
-	cur->input_n = ft_dlst_size(cur->input_lst);
-	cur->output_n = ft_dlst_size(cur->output_lst);
-	cur->heredoc_n = ft_dlst_size(cur->heredoc_lst);
+	t_dlst	*lst;
+
+	lst = data->lexer_token_lst;
+	printf("=====================left tokens===================\n");
+	while (lst)
+	{
+		printf("type : %d, buffer : %s\n", GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
+		lst = lst->next;
+	}
+	printf("===================================================\n");
 }
 
 void	make_cmdcont(t_data *data)
@@ -35,16 +43,13 @@ void	make_cmdcont(t_data *data)
 	while (data->lexer_token_lst)
 	{
 		cur_cmd_cont = init_cmd_cont();
-		cur_cmd_cont->input_lst = make_input_lst(data);
-		cur_cmd_cont->output_lst = make_output_lst(data);
-		cur_cmd_cont->heredoc_lst = make_heredoc_lst(data);
+		cur_cmd_cont->iolst = make_iolst(data);
 		cur_cmd_cont->cmd = make_cmd(data);
 		cur_cmd_cont->cmdtype = get_cmdtype(cur_cmd_cont->cmd);
 		if (cur_cmd_cont->cmdtype != E_BUILTIN)
-			cur_cmd_cont->cmd = path_finder(data->env_lst, cur_cmd_cont->cmd);
+			cur_cmd_cont->cmd = cmdpath_finder(data->env_lst, cur_cmd_cont->cmd);
 		cur_cmd_cont->args = make_args(data, cur_cmd_cont->cmd);
 		cur_cmd_cont->nth = n;
-		get_lst_size(cur_cmd_cont);
 		ft_dlst_pushback(&data->cmd_lst, ft_dlst_new(cur_cmd_cont));
 		n++;
 	}
@@ -56,5 +61,5 @@ void	parser(t_data *data)
 		return ;
 	make_cmdcont(data);
 	data->cmd_size = ft_dlst_size(data->cmd_lst);
-	ft_printf("cmd size%d\n", data->cmd_size);
+	print_cmddata(data);
 }

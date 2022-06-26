@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replacer_tool.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 12:47:13 by myukang          ###   ########.fr       */
+/*   Created: 2022/03/25 19:38:55 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/26 14:00:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "replacer.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stdlib.h>
+# include "libft.h"
+# define OPEN_MAX 256
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-char	*make_possible_cp(char *str)
-{
-	int		i;
+char		*get_next_line(int fd);
+char		*ft_readline(int fd, char *save);
+char		*ft_get_rtn(char *line);
+char		*ft_get_newsave(char *save);
+char		*ft_gnljoin(char *save, char *buffer, int *rd_rtn);
+char	*ft_gnlchr(const char *s, int c);
 
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isalnum(str[i]))
-			break ;
-		i++;
-	}
-	return (ft_strndup(str, i));
-}
+#endif
