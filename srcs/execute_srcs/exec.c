@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 02:32:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 17:25:03 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 21:14:38 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,22 @@ void	exec(t_data *data)
 		set_redir(cmd_lst->content, data);
 		cmd_lst = cmd_lst->next;
 	}
+	/////////////////
+	//
+	//execute(cmd_lst)
+	//{
+	//	pipe[5][2];
+	//
+	//	set_pipe(pipe);
+	//	while (cmd_lst)
+	//	{
+	//		set_redir(cmd);
+	//		dup2(pipe처리);
+	//		if (infile != -1)
+		//		dup2(infile);
+		//	if (outfile != -1)
+		//		dup2(outfile);
+	//		
+	//	}
+	//}
 }

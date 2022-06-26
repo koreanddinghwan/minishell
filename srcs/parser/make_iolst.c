@@ -31,6 +31,7 @@ t_io_cont	*make_io_cont(t_data *data, t_dlst *tok_lst, enum e_word_type type)
 			return (NULL);
 		rtn->filepath = iopath_finder(wget_join(cur, type), type);
 		rtn->type = type;
+		rtn->tmpname = NULL;
 		rtn->fd = -1;
 	}
 	while (tok_lst && offset)

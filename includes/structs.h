@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 15:49:34 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 21:40:47 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,9 @@ typedef struct	s_io_cont
 {
 	char				*filepath;
 	enum e_word_type	type;
+	char				*tmpname;
 	int					fd;
 }	t_io_cont;
-
-typedef struct	s_heredoc_cont
-{
-	char	*tmpname;//unlink in cleaner
-	char	*delimeter;
-}	t_heredoc_cont;
-
-typedef struct	s_heredoc_lst
-{
-	int		num;
-	t_dlst	*lst;
-}	t_heredoc_lst;
 
 typedef struct	s_cmd_cont
 {
@@ -74,8 +63,6 @@ typedef struct	s_cmd_cont
 	char			**args;
 	int				nth;
 	t_dlst			*iolst;
-	int				fd[2];
-	t_heredoc_lst	heredoclst;
 	int				infile;
 	int				outfile;
 }	t_cmd_cont;
