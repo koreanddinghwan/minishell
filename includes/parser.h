@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 21:19:16 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:44:16 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define PARSER_H
 # include "structs.h"
 # include "defines_enums.h"
+# include "path_finder.h"
 # include "cleaner.h"
 
 char			*make_cmd(t_data *data);
-char			*path_finder(t_envlst *envlst, char *cmd);
+char			*cmdpath_finder(t_envlst *envlst, char *cmd);
 enum e_cmdtype	get_cmdtype(char *cmd);
 char			**make_args(t_data *data, char *cmd);
 /*

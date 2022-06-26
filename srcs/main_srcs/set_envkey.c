@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 00:51:56 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 15:50:35 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,38 @@ int	size_envp(char **envp)
 	return (size);
 }
 
+char	**add_env_arr(t_data *data, char **args)
+{
+	char	**copy;
+	int i = 0;
+	int j = 0;
+
+	copy = (char **)malloc(sizeof(char *) * data->env_size * 10);
+	if (!strchr(*args, '='))
+		return 0;
+	while (data->env[i])
+	{
+		copy[j] = ft_strdup(data->env[i]);
+		j++;
+		i++;
+	}
+	while (*args)
+	{
+		copy[j] = ft_strdup(*args);
+		j++;
+		args++;
+	}
+	copy[j] = 0;
+	return (copy);
+}
+
 void	set_env_arr(t_data *data, char **envp)
 {
 	int	i;
 
 	i = 0;
-	data->env = (char **)malloc(sizeof(char *) * size_envp(envp));
+	data->env_size = size_envp(envp);
+	data->env = (char **)malloc(sizeof(char *) * data->env_size);
 	while (*envp)
 	{
 		if (!ft_strncmp(*envp, "OLDPWD=", 7))
@@ -50,9 +76,10 @@ void	set_env_arr(t_data *data, char **envp)
 		envp++;
 		i++;
 	}
+	data->env[i] = 0;
 }
 
-void	set_env_list(t_data *data, char **envp)
+void	set_env_lst(t_data *data, char **envp)
 {
 	t_envlst	*node;
 	

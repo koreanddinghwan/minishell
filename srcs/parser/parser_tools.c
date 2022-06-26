@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 21:14:58 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:43:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	get_offset(t_dlst *tok_lst, enum e_word_type type)
 	else if (type == 7)
 		type = W_DELIMETER;
 	cur = tok_lst;
-	printf("type : %d\n", type);
 	while (cur && GET_TOKEN_TYPE(cur) != type)
 	{
 		cur = cur->next;
@@ -130,6 +129,8 @@ t_cmd_cont	*init_cmd_cont(void)
 	rtn->cmd = NULL;
 	rtn->args = NULL;
 	rtn->iolst = NULL;
+	rtn->infile = -1;
+	rtn->outfile = -1;
 	return (rtn);
 }
 

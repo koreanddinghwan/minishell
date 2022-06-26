@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/20 12:47:13 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 12:10:53 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*make_possible_cp(char *str)
 {
-	int		i;
+	t_size	i;
 
 	i = 0;
 	while (str[i])

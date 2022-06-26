@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 21:41:10 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 15:45:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ enum	e_state
 # define GET_FILEPATH(lst) (((t_io_cont *)lst->content)->filepath)
 # define GET_IOTYPE(lst) (((t_io_cont *)lst->content)->type)
 # define GET_DELIMETER(lst) (((t_heredoc_cont *)lst->content)->delimeter)
+# define GET_FD(lst) (((t_io_cont *)lst->content)->fd)
 
 // # define GET_FD(lst) (((t_io_cont *)lst->content)->fd)
 

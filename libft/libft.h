@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 02:48:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 12:19:57 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_size			ft_strlcpy(char *dest, char *src, t_size size);
 int				ft_strncmp(char *s1, char *s2, t_size n);
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strdup(char *src);
-char			*ft_strndup(char *src, int size);
+char			*ft_strndup(char *src, t_size n);
 int				ft_atoi(const char *str);
 char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
@@ -132,4 +132,5 @@ void			ft_btree_postordertrav(t_tree *node,
 t_envlst		*ft_envlst_last(t_envlst *envlst);
 void			ft_envlst_pushback(t_envlst **envlst, t_envlst *new);
 t_envlst		*ft_envlst_new(void *c);
+char			*get_next_line(int fd);
 #endif

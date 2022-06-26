@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:53:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/19 03:30:07 by myukang          ###   ########.fr       */
+/*   Created: 2022/03/25 19:38:55 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/26 14:00:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stdlib.h>
+# include "libft.h"
+# define OPEN_MAX 256
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-char	*ft_strndup(char *src, int size)
-{
-	char	*rtn;
-	int		i;
+char		*get_next_line(int fd);
+char		*ft_readline(int fd, char *save);
+char		*ft_get_rtn(char *line);
+char		*ft_get_newsave(char *save);
+char		*ft_gnljoin(char *save, char *buffer, int *rd_rtn);
+char	*ft_gnlchr(const char *s, int c);
 
-	rtn = malloc(sizeof(char) * size + 1);
-	i = 0;
-	while (src[i] && i < size)
-	{
-		rtn[i] = src[i];
-		i++;
-	}
-	rtn[i] = 0;
-	return (rtn);
-}
+#endif

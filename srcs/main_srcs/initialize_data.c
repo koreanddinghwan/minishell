@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 20:51:10 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 11:40:46 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	initialize_data(t_data *data, char *line)
 	}
 	parser(data);
 //	execute(data);
-	//exec(data);
+	exec(data);
 	cleaner(data);
 }

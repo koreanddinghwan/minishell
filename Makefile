@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/26 10:05:12 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/26 15:54:09 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FTDIR = ./libft/
 FT = libft.a
 FTINC = ./libft/
 
-MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c initialize_main.c initialize_data.c)
+MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c initialize_main.c initialize_data.c set_envkey.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
 TOKEN_SRCS = $(addprefix ./srcs/tokenizer/, tokenizer.c token_buf_build.c)
@@ -47,10 +47,10 @@ MODULE_OBJS = $(MODULE_SRCS:.c=.o)
 CLEANER_SRCS = $(addprefix ./srcs/cleaner/, cleaner.c cmd_cont_free.c)
 CLEANER_OBJS = $(CLEANER_SRCS:.c=.o)
 
-EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, exec.c print_cmddata.c)
+EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, exec.c print_cmddata.c set_redirection.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 
-BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c set_envkey.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
+BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
 TOOLS_SRCS = $(addprefix ./srcs/tools/, free.c error_handler.c tmp_print.c)

@@ -1,5 +1,4 @@
 #include "parser.h"
-#include <stdio.h>
 
 int	check_redirection(t_dlst *tok_lst)
 {
@@ -30,8 +29,9 @@ t_io_cont	*make_io_cont(t_data *data, t_dlst *tok_lst, enum e_word_type type)
 		rtn = malloc(sizeof(t_io_cont) * 1);
 		if (!rtn)
 			return (NULL);
-		rtn->filepath = wget_join(cur, type);
+		rtn->filepath = iopath_finder(wget_join(cur, type), type);
 		rtn->type = type;
+		rtn->fd = -1;
 	}
 	while (tok_lst && offset)
 	{

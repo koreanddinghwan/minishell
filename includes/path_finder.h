@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 01:46:46 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 01:56:44 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:43:50 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 #include "structs.h"
 #include <sys/stat.h>
 
+char	*cmdpath_finder(t_envlst *envlst, char *cmd);
+char	*iopath_finder(char *path, int type);
 char	*check_envpath(char *path, char *cmd);
 #endif
