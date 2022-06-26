@@ -36,7 +36,8 @@ void	ft_unset(t_data *data, char **args);
 /*
  * echo
  * */
-void	ft_echo(t_data *data, int flag, char *str);
+void	ft_echo(t_data *data, char **argv);
+
 
 /*
  * exit

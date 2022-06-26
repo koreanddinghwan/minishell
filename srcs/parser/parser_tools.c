@@ -6,47 +6,12 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 21:40:01 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 03:47:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdio.h>
-
-void	print_input_lst(t_dlst *lst)
-{
-	while (lst)
-	{
-		ft_printf("%s\n", ((t_io_cont *)lst->content)->filepath);
-		lst = lst->next;
-	}
-}
-
-void	print_heredoc_lst(t_dlst *lst)
-{
-	while (lst)
-	{
-		ft_printf("%s\n", ((t_heredoc_cont *)lst->content)->delimeter);
-		lst = lst->next;
-	}
-}
-
-void	print_args_cmd(char **args)
-{
-	int		i;
-
-	if (!args)
-		return ;
-	i = 0;
-	printf("========args======\n");
-	while (*args)
-	{
-		printf("%d 번째 args %s\n",i ,*args);
-		args++;
-		i++;
-	}
-	printf("==========\n");
-}
 
 void	delete_multiple_tokens(t_data *data, enum e_word_type type)
 {

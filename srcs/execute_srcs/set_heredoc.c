@@ -6,11 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 00:13:46 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 00:13:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 03:54:49 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exec.h"
+#include "execute.h"
 
 int	set_heredocnum(t_dlst *iolst)
 {
@@ -26,21 +26,21 @@ int	set_heredocnum(t_dlst *iolst)
 	return (c);
 }
 
-int	exec_heredoc(t_heredoc_cont *new, t_data *data)
+int	exec_heredoc(t_data *data, t_dlst *iolst)
 {
 	int		fd;
 	char	*input;
 	char	*trimmed;
 	char	*replaced;
 
-	fd = open(new->tmpname, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	fd = open(GET_TMPNAME(iolst), O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (FAIL);
 	while (1)
 	{
 		input = get_next_line(0);
 		trimmed = ft_strtrim(input, "\n");
-		if (!input || ft_strcmp(new->delimeter, trimmed) == 0)
+		if (!input || ft_strcmp(GET_FILEPATH(iolst), trimmed) == 0)
 		{
 			free(input);
 			free(trimmed);
@@ -62,7 +62,7 @@ int	set_heredoc_cont(t_dlst *iolst, t_data *data, int i)
 	index = ft_itoa(i);
 	GET_TMPNAME(iolst) = ft_strjoin("/tmp/.temp", index);
 	free(index);
-	if (exec_heredoc(new, data) == FAIL)
+	if (exec_heredoc(data, iolst) == FAIL)
 		return (FAIL);
 	GET_FD(iolst) = open(GET_TMPNAME(iolst), O_RDONLY);
 	return (SUCESS);
@@ -72,11 +72,12 @@ int	set_heredoc(t_cmd_cont *cmd, t_data *data)
 {
 	t_dlst	*iolst;
 	int		i;
+	int		num;
 
-	cmd->heredoclst.num = set_heredocnum(cmd->iolst);
+	num = set_heredocnum(cmd->iolst);
 	iolst = cmd->iolst;
 	i = 0;
-	if (cmd->heredoclst.num)
+	if (num)
 	{
 		while (iolst)
 		{
@@ -84,6 +85,7 @@ int	set_heredoc(t_cmd_cont *cmd, t_data *data)
 			{
 				if (set_heredoc_cont(iolst, data, i++) == FAIL)
 					return (FAIL);
+			}
 			iolst = iolst->next;
 		}
 	}

@@ -11,10 +11,10 @@ int	check_option(char *option)
 		option++;
 	while (*option)
 	{
-		if (status = FALSE)
-			return (FALSE);
+		if (status == FALSE)
+			break ;
 		option++;
-		if (*option != 'n')
+		if (*option && *option != 'n')
 			status = FALSE;
 	}
 	return (status);
@@ -33,20 +33,22 @@ int	get_argv_count(char **argv)
 	return (c);
 }
 
-void	print_echo(char **argv, int i)
+void	print_echo(char **argv, int option)
 {
-	int	newline;
+	int	i;
 
-	if (i == 1)
-		newline = TRUE;
+	if (option == TRUE)
+		i = 2;
 	else
-		newline = FALSE;
+		i = 1;
 	while (argv[i])
 	{
 		write(1, argv[i], ft_strlen(argv[i]));
 		i++;
+		if (argv[i])
+			write(1, " ", 1);
 	}
-	if (newline == TRUE)
+	if (option == FALSE)
 		write(1, "\n", 1);
 }
 
@@ -55,6 +57,8 @@ void	ft_echo(t_data *data, char **argv)
 	int	option;
 	int	argv_count;
 
+	if (!data)
+		return ;
 	argv_count = get_argv_count(argv);
 	if (argv_count == 1)
 	{
@@ -62,8 +66,5 @@ void	ft_echo(t_data *data, char **argv)
 		return ;
 	}
 	option = check_option(argv[1]);
-	if (option == TRUE)
-		print_echo(argv, 2);
-	else
-		print_echo(argv, 1);
+	print_echo(argv, option);
 }
