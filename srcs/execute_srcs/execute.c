@@ -76,83 +76,73 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 		ft_cd(data, args);
 	// if (ft_strcmp(EXIT, str) == 0)
 	// 	ft_exit();
-	t_dlst *cmd_list;
-	t_dlst *out_re;
-	
-	cmd_list = data->cmd_lst;
-
-	out_re = GET_OUTPUT_LIST(cmd_list);
-	if (out_re)
-	{
-		output_redirection(data, cmd, GET_FILEPATH(out_re), args, data->env);
-	}
 	if (ft_strcmp(ENV, cmd) == 0)
 		ft_env(data);
 }
 
-// void	execute_redirect(t_data *data)
-// {
-// 	while (com_redic--)	// 한 프로세스 안에 기호 갯수
-// 	{
-// 		if (input_re)
-// 			input_redirection();
-// 		else if (output_re)
-// 			output_redirection();
-// 		else if (append_re)
-// 			append_redirection();
-// 		else
-// 			here_document();
-// 	}
-// }
-
-void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *pipe_num, int pipe_exist, int std[2])
+void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pipe_exist)
 {
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
 	(void) pipe_exist;
-	if (*pipe_num > 0)
+	int pipes = data->cmd_size - 1;	// 파이프 개수
+	int i;
+	if (*pipe_num == pipes)
 	{
-		printf("시작\n");
-		dup2(std[0], STDIN_FILENO);
-		printf("OUT\n");
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[0]);
-		close(fd[1]);
+		// 커맨드 4개 -> 파이프3개 -> int fd[3][2]
+		// 커맨드 3개 -> 파이프2개 -> int fd[2][2]
+		// 커맨드 2개 -> 파이프1개 -> int fd[1][2]
+		i = pipes;
+		while (i--)
+		{
+			if (i != 0 && pipes >= 2)
+				close(fd[i][1]);
+			close(fd[i][0]);
+		}
+		dup2(fd[0][1], STDOUT_FILENO);
+	}
+	else if (*pipe_num == 0)
+	{
+		i = pipes;
+		while (i--)
+		{
+			if (i != (pipes-1) && pipes >= 2)
+				close(fd[i][0]);
+			close(fd[i][1]);
+		}
+		dup2(fd[pipes-1][0], STDIN_FILENO);
 	}
 	else
 	{
-		printf("마지막\n");
-		printf("IN\n");
-		dup2(fd[0], STDIN_FILENO);
-		dup2(std[1], STDOUT_FILENO);
-		close(fd[1]);
-		close(fd[0]);
-		close(std[1]);
+		i = pipes;
+		while (i--)
+		{
+			if (i != pipes-(*pipe_num))
+				close(fd[i][1]);
+			if (i != pipes-(*pipe_num)-1)
+				close(fd[i][0]);
+		}
+		dup2(fd[pipes-(*pipe_num)-1][0], STDIN_FILENO);
+		dup2(fd[pipes-(*pipe_num)][1], STDOUT_FILENO);
 	}
-	///////////////////////////////
-	
-	printf("fd[0]: %d, fd[1]: %d, std[0]: %d, std[1]: %d\n", fd[0], fd[1], std[0], std[1]);
+	///////////////////////////////리다이렉션처리
 	if (builtin(GET_CMD(cmd)))
 	{
 		execute_builtin(data, GET_CMD(cmd), GET_ARGS(cmd));
-		printf("빌트인\n");
 	}
 	else
 	{
 		// 커맨드 에러처리
-		printf("!!!!!!출력!!!!!!!!\n");
 		status = execve(GET_CMD(cmd), ag, data->env);
 	}
 	if (status == -1)
 		printf("command not found\n");
-	(void) next_cmd;
 	exit(status);
 }
 
-void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, int fd[2], int pipe_exist, int std[2])
+void execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int fd[][2], int pipe_exist)
 {
 	pid_t pid;
-	int	status;
 
 	printf("입력한 커맨드가 이거? %s\n", GET_CMD(cmd));
 	pid = fork();
@@ -162,46 +152,31 @@ void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, in
 	// dup2(std[1], STDOUT_FILENO);
 	if (pid == 0)
 	{
-		dup2(std[0], STDIN_FILENO);
-		dup2(std[1], STDOUT_FILENO);
-		printf("자식 시작\n");
-		execute_child(data, cmd, next_cmd, fd, &(*pipe_num), pipe_exist, std);
-	}
-	waitpid(pid, &status, 0);
-	if (*pipe_num > 0)
-	{
-		close(std[0]);
-		close(fd[1]);
-	}
-	else if (pipe_exist == 0)
-	{
-		close(std[1]);
-		close(fd[0]);
+		execute_child(data, cmd, fd, &(*pipe_num), pipe_exist);
 	}
 }
 
 void	execute(t_data *data)
 {
 	t_dlst *cmd_lst;
-	t_dlst *next_cmd_lst;
-
-	int fd[2];
-	int std[2];
 
 	cmd_lst = data->cmd_lst;
-	next_cmd_lst = data->cmd_lst->next;
 
 	char *cmd = GET_CMD(cmd_lst);
 	char **args = GET_ARGS(cmd_lst);
 
 	int pipe_exist; // 파이프 존재
-	int next_pipe;	// 파이프 갯수
-	next_pipe = data->cmd_size - 1;
-	if (next_pipe == 0)
+	int remain_pipe;	// 남은 파이프 갯수
+	remain_pipe = data->cmd_size - 1;
+	int s = remain_pipe;
+
+	int fd[remain_pipe][2];
+	if (remain_pipe == 0)
 		pipe_exist = 0;
 	else
 		pipe_exist = 1;
 
+	int i = 0;
 	while (cmd_lst)
 	{
 		//
@@ -211,30 +186,36 @@ void	execute(t_data *data)
 		// 	execute_redirect(data);			// 리다이렉션 처리
 		// 	break;
 		// }
-		if (builtin(cmd) && next_pipe == 0)		// 빌트인함수이고 파이프가 없으면
+		if (builtin(cmd) && remain_pipe == 0)		// 빌트인함수이고 파이프가 없으면
 		{
 			printf("단일커맨드\n");
 			execute_builtin(data, cmd, args);	// 단일커맨드
 		}
 		else
 		{
-			if (next_pipe > 0)
+			if (remain_pipe == s)
 			{
-				pipe(fd);
-				printf("###파이프 개방###\n");
+				while(s)
+				{
+					pipe(fd[i]);
+					printf("###[%d:파이프] 개방###\n", i);
+					if (s-1 == i)
+					{
+						break;
+					}
+					i++;
+				}
 			}
-			printf("[-------START--------]\n");
-			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist, std);
-			printf("[--------END---------]\n");
+			execute_pipe(data, cmd_lst, &remain_pipe, fd, pipe_exist);
 		}
 		cmd_lst = cmd_lst->next;
-		if (next_cmd_lst)
-		{
-			if (next_cmd_lst->next && next_cmd_lst)
-			{
-				next_cmd_lst = next_cmd_lst->next;
-			}
-		}
-		next_pipe--;
+		remain_pipe--;
 	}
+		while(s--)
+		{
+			close(fd[s][0]);
+			close(fd[s][1]);
+		}
+		int status;
+		while(wait(&status) > 0);
 }

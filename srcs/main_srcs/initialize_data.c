@@ -29,7 +29,7 @@ void	initialize_data(t_data *data, char *line)
 		return ;
 	}
 	parser(data);
-//	execute(data);
-	exec(data);
+	execute(data);
+	// exec(data);
 	cleaner(data);
 }

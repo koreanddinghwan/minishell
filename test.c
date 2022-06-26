@@ -68,11 +68,11 @@ int main(int ac, char *av[], char **envp)
         int pipe_flag = 0;
         int     i;
 
-        pipe(fd_pipes[0]);
         pipe(fd_pipes[1]);
+        pipe(fd_pipes[0]);
 
         i = 0;
-        execve_com(head, fd_pipes, pipe_flag, envp, i);           // STDIN이 들어오는 명령어는 dup2 STDIN_FILENO를 쓰면 안됌
+        execve_com(cat, fd_pipes, pipe_flag, envp, i);           // STDIN이 들어오는 명령어는 dup2 STDIN_FILENO를 쓰면 안됌
         ++pipe_flag;                                    // STDIN이 들어오지않는 명령어는 dup2사용
         printf("close: fd[1]\n");
         // close(fd[1]);
