@@ -72,7 +72,7 @@ int main(int ac, char *av[], char **envp)
         pipe(fd_pipes[0]);
 
         i = 0;
-        execve_com(ls, fd_pipes, pipe_flag, envp, i);           // STDIN이 들어오는 명령어는 dup2 STDIN_FILENO를 쓰면 안됌
+        execve_com(cat, fd_pipes, pipe_flag, envp, i);           // STDIN이 들어오는 명령어는 dup2 STDIN_FILENO를 쓰면 안됌
         ++pipe_flag;                                    // STDIN이 들어오지않는 명령어는 dup2사용
         printf("close: fd[1]\n");
         // close(fd[1]);
@@ -81,11 +81,11 @@ int main(int ac, char *av[], char **envp)
         // ++pipe_flag;
         // close(n_fd[0]);
         i =1;
-        execve_com(ls, fd_pipes, pipe_flag, envp, i);
+        execve_com(cat, fd_pipes, pipe_flag, envp, i);
         printf("close: fd[0]\n");
         // close(fd[0]);
         i = 2;
-        execve_com(pwd, fd_pipes, pipe_flag, envp, i);
+        execve_com(ls, fd_pipes, pipe_flag, envp, i);
 
         close(fd_pipes[0][0]);
         close(fd_pipes[0][1]);

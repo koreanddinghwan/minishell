@@ -85,42 +85,54 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pi
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
 	(void) pipe_exist;
-	int pipes = data->cmd_size - 1;
+	int pipes = data->cmd_size - 1;	// 파이프 개수
+	int i;
 	if (*pipe_num == pipes)
 	{
+		// 커맨드 4개 -> 파이프3개 -> int fd[3][2]
 		// 커맨드 3개 -> 파이프2개 -> int fd[2][2]
-		printf("첫번째\n");
-		close(fd[0][0]);
-		close(fd[1][0]);
-		close(fd[1][1]);
+		// 커맨드 2개 -> 파이프1개 -> int fd[1][2]
+		i = pipes;
+		while (i--)
+		{
+			if (i != 0 && pipes >= 2)
+				close(fd[i][1]);
+			close(fd[i][0]);
+		}
 		dup2(fd[0][1], STDOUT_FILENO);
 	}
 	else if (*pipe_num == 0)
 	{
-		printf("마지막\n");
-		close(fd[1][1]);
-		close(fd[0][0]);
-		close(fd[0][1]);
-		dup2(fd[1][0], STDIN_FILENO);
+		i = pipes;
+		while (i--)
+		{
+			if (i != (pipes-1) && pipes >= 2)
+				close(fd[i][0]);
+			close(fd[i][1]);
+		}
+		dup2(fd[pipes-1][0], STDIN_FILENO);
 	}
 	else
 	{
-		printf("중간\n");
-		close(fd[1][0]);
-		close(fd[0][1]);
-		dup2(fd[0][0], STDIN_FILENO);
-		dup2(fd[1][1], STDIN_FILENO);
+		i = pipes;
+		while (i--)
+		{
+			if (i != pipes-(*pipe_num))
+				close(fd[i][1]);
+			if (i != pipes-(*pipe_num)-1)
+				close(fd[i][0]);
+		}
+		dup2(fd[pipes-(*pipe_num)-1][0], STDIN_FILENO);
+		dup2(fd[pipes-(*pipe_num)][1], STDOUT_FILENO);
 	}
 	///////////////////////////////리다이렉션처리
 	if (builtin(GET_CMD(cmd)))
 	{
 		execute_builtin(data, GET_CMD(cmd), GET_ARGS(cmd));
-		printf("빌트인\n");
 	}
 	else
 	{
 		// 커맨드 에러처리
-		printf("!!!!!!출력!!!!!!!!\n");
 		status = execve(GET_CMD(cmd), ag, data->env);
 	}
 	if (status == -1)
@@ -140,7 +152,6 @@ void execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int fd[][2], int pip
 	// dup2(std[1], STDOUT_FILENO);
 	if (pid == 0)
 	{
-		printf("자식 시작\n");
 		execute_child(data, cmd, fd, &(*pipe_num), pipe_exist);
 	}
 }
@@ -187,28 +198,23 @@ void	execute(t_data *data)
 				while(s)
 				{
 					pipe(fd[i]);
-					printf("###파이프 개방%d###\n", i);
-					if (s == i)
+					printf("###[%d:파이프] 개방###\n", i);
+					if (s-1 == i)
 					{
 						break;
 					}
 					i++;
 				}
 			}
-			printf("[-------START--------]\n");
 			execute_pipe(data, cmd_lst, &remain_pipe, fd, pipe_exist);
-			printf("[--------END---------]\n");
 		}
 		cmd_lst = cmd_lst->next;
 		remain_pipe--;
 	}
-	printf("%d\n", i);
-		while(i)
+		while(s--)
 		{
-			printf("i: %d\n",i);
-			close(fd[i-1][0]);
-			close(fd[i-1][1]);
-			i--;
+			close(fd[s][0]);
+			close(fd[s][1]);
 		}
 		int status;
 		while(wait(&status) > 0);
