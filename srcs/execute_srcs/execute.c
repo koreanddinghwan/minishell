@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 18:09:21 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/26 14:57:26 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,36 +62,6 @@ int output_redirection(t_data *data, char *command, char *target, char **args, c
 	return (1);
 }
 
-// int	input_redirection(char *command, char *target, char **envp) // ex) cat < test.txt
-// {
-// 	int	fd;
-// 	// char **ag;
-// 	pid_t	pid;
-// 	int		status;
-
-// 	// ag = (char **)malloc(sizeof(char *) * 2);
-// 	// ag[0] = "-e";
-// 	fd = open(target, O_RDONLY);
-// 	pid = fork();
-// 	if (pid < 0)
-// 		exit(1);
-// 	if (fd < 0)
-// 		return (-1);
-// 	if (pid == 0)
-// 	{
-// 		dup2(fd, STDIN_FILENO);
-
-// 		// execve(command, ag, envp);
-// 	}
-// 	else
-// 	{
-// 		close(fd);
-// 		waitpid(pid, &status, 0);
-// 		printf("부모 종료 %d %d %d\n", pid, WIFEXITED(status), WEXITSTATUS(status)); // 1, 0(자식)
-// 	}
-// 	return (1);
-// }
-
 void	execute_builtin(t_data *data, char *cmd, char **args)
 {
 	if (ft_strcmp(PWD, cmd) == 0)
@@ -108,21 +78,14 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 	// 	ft_exit();
 	t_dlst *cmd_list;
 	t_dlst *out_re;
-	// t_dlst *input_re;
 	
 	cmd_list = data->cmd_lst;
 
 	out_re = GET_OUTPUT_LIST(cmd_list);
-	// input_re = GET_INPUT_LIST(cmd_list);
 	if (out_re)
 	{
 		output_redirection(data, cmd, GET_FILEPATH(out_re), args, data->env);
 	}
-	// if (input_re)
-	// {
-	// 	input_redirection();
-	// }
-
 	if (ft_strcmp(ENV, cmd) == 0)
 		ft_env(data);
 }
@@ -147,30 +110,24 @@ void	execute_child(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int fd[2], int *
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
 	(void) pipe_exist;
-	int pipes =data->cmd_size - 1;
-	if (*pipe_num == pipes)
+	if (*pipe_num > 0)
 	{
 		printf("시작\n");
 		dup2(std[0], STDIN_FILENO);
+		printf("OUT\n");
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
 	}
-	else if (*pipe_num == 0 && pipe_exist)
-	{
-		printf("마지막\n");
-		dup2(fd[0], STDIN_FILENO);
-		dup2(std[1], STDOUT_FILENO);
-		close(fd[1]);
-		close(fd[0]);
-	}
 	else
 	{
-		printf("중간\n");
+		printf("마지막\n");
+		printf("IN\n");
 		dup2(fd[0], STDIN_FILENO);
 		dup2(std[1], STDOUT_FILENO);
 		close(fd[1]);
 		close(fd[0]);
+		close(std[1]);
 	}
 	printf("fd[0]: %d, fd[1]: %d, std[0]: %d, std[1]: %d\n", fd[0], fd[1], std[0], std[1]);
 	if (builtin(GET_CMD(cmd)))
@@ -199,6 +156,8 @@ void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, in
 	pid = fork();
 	if (pid < 0)
 		exit(1);
+	// dup2(std[0], STDIN_FILENO);
+	// dup2(std[1], STDOUT_FILENO);
 	if (pid == 0)
 	{
 		dup2(std[0], STDIN_FILENO);
@@ -212,17 +171,11 @@ void execute_pipe(t_data *data, t_dlst *cmd, t_dlst *next_cmd, int *pipe_num, in
 		close(std[0]);
 		close(fd[1]);
 	}
-	else if (pipe_exist != 0)
+	else if (pipe_exist == 0)
 	{
 		close(std[1]);
 		close(fd[0]);
 	}
-	else
-	{
-		printf("엥\n");
-	}
-	// waitpid(pid, &status, 0);
-	// while(wait(&status) > 0);
 }
 
 void	execute(t_data *data)
@@ -231,28 +184,22 @@ void	execute(t_data *data)
 	t_dlst *next_cmd_lst;
 
 	int fd[2];
-	int std[2]; // std[0] = STDIN, std[1] = STDOUT
-// t_dlst *out_re;
-	// t_dlst *input_re;
+	int std[2];
 
 	cmd_lst = data->cmd_lst;
 	next_cmd_lst = data->cmd_lst->next;
 
 	char *cmd = GET_CMD(cmd_lst);
 	char **args = GET_ARGS(cmd_lst);
-	// out_re = GET_OUTPUT_LIST(cmd_lst);
 
 	int pipe_exist; // 파이프 존재
 	int next_pipe;	// 파이프 갯수
 	next_pipe = data->cmd_size - 1;
-	int s;
-	s = next_pipe;
 	if (next_pipe == 0)
 		pipe_exist = 0;
 	else
 		pipe_exist = 1;
 
-	// int redirc = 0;
 	while (cmd_lst)
 	{
 		// if (redirc)			// 리다이렉션이 있으면
@@ -267,7 +214,7 @@ void	execute(t_data *data)
 		}
 		else
 		{
-			if (next_pipe == s)
+			if (next_pipe > 0)
 			{
 				pipe(fd);
 				printf("###파이프 개방###\n");
@@ -275,10 +222,6 @@ void	execute(t_data *data)
 			printf("[-------START--------]\n");
 			execute_pipe(data, cmd_lst, next_cmd_lst, &next_pipe, fd, pipe_exist, std);
 			printf("[--------END---------]\n");
-			// if (next_pipe > 0)
-			// 	close(fd[1]);
-			// else
-			// 	close(fd[0]);
 		}
 		cmd_lst = cmd_lst->next;
 		if (next_cmd_lst)
