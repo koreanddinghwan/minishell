@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 16:00:30 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 03:02:18 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	set_env_arr(t_data *data, char **envp)
 
 	i = 0;
 	data->env_size = size_envp(envp);
-	data->env = (char **)malloc(sizeof(char *) * data->env_size);
+	data->env = (char **)malloc(sizeof(char *) * (data->env_size + 1));
 	while (*envp)
 	{
 		if (!ft_strncmp(*envp, "OLDPWD=", 7))
