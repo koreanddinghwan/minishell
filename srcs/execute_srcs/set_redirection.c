@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 03:48:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 23:37:33 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 02:27:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,22 @@ int	set_fd(t_dlst *iolst)
 	return (SUCESS);
 }
 
-void	close_fd(t_dlst *iolst)
+void	close_fd(t_data *data)
 {
-	while (iolst)
+	t_dlst	*cmdlst;
+	t_dlst	*iolst;
+
+	cmdlst = data->cmd_lst;
+	while (cmdlst)
 	{
-		if (GET_FD(iolst) != -1)
-			close(GET_FD(iolst));
-		iolst = iolst->next;
+		iolst = (get_cmd_cont(cmdlst))->iolst;
+		while (iolst)
+		{
+			if (GET_FD(iolst) != -1)
+				close(GET_FD(iolst));
+			iolst = iolst->next;
+		}
+		cmdlst = cmdlst->next;
 	}
 }
 
@@ -83,14 +92,9 @@ int	set_redir(t_cmd_cont *cmd, t_data *data)
 	t_dlst	*iolst;
 
 	iolst = cmd->iolst;
-	if (set_heredoc(cmd, data) == FAIL)
-	{
-		close_fd(iolst);
-		return (FAIL);
-	}
 	if (set_fd(iolst) == FAIL)
 	{
-		close_fd(iolst);
+		close_fd(data);
 		return (FAIL);
 	}
 	cmd->infile = set_last(iolst, W_HERE_DOC, W_REDIRECTION_INPUT);

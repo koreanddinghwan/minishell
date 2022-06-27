@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 01:42:09 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 02:19:21 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,8 +175,9 @@ void	execute(t_data *data)
 	else
 		pipe_exist = 1;
 	int fd[remain_pipe][2];
-	
 	int i = 0;
+	if (make_heredoc(data) == FAIL)
+		return ;
 	while (cmd_lst)
 	{
 		if (builtin(cmd) && !pipe_exist && !GET_IO_LIST(cmd_lst))
