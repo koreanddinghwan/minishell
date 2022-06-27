@@ -84,7 +84,6 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pi
 {
 	char *ag[] = {GET_CMD(cmd), NULL};
 	int status = 0;
-	(void) pipe_exist;
 	int pipes = data->cmd_size - 1;	// 파이프 개수
 	int i;
 	if (*pipe_num == pipes)
@@ -99,7 +98,8 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pi
 				close(fd[i][1]);
 			close(fd[i][0]);
 		}
-		dup2(fd[0][1], STDOUT_FILENO);
+		if(pipe_exist)
+			dup2(fd[0][1], STDOUT_FILENO);
 	}
 	else if (*pipe_num == 0)
 	{
@@ -186,7 +186,7 @@ void	execute(t_data *data)
 		// 	execute_redirect(data);			// 리다이렉션 처리
 		// 	break;
 		// }
-		if (builtin(cmd) && remain_pipe == 0)		// 빌트인함수이고 파이프가 없으면
+		if (builtin(cmd) && !pipe_exist)		// 빌트인함수이고 파이프가 없으면
 		{
 			printf("단일커맨드\n");
 			execute_builtin(data, cmd, args);	// 단일커맨드
