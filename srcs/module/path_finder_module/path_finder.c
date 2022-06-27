@@ -6,25 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:27:24 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 15:09:14 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 01:28:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "path_finder.h"
-
-int	exist_slash(char *cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if (cmd[i] == '/')
-			return (TRUE);
-		i++;
-	}
-	return (FALSE);
-}
 
 void	*find_env_key(t_envlst *envlst, char *key)
 {

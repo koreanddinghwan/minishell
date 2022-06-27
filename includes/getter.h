@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:18:51 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 15:21:34 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 01:45:47 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include "structs.h"
 
 t_lexer_token *get_ltok_cont(t_dlst *lst);
+t_cmd_cont	*get_cmd_cont(t_dlst *lst);
 
 #endif
