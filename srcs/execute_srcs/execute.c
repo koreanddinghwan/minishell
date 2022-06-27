@@ -32,8 +32,6 @@ int		builtin(char *cmd)
 
 void	execute_builtin(t_data *data, char *cmd, char **args)
 {
-	if (!cmd)
-		return ;
 	if (ft_strcmp(PWD, cmd) == 0)
 		ft_pwd();
 	if (ft_strcmp(EXPORT, cmd) == 0)
@@ -151,7 +149,10 @@ void	execute(t_data *data)
 	while (cmd_lst)
 	{
 		if (builtin(cmd) && !pipe_exist && !GET_IO_LIST(cmd_lst))
+		{
+				printf("fork: 안함\n");
 				execute_builtin(data, cmd, args);		// 단일커맨드
+		}
 		else
 		{
 			if (remain_pipe == s)
@@ -167,6 +168,7 @@ void	execute(t_data *data)
 					i++;
 				}
 			}
+			printf("fork함\n");
 			execute_pipe(data, cmd_lst, &remain_pipe, fd, pipe_exist);
 		}
 		cmd_lst = cmd_lst->next;
