@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getter1.c                                          :+:      :+:    :+:   */
+/*   fs_bitmasking.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 14:28:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 00:30:52 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/28 01:16:45 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/28 01:50:51 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "getter.h"
+#include "fs_bitmasking.h"
 
-t_lexer_token *get_ltok_cont(t_dlst *lst)
+int	isdir(int st_mode)
 {
-	return ((t_lexer_token *)lst->content);
+	return ((st_mode & FS_IFMT) == FS_IFDIR);
 }
 
-t_cmd_cont	*get_cmd_cont(t_dlst *lst)
+int	isreg(int st_mode)
 {
-	return ((t_cmd_cont *)lst->content);
+	return ((st_mode & FS_IFMT) == FS_IFREG);
+}
+
+int	isexec(int st_mode)
+{
+	return (isreg(st_mode) &&  (st_mode & FS_IXUSR));
 }

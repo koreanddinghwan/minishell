@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:02:37 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 23:34:37 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 01:45:16 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@
 # include <errno.h>
 # include "replacer.h"
 # include <string.h>
+# include "fs_bitmasking.h"
+# include "getter.h"
+
 void	print_cmddata(t_data *data);
-int	set_redir(t_cmd_cont *cmd, t_data *data);
-int	set_heredoc(t_cmd_cont *cmd, t_data *data);
+int		set_redir(t_cmd_cont *cmd, t_data *data);
+int		set_heredoc(t_cmd_cont *cmd, t_data *data);
+void	check_execve_error(t_dlst *cmd);
 #endif

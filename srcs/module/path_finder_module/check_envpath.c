@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:41:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 16:03:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 01:22:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_fs(char *path)
 		return (0);
 	if (stat(path, &finfo) < 0)
 		return (0);
-	return (S_ISREG(finfo.st_mode) && S_ISEXEC(finfo.st_mode));
+	return (isreg(finfo.st_mode) && isexec(finfo.st_mode));
 }
 
 void	free_splited(char **splited)

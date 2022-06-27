@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 00:11:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 01:42:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,16 +147,8 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pi
 	}
 	else
 	{
-		/////////////
-		///if (check_file_status(data, cmd) == FAIL)
-		///		
 		if (execve(GET_CMD(cmd), ag, data->env)  == -1)
-		{
-			ft_putstr_fd("mgyush: ", 2);
-			ft_putstr_fd(GET_CMD(cmd), 2);
-			ft_putendl_fd(": command not found", 2);
-			status = 127;//자식
-		}
+			check_execve_error(cmd);
 	}
 	exit(status);
 }
