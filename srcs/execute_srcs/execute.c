@@ -23,6 +23,16 @@
    2.execute_builtin	cd, exit, export, unset
 						*/
 
+int		redirc(t_dlst *cmd_lst)
+{
+	// t_dlst *red;
+
+	// red = GET_IO_LIST(cmd_lst);
+	if (GET_IO_LIST(cmd_lst))
+		return (1);
+	return (0);
+}
+
 int		builtin(char *cmd)
 {
 	if (check_builtin(cmd))
@@ -82,16 +92,12 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 
 void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pipe_exist)
 {
-	char *ag[] = {GET_CMD(cmd), NULL};
+	char **ag = GET_ARGS(cmd);
 	int status = 0;
-	(void) pipe_exist;
 	int pipes = data->cmd_size - 1;	// 파이프 개수
 	int i;
 	if (*pipe_num == pipes)
 	{
-		// 커맨드 4개 -> 파이프3개 -> int fd[3][2]
-		// 커맨드 3개 -> 파이프2개 -> int fd[2][2]
-		// 커맨드 2개 -> 파이프1개 -> int fd[1][2]
 		i = pipes;
 		while (i--)
 		{
@@ -99,7 +105,8 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pi
 				close(fd[i][1]);
 			close(fd[i][0]);
 		}
-		dup2(fd[0][1], STDOUT_FILENO);
+		if(pipe_exist)
+			dup2(fd[0][1], STDOUT_FILENO);
 	}
 	else if (*pipe_num == 0)
 	{
@@ -125,7 +132,7 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pi
 		dup2(fd[pipes-(*pipe_num)-1][0], STDIN_FILENO);
 		dup2(fd[pipes-(*pipe_num)][1], STDOUT_FILENO);
 	}
-	///////////////////////////////리다이렉션처리
+	set_redir(cmd->content, data);
 	if (builtin(GET_CMD(cmd)))
 	{
 		execute_builtin(data, GET_CMD(cmd), GET_ARGS(cmd));
@@ -148,11 +155,21 @@ void execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int fd[][2], int pip
 	pid = fork();
 	if (pid < 0)
 		exit(1);
-	// dup2(std[0], STDIN_FILENO);
-	// dup2(std[1], STDOUT_FILENO);
 	if (pid == 0)
 	{
 		execute_child(data, cmd, fd, &(*pipe_num), pipe_exist);
+	}
+}
+
+void	execute_redic(t_data *data)
+{
+	t_dlst *cmd_lst;
+
+	cmd_lst = data->cmd_lst;
+	while(cmd_lst)
+	{
+
+		cmd_lst = cmd_lst->next;
 	}
 }
 
@@ -169,27 +186,22 @@ void	execute(t_data *data)
 	int remain_pipe;	// 남은 파이프 갯수
 	remain_pipe = data->cmd_size - 1;
 	int s = remain_pipe;
-
-	int fd[remain_pipe][2];
 	if (remain_pipe == 0)
 		pipe_exist = 0;
 	else
 		pipe_exist = 1;
-
+	int fd[remain_pipe][2];
+	
 	int i = 0;
 	while (cmd_lst)
 	{
-		//
-
-		// if (redirc)			// 리다이렉션이 있으면
+		// if (redirc(cmd_lst) && (remain_pipe == s))	// 리다이렉션이 있으면
 		// {
-		// 	execute_redirect(data);			// 리다이렉션 처리
-		// 	break;
+		// 	execute_redic(data);			// 리다이렉션 처리
 		// }
-		if (builtin(cmd) && remain_pipe == 0)		// 빌트인함수이고 파이프가 없으면
+		if (builtin(cmd) && !pipe_exist)			// 빌트인함수이고 파이프가 없으면
 		{
-			printf("단일커맨드\n");
-			execute_builtin(data, cmd, args);	// 단일커맨드
+			execute_builtin(data, cmd, args);		// 단일커맨드
 		}
 		else
 		{
