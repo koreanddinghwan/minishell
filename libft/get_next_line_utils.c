@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:38:15 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 14:01:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:07:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_gnlchr(const char *s, int c)
 
 char	*ft_strndup(char *src, t_size n)
 {
-	char		*ptr;
+	char	*ptr;
 	t_size	i;
 
 	ptr = ft_calloc(sizeof(char), (n + 1));

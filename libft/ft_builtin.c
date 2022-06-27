@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_builtin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 17:09:14 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/27 17:09:33 by myukang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 t_envlst	*ft_envlst_last(t_envlst *envlst)
@@ -29,7 +41,7 @@ void	ft_envlst_pushback(t_envlst **envlst, t_envlst *new)
 t_envlst	*ft_envlst_new(void *c)
 {
 	t_envlst	*node;
-	char	**split;
+	char		**split;
 
 	node = malloc(1 * sizeof(t_envlst));
 	if (!node)
@@ -44,6 +56,5 @@ t_envlst	*ft_envlst_new(void *c)
 	node->env_line = (char *)c;
 	node->next = 0;
 	node->back = 0;
-
 	return (node);
 }
