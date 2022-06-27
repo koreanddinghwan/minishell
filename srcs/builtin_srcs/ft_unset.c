@@ -52,8 +52,15 @@ void	ft_unset(t_data *data, char **args)
 
 	args++;
 	copy = args;
+	if (!*args)
+		return ;
 	while(*args)
 	{
+		if (!ft_isalpha(**args) && !ft_isunder(**args) && ft_strchr(*args, '='))
+		{
+			printf("mgyush> unset: `%s': not a valid identifier\n", *args);
+			return ;
+		}
 		free_env_lst(data, args);
 		args++;
 	}

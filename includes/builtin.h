@@ -5,7 +5,6 @@
 #include "libft.h"
 #include <stdio.h>
 #include <string.h>
-
 #include "lexer.h"
 
 /*
@@ -43,5 +42,10 @@ void	ft_echo(t_data *data, char **argv);
  * exit
  * */
 void	ft_exit(int ac, char *av[]);
+
+/*
+ * SHARE export and unset
+ * */
+int	ft_isunder(int c);
 
 #endif

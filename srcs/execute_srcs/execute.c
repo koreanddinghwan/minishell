@@ -23,16 +23,6 @@
    2.execute_builtin	cd, exit, export, unset
 						*/
 
-int		redirc(t_dlst *cmd_lst)
-{
-	// t_dlst *red;
-
-	// red = GET_IO_LIST(cmd_lst);
-	if (GET_IO_LIST(cmd_lst))
-		return (1);
-	return (0);
-}
-
 int		builtin(char *cmd)
 {
 	if (check_builtin(cmd))
@@ -197,14 +187,8 @@ void	execute(t_data *data)
 	int i = 0;
 	while (cmd_lst)
 	{
-		if (builtin(cmd) && !pipe_exist && GET_IO_LIST(cmd_lst))			// 빌트인함수이고 파이프가 없으면
-		{
-			if (!strcmp(cmd, EXIT) || !strcmp(cmd, UNSET) || !strcmp(cmd, EXPORT) || !strcmp(cmd, CD))
-			{
-				printf("출력왜함?\n");
+		if (builtin(cmd) && !pipe_exist && !GET_IO_LIST(cmd_lst))
 				execute_builtin(data, cmd, args);		// 단일커맨드
-			}
-		}
 		else
 		{
 			if (remain_pipe == s)

@@ -7,7 +7,7 @@ void    ft_env(t_data   *data)
     lst = data->env_lst;
     while (lst)	//lst
 		{
-			printf("list: %s=%s\n", (char*)lst->key, (char *)lst->value);
+			printf("%s=%s\n", (char*)lst->key, (char *)lst->value);
 			lst = lst->next;
 		}
     // int         i;

@@ -20,6 +20,7 @@
 # include "structs.h"
 # include "defines_enums.h"
 # include "cleaner.h"
+# include "builtin.h"
 
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
