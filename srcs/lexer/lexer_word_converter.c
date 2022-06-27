@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 22:04:44 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 17:46:55 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:03:22 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	convert_to_arg(t_dlst *lst)
 		lst = lst->next;
 	while (lst && (GET_TOKEN_TYPE(lst) != W_PIPE))
 	{
-		if (GET_TOKEN_TYPE(lst) == W_SPACE || (GET_TOKEN_TYPE(lst) >= 7 && GET_TOKEN_TYPE(lst) <= 10))
+		if (GET_TOKEN_TYPE(lst) == W_SPACE || (GET_TOKEN_TYPE(lst) >= 7
+				&& GET_TOKEN_TYPE(lst) <= 10))
 		{
 			lst = lst->next;
 			continue ;

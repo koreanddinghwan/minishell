@@ -6,12 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:40:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 20:58:16 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 17:04:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cleaner.h"
-
 
 void	fnc_free_filepath(void *cont)
 {
