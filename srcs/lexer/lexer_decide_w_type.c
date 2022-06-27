@@ -12,6 +12,25 @@
 
 #include "lexer.h"
 
+int	fork_builtin(char *str)
+{
+	if (ft_strcmp(ECHO, str) == 0)
+		return (1);
+	if (ft_strcmp(ENV, str) == 0)
+		return (1);
+	if (ft_strcmp(PWD, str) == 0)
+		return (1);
+	if (ft_strcmp(CD, str) == 0)
+		return (0);
+	if (ft_strcmp(EXPORT, str) == 0)
+		return (0);
+	if (ft_strcmp(UNSET, str) == 0)
+		return (0);
+	if (ft_strcmp(EXIT, str) == 0)
+		return (0);
+	return (1);
+}
+
 int	check_builtin(char *str)
 {
 	if (!str)

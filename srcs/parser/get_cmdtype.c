@@ -14,8 +14,6 @@
 
 static int	check_builtin(char *str)
 {
-	if (!str)
-		return (0);
 	if (ft_strcmp(ECHO, str) == 0)
 		return (1);
 	if (ft_strcmp(CD, str) == 0)

@@ -148,11 +148,8 @@ void	execute(t_data *data)
 		return ;
 	while (cmd_lst)
 	{
-		if (builtin(cmd) && !pipe_exist && !GET_IO_LIST(cmd_lst))
-		{
-				printf("fork: 안함\n");
+		if (!fork_builtin(cmd) && !pipe_exist && !GET_IO_LIST(cmd_lst))
 				execute_builtin(data, cmd, args);		// 단일커맨드
-		}
 		else
 		{
 			if (remain_pipe == s)
@@ -168,7 +165,6 @@ void	execute(t_data *data)
 					i++;
 				}
 			}
-			printf("fork함\n");
 			execute_pipe(data, cmd_lst, &remain_pipe, fd, pipe_exist);
 		}
 		cmd_lst = cmd_lst->next;
