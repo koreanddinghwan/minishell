@@ -82,15 +82,12 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 
 void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pipe_exist)
 {
-	char *ag[] = {GET_CMD(cmd), NULL};
+	char **ag = GET_ARGS(cmd);
 	int status = 0;
 	int pipes = data->cmd_size - 1;	// 파이프 개수
 	int i;
 	if (*pipe_num == pipes)
 	{
-		// 커맨드 4개 -> 파이프3개 -> int fd[3][2]
-		// 커맨드 3개 -> 파이프2개 -> int fd[2][2]
-		// 커맨드 2개 -> 파이프1개 -> int fd[1][2]
 		i = pipes;
 		while (i--)
 		{
@@ -125,7 +122,6 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num, int pi
 		dup2(fd[pipes-(*pipe_num)-1][0], STDIN_FILENO);
 		dup2(fd[pipes-(*pipe_num)][1], STDOUT_FILENO);
 	}
-	///////////////////////////////리다이렉션처리
 	if (builtin(GET_CMD(cmd)))
 	{
 		execute_builtin(data, GET_CMD(cmd), GET_ARGS(cmd));
@@ -179,8 +175,6 @@ void	execute(t_data *data)
 	int i = 0;
 	while (cmd_lst)
 	{
-		//
-
 		// if (redirc)			// 리다이렉션이 있으면
 		// {
 		// 	execute_redirect(data);			// 리다이렉션 처리
