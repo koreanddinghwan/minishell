@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 15:10:09 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 03:25:42 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	env_len(char *str, t_data *data)
 			env_num += find_env(str + 1, env_lst) - 1;
 		str++;
 	}
+	ft_printf("env len: %d \n", env_num);
 	return (env_num);
 }
 

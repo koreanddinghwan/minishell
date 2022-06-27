@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 14:44:16 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 03:34:10 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "structs.h"
 # include "defines_enums.h"
 # include "path_finder.h"
+# include "getter.h"
 # include "cleaner.h"
 
 char			*make_cmd(t_data *data);
