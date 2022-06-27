@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 03:48:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 03:49:01 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 23:37:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	open_file(t_dlst *iolst, enum e_word_type type)
 	else
 		return (SUCESS);
 	if (fd < 0)
+	{
+		ft_putendl_fd(strerror(errno), 2);
 		return (FAIL);
+	}
 	GET_FD(iolst) = fd;
 	return (SUCESS);
 }

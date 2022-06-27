@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 21:40:47 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 23:21:08 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct	s_cmd_cont
 	char			**args;
 	int				nth;
 	t_dlst			*iolst;
-	int				infile;
-	int				outfile;
+	int				infile;//////fd
+	int				outfile;//////fd
 }	t_cmd_cont;
 
 #endif
