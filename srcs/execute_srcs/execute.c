@@ -30,38 +30,6 @@ int		builtin(char *cmd)
 	return (0);
 }
 
-int output_redirection(t_data *data, char *command, char *target, char **args, char **envp)
-{
-	// (void) data;
-	(void) envp;
-	(void) args;
-	(void) command;
-	int fd;
-	pid_t pid;
-
-	// char *ag[]={"/usr/bin", NULL};
-	fd = open(target, O_CREAT | O_RDWR | O_TRUNC , 0644);
-	pid = fork();
-	if (pid < 0)
-		exit(1);
-	if (fd < 0)
-		return (-1);
-	if (pid == 0)
-	{
-		dup2(fd, STDOUT_FILENO);
-		ft_env(data);
-		// printf("%d\n", execve("usr/bin/env", ag, envp));
-		printf("%s\n", strerror(errno));
-		exit(1);
-	}
-	else
-	{
-		waitpid(pid, NULL, 0);
-		close(fd);
-	}
-	return (1);
-}
-
 void	execute_builtin(t_data *data, char *cmd, char **args)
 {
 	if (ft_strcmp(PWD, cmd) == 0)

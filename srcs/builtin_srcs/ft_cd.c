@@ -55,7 +55,9 @@ void	ft_cd(t_data *data, char **path)
 			old_save = node->value;
 		node = node->next;
 	}
-	if (!strcmp(*path, "~"))
+	if (!*path)
+		buf = ft_strdup(home);
+	else if (!strcmp(*path, "~"))
 		buf = ft_strdup(home);
 	else if (!strcmp(*path, "-"))
 		buf = ft_strdup(old_save);
