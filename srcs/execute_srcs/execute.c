@@ -161,18 +161,6 @@ void execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int fd[][2], int pip
 	}
 }
 
-void	execute_redic(t_data *data)
-{
-	t_dlst *cmd_lst;
-
-	cmd_lst = data->cmd_lst;
-	while(cmd_lst)
-	{
-
-		cmd_lst = cmd_lst->next;
-	}
-}
-
 void	execute(t_data *data)
 {
 	t_dlst *cmd_lst;
@@ -195,13 +183,10 @@ void	execute(t_data *data)
 	int i = 0;
 	while (cmd_lst)
 	{
-		// if (redirc(cmd_lst) && (remain_pipe == s))	// 리다이렉션이 있으면
-		// {
-		// 	execute_redic(data);			// 리다이렉션 처리
-		// }
 		if (builtin(cmd) && !pipe_exist)			// 빌트인함수이고 파이프가 없으면
 		{
-			execute_builtin(data, cmd, args);		// 단일커맨드
+			if (strcmp(cmd, EXIT) || strcmp(cmd, UNSET) || strcmp(cmd, EXPORT) || strcmp(cmd, CD))
+				execute_builtin(data, cmd, args);		// 단일커맨드
 		}
 		else
 		{
