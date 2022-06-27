@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 21:19:33 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 21:02:44 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 02:50:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	check_builtin(char *str)
 {
+	if (!str)
+		return (0);
 	if (ft_strcmp(ECHO, str) == 0)
 		return (1);
 	if (ft_strcmp(CD, str) == 0)

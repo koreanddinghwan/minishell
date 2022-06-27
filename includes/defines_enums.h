@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 01:22:56 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 02:43:08 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # define EXIT	"exit"
 # define SUCESS	1
 # define FAIL	0
+# define NOFILE ": No such file or directory"
+# define ISDIR ": is a directory"
+# define DENY ": Permission denied"
+# define CMDNOTFOUND ": command not found"
 
 enum	e_char_type
 {

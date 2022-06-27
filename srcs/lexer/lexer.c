@@ -6,13 +6,12 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 17:02:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 02:51:33 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-/*tmp
 void	lexer_token_printer(t_data *data)
 {
 	t_dlst	*lst;
@@ -25,7 +24,6 @@ void	lexer_token_printer(t_data *data)
 		lst = lst->next;
 	}
 }
-*/
 void	cleanup_routine(t_data *data, t_token **tok_buf, int *space_add)
 {
 	int				i;
@@ -104,5 +102,6 @@ int	lexer(t_data *data)
 	lexer_w_converter(data);
 	replacer(data);
 	lexer_add_nth(data);
+	lexer_token_printer(data);
 	return (SUCESS);
 }

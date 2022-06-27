@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 02:19:21 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 02:58:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int		builtin(char *cmd)
 
 void	execute_builtin(t_data *data, char *cmd, char **args)
 {
+	if (!cmd)
+		return ;
+	ft_printf("%s\n", cmd);
 	if (ft_strcmp(PWD, cmd) == 0)
 		ft_pwd();
 	if (ft_strcmp(EXPORT, cmd) == 0)
