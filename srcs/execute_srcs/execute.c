@@ -197,10 +197,13 @@ void	execute(t_data *data)
 	int i = 0;
 	while (cmd_lst)
 	{
-		if (builtin(cmd) && !pipe_exist)			// 빌트인함수이고 파이프가 없으면
+		if (builtin(cmd) && !pipe_exist && GET_IO_LIST(cmd_lst))			// 빌트인함수이고 파이프가 없으면
 		{
-			if (strcmp(cmd, EXIT) || strcmp(cmd, UNSET) || strcmp(cmd, EXPORT) || strcmp(cmd, CD))
+			if (!strcmp(cmd, EXIT) || !strcmp(cmd, UNSET) || !strcmp(cmd, EXPORT) || !strcmp(cmd, CD))
+			{
+				printf("출력왜함?\n");
 				execute_builtin(data, cmd, args);		// 단일커맨드
+			}
 		}
 		else
 		{
