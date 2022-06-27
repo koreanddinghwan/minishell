@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 15:50:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:00:30 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ int	size_envp(char **envp)
 char	**add_env_arr(t_data *data, char **args)
 {
 	char	**copy;
-	int i = 0;
-	int j = 0;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	copy = (char **)malloc(sizeof(char *) * data->env_size * 10);
 	if (!strchr(*args, '='))
-		return 0;
+		return (0);
 	while (data->env[i])
 	{
 		copy[j] = ft_strdup(data->env[i]);
@@ -70,7 +72,7 @@ void	set_env_arr(t_data *data, char **envp)
 		if (!ft_strncmp(*envp, "OLDPWD=", 7))
 		{
 			envp++;
-			continue;
+			continue ;
 		}
 		data->env[i] = ft_strdup(*envp);
 		envp++;
@@ -82,7 +84,7 @@ void	set_env_arr(t_data *data, char **envp)
 void	set_env_lst(t_data *data, char **envp)
 {
 	t_envlst	*node;
-	
+
 	while (*envp)
 	{
 		node = ft_envlst_new(make_key(*envp));

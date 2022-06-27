@@ -6,13 +6,13 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:34:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/18 01:02:55 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:00:47 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 

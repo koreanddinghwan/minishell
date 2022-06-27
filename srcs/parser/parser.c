@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 14:44:28 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:07:48 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -20,37 +20,23 @@
  * cmd(builtin)  args | cmd(builtin) args
  * */
 
-void	printleft(t_data *data)
-{
-	t_dlst	*lst;
-
-	lst = data->lexer_token_lst;
-	printf("=====================left tokens===================\n");
-	while (lst)
-	{
-		printf("type : %d, buffer : %s\n", GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
-		lst = lst->next;
-	}
-	printf("===================================================\n");
-}
-
 void	make_cmdcont(t_data *data)
 {
-	t_cmd_cont	*cur_cmd_cont;
+	t_cmd_cont	*cmd_cont;
 	int			n;
 
 	n = 0;
 	while (data->lexer_token_lst)
 	{
-		cur_cmd_cont = init_cmd_cont();
-		cur_cmd_cont->iolst = make_iolst(data);
-		cur_cmd_cont->cmd = make_cmd(data);
-		cur_cmd_cont->cmdtype = get_cmdtype(cur_cmd_cont->cmd);
-		if (cur_cmd_cont->cmdtype != E_BUILTIN)
-			cur_cmd_cont->cmd = cmdpath_finder(data->env_lst, cur_cmd_cont->cmd);
-		cur_cmd_cont->args = make_args(data, cur_cmd_cont->cmd);
-		cur_cmd_cont->nth = n;
-		ft_dlst_pushback(&data->cmd_lst, ft_dlst_new(cur_cmd_cont));
+		cmd_cont = init_cmd_cont();
+		cmd_cont->iolst = make_iolst(data);
+		cmd_cont->cmd = make_cmd(data);
+		cmd_cont->cmdtype = get_cmdtype(cmd_cont->cmd);
+		if (cmd_cont->cmdtype != E_BUILTIN)
+			cmd_cont->cmd = cmdpath_finder(data->env_lst, cmd_cont->cmd);
+		cmd_cont->args = make_args(data, cmd_cont->cmd);
+		cmd_cont->nth = n;
+		ft_dlst_pushback(&data->cmd_lst, ft_dlst_new(cmd_cont));
 		n++;
 	}
 }

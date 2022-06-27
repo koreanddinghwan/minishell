@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:27:24 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 16:03:40 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:09:14 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*cmdpath_finder(t_envlst *envlst, char *cmd)
 
 char	*iopath_finder(char *path, int type)
 {
-	char *rtn;
+	char	*rtn;
 
 	rtn = NULL;
 	if (type == W_HERE_DOC)

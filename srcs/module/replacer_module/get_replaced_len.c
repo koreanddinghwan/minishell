@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 16:54:58 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:10:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	env_len(char *str, t_data *data)
 	env_num = 0;
 	while (*str)
 	{
-		if (*str == '$' && *(str + 1) != 0 && *(str + 1) != '?' && *(str + 1) != '$')
+		if (*str == '$' && *(str + 1) != 0
+			&& *(str + 1) != '?' && *(str + 1) != '$')
 			env_num += find_env(str + 1, env_lst) - 1;
 		str++;
 	}

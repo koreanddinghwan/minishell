@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_data.c                                  :+:      :+:    :+:   */
+/*   getter.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 16:00:38 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/27 15:18:51 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/27 15:21:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef GETTER_H
+# define GETTER_H
 
-void	initialize_data(t_data *data, char *line)
-{
-	if (ft_strlen(line) == 0)
-		return ;
-	add_history(line);
-	data->command = line;
-	if (tokenizer(data) == FAIL)
-	{
-		token_free(data);
-		return ;
-	}
-	if (lexer(data) == FAIL)
-	{
-		lexer_free(data);
-		return ;
-	}
-	parser(data);
-	execute(data);
-	cleaner(data);
-}
+# include "structs.h"
+
+t_lexer_token *get_ltok_cont(t_dlst *lst);
+
+#endif

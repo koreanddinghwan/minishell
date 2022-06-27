@@ -6,13 +6,13 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/25 17:55:07 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:13:58 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-/*tmp*/
+/*tmp
 void	lexer_token_printer(t_data *data)
 {
 	t_dlst	*lst;
@@ -20,11 +20,12 @@ void	lexer_token_printer(t_data *data)
 	lst = data->lexer_token_lst;
 	while (lst)
 	{
-		printf("nth : %d, type : %d , buffer : %s\n",  GET_TOKEN_NTH(lst), GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
+		printf("nth : %d, type : %d , buffer : %s\n",
+			GET_TOKEN_NTH(lst), GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
 		lst = lst->next;
 	}
 }
-
+*/
 t_lexer_token	*lexer_space_token(void)
 {
 	t_lexer_token	*rtn;

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 02:04:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 16:57:23 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:47:23 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -40,20 +40,20 @@ void	replacer_exec(t_data *data, t_dlst *tok_lst)
 {
 	char	*buffer;
 
-	buffer = GET_TOKEN_BUFFER(tok_lst);
+	buffer = get_ltok_cont(tok_lst)->buffer;
 	if (buffer[0] == ' ')
 		return ;
 	if (buffer[0] == '\'')
 	{
-		GET_TOKEN_BUFFER(tok_lst) = ft_strtrim(buffer, "\'");
+		get_ltok_cont(tok_lst)->buffer = ft_strtrim(buffer, "\'");
 		free(buffer);
 	}
 	else
 	{
-		GET_TOKEN_BUFFER(tok_lst) = ft_strtrim(buffer, "\"");
+		get_ltok_cont(tok_lst)->buffer = ft_strtrim(buffer, "\"");
 		free(buffer);
-		buffer = GET_TOKEN_BUFFER(tok_lst);
-		GET_TOKEN_BUFFER(tok_lst) = get_replaced(data, buffer);
+		buffer = get_ltok_cont(tok_lst)->buffer;
+		get_ltok_cont(tok_lst)->buffer = get_replaced(data, buffer);
 	}
 }
 
@@ -64,7 +64,7 @@ void	replacer(t_data *data)
 	tok_lst = data->lexer_token_lst;
 	while (tok_lst)
 	{
-		if (GET_TOKEN_TYPE(tok_lst) != W_DELIMETER)
+		if (get_ltok_cont(tok_lst)->w_type != W_DELIMETER)
 			replacer_exec(data, tok_lst);
 		tok_lst = tok_lst->next;
 	}

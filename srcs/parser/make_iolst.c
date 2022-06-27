@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   make_iolst.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/27 15:02:31 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/27 15:08:24 by myukang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parser.h"
 
 int	check_redirection(t_dlst *tok_lst)
@@ -13,15 +25,27 @@ int	check_redirection(t_dlst *tok_lst)
 	return (0);
 }
 
+void	token_delete(t_data *data, t_dlst *tok_lst, int offset)
+{
+	t_dlst		*next;
+
+	while (tok_lst && offset)
+	{
+		next = tok_lst->next;
+		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
+		tok_lst = next;
+		offset--;
+	}
+}
+
 t_io_cont	*make_io_cont(t_data *data, t_dlst *tok_lst, enum e_word_type type)
 {
 	t_io_cont	*rtn;
 	t_dlst		*cur;
-	t_dlst		*next;
 	int			offset;
 
-	cur = tok_lst;
 	rtn = NULL;
+	cur = tok_lst;
 	offset = get_offset(cur, type);
 	cur = wget_startpoint(cur, type);
 	if (cur)
@@ -34,13 +58,7 @@ t_io_cont	*make_io_cont(t_data *data, t_dlst *tok_lst, enum e_word_type type)
 		rtn->tmpname = NULL;
 		rtn->fd = -1;
 	}
-	while (tok_lst && offset)
-	{
-		next = tok_lst->next;
-		ft_dlst_delete(tok_lst, &data->lexer_token_lst, lexer_tok_free);
-		tok_lst = next;
-		offset--;
-	}
+	token_delete(data, tok_lst, offset);
 	return (rtn);
 }
 
@@ -55,7 +73,8 @@ t_dlst	*make_iolst(t_data *data)
 	tok_lst = data->lexer_token_lst;
 	while (check_redirection(tok_lst))
 	{
-		while (tok_lst && (GET_TOKEN_TYPE(tok_lst) < 7 || GET_TOKEN_TYPE(tok_lst) > 10))
+		while (tok_lst && (GET_TOKEN_TYPE(tok_lst) < 7
+				|| GET_TOKEN_TYPE(tok_lst) > 10))
 			tok_lst = tok_lst->next;
 		if (tok_lst)
 		{

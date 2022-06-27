@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 03:47:40 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:02:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,3 @@ t_cmd_cont	*init_cmd_cont(void)
 	rtn->outfile = -1;
 	return (rtn);
 }
-

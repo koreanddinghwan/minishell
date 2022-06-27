@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 00:16:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/27 15:31:15 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # define ECHO	"echo"
 # define CD		"cd"
-# define PWD		"pwd"
+# define PWD	"pwd"
 # define EXPORT	"export"
 # define UNSET	"unset"
-# define ENV		"env"
+# define ENV	"env"
 # define EXIT	"exit"
 # define SUCESS	1
 # define FAIL	0
