@@ -47,6 +47,7 @@ char	**add_env_arr(t_data *data, char **args)
 	while (data->env[i])
 	{
 		copy[j] = ft_strdup(data->env[i]);
+		free(data->env[i]);
 		j++;
 		i++;
 	}
@@ -57,6 +58,7 @@ char	**add_env_arr(t_data *data, char **args)
 		args++;
 	}
 	copy[j] = 0;
+	free(data->env);
 	return (copy);
 }
 

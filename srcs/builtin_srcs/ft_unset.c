@@ -25,22 +25,24 @@ char	**remove_env_arr(t_data *data, char **args)
 	while (data->env[i])
 	{
 		split = ft_split(data->env[i], '=');
-		printf("DIFF: %s %s\n", split[0], *args);
+		printf("DIFF: %s %s %s\n", split[0], split[1], *args);
 		if (!ft_strcmp(split[0], *args))
 		{
 			data->env++;
 			args++;
-			j++;
 			i++;
+			continue;
 		}
-		else
-		{
 			copy[j] = ft_strdup(data->env[i]);
+			free(data->env[i]);
+			free(split[0]);
+			free(split[1]);
 			j++;
 			i++;
-		}
 	}
 	copy[j] = 0;
+	free(split);
+	free(data->env);
 	return (copy);
 }
 
