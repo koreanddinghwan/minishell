@@ -8,6 +8,6 @@ void	ft_pwd(void)
 	if (!getcwd(loc, 256))
 		return ;
 	else
-		printf("current loc: %s\n", loc);
+		printf("%s\n", loc);
 	free(loc);
 }
