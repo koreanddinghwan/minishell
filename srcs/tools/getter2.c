@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:48:50 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 20:49:10 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 05:41:41 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,14 @@ t_dlst	*get_io_list(t_dlst *lst)
 	if (!lst)
 		return (NULL);
 	return (get_cmd_cont(lst)->iolst);
+}
+
+int	get_infile(t_dlst *lst)
+{
+	return (get_cmd_cont(lst)->infile);
+}
+
+int	get_outfile(t_dlst *lst)
+{
+	return (get_cmd_cont(lst)->outfile);
 }

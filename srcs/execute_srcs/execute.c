@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 03:50:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 05:44:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,17 @@
 void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 {
 	int	status;
-	int	infile;
-	int	outfile;
 	int	i;
 
 	status = 0;
-	infile = ((t_cmd_cont *)cmd->content)->infile;
-	outfile = ((t_cmd_cont *)cmd->content)->outfile;
 	i = 0;
-	execute_dup2(data, i, fd, *pipe_num);
 	if (set_redir(cmd->content, data) == FAIL)
 		exit(1);
-	if (infile != -1)
-		dup2(infile, STDIN_FILENO);
-	if (outfile != -1)
-		dup2(outfile, STDOUT_FILENO);
+	if (get_infile(cmd) != -1)
+		dup2(get_infile(cmd), STDIN_FILENO);
+	if (get_outfile(cmd) != -1)
+		dup2(get_outfile(cmd), STDOUT_FILENO);
+	execute_dup2(data, i, fd, *pipe_num);
 	if (check_builtin(get_cmd(cmd)))
 		execute_builtin(data, get_cmd(cmd), get_args(cmd));
 	else
@@ -77,23 +73,17 @@ void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int *fd[2])
 	i = 0;
 	while (cmd_lst)
 	{
-		if (!fork_builtin(get_cmd(cmd_lst))
-			&& !data->pipe_exist && !get_io_list(cmd_lst))
-			execute_builtin(data, get_cmd(cmd_lst), get_args(cmd_lst));
-		else
+		if (*remain_pipe == data->cmd_size - 1)
 		{
-			if (*remain_pipe == data->cmd_size - 1)
+			while (data->cmd_size - 1)
 			{
-				while (data->cmd_size - 1)
-				{
-					pipe(fd[i]);
-					if (data->cmd_size - 2 == i)
-						break ;
-					i++;
-				}
+				pipe(fd[i]);
+				if (data->cmd_size - 2 == i)
+					break ;
+				i++;
 			}
-			execute_pipe(data, cmd_lst, &(*remain_pipe), fd);
 		}
+		execute_pipe(data, cmd_lst, &(*remain_pipe), fd);
 		cmd_lst = cmd_lst->next;
 		(*remain_pipe)--;
 	}
