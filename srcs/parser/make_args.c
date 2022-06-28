@@ -6,12 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:14:10 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:59:58 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "tmp.h"
 
 void	join_args(char **rtn, t_data *data, int count)
 {

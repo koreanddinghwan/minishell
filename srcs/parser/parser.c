@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 15:07:48 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:58:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -14,11 +14,6 @@
  * */
 
 #include "parser.h"
-#include "tmp.h"
-
-/*
- * cmd(builtin)  args | cmd(builtin) args
- * */
 
 void	make_cmdcont(t_data *data)
 {
@@ -47,5 +42,4 @@ void	parser(t_data *data)
 		return ;
 	make_cmdcont(data);
 	data->cmd_size = ft_dlst_size(data->cmd_lst);
-	print_cmddata(data);
 }

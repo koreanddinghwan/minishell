@@ -1,51 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/28 14:44:45 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/28 14:45:55 by myukang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
-#include "structs.h"
-#include "libft.h"
-#include <stdio.h>
-#include <string.h>
-#include "lexer.h"
+# include <stdio.h>
+# include <string.h>
+# include "structs.h"
+# include "libft.h"
+# include "lexer.h"
 
-/*
- * env
- * */
-void    ft_env(t_data   *data);
-
-/*
- * cd
- * */
+void	ft_env(t_data *data);
 void	ft_cd(t_data *data, char **path);
-
-/*
- * pwd
- * */
-void	ft_pwd();
-
-/*
- * export
- * */
+void	ft_pwd(void);
 void	ft_export(t_data *data, char **args);
-
-/*
- * unset
- * */
 void	ft_unset(t_data *data, char **args);
-
-/*
- * echo
- * */
 void	ft_echo(t_data *data, char **argv);
-
-
-/*
- * exit
- * */
 void	ft_exit(int ac, char *av[]);
-
-/*
- * SHARE export and unset
- * */
-int	ft_isunder(int c);
+int		ft_isunder(int c);
 
 #endif

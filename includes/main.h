@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 15:50:46 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:54:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
 void	set_env_lst(t_data *data, char **envp);
-void    set_env_arr(t_data *data, char **envp);
+void	set_env_arr(t_data *data, char **envp);
 char	**add_env_arr(t_data *data, char **args);
 /*
  * display
@@ -36,6 +36,4 @@ int		tokenizer(t_data *data);
 int		lexer(t_data *data);
 void	parser(t_data *data);
 void	execute(t_data *data);
-void	exec(t_data *data);
-void	print_toks(t_token *tok_buf);
 #endif

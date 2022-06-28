@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:42:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 23:21:08 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:57:06 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 # include "defines_enums.h"
 # include "libft.h"
 
-typedef	struct s_token
+typedef struct s_token
 {
 	enum e_char_type	type;
 	char				c;
 }	t_token;
 
-typedef	struct s_lexer_token
+typedef struct s_lexer_token
 {
 	enum e_word_type	w_type;
 	char				*buffer;
@@ -29,7 +29,7 @@ typedef	struct s_lexer_token
 	int					nth;
 }	t_lexer_token;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	char		*command;
 	t_token		*tok_buf;
@@ -48,7 +48,7 @@ enum e_cmdtype
 	E_BUILTIN,
 };
 
-typedef struct	s_io_cont
+typedef struct s_io_cont
 {
 	char				*filepath;
 	enum e_word_type	type;
@@ -56,15 +56,15 @@ typedef struct	s_io_cont
 	int					fd;
 }	t_io_cont;
 
-typedef struct	s_cmd_cont
+typedef struct s_cmd_cont
 {
 	enum e_cmdtype	cmdtype;
 	char			*cmd;
 	char			**args;
 	int				nth;
 	t_dlst			*iolst;
-	int				infile;//////fd
-	int				outfile;//////fd
+	int				infile;
+	int				outfile;
 }	t_cmd_cont;
 
 #endif
