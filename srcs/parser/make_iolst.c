@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:02:31 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:13:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:52:44 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	check_redirection(t_dlst *tok_lst)
 {
 	while (tok_lst)
 	{
-		if ((get_ltok_cont(tok_lst)->w_type) >= 7
-			&& (get_ltok_cont(tok_lst)->w_type) <= 10)
+		if (get_ltok_type(tok_lst) >= 7
+			&& get_ltok_type(tok_lst) <= 10)
 			return (1);
-		if ((get_ltok_cont(tok_lst)->w_type) == W_PIPE)
+		if (get_ltok_type(tok_lst) == W_PIPE)
 			return (0);
 		tok_lst = tok_lst->next;
 	}
@@ -74,12 +74,12 @@ t_dlst	*make_iolst(t_data *data)
 	tok_lst = data->lexer_token_lst;
 	while (check_redirection(tok_lst))
 	{
-		while (tok_lst && ((get_ltok_cont(tok_lst)->w_type) < 7
-				|| (get_ltok_cont(tok_lst)->w_type) > 10))
+		while (tok_lst && (get_ltok_type(tok_lst) < 7
+				|| get_ltok_type(tok_lst) > 10))
 			tok_lst = tok_lst->next;
 		if (tok_lst)
 		{
-			new = make_io_cont(data, tok_lst, (get_ltok_cont(tok_lst)->w_type));
+			new = make_io_cont(data, tok_lst, get_ltok_type(tok_lst));
 			if (new)
 				ft_dlst_pushback(&rtn, ft_dlst_new(new));
 			tok_lst = data->lexer_token_lst;

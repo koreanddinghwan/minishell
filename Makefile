@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/28 20:11:49 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/28 20:49:22 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
-TOOLS_SRCS = $(addprefix ./srcs/tools/, getter1.c fs_bitmasking.c)
+TOOLS_SRCS = $(addprefix ./srcs/tools/, getter1.c getter2.c fs_bitmasking.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
 OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(LEXER_OBJS) $(MODULE_OBJS) $(PARSE_OBJS) $(CLEANER_OBJS) $(EXEC_OBJS)
