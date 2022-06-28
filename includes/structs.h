@@ -40,6 +40,7 @@ typedef struct s_data
 	t_dlst		*cmd_lst;
 	int			cmd_size;
 	int			exit_status;
+	int			pipe_exist;
 }	t_data;
 
 enum e_cmdtype
