@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 03:48:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 02:27:34 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 15:14:56 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	open_file(t_dlst *iolst, enum e_word_type type)
 	int	fd;
 
 	if (type == W_APPENDING_TO)
-		fd = open(GET_FILEPATH(iolst), O_CREAT|O_WRONLY|O_APPEND, 0644);
+		fd = open(get_io_cont(iolst)->filepath,
+				O_CREAT | O_WRONLY | O_APPEND, 0644);
 	else if (type == W_REDIRECTION_OUTPUT)
-		fd = open(GET_FILEPATH(iolst), O_CREAT|O_WRONLY|O_TRUNC, 0644);
+		fd = open(get_io_cont(iolst)->filepath,
+				O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	else if (type == W_REDIRECTION_INPUT)
-		fd = open(GET_FILEPATH(iolst), O_RDONLY);
+		fd = open(get_io_cont(iolst)->filepath, O_RDONLY);
 	else
 		return (SUCESS);
 	if (fd < 0)
@@ -29,7 +31,7 @@ int	open_file(t_dlst *iolst, enum e_word_type type)
 		ft_putendl_fd(strerror(errno), 2);
 		return (FAIL);
 	}
-	GET_FD(iolst) = fd;
+	get_io_cont(iolst)->fd = fd;
 	return (SUCESS);
 }
 
@@ -37,10 +39,10 @@ int	set_fd(t_dlst *iolst)
 {
 	int	status;
 
-	status  = SUCESS;
+	status = SUCESS;
 	while (iolst)
 	{
-		status = open_file(iolst, GET_IOTYPE(iolst));
+		status = open_file(iolst, get_io_cont(iolst)->type);
 		if (status == FAIL)
 			return (FAIL);
 		iolst = iolst->next;
@@ -59,8 +61,11 @@ void	close_fd(t_data *data)
 		iolst = (get_cmd_cont(cmdlst))->iolst;
 		while (iolst)
 		{
-			if (GET_FD(iolst) != -1)
-				close(GET_FD(iolst));
+			if (get_io_cont(iolst)->fd != -1)
+			{
+				close(get_io_cont(iolst)->fd);
+				get_io_cont(iolst)->fd = -1;
+			}
 			iolst = iolst->next;
 		}
 		cmdlst = cmdlst->next;
@@ -69,18 +74,18 @@ void	close_fd(t_data *data)
 
 int	set_last(t_dlst *iolst, enum e_word_type one, enum e_word_type two)
 {
-	int	last;
+	int					last;
 	enum e_word_type	type;
 
 	last = -1;
 	while (iolst)
 	{
-		type = GET_IOTYPE(iolst);
+		type = get_io_cont(iolst)->type;
 		if (type == one || type == two)
 		{
 			if (last != -1)
 				close(last);
-			last = GET_FD(iolst);
+			last = get_io_cont(iolst)->fd;
 		}
 		iolst = iolst->next;
 	}
