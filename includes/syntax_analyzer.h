@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 13:20:12 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 17:14:23 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:16:31 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SYNTAX_ANALYZER_H
 # include "structs.h"
 # include "cleaner.h"
+# include "getter.h"
 # define ERR_NEWLINE "`newline\'"
 # define ERR_PIPE "`|\'"
 # define ERR_REDIR_IN "`<\'"

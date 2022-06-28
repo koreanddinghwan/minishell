@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/28 01:47:29 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/28 14:41:29 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,13 @@ MODULE_OBJS = $(MODULE_SRCS:.c=.o)
 CLEANER_SRCS = $(addprefix ./srcs/cleaner/, cleaner.c cmd_cont_free.c)
 CLEANER_OBJS = $(CLEANER_SRCS:.c=.o)
 
-EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c print_cmddata.c set_heredoc.c set_redirection.c check_execve_error.c)
+EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c print_cmddata.c set_heredoc.c set_redirection.c check_execve_error.c set_heredoc_tools.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
-TOOLS_SRCS = $(addprefix ./srcs/tools/, free.c error_handler.c tmp_print.c getter1.c getter2.c fs_bitmasking.c)
+TOOLS_SRCS = $(addprefix ./srcs/tools/, tmp_print.c getter1.c getter2.c fs_bitmasking.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
 OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(LEXER_OBJS) $(MODULE_OBJS) $(PARSE_OBJS) $(CLEANER_OBJS) $(EXEC_OBJS)

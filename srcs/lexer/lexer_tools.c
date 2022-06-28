@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:01:22 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 17:01:59 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:24:15 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	lexer_add_nth(t_data *data)
 	i = 0;
 	while (lst)
 	{
-		GET_TOKEN_NTH(lst) = i;
+		get_ltok_cont(lst)->nth = i;
 		lst = lst->next;
 		i++;
 	}

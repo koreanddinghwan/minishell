@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 02:56:43 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:14:10 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	join_args(char **rtn, t_data *data, int count)
 	while (i < count - 1)
 	{
 		tok_lst = data->lexer_token_lst;
-		if (GET_TOKEN_TYPE(tok_lst) == W_ARG)
+		if ((get_ltok_cont(tok_lst)->w_type) == W_ARG)
 		{
 			rtn[i++] = wget_join(tok_lst, W_ARG);
 			delete_multiple_tokens(data, W_ARG);
 		}
-		else if (GET_TOKEN_TYPE(tok_lst) == W_SPACE)
+		else if ((get_ltok_cont(tok_lst)->w_type) == W_SPACE)
 			delete_multiple_tokens(data, W_SPACE);
 	}
 }
@@ -40,12 +40,12 @@ int	get_args_count(t_dlst *tok_lst)
 	i = 0;
 	while (tok_lst)
 	{
-		if (GET_TOKEN_TYPE(tok_lst) == W_PIPE)
+		if ((get_ltok_cont(tok_lst)->w_type) == W_PIPE)
 			return (i);
-		else if (GET_TOKEN_TYPE(tok_lst) == W_ARG)
+		else if ((get_ltok_cont(tok_lst)->w_type) == W_ARG)
 		{
 			i++;
-			while (tok_lst && GET_TOKEN_TYPE(tok_lst) == W_ARG)
+			while (tok_lst && (get_ltok_cont(tok_lst)->w_type) == W_ARG)
 				tok_lst = tok_lst->next;
 		}
 		else
@@ -63,7 +63,6 @@ char	**make_args(t_data *data, char *cmd)
 		return (0);
 	count = get_args_count(data->lexer_token_lst) + 2;
 	rtn = malloc(sizeof(char *) * (count));
-	ft_printf("%d\n", count);
 	rtn[0] = ft_strdup(cmd);
 	rtn[count - 1] = NULL;
 	delete_multiple_tokens(data, W_SPACE);

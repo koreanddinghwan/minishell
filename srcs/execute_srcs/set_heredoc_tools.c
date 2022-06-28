@@ -1,21 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handler.h                                    :+:      :+:    :+:   */
+/*   set_heredoc_tools.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 00:45:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/07 13:32:35 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/28 14:32:53 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/28 14:34:05 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_HANDLER
-# define ERROR_HANDLER
+#include "execute.h"
 
-#include <string.h>
-#include <stdlib.h>
+int	set_heredocnum(t_dlst *iolst)
+{
+	int	c;
 
-void	print_error(int errnum);
+	c = 0;
+	while (iolst)
+	{
+		if (get_io_cont(iolst)->type == W_HERE_DOC)
+			c++;
+		iolst = iolst->next;
+	}
+	return (c);
+}
 
-#endif
+void	write_free_strings(t_data *data, char *input, int fd, char *trimmed)
+{
+	char	*replaced;
+
+	replaced = get_replaced(data, input);
+	write(fd, replaced, ft_strlen(replaced));
+	free(replaced);
+	free(trimmed);
+}

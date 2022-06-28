@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 17:11:40 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 17:02:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:23:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "structs.h"
 # include "cleaner.h"
-#include <stdio.h>
+# include "getter.h"
 t_lexer_token	*lexer_token_init(t_token *tok_buf);
 int				syntax_analyzer(t_data *data);
 void			lexer_decide_w_type(t_lexer_token *l_tok);

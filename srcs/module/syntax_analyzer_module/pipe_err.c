@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 01:27:43 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/22 00:59:40 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:20:56 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -19,11 +19,14 @@
 
 int	startwith_pipe(t_dlst *lst)
 {
-	if (GET_TOKEN_TYPE(lst) == W_SPACE || GET_TOKEN_TYPE(lst) == W_PIPE)
+	enum e_word_type	type;
+
+	type = get_ltok_cont(lst)->w_type;
+	if (type == W_SPACE || type == W_PIPE)
 	{
-		while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+		while (lst && get_ltok_cont(lst)->w_type == W_SPACE)
 			lst = lst->next;
-		if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
+		if (lst && get_ltok_cont(lst)->w_type == W_PIPE)
 			return (TRUE);
 	}
 	return (FALSE);
@@ -33,14 +36,14 @@ int	double_pipe(t_dlst *lst)
 {
 	while (lst)
 	{
-		if (GET_TOKEN_TYPE(lst) == W_PIPE)
+		if (get_ltok_cont(lst)->w_type == W_PIPE)
 		{
 			lst = lst->next;
 			if (lst)
 			{
-				while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+				while (lst && get_ltok_cont(lst)->w_type == W_SPACE)
 					lst = lst->next;
-				if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
+				if (lst && get_ltok_cont(lst)->w_type == W_PIPE)
 					return (TRUE);
 			}
 		}
@@ -55,14 +58,14 @@ int	endwith_pipe(t_dlst *lst)
 	t_dlst	*last;
 
 	last = ft_dlst_last(lst);
-	if (GET_TOKEN_TYPE(last) == W_SPACE)
+	if (get_ltok_cont(last)->w_type == W_SPACE)
 	{
-		while (GET_TOKEN_TYPE(last) == W_SPACE)
+		while (get_ltok_cont(last)->w_type == W_SPACE)
 			last = last->back;
-		if (GET_TOKEN_TYPE(last) == W_PIPE)
+		if (get_ltok_cont(last)->w_type == W_PIPE)
 			return (TRUE);
 	}
-	else if (GET_TOKEN_TYPE(last) == W_PIPE)
+	else if (get_ltok_cont(last)->w_type == W_PIPE)
 		return (TRUE);
 	return (FALSE);
 }

@@ -6,24 +6,12 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 03:36:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 14:23:20 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	lexer_token_printer(t_data *data)
-{
-	t_dlst	*lst;
-
-	lst = data->lexer_token_lst;
-	while (lst)
-	{
-		printf("nth : %d, type : %d , buffer : %s\n",
-			GET_TOKEN_NTH(lst), GET_TOKEN_TYPE(lst), GET_TOKEN_BUFFER(lst));
-		lst = lst->next;
-	}
-}
 void	cleanup_routine(t_data *data, t_token **tok_buf, int *space_add)
 {
 	int				i;
@@ -74,12 +62,12 @@ void	set_clobber(t_data *data, t_dlst *lst)
 
 	while (lst)
 	{
-		if (lst && GET_TOKEN_TYPE(lst) == W_REDIRECTION_OUTPUT)
+		if (lst && get_ltok_cont(lst)->w_type == W_REDIRECTION_OUTPUT)
 		{
 			next = lst->next;
 			if (next)
 			{
-				buffer = GET_TOKEN_BUFFER(next);
+				buffer = get_ltok_cont(lst)->buffer;
 				if (ft_strcmp("|", buffer) == 0)
 				{
 					ft_dlst_delete(next,
@@ -102,6 +90,5 @@ int	lexer(t_data *data)
 	lexer_w_converter(data);
 	replacer(data);
 	lexer_add_nth(data);
-	lexer_token_printer(data);
 	return (SUCESS);
 }
