@@ -59,7 +59,7 @@ void	ft_export(t_data *data, char **args)
 		if (!strchr(*args, '='))
 			return ;
 		else if (!ft_isalpha(**args) && !ft_isunder(**args))
-			printf("mgyush> export: `%s': not a valid identifier\n", *args);
+			printf("mgyush: export: `%s': not a valid identifier\n", *args);
 		else
 		{
 			node = ft_envlst_new(*args);
