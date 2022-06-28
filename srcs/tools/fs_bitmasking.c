@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 01:16:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 01:50:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 16:18:11 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	isreg(int st_mode)
 
 int	isexec(int st_mode)
 {
-	return (isreg(st_mode) &&  (st_mode & FS_IXUSR));
+	return (isreg(st_mode) && (st_mode & FS_IXUSR));
 }

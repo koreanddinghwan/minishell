@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/28 15:43:39 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/28 15:44:17 by myukang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 int	check_option(char *option)
@@ -6,7 +18,7 @@ int	check_option(char *option)
 
 	status = TRUE;
 	if (*option != '-')
-		status =  FALSE;
+		status = FALSE;
 	else
 		option++;
 	while (*option)

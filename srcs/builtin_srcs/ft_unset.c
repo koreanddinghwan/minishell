@@ -4,10 +4,14 @@ char	**remove_env_arr(t_data *data, char **args)
 {
 	char	**copy;
 	char	**split;
-	int i = 0;
-	int j = 0;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	copy = (char **)malloc(sizeof(char *) * data->env_size * 10);
+	if (!copy)
+		return (NULL);
 	while (data->env[i])
 	{
 		split = ft_split(data->env[i], '=');
@@ -15,14 +19,14 @@ char	**remove_env_arr(t_data *data, char **args)
 		{
 			data->env++;
 			args++;
-			continue;
+			continue ;
 		}
 		copy[j] = ft_strdup(data->env[i]);
 		j++;
 		i++;
 	}
 	copy[j] = 0;
-	return	(copy);
+	return (copy);
 }
 
 void	free_env_lst(t_data *data, char **args)

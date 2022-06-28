@@ -1,8 +1,8 @@
 #include "main.h"
 
-void	ft_pwd()
+void	ft_pwd(void)
 {
-	char	*loc; // ulimit -n
+	char	*loc;
 
 	loc = (char *)malloc(sizeof(char) * 256);
 	if (!getcwd(loc, 256))
