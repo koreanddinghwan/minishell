@@ -1,48 +1,39 @@
 #include "main.h"
 
-void	ft_free(char **split)
-{
-	while(*split)
-	{
-		free(*split);
-		split++;
-	}
-	free(split);
-}
-
 char	**remove_env_arr(t_data *data, char **args)
 {
 	char	**copy;
-	char	**split;
-	int		i;
 	int		j;
+	int		size;
 
-	i = 0;
-	j = 0;
 	copy = (char **)malloc(sizeof(char *) * data->env_size * 10);
+	j = 0;
+	size = ft_strlen(*args);
 	if (!copy)
 		return (0);
-	while (data->env[i])
+	while (*data->env && *args)
 	{
-		split = ft_split(data->env[i], '=');
-		printf("DIFF: %s %s %s\n", split[0], split[1], *args);
-		if (!ft_strcmp(split[0], *args))
+		if (!ft_strncmp(*data->env, *args, size))
 		{
 			data->env++;
 			args++;
-			i++;
+			if (*args)
+				size = ft_strlen(*args);
 			continue;
 		}
-			copy[j] = ft_strdup(data->env[i]);
-			free(data->env[i]);
-			free(split[0]);
-			free(split[1]);
+			copy[j] = ft_strdup(*data->env);
 			j++;
-			i++;
+			free(*data->env);
+			data->env++;
+	}
+	while (*data->env)
+	{
+		copy[j] = ft_strdup(*data->env);
+		j++;
+		free(*data->env);
+		data->env++;
 	}
 	copy[j] = 0;
-	free(split);
-	free(data->env);
 	return (copy);
 }
 

@@ -42,6 +42,8 @@ char	**add_env_arr(t_data *data, char **args)
 	i = 0;
 	j = 0;
 	copy = (char **)malloc(sizeof(char *) * data->env_size * 10);
+	if (!copy)
+		return (0);
 	if (!strchr(*args, '='))
 		return (0);
 	while (data->env[i])
