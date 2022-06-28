@@ -9,7 +9,6 @@
 // 	}
 // 	free(split);
 // }
-	i = 0;
 
 char	**remove_env_arr(t_data *data, char **args)
 {

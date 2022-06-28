@@ -60,7 +60,7 @@ void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int *fd[2])
 	}
 }
 
-void	close_pipe(t_data *data, int pipe, int fd[][2], int *status)
+void	close_pipe(t_data *data, int pipe, int *fd[2], int *status)
 {
 	while (pipe--)
 	{
