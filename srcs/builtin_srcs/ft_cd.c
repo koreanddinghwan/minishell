@@ -13,7 +13,7 @@ void	change_env(t_data *data, char *pwd, char *oldpwd)
 		if (!ft_strncmp(node->key, "PWD", 3))
 		{
 			node->value = pwd;
-			if (strcmp(last->key, "OLDPWD"))
+			if (ft_strcmp(last->key, "OLDPWD"))
 			{
 				node = ft_envlst_new("OLDPWD=OLDPWD");
 				ft_envlst_pushback(&data->env_lst, node);
@@ -48,9 +48,9 @@ char	*get_chdir_buf(char **path, char *home, char *old_save)
 
 	if (!*path)
 		buf = ft_strdup(home);
-	else if (!strcmp(*path, "~"))
+	else if (!ft_strcmp(*path, "~"))
 		buf = ft_strdup(home);
-	else if (!strcmp(*path, "-"))
+	else if (!ft_strcmp(*path, "-"))
 		buf = ft_strdup(old_save);
 	else
 		buf = ft_strdup(*path);
@@ -71,9 +71,9 @@ void	ft_cd(t_data *data, char **path)
 	old_save = 0;
 	while (node)
 	{
-		if (!strcmp(node->key, "HOME"))
+		if (!ft_strcmp(node->key, "HOME"))
 			home = node->value;
-		if (!strcmp(node->key, "OLDPWD"))
+		if (!ft_strcmp(node->key, "OLDPWD"))
 			old_save = node->value;
 		node = node->next;
 	}

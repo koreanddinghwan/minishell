@@ -42,6 +42,29 @@ int	ft_isunder(int c)
 	return (0);
 }
 
+void	free_env(t_data *data, char **args)
+{
+	t_envlst	*rem_node;
+	t_envlst	*node;
+	int			size;
+
+	rem_node = data->env_lst->next;
+	node = data->env_lst;
+
+	while (rem_node)
+	{
+		size = ft_strlen(rem_node->key);
+		if (!ft_strncmp(rem_node->key, *args, size))
+		{
+			node->next = rem_node->next;
+			free(rem_node);
+			return ;
+		}
+		rem_node = rem_node->next;
+		node = node->next;
+	}
+}
+
 void	ft_export(t_data *data, char **args)
 {
 	t_envlst	*node;

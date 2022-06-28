@@ -56,5 +56,6 @@ t_envlst	*ft_envlst_new(void *c)
 	node->env_line = (char *)c;
 	node->next = 0;
 	node->back = 0;
+	free(split);
 	return (node);
 }
