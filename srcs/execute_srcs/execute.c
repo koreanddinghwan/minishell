@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 20:39:24 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 03:50:05 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 	int	i;
 
 	status = 0;
+	infile = ((t_cmd_cont *)cmd->content)->infile;
+	outfile = ((t_cmd_cont *)cmd->content)->outfile;
 	i = 0;
 	execute_dup2(data, i, fd, *pipe_num);
 	if (set_redir(cmd->content, data) == FAIL)
 		exit(1);
-	infile = ((t_cmd_cont *)cmd->content)->infile;
-	outfile = ((t_cmd_cont *)cmd->content)->outfile;
 	if (infile != -1)
 		dup2(infile, STDIN_FILENO);
 	if (outfile != -1)
@@ -55,20 +55,19 @@ void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int *fd[2])
 	if (pid < 0)
 		exit(1);
 	if (pid == 0)
-	{
 		execute_child(data, cmd, fd, &(*pipe_num));
-	}
 }
 
-void	close_pipe(t_data *data, int pipe, int *fd[2], int *status)
+void	close_pipe(int pipe, int *fd[2], int *status)
 {
 	while (pipe--)
 	{
 		close(fd[pipe][0]);
 		close(fd[pipe][1]);
 	}
-	while (wait(status) > 0)
-		change_exitstatus(data, *status);
+	free(fd);
+	while (wait(&(*status)) > 0)
+		;
 }
 
 void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int *fd[2])
@@ -104,14 +103,20 @@ void	execute(t_data *data)
 {
 	t_dlst	*cmd_lst;
 	int		remain_pipe;
-	int		*fd[2];
+	int		**fd;
 	int		status;
+	int		i;
 
 	cmd_lst = data->cmd_lst;
 	remain_pipe = data->cmd_size - 1;
-	*fd = ft_calloc(sizeof(int *), data->cmd_size - 1);
-	*(fd + 1) = ft_calloc(sizeof(int *), data->cmd_size - 1);
-	if (!(*fd) || !(*(fd + 1)))
+	fd = (int **)malloc(sizeof(int *) * (data->cmd_size - 1));
+	i = 0;
+	while (i < data->cmd_size - 1)
+	{
+		fd[i] = (int *)malloc(sizeof(int) * 2);
+		i++;
+	}
+	if (!fd)
 		return ;
 	if (remain_pipe == 0)
 		data->pipe_exist = 0;
@@ -120,5 +125,5 @@ void	execute(t_data *data)
 	if (make_heredoc(data) == FAIL)
 		return ;
 	execute_cmd(data, cmd_lst, &remain_pipe, fd);
-	close_pipe(data, remain_pipe + 1, fd, &status);
+	close_pipe(data->cmd_size - 1, fd, &status);
 }

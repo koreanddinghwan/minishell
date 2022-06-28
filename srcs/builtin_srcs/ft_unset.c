@@ -1,14 +1,14 @@
 #include "main.h"
 
-// void	ft_free(char **split)
-// {
-// 	while(*split)
-// 	{
-// 		free(*split);
-// 		split++;
-// 	}
-// 	free(split);
-// }
+void	ft_free(char **split)
+{
+	while(*split)
+	{
+		free(*split);
+		split++;
+	}
+	free(split);
+}
 
 char	**remove_env_arr(t_data *data, char **args)
 {
@@ -30,15 +30,18 @@ char	**remove_env_arr(t_data *data, char **args)
 		{
 			data->env++;
 			args++;
-			continue ;
+			j++;
+			i++;
 		}
-		copy[j] = ft_strdup(data->env[i]);
-		j++;
-		i++;
+		else
+		{
+			copy[j] = ft_strdup(data->env[i]);
+			j++;
+			i++;
+		}
 	}
 	copy[j] = 0;
 	return (copy);
-	// ft_free(split);
 }
 
 void	free_env_lst(t_data *data, char **args)
