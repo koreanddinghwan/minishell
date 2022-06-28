@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 14:28:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 15:18:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:28:34 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,47 @@
 
 t_lexer_token	*get_ltok_cont(t_dlst *lst)
 {
+	if (!lst)
+		return (NULL);
 	return ((t_lexer_token *)lst->content);
+}
+
+enum e_word_type	get_ltok_type(t_dlst *lst)
+{
+	return (get_ltok_cont(lst)->w_type);
 }
 
 t_cmd_cont	*get_cmd_cont(t_dlst *lst)
 {
+	if (!lst)
+		return (NULL);
 	return ((t_cmd_cont *)lst->content);
+}
+
+char	*get_cmd(t_dlst *lst)
+{
+	if (!lst)
+		return (NULL);
+	return (get_cmd_cont(lst)->cmd);
+}
+
+char	**get_args(t_dlst *lst)
+{
+	if (!lst)
+		return (NULL);
+	return (get_cmd_cont(lst)->args);
 }
 
 t_io_cont	*get_io_cont(t_dlst *lst)
 {
+	if (!lst)
+		return (NULL);
 	return ((t_io_cont *)lst->content);
+}
+
+t_dlst	*get_io_list(t_dlst *lst)
+{
+	if (!lst)
+		return (NULL);
+	return (get_cmd_cont(lst)->iolst);
 }

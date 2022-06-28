@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 02:43:08 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:30:28 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,6 @@ enum	e_state
 	STATE_NORMAL
 };
 
-# define GET_TOKEN_TYPE(lst) (((t_lexer_token *)lst->content)->w_type)
-# define GET_TOKEN_BUFFER(lst) (((t_lexer_token *)lst->content)->buffer)
-# define GET_TOKEN_NTH(lst) (((t_lexer_token *)lst->content)->nth)
-# define GET_CMD(lst) (((t_cmd_cont *)lst->content)->cmd)
-# define GET_ARGS(lst) (((t_cmd_cont *)lst->content)->args)
-# define GET_IO_LIST(lst) (((t_cmd_cont *)lst->content)->iolst)
-# define GET_FILEPATH(lst) (((t_io_cont *)lst->content)->filepath)
-# define GET_IOTYPE(lst) (((t_io_cont *)lst->content)->type)
-# define GET_TMPNAME(lst) (((t_io_cont *)lst->content)->tmpname)
-# define GET_FD(lst) (((t_io_cont *)lst->content)->fd)
 # define TRUE 1
 # define FALSE 0
 # define EXECUTION_FAILURE 1

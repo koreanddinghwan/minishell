@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 22:04:44 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 17:03:22 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:15:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 void	convert_to_arg(t_dlst *lst)
 {
-	while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+	while (lst && get_ltok_type(lst) == W_SPACE)
 		lst = lst->next;
-	while (lst && GET_TOKEN_TYPE(lst) == W_COMMAND)
+	while (lst && get_ltok_type(lst) == W_COMMAND)
 		lst = lst->next;
-	while (lst && (GET_TOKEN_TYPE(lst) != W_PIPE))
+	while (lst && get_ltok_type(lst) != W_PIPE)
 	{
-		if (GET_TOKEN_TYPE(lst) == W_SPACE || (GET_TOKEN_TYPE(lst) >= 7
-				&& GET_TOKEN_TYPE(lst) <= 10))
+		if (get_ltok_type(lst) == W_SPACE
+			|| (get_ltok_type(lst) >= 7
+				&& get_ltok_type(lst) <= 10))
 		{
 			lst = lst->next;
 			continue ;
 		}
 		else
 		{
-			GET_TOKEN_TYPE(lst) = W_ARG;
+			get_ltok_cont(lst)->w_type = W_ARG;
 			lst = lst->next;
 		}
 	}
-	if (lst && GET_TOKEN_TYPE(lst) == W_PIPE)
+	if (lst && get_ltok_type(lst) == W_PIPE)
 		lst = lst->next;
 	if (lst)
 		convert_to_arg(lst);
@@ -42,23 +43,23 @@ void	do_change_file_deli(t_dlst *lst)
 {
 	enum e_word_type	type;
 
-	type = GET_TOKEN_TYPE(lst);
+	type = get_ltok_type(lst);
 	if (lst->next)
 		lst = lst->next;
 	else
 		return ;
-	while (lst && GET_TOKEN_TYPE(lst) == W_SPACE)
+	while (lst && get_ltok_type(lst) == W_SPACE)
 		lst = lst->next;
 	if (lst)
 	{
-		while (lst && GET_TOKEN_TYPE(lst) != W_SPACE)
+		while (lst && get_ltok_type(lst) != W_SPACE)
 		{
-			if (GET_TOKEN_TYPE(lst) >= 6)
+			if (get_ltok_type(lst) >= 6)
 				return ;
 			if (type == 7)
-				GET_TOKEN_TYPE(lst) = W_DELIMETER;
+				get_ltok_cont(lst)->w_type = W_DELIMETER;
 			else if (type >= 8 && type <= 10)
-				GET_TOKEN_TYPE(lst) = W_FILE;
+				get_ltok_cont(lst)->w_type = W_FILE;
 			lst = lst->next;
 		}
 	}
@@ -68,7 +69,7 @@ void	convert_file_delimeter(t_dlst *lst)
 {
 	while (lst)
 	{
-		if (GET_TOKEN_TYPE(lst) >= 7 && GET_TOKEN_TYPE(lst) <= 10)
+		if (get_ltok_type(lst) >= 7 && get_ltok_type(lst) <= 10)
 			do_change_file_deli(lst);
 		lst = lst->next;
 	}

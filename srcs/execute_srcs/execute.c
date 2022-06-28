@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 19:49:49 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:39:24 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 	int	i;
 
 	status = 0;
+	i = 0;
+	execute_dup2(data, i, fd, *pipe_num);
 	if (set_redir(cmd->content, data) == FAIL)
 		exit(1);
 	infile = ((t_cmd_cont *)cmd->content)->infile;
 	outfile = ((t_cmd_cont *)cmd->content)->outfile;
-	i = 0;
-	execute_dup2(data, i, fd, *pipe_num);
 	if (infile != -1)
 		dup2(infile, STDIN_FILENO);
 	if (outfile != -1)
 		dup2(outfile, STDOUT_FILENO);
-	if (check_builtin(GET_CMD(cmd)))
-		execute_builtin(data, GET_CMD(cmd), GET_ARGS(cmd));
+	if (check_builtin(get_cmd(cmd)))
+		execute_builtin(data, get_cmd(cmd), get_args(cmd));
 	else
 	{
-		if (execve(GET_CMD(cmd), GET_ARGS(cmd), data->env) == -1)
+		if (execve(get_cmd(cmd), get_args(cmd), data->env) == -1)
 			check_execve_error(cmd);
 	}
 	exit(status);
@@ -78,9 +78,9 @@ void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int *fd[2])
 	i = 0;
 	while (cmd_lst)
 	{
-		if (!fork_builtin(GET_CMD(cmd_lst))
-			&& !data->pipe_exist && !GET_IO_LIST(cmd_lst))
-			execute_builtin(data, GET_CMD(cmd_lst), GET_ARGS(cmd_lst));
+		if (!fork_builtin(get_cmd(cmd_lst))
+			&& !data->pipe_exist && !get_io_list(cmd_lst))
+			execute_builtin(data, get_cmd(cmd_lst), get_args(cmd_lst));
 		else
 		{
 			if (*remain_pipe == data->cmd_size - 1)
