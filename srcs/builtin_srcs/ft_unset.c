@@ -1,5 +1,16 @@
 #include "main.h"
 
+// void	ft_free(char **split)
+// {
+// 	while(*split)
+// 	{
+// 		free(*split);
+// 		split++;
+// 	}
+// 	free(split);
+// }
+	i = 0;
+
 char	**remove_env_arr(t_data *data, char **args)
 {
 	char	**copy;
@@ -8,9 +19,12 @@ char	**remove_env_arr(t_data *data, char **args)
 	int j = 0;
 
 	copy = (char **)malloc(sizeof(char *) * data->env_size * 10);
+	if (!copy)
+		return (0);
 	while (data->env[i])
 	{
 		split = ft_split(data->env[i], '=');
+		printf("DIFF: %s %s\n", split[0], *args);
 		if (!ft_strcmp(split[0], *args))
 		{
 			data->env++;
@@ -22,6 +36,7 @@ char	**remove_env_arr(t_data *data, char **args)
 		i++;
 	}
 	copy[j] = 0;
+	// ft_free(split);
 	return	(copy);
 }
 
@@ -56,7 +71,7 @@ void	ft_unset(t_data *data, char **args)
 		return ;
 	while(*args)
 	{
-		if (!ft_isalpha(**args) && !ft_isunder(**args) && ft_strchr(*args, '='))
+		if ((!ft_isalpha(**args) && !ft_isunder(**args)) || ft_strchr(*args, '='))
 		{
 			printf("mgyush> unset: `%s': not a valid identifier\n", *args);
 			return ;

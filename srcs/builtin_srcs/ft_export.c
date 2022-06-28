@@ -1,18 +1,19 @@
 #include "main.h"
 
-void    ft_swap(char **s1, char **s2)
+void	ft_swap(char **s1, char **s2)
 {
-    char    *temp;
-    temp = *s1;
-    *s1 = *s2;
-    *s2 = temp;
+	char	*temp;
+
+	temp = *s1;
+	*s1 = *s2;
+	*s2 = temp;
 }
 
 void	only_export(t_data *data)
 {
 	int	i;
 	int j;
-    i = 0;
+	i = 0;
 	j = 0;
 	while (data->env[i])	//arr
 	{
@@ -52,7 +53,7 @@ void	ft_export(t_data *data, char **args)
 	if (!*args)
 	{
 		only_export(data);
-		return ;
+		return;
 	}
 	while (*args)
 	{

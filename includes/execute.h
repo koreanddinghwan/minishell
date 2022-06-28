@@ -31,9 +31,9 @@ void	close_fd(t_data *data);
  *
  * execute_sub */
 void	execute_builtin(t_data *data, char *cmd, char **args);
-void	pipe_first(t_data *data, int i, int fd[][2]);
-void	pipe_last(t_data *data, int i, int fd[][2]);
-void	pipe_mid(t_data *data, int i, int fd[][2], int pipe_num);
-void	execute_dup2(t_data *data, int i, int fd[][2], int pipe_num);
+void	pipe_first(t_data *data, int i, int *fd[2]);
+void	pipe_last(t_data *data, int i, int *fd[2]);
+void	pipe_mid(t_data *data, int i, int *fd[2], int pipe_num);
+void	execute_dup2(t_data *data, int i, int *fd[2], int pipe_num);
 
 #endif
