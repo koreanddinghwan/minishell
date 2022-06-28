@@ -12,8 +12,8 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 		ft_echo(data, args);
 	if (ft_strcmp(CD, cmd) == 0)
 		ft_cd(data, args);
-	// if (ft_strcmp(EXIT, str) == 0)
-	// 	ft_exit();
+	if (ft_strcmp(EXIT, cmd) == 0)
+		ft_exit(data, args);
 	if (ft_strcmp(ENV, cmd) == 0)
 		ft_env(data);
 }

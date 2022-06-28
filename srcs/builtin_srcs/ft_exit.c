@@ -1,21 +1,93 @@
-#include "../../includes/main.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/28 17:27:07 by myukang           #+#    #+#             */
+/*   Updated: 2022/06/28 17:27:57 by myukang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "main.h"
 #include <string.h>
 #include <stdlib.h>
 
-void	ft_exit(int ac, char *av[])
+int	get_ac(char **argv)
 {
+	int	c;
+
+	c = 0;
+	while (*argv)
+	{
+		c++;
+		argv++;
+	}
+	return (c);
+}
+
+int	exist_alpha(char **argv)
+{
+	char	*str;
+
+	argv++;
+	while (*argv)
+	{
+		str = *argv;
+		while (*str)
+		{
+			if (ft_isalpha(*str))
+				return (TRUE);
+			str++;
+		}
+		argv++;
+	}
+	return (FALSE);
+}
+
+char	*find_first_nonnum(char **argv)
+{
+	char	*str;
+
+	argv++;
+	while (*argv)
+	{
+		str = *argv;
+		while (*str)
+		{
+			if (ft_isalpha(*str))
+				return (*argv);
+			str++;
+		}
+		argv++;
+	}
+	return (NULL);
+}
+
+void	ft_exit(t_data *data, char **argv)
+{
+	int	ac;
+
+	if (!data)
+		return ;
+	ac = get_ac(argv);
 	if (ac == 1)
 	{
 		printf("exit\n");
 		exit(0);
 	}
+	else if (exist_alpha(argv) == TRUE)
+	{
+		printf("mgyush: exit: %s: numeric argument required",
+			find_first_nonnum(argv));
+		exit(255);
+	}
 	else if (ac == 2)
 	{
-		int num;
-		num = atoi(av[1]);
 		printf("exit\n");
-		exit(num);
+		exit(ft_atoi(argv[1]));
 	}
 	else
-		printf("miniminisherl: exit: too many arguments\n");
+		printf("mgyush: exit: too many arguments\n");
 }
