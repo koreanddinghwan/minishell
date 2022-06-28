@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:02:37 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:34:55 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 17:08:38 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "replacer.h"
 # include "fs_bitmasking.h"
 # include "getter.h"
+# include "wait_macros.h"
 
 void	print_cmddata(t_data *data);
 int		set_redir(t_cmd_cont *cmd, t_data *data);

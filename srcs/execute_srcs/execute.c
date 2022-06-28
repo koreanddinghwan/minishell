@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 03:50:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 17:31:08 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,15 @@ void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int fd[][2])
 	}
 }
 
-void	close_pipe(int pipe, int fd[][2], int *status)
+void	close_pipe(t_data *data, int pipe, int fd[][2], int *status)
 {
 	while (pipe--)
 	{
 		close(fd[pipe][0]);
 		close(fd[pipe][1]);
 	}
-	while (wait(status) > 0);
+	while (wait(status) > 0)
+		change_exitstatus(data, *status);
 }
 
 void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int fd[][2])
@@ -114,5 +115,5 @@ void	execute(t_data *data)
 	if (make_heredoc(data) == FAIL)
 		return ;
 	execute_cmd(data, cmd_lst, &remain_pipe, fd);
-	close_pipe(remain_pipe + 1, fd, &status);
+	close_pipe(data, remain_pipe + 1, fd, &status);
 }
