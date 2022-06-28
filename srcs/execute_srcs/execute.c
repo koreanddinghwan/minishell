@@ -19,7 +19,7 @@
 #include <string.h>
 #include <sys/wait.h>
 
-void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num)
+void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 {
 	int	status;
 	int	infile;
@@ -47,7 +47,7 @@ void	execute_child(t_data *data, t_dlst *cmd, int fd[][2], int *pipe_num)
 	exit(status);
 }
 
-void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int fd[][2])
+void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int *fd[2])
 {
 	pid_t	pid;
 
@@ -60,24 +60,26 @@ void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int fd[][2])
 	}
 }
 
-void	close_pipe(int pipe, int fd[][2], int *status)
+void	close_pipe(int pipe, int **fd, int *status)
 {
 	while (pipe--)
 	{
 		close(fd[pipe][0]);
 		close(fd[pipe][1]);
 	}
-	while (wait(status) > 0);
+	while (wait(status) > 0)
+		;
 }
 
-void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int fd[][2])
+void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int *fd[2])
 {
 	int	i;
 
 	i = 0;
 	while (cmd_lst)
 	{
-		if (!fork_builtin(GET_CMD(cmd_lst)) && !data->pipe_exist && !GET_IO_LIST(cmd_lst))
+		if (!fork_builtin(GET_CMD(cmd_lst))
+			&& !data->pipe_exist && !GET_IO_LIST(cmd_lst))
 			execute_builtin(data, GET_CMD(cmd_lst), GET_ARGS(cmd_lst));
 		else
 		{
@@ -102,11 +104,15 @@ void	execute(t_data *data)
 {
 	t_dlst	*cmd_lst;
 	int		remain_pipe;
-	int		fd[data->cmd_size - 1][2];
+	int		*fd[2];
 	int		status;
 
 	cmd_lst = data->cmd_lst;
 	remain_pipe = data->cmd_size - 1;
+	*fd = ft_calloc(sizeof(int *), data->cmd_size - 1);
+	*(fd + 1) = ft_calloc(sizeof(int *), data->cmd_size - 1);
+	if (!(*fd) || !(*(fd + 1)))
+		return ;
 	if (remain_pipe == 0)
 		data->pipe_exist = 0;
 	else

@@ -18,7 +18,7 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 		ft_env(data);
 }
 
-void	pipe_first(t_data *data, int i, int fd[][2])
+void	pipe_first(t_data *data, int i, int *fd[2])
 {
 	i = data->cmd_size-1;
 	while (i--)
@@ -31,7 +31,7 @@ void	pipe_first(t_data *data, int i, int fd[][2])
 		dup2(fd[0][1], STDOUT_FILENO);
 }
 
-void	pipe_last(t_data *data, int i, int fd[][2])
+void	pipe_last(t_data *data, int i, int *fd[2])
 {
 	i = data->cmd_size-1;
 	while (i--)
@@ -43,7 +43,7 @@ void	pipe_last(t_data *data, int i, int fd[][2])
 	dup2(fd[data->cmd_size-1-1][0], STDIN_FILENO);
 }
 
-void	pipe_mid(t_data *data, int i, int fd[][2], int pipe_num)
+void	pipe_mid(t_data *data, int i, int *fd[2], int pipe_num)
 {
 	i = data->cmd_size-1;
 	while (i--)
@@ -57,7 +57,7 @@ void	pipe_mid(t_data *data, int i, int fd[][2], int pipe_num)
 	dup2(fd[data->cmd_size-1-(pipe_num)][1], STDOUT_FILENO);
 }
 
-void	execute_dup2(t_data *data, int i, int fd[][2], int pipe_num)
+void	execute_dup2(t_data *data, int i, int *fd[2], int pipe_num)
 {
 	if (pipe_num == data->cmd_size-1)
 		pipe_first(data, i, fd);

@@ -12,8 +12,12 @@ void	ft_swap(char **s1, char **s2)
 void	only_export(t_data *data)
 {
 	int	i;
+<<<<<<< HEAD
 	int	j;
 
+=======
+	int j;
+>>>>>>> gyumpark
 	i = 0;
 	j = 0;
 	while (data->env[i])
@@ -52,7 +56,7 @@ void	ft_export(t_data *data, char **args)
 	if (!*args)
 	{
 		only_export(data);
-		return ;
+		return;
 	}
 	while (*args)
 	{
