@@ -17,7 +17,6 @@ void	change_env(t_data *data, char *pwd, char *oldpwd)
 {
 	t_envlst	*node;
 	t_envlst	*last;
-
 	node = data->env_lst;
 	last = ft_envlst_last(node);
 	while (node)
@@ -25,10 +24,13 @@ void	change_env(t_data *data, char *pwd, char *oldpwd)
 		if (!ft_strncmp(node->key, "PWD", 3))
 		{
 			node->value = pwd;
-			if (ft_strcmp(last->key, "OLDPWD"))
+			if (strcmp(last->key, "OLDPWD"))
 			{
 				node = ft_envlst_new("OLDPWD=OLDPWD");
 				ft_envlst_pushback(&data->env_lst, node);
+				free(node->key);
+				free(node->value);
+				free(node);
 			}
 		}
 		if (!ft_strncmp(node->key, "OLDPWD", 6))
@@ -39,10 +41,39 @@ void	change_env(t_data *data, char *pwd, char *oldpwd)
 	}
 }
 
-void	change_dir_env(t_data *data, char *buf, char *aft, char *cur)
+void	ft_cd(t_data *data, char **path)
 {
-	int	change;
+	char	*buf;
+	char	*aft;
+	char	*home;
+	char	*old_save;
+	char	*cur;
+	int		change;
+	t_envlst	*node;
 
+	path++;
+	node = data->env_lst;
+	buf = (char *)malloc(sizeof(char) * 256);
+	aft = (char *)malloc(sizeof(char) * 256);
+	cur = (char *)malloc(sizeof(char) * 256);
+	getcwd(cur, 256);
+	old_save = 0;
+	while(node)
+	{
+		if(!strcmp(node->key, "HOME"))
+			home = node->value;
+		if (!strcmp(node->key, "OLDPWD"))
+ 			old_save = node->value;
+ 		node = node->next;
+ 	}
+ 	if (!*path)
+ 		buf = ft_strdup(home);
+ 	else if (!strcmp(*path, "~"))
+ 		buf = ft_strdup(home);
+ 	else if (!strcmp(*path, "-"))
+ 		buf = ft_strdup(old_save);
+	else
+		buf = ft_strdup(*path);
 	change = chdir(buf);
 	if (change == -1)
 		printf("bash: cd: %s\n", strerror(errno));
@@ -52,42 +83,8 @@ void	change_dir_env(t_data *data, char *buf, char *aft, char *cur)
 		change_env(data, aft, cur);
 	}
 	free(buf);
-}
-
-char	*get_chdir_buf(char **path, char *home, char *old_save)
-{
-	char	*buf;
-
-	if (!*path)
-		buf = ft_strdup(home);
-	else if (!ft_strcmp(*path, "~"))
-		buf = ft_strdup(home);
-	else if (!ft_strcmp(*path, "-"))
-		buf = ft_strdup(old_save);
-	else
-		buf = ft_strdup(*path);
-	return (buf);
-}
-
-void	ft_cd(t_data *data, char **path)
-{
-	char		aft[256];
-	char		cur[256];
-	char		*home;
-	char		*old_save;
-	t_envlst	*node;
-
-	path++;
-	node = data->env_lst;
-	getcwd(cur, 256);
-	old_save = 0;
-	while (node)
-	{
-		if (!ft_strcmp(node->key, "HOME"))
-			home = node->value;
-		if (!ft_strcmp(node->key, "OLDPWD"))
-			old_save = node->value;
-		node = node->next;
-	}
-	change_dir_env(data, get_chdir_buf(path, home, old_save), aft, cur);
+	free(aft);
+	free(home);
+	free(old_save);
+	free(cur);
 }
