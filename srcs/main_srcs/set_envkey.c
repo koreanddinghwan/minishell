@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 17:15:54 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 19:17:16 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	set_env_lst(t_data *data, char **envp)
 			envp++;
 			free(node->key);
 			free(node->value);
-			free(node->env_line);
 			free(node);
 		}
 		else
@@ -52,9 +51,9 @@ void	set_env_arr(t_data *data)
 	{
 		buffer = ft_strjoin(node->key, "=");
 		ex = buffer;
-		buffer = ft_strjoin(buffer, node->value);
+		buffer = ft_strjoin(ex, node->value);
 		free(ex);
-		data->env[i] = buffer;
+		data->env[i++] = buffer;
 		node = node->next;
 	}
 	data->env[i] = 0;

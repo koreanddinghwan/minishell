@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:09:14 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 17:37:32 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:53:56 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_envlst	*ft_envlst_new(void *c)
 		split[1] = ft_strdup("");
 	node->key = split[0];
 	node->value = split[1];
-	node->env_line = ft_strdup((char *)c);
 	node->next = 0;
 	node->back = 0;
 	free(split);

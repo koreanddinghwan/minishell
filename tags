@@ -7,10 +7,10 @@
 BUFFER_SIZE	libft/get_next_line.h	/^#  define BUFFER_SIZE /;"	d
 BUILTIN_H	includes/builtin.h	/^# define BUILTIN_H$/;"	d
 BUILTIN_OBJS	Makefile	/^BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)$/;"	m
-BUILTIN_SRCS	Makefile	/^BUILTIN_SRCS = $(addprefix .\/srcs\/builtin_srcs\/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)$/;"	m
+BUILTIN_SRCS	Makefile	/^BUILTIN_SRCS = $(addprefix .\/srcs\/builtin_srcs\/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c export_unset_util.c)$/;"	m
 CC	libft/Makefile	/^CC = gcc$/;"	m
 CD	includes/defines_enums.h	/^# define CD	/;"	d
-CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -g3$/;"	m
 CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror -c $/;"	m
 CLEANER_H	includes/cleaner.h	/^# define CLEANER_H$/;"	d
 CLEANER_OBJS	Makefile	/^CLEANER_OBJS = $(CLEANER_SRCS:.c=.o)$/;"	m
@@ -135,7 +135,6 @@ W_REDIRECTION_INPUT	includes/defines_enums.h	/^	W_REDIRECTION_INPUT = 9,$/;"	e	e
 W_REDIRECTION_OUTPUT	includes/defines_enums.h	/^	W_REDIRECTION_OUTPUT = 10,$/;"	e	enum:e_word_type
 W_SPACE	includes/defines_enums.h	/^	W_SPACE = 3,$/;"	e	enum:e_word_type
 _ft_recur_nbr	libft/ft_putnbr_unsigned.c	/^static void	_ft_recur_nbr(long long n, int fd, int *rtn)$/;"	f	file:
-add_env_arr	srcs/main_srcs/set_envkey.c	/^char	**add_env_arr(t_data *data, char **args)$/;"	f
 all_space	srcs/tokenizer/tokenizer.c	/^int	all_space(t_token *tok_buf)$/;"	f
 args	includes/structs.h	/^	char			**args;$/;"	m	struct:s_cmd_cont
 back	libft/libft.h	/^	struct s_dlst	*back;$/;"	m	struct:s_dlst	typeref:struct:s_dlst::s_dlst
@@ -154,9 +153,10 @@ check_env	srcs/module/replacer_module/cpy_replaced.c	/^void	check_env(char **rtn
 check_envpath	srcs/module/path_finder_module/check_envpath.c	/^char	*check_envpath(char *path, char *cmd)$/;"	f
 check_execve_error	srcs/execute_srcs/check_execve_error.c	/^void	check_execve_error(t_dlst *lst)$/;"	f
 check_fs	srcs/module/path_finder_module/check_envpath.c	/^int	check_fs(char *path)$/;"	f
-check_option	srcs/builtin_srcs/ft_echo.c	/^int	check_option(char *option)$/;"	f
+check_option	srcs/builtin_srcs/ft_echo.c	/^int	check_option(char **argv)$/;"	f
 check_redirection	srcs/parser/make_iolst.c	/^int	check_redirection(t_dlst *tok_lst)$/;"	f
 check_spec_token	srcs/lexer/lexer_decide_w_type.c	/^int	check_spec_token(char *str)$/;"	f
+check_update_env	srcs/builtin_srcs/ft_export.c	/^int	check_update_env(t_envlst *envlst, char *str)$/;"	f
 cleaner	srcs/cleaner/cleaner.c	/^void	cleaner(t_data *data)$/;"	f
 cleanup_routine	srcs/lexer/lexer.c	/^void	cleanup_routine(t_data *data, t_token **tok_buf, int *space_add)$/;"	f
 close_fd	srcs/execute_srcs/set_redirection.c	/^void	close_fd(t_data *data)$/;"	f
@@ -181,6 +181,8 @@ display_bash	srcs/main_srcs/display.c	/^void	display_bash(t_data *data)$/;"	f
 do_change_file_deli	srcs/lexer/lexer_word_converter.c	/^void	do_change_file_deli(t_dlst *lst)$/;"	f
 dollar_question_len	srcs/module/replacer_module/get_replaced_len.c	/^int	dollar_question_len(char *str, t_data *data)$/;"	f
 double_pipe	srcs/module/syntax_analyzer_module/pipe_err.c	/^int	double_pipe(t_dlst *lst)$/;"	f
+dup_env_arr	srcs/builtin_srcs/export_unset_util.c	/^char    **dup_env_arr(t_envlst *envlst)$/;"	f
+dup_env_arr	srcs/main_srcs/export_unset_util.c	/^char    **dup_env_arr(t_envlst *envlst)$/;"	f
 e_char_type	includes/defines_enums.h	/^enum	e_char_type$/;"	g
 e_cmdtype	includes/structs.h	/^enum e_cmdtype$/;"	g
 e_state	includes/defines_enums.h	/^enum	e_state$/;"	g
@@ -189,7 +191,6 @@ endwith_io	srcs/module/syntax_analyzer_module/io_err.c	/^int	endwith_io(t_dlst *
 endwith_pipe	srcs/module/syntax_analyzer_module/pipe_err.c	/^int	endwith_pipe(t_dlst *lst)$/;"	f
 env	includes/structs.h	/^	char		**env;$/;"	m	struct:s_data
 env_len	srcs/module/replacer_module/get_replaced_len.c	/^int	env_len(char *str, t_data *data)$/;"	f
-env_line	libft/libft.h	/^	void			*env_line;$/;"	m	struct:s_envlst
 env_lst	includes/structs.h	/^	t_envlst	*env_lst;$/;"	m	struct:s_data
 env_size	includes/structs.h	/^	size_t		env_size;$/;"	m	struct:s_data
 exec_heredoc	srcs/execute_srcs/set_heredoc.c	/^int	exec_heredoc(t_data *data, t_dlst *iolst)$/;"	f
@@ -202,6 +203,7 @@ execute_pipe	srcs/execute_srcs/execute.c	/^void	execute_pipe(t_data *data, t_dls
 exist_alpha	srcs/builtin_srcs/ft_exit.c	/^int	exist_alpha(char **argv)$/;"	f
 exist_slash	srcs/execute_srcs/check_execve_error.c	/^int	exist_slash(char *cmd)$/;"	f
 exit_status	includes/structs.h	/^	int			exit_status;$/;"	m	struct:s_data
+export_error	srcs/builtin_srcs/ft_export.c	/^int	export_error(char *str)$/;"	f
 fd	includes/structs.h	/^	int					fd;$/;"	m	struct:s_io_cont
 filepath	includes/structs.h	/^	char				*filepath;$/;"	m	struct:s_io_cont
 fill_buf	srcs/tokenizer/token_buf_build.c	/^void	fill_buf(t_token *tok_buf, char c, int *state)$/;"	f
@@ -210,9 +212,12 @@ find_env_key	srcs/module/path_finder_module/path_finder.c	/^void	*find_env_key(t
 find_first_nonnum	srcs/builtin_srcs/ft_exit.c	/^char	*find_first_nonnum(char **argv)$/;"	f
 fnc_free_filepath	srcs/cleaner/cmd_cont_free.c	/^void	fnc_free_filepath(void *cont)$/;"	f
 fork_builtin	srcs/lexer/lexer_decide_w_type.c	/^int	fork_builtin(char *str)$/;"	f
-free_env_lst	srcs/builtin_srcs/ft_unset.c	/^void	free_env_lst(t_data *data, char **args)$/;"	f
-free_path	srcs/cleaner/cmd_cont_free.c	/^void	free_path(t_cmd_cont *content)$/;"	f
+free_env_arr	srcs/builtin_srcs/export_unset_util.c	/^void	free_env_arr(t_data *data)$/;"	f
+free_env_arr	srcs/main_srcs/export_unset_util.c	/^void	free_env_arr(t_data *data)$/;"	f
+free_env_lst	srcs/builtin_srcs/export_unset_util.c	/^void	free_env_lst(t_envlst *lst)$/;"	f
+free_env_lst	srcs/builtin_srcs/ft_unset.c	/^void	free_env_lst(t_data *data, char *args)$/;"	f
 free_splited	srcs/module/path_finder_module/check_envpath.c	/^void	free_splited(char **splited)$/;"	f
+freelist	srcs/main_srcs/main.c	/^void	freelist(t_envlst *head)$/;"	f
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f
 ft_btree_get_left	libft/ft_btree_get_left.c	/^t_tree	*ft_btree_get_left(t_tree *node)$/;"	f
 ft_btree_get_right	libft/ft_btree_get_right.c	/^t_tree	*ft_btree_get_right(t_tree *node)$/;"	f
@@ -242,9 +247,9 @@ ft_env	srcs/builtin_srcs/ft_env.c	/^void	ft_env(t_data *data)$/;"	f
 ft_envlst_last	libft/ft_builtin.c	/^t_envlst	*ft_envlst_last(t_envlst *envlst)$/;"	f
 ft_envlst_new	libft/ft_builtin.c	/^t_envlst	*ft_envlst_new(void *c)$/;"	f
 ft_envlst_pushback	libft/ft_builtin.c	/^void	ft_envlst_pushback(t_envlst **envlst, t_envlst *new)$/;"	f
+ft_envlst_size	libft/ft_builtin.c	/^int	ft_envlst_size(t_envlst *envlst)$/;"	f
 ft_exit	srcs/builtin_srcs/ft_exit.c	/^void	ft_exit(t_data *data, char **argv)$/;"	f
 ft_export	srcs/builtin_srcs/ft_export.c	/^void	ft_export(t_data *data, char **args)$/;"	f
-ft_free	srcs/builtin_srcs/ft_unset.c	/^void	ft_free(char **split)$/;"	f
 ft_freesplit	libft/ft_split.c	/^void	ft_freesplit(char ***s, int *p_index)$/;"	f
 ft_get_left	libft/ft_strtrim.c	/^static t_size	ft_get_left(char *ds, char *set)$/;"	f	file:
 ft_get_newsave	libft/get_next_line.c	/^char	*ft_get_newsave(char *save)$/;"	f
@@ -258,7 +263,7 @@ ft_isascii	libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
 ft_isdigit	libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
 ft_isprint	libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
 ft_isspace	libft/ft_atoi.c	/^static int	ft_isspace(char c)$/;"	f	file:
-ft_isunder	srcs/builtin_srcs/ft_export.c	/^int	ft_isunder(int c)$/;"	f
+ft_isunder	srcs/main_srcs/export_unset_util.c	/^int	ft_isunder(int c)$/;"	f
 ft_itoa	libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
 ft_lstadd_back	libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/;"	f
 ft_lstadd_front	libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/;"	f
@@ -306,7 +311,7 @@ ft_strnstr	libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const cha
 ft_strrchr	libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
 ft_strtrim	libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f
 ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, t_size len)$/;"	f
-ft_swap	srcs/builtin_srcs/ft_export.c	/^void	ft_swap(char **s1, char **s2)$/;"	f
+ft_swap	srcs/main_srcs/export_unset_util.c	/^void	ft_swap(char **s1, char **s2)$/;"	f
 ft_tolower	libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 ft_unset	srcs/builtin_srcs/ft_unset.c	/^void	ft_unset(t_data *data, char **args)$/;"	f
@@ -337,11 +342,13 @@ initialize_data	srcs/main_srcs/initialize_data.c	/^void	initialize_data(t_data *
 initialize_main	srcs/main_srcs/initialize_main.c	/^void	initialize_main(t_data *data, char **envp)$/;"	f
 io_err	srcs/module/syntax_analyzer_module/io_err.c	/^int	io_err(t_dlst *lst)$/;"	f
 ioafter_io	srcs/module/syntax_analyzer_module/io_err.c	/^int	ioafter_io(t_dlst *lst, enum e_word_type *type)$/;"	f
+iocont_free	srcs/cleaner/cmd_cont_free.c	/^void	iocont_free(t_cmd_cont *content)$/;"	f
 iolst	includes/structs.h	/^	t_dlst			*iolst;$/;"	m	struct:s_cmd_cont
 iopath_finder	srcs/module/path_finder_module/path_finder.c	/^char	*iopath_finder(char *path, int type)$/;"	f
 is_io	srcs/module/syntax_analyzer_module/io_err.c	/^static int	is_io(t_dlst *lst)$/;"	f	file:
 isdir	srcs/tools/fs_bitmasking.c	/^int	isdir(int st_mode)$/;"	f
 isexec	srcs/tools/fs_bitmasking.c	/^int	isexec(int st_mode)$/;"	f
+isoption	srcs/builtin_srcs/ft_echo.c	/^int	isoption(char *str)$/;"	f
 isreg	srcs/tools/fs_bitmasking.c	/^int	isreg(int st_mode)$/;"	f
 join_args	srcs/parser/make_args.c	/^void	join_args(char **rtn, t_data *data, int count)$/;"	f
 key	libft/libft.h	/^	void			*key;$/;"	m	struct:s_envlst
@@ -361,13 +368,12 @@ lexer_token_lst	includes/structs.h	/^	t_dlst		*lexer_token_lst;$/;"	m	struct:s_d
 lexer_token_lst_init	srcs/lexer/lexer.c	/^void	lexer_token_lst_init(t_data *data)$/;"	f
 lexer_w_converter	srcs/lexer/lexer_word_converter.c	/^void	lexer_w_converter(t_data *data)$/;"	f
 main	srcs/main_srcs/main.c	/^int	main(int ac, char **av, char **envp)$/;"	f
-make_args	srcs/parser/make_args.c	/^char	**make_args(t_data *data, char *cmd)$/;"	f
+make_args	srcs/parser/make_args.c	/^void	make_args(t_data *data, t_cmd_cont *cont)$/;"	f
 make_cmd	srcs/parser/make_cmd.c	/^char	*make_cmd(t_data *data)$/;"	f
 make_cmdcont	srcs/parser/parser.c	/^void	make_cmdcont(t_data *data)$/;"	f
 make_heredoc	srcs/execute_srcs/set_heredoc.c	/^int	make_heredoc(t_data *data)$/;"	f
 make_io_cont	srcs/parser/make_iolst.c	/^t_io_cont	*make_io_cont(t_data *data, t_dlst *tok_lst, enum e_word_type type)$/;"	f
 make_iolst	srcs/parser/make_iolst.c	/^t_dlst	*make_iolst(t_data *data)$/;"	f
-make_key	srcs/main_srcs/set_envkey.c	/^char	*make_key(char *envstr)$/;"	f
 make_possible_cp	srcs/module/replacer_module/replacer_tool.c	/^char	*make_possible_cp(char *str)$/;"	f
 make_str	libft/ft_split_charset.c	/^char	*make_str(char *str, int s, char *charset, int *alloc_error)$/;"	f
 make_token_buffer	srcs/tokenizer/token_buf_build.c	/^void	make_token_buffer(t_token *tok_buf, char *str, int *state)$/;"	f
@@ -385,7 +391,7 @@ pipe_exist	includes/structs.h	/^	int			pipe_exist;$/;"	m	struct:s_data
 pipe_first	srcs/execute_srcs/execute_sub.c	/^void	pipe_first(t_data *data, int i, int *fd[2])$/;"	f
 pipe_last	srcs/execute_srcs/execute_sub.c	/^void	pipe_last(t_data *data, int i, int *fd[2])$/;"	f
 pipe_mid	srcs/execute_srcs/execute_sub.c	/^void	pipe_mid(t_data *data, int i, int *fd[2], int pipe_num)$/;"	f
-print_echo	srcs/builtin_srcs/ft_echo.c	/^void	print_echo(char **argv, int option)$/;"	f
+print_echo	srcs/builtin_srcs/ft_echo.c	/^void	print_echo(char **argv, int no_opt_i, int argv_count)$/;"	f
 print_exec_error	srcs/execute_srcs/check_execve_error.c	/^void	print_exec_error(char *str, char *cmd, int exit_status)$/;"	f
 remove_env_arr	srcs/builtin_srcs/ft_unset.c	/^char	**remove_env_arr(t_data *data, char **args)$/;"	f
 replacer	srcs/module/replacer_module/replacer.c	/^void	replacer(t_data *data)$/;"	f
@@ -402,7 +408,7 @@ s_token	includes/structs.h	/^typedef struct s_token$/;"	s
 s_tree	libft/libft.h	/^typedef struct s_tree$/;"	s
 set_clobber	srcs/lexer/lexer.c	/^void	set_clobber(t_data *data, t_dlst *lst)$/;"	f
 set_cmd	srcs/parser/make_cmd.c	/^void	set_cmd(t_dlst *lst)$/;"	f
-set_env_arr	srcs/main_srcs/set_envkey.c	/^void	set_env_arr(t_data *data, char **envp)$/;"	f
+set_env_arr	srcs/main_srcs/set_envkey.c	/^void	set_env_arr(t_data *data)$/;"	f
 set_env_lst	srcs/main_srcs/set_envkey.c	/^void	set_env_lst(t_data *data, char **envp)$/;"	f
 set_fd	srcs/execute_srcs/set_redirection.c	/^int	set_fd(t_dlst *iolst)$/;"	f
 set_handler	srcs/main_srcs/sig_handler.c	/^void	set_handler(void)$/;"	f
@@ -413,7 +419,6 @@ set_last	srcs/execute_srcs/set_redirection.c	/^int	set_last(t_dlst *iolst, enum 
 set_redir	srcs/execute_srcs/set_redirection.c	/^int	set_redir(t_cmd_cont *cmd, t_data *data)$/;"	f
 sigint_handler	srcs/main_srcs/sig_handler.c	/^void	sigint_handler(int sig)$/;"	f
 sigquit_handler	srcs/main_srcs/sig_handler.c	/^void	sigquit_handler(int sig)$/;"	f
-size_envp	srcs/main_srcs/set_envkey.c	/^int	size_envp(char **envp)$/;"	f
 startwith_pipe	srcs/module/syntax_analyzer_module/pipe_err.c	/^int	startwith_pipe(t_dlst *lst)$/;"	f
 str_size	libft/ft_split_charset.c	/^int	str_size(char *str, char *charset)$/;"	f
 syntax_analyzer	srcs/module/syntax_analyzer_module/syntax_analyzer.c	/^int	syntax_analyzer(t_data *data)$/;"	f
@@ -438,6 +443,9 @@ token_init	srcs/tokenizer/tokenizer.c	/^void	token_init(t_data *data)$/;"	f
 tokenizer	srcs/tokenizer/tokenizer.c	/^int	tokenizer(t_data *data)$/;"	f
 type	includes/structs.h	/^	enum e_char_type	type;$/;"	m	struct:s_token	typeref:enum:s_token::e_char_type
 type	includes/structs.h	/^	enum e_word_type	type;$/;"	m	struct:s_io_cont	typeref:enum:s_io_cont::e_word_type
+update_env_arr	srcs/builtin_srcs/export_unset_util.c	/^void	update_env_arr(t_data *data)$/;"	f
+update_env_arr	srcs/main_srcs/export_unset_util.c	/^void	update_env_arr(t_data *data)$/;"	f
+update_export	srcs/builtin_srcs/ft_export.c	/^void	update_export(t_data *data, char *str)$/;"	f
 value	libft/libft.h	/^	void			*value;$/;"	m	struct:s_envlst
 w_type	includes/structs.h	/^	enum e_word_type	w_type;$/;"	m	struct:s_lexer_token	typeref:enum:s_lexer_token::e_word_type
 wexitstatus	srcs/execute_srcs/wait_macros.c	/^int	wexitstatus(int status)$/;"	f

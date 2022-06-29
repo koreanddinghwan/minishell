@@ -6,55 +6,13 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:52 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 17:26:17 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 19:19:27 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "builtin.h"
 
-char	**remove_env_arr(t_data *data, char **args)
-{
-	char	**copy;
-	int		j;
-	int		size;
-	int		i;
-	char	**data_envarr;
-
-	copy = (char **)malloc(sizeof(char *) * (data->env_size + 1));
-	j = 0;
-	size = ft_strlen(*args);
-	if (!copy)
-		return (0);
-	data_envarr = data->env;
-	i = 0;
-	while (data_envarr[i] && *args)
-	{
-		if (!ft_strncmp(data_envarr[i], *args, size))
-		{
-			args++;
-			if (*args)
-				size = ft_strlen(*args);
-			free(data_envarr[i++]);
-			continue;
-		}
-			copy[j] = ft_strdup(data_envarr[i]);
-			j++;
-			free(data_envarr[i]);
-			i++;
-	}
-	while (data_envarr[i])
-	{
-		copy[j] = ft_strdup(data_envarr[i]);
-		j++;
-		free(data_envarr[i]);
-		i++;
-	}
-	copy[j] = 0;
-	free(data_envarr);
-	return (copy);
-}
-
-void	free_env_lst(t_data *data, char *args)
+void	delete_env_lst(t_data *data, char *args)
 {
 	t_envlst	*next;
 	t_envlst	*back;
@@ -75,11 +33,26 @@ void	free_env_lst(t_data *data, char *args)
 				data->env_lst = next;
 			free(cur->key);
 			free(cur->value);
-			free(cur->env_line);
 			free(cur);
 		}
 		cur = next;
 	}
+	free(args);
+}
+
+int	ft_getcharindex(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str == c)
+			return (i);
+		i++;
+		str++;
+	}
+	return (i);
 }
 
 void	ft_unset(t_data *data, char **args)
@@ -97,9 +70,9 @@ void	ft_unset(t_data *data, char **args)
 			printf("mgyush> unset: `%s': not a valid identifier\n", *args);
 			return ;
 		}
-		free_env_lst(data, *args);
+			delete_env_lst(data, ft_strndup(*args, ft_getcharindex(*args, '=')));
 		args++;
 	}
 	data->env_size = ft_envlst_size(data->env_lst);
-	data->env = remove_env_arr(data, copy);
+	update_env_arr(data);
 }

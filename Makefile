@@ -6,13 +6,13 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/29 16:36:10 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/29 18:52:08 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 GCC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3
 INC = ./includes
 
 RDINC = ${HOME}/.brew/opt/readline/include #readline include path
@@ -23,7 +23,7 @@ FTDIR = ./libft/
 FT = libft.a
 FTINC = ./libft/
 
-MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c initialize_main.c initialize_data.c set_envkey.c export_unset_util.c)
+MAIN_SRCS = $(addprefix ./srcs/main_srcs/, main.c sig_handler.c display.c initialize_main.c initialize_data.c set_envkey.c)
 MAIN_OBJS = $(MAIN_SRCS:.c=.o)
 
 TOKEN_SRCS = $(addprefix ./srcs/tokenizer/, tokenizer.c token_buf_build.c)
@@ -49,7 +49,7 @@ CLEANER_OBJS = $(CLEANER_SRCS:.c=.o)
 EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c set_heredoc.c set_redirection.c set_heredoc_tools.c check_execve_error.c execute_sub.c wait_macros.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 
-BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
+BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c export_unset_util.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
 TOOLS_SRCS = $(addprefix ./srcs/tools/, getter1.c getter2.c fs_bitmasking.c)

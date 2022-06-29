@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 15:14:37 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 18:48:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_envlst
 {
 	void			*key;
 	void			*value;
-	void			*env_line;
 	struct s_envlst	*next;
 	struct s_envlst	*back;
 }	t_envlst;

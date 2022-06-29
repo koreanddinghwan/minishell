@@ -6,20 +6,11 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:43 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 17:37:58 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 19:03:08 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-
-void	ft_swap(char **s1, char **s2)
-{
-	char	*temp;
-
-	temp = *s1;
-	*s1 = *s2;
-	*s2 = temp;
-}
+#include "builtin.h"
 
 void	only_export(t_data *data)
 {
@@ -47,36 +38,6 @@ void	only_export(t_data *data)
 	}
 }
 
-int	ft_isunder(int c)
-{
-	if (c == '_')
-		return (1);
-	return (0);
-}
-
-void	free_env(t_data *data, char **args)
-{
-	t_envlst	*rem_node;
-	t_envlst	*node;
-	int			size;
-
-	rem_node = data->env_lst->next;
-	node = data->env_lst;
-
-	while (rem_node)
-	{
-		size = ft_strlen(rem_node->key);
-		if (!ft_strncmp(rem_node->key, *args, size))
-		{
-			node->next = rem_node->next;
-			free(rem_node);
-			return ;
-		}
-		rem_node = rem_node->next;
-		node = node->next;
-	}
-}
-
 int	export_error(char *str)
 {
 	if ((!ft_isalpha(*str) && !ft_isunder(*str)))
@@ -89,28 +50,48 @@ int	export_error(char *str)
 	return (SUCESS);
 }
 
+int	check_update_env(t_envlst *envlst, char *str)
+{
+	char	**splited;
+	char	*key;
 
+	splited = ft_split(str, '=');
+	key = splited[0];
+	if (!splited[1])
+		splited[1] = ft_strdup("");
+	while (envlst)
+	{
+		if (ft_strcmp(key, (char *)envlst->key) == 0)
+		{
+			free(envlst->value);
+			envlst->value = splited[1];
+			free(splited[0]);
+			free(splited[1]);
+			free(splited);
+			return (TRUE);
+		}
+		envlst = envlst->next;
+	}
+	free(splited[0]);
+	free(splited[1]);
+	free(splited);
+	return (FALSE);
+}
 
 void	update_export(t_data *data, char *str)
 {
-	char	**split;
 	t_envlst	*envlst;
 
-	envlst = data->envlst;
-	split = ft_split(str);
+	envlst = data->env_lst;
 	if (check_update_env(envlst, str) == TRUE)
 		return ;
 	else
-	{
-		node = ft_envlst_new(*args);
-		ft_envlst_pushback(&data->env_lst, node);
-	}
+		ft_envlst_pushback(&data->env_lst, ft_envlst_new(str));
 }
 
 
 void	ft_export(t_data *data, char **args)
 {
-	t_envlst	*node;
 	char		**copy;
 
 	args++;
@@ -128,5 +109,5 @@ void	ft_export(t_data *data, char **args)
 			update_export(data, *args);
 		args++;
 	}
-	//update
+	update_env_arr(data);
 }
