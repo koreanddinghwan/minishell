@@ -6,14 +6,13 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/28 20:49:22 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/29 09:03:12 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 GCC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-\CFLAGS = -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror
 INC = ./includes
 
 RDINC = ${HOME}/.brew/opt/readline/include #readline include path
@@ -63,7 +62,7 @@ all : $(NAME)
 $(NAME) : $(OBJ_FILES)
 	make all -j 4 -C $(FTDIR) #recursively create libft
 	cp $(FTDIR)$(FT) ./$(FT) #copy in root dir
-	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ libft.a #RFLAGS for readline lib
+	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ libft.a  #RFLAGS for readline lib
 
 %.o : %.c
 	$(GCC) $(CFLAGS) -I$(RDINC) -I$(INC) -I$(FTINC) -c $^ -o $@ #specify readline header in RNINC
