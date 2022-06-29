@@ -48,9 +48,7 @@ t_envlst	*ft_envlst_new(void *c)
 		return (0);
 	split = ft_split((char *)c, '=');
 	if (split[1] == (void *)0)
-	{
 		split[1] = ft_strdup("");
-	}
 	node->key = split[0];
 	node->value = split[1];
 	node->env_line = (char *)c;

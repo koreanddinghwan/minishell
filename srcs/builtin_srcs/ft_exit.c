@@ -6,13 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:27:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 17:27:57 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 12:31:40 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include <string.h>
-#include <stdlib.h>
 
 int	get_ac(char **argv)
 {

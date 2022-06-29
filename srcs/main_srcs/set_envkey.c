@@ -6,18 +6,20 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 08:34:19 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 12:38:59 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-char	*make_key(char *envstr)
+void	rest_dup(char **args, char **copy, int *j)
 {
-	char	*str;
-
-	str = ft_strdup(envstr);
-	return (str);
+	while (*args)
+	{
+		copy[*j] = ft_strdup(*args);
+		(*j)++;
+		args++;
+	}	
 }
 
 int	size_envp(char **envp)
@@ -53,12 +55,7 @@ char	**add_env_arr(t_data *data, char **args)
 		j++;
 		i++;
 	}
-	while (*args)
-	{
-		copy[j] = ft_strdup(*args);
-		j++;
-		args++;
-	}
+	rest_dup(args, copy, &j);
 	copy[j] = 0;
 	free(data->env);
 	return (copy);
@@ -91,7 +88,9 @@ void	set_env_lst(t_data *data, char **envp)
 
 	while (*envp)
 	{
-		node = ft_envlst_new(make_key(*envp));
+		node = ft_envlst_new(ft_strdup(*envp));
+		if (!node)
+			return ;
 		if (!strcmp(node->key, "OLDPWD"))
 		{
 			envp++;

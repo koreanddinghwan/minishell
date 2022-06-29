@@ -61,6 +61,5 @@ char	*check_envpath(char *path, char *cmd)
 		free(joined);
 		i++;
 	}
-	free(cmd);
 	return (NULL);
 }

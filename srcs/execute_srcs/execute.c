@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 09:15:38 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 12:33:33 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int *fd[2])
 			execute_builtin(data, get_cmd(cmd_lst), get_args(cmd_lst));
 		else
 		{
-			if(*remain_pipe == data->cmd_size - 1)
+			if (*remain_pipe == data->cmd_size - 1)
 			{
 				while (data->cmd_size - 1)
 				{
