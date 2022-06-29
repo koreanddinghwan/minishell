@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:40:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 09:08:21 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 11:15:44 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	iocont_free(t_cmd_cont *content)
 void	cmd_cont_free(void *cont)
 {
 	char		**args;
+	int			i;
 	t_cmd_cont	*content;
 
 	if (!cont)
@@ -51,13 +52,18 @@ void	cmd_cont_free(void *cont)
 	if (content->cmd)
 		free(content->cmd);
 	args = content->args;
+	i = 0;
 	if (args)
 	{
-		while (*args)
+		while (args[i])
 		{
-			free(*args);
-			args++;
+			ft_printf("free \n");
+			free(args[i]);
+			ft_printf("%d\n", i);
+			i++;
 		}
+		args = NULL;
 	}
 	iocont_free(content);
+	free(content);
 }

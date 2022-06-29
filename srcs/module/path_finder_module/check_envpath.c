@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 00:41:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 01:22:26 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 10:29:05 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ char	*check_envpath(char *path, char *cmd)
 		free(joined);
 		i++;
 	}
+	free(cmd);
 	return (NULL);
 }

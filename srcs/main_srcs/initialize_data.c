@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 20:31:17 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 16:00:38 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 10:48:47 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	initialize_data(t_data *data, char *line)
 {
 	if (ft_strlen(line) == 0)
+	{
+		free(line);
 		return ;
+	}
 	add_history(line);
 	data->command = line;
 	if (tokenizer(data) == FAIL)
