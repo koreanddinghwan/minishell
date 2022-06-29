@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 01:27:43 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 20:58:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 16:46:23 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -61,7 +61,11 @@ int	endwith_pipe(t_dlst *lst)
 	if (get_ltok_type(lst) == W_SPACE)
 	{
 		while (get_ltok_type(lst) == W_SPACE)
-			last = last->back;
+		{
+			if (last)
+				last = last->back;
+			lst = lst->next;
+		}
 		if (get_ltok_type(lst) == W_PIPE)
 			return (TRUE);
 	}

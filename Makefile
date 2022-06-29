@@ -6,13 +6,13 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/29 15:22:23 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/29 16:36:10 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 GCC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 INC = ./includes
 
 RDINC = ${HOME}/.brew/opt/readline/include #readline include path

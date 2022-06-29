@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 09:04:11 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 16:41:20 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@
 # include "defines_enums.h"
 # include "cleaner.h"
 # include "builtin.h"
+
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
 void	set_env_lst(t_data *data, char **envp);
 void	set_env_arr(t_data *data, char **envp);
 char	**add_env_arr(t_data *data, char **args);
-/*
- * display
- * */
 void	display_bash(t_data *data);
 void	initialize_data(t_data *data, char *line);
 int		tokenizer(t_data *data);
