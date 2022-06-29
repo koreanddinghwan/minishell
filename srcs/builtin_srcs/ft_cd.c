@@ -6,37 +6,47 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:16 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 12:32:31 by gyumpark         ###   ########.fr       */
+/*   Updated: 2022/06/29 21:17:56 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include <errno.h>
 
+void	insert_oldpwd(t_data *data)
+{
+	t_envlst	*new;
+
+	new = ft_envlst_new("OLDPWD=");
+	ft_envlst_pushback(&data->env_lst, new);
+}
+
 void	change_env(t_data *data, char *pwd, char *oldpwd)
 {
 	t_envlst	*node;
 	t_envlst	*last;
+	int			flag;
 
 	node = data->env_lst;
 	last = ft_envlst_last(node);
+	flag = 0;
 	while (node)
 	{
-		if (!ft_strncmp(node->key, "PWD", 3))
+		if (ft_strcmp(node->key, "PWD") == 0)
 		{
-			node->value = pwd;
-			if (ft_strcmp(last->key, "OLDPWD"))
-			{
-				node = ft_envlst_new("OLDPWD=OLDPWD");
-				ft_envlst_pushback(&data->env_lst, node);
-			}
+			free(node->value);
+			node->value = ft_strdup(pwd);
 		}
-		if (!ft_strncmp(node->key, "OLDPWD", 6))
+		if (ft_strcmp(node->key, "OLDPWD") == 0)
 		{
-			node->value = oldpwd;
+			flag = 1;
+			free(node->value);
+			node->value = ft_strdup(oldpwd);
 		}
 		node = node->next;
 	}
+	if (flag == 0)
+		insert_oldpwd(data);
 }
 
 void	change_dir_env(t_data *data, char *buf, char *aft, char *cur)
@@ -90,4 +100,5 @@ void	ft_cd(t_data *data, char **path)
 		node = node->next;
 	}
 	change_dir_env(data, get_chdir_buf(path, home, old_save), aft, cur);
+	update_env_arr(data);
 }
