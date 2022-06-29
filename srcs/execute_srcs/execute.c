@@ -6,18 +6,14 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 16:18:09 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 20:28:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-#include <sys/wait.h>
+#include "g_variable.h"
+
+pid_t	g_pid;
 
 void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 {
@@ -45,12 +41,10 @@ void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 
 void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int *fd[2])
 {
-	pid_t	pid;
-
-	pid = fork();
-	if (pid < 0)
+	g_pid = fork();
+	if (g_pid < 0)
 		exit(1);
-	if (pid == 0)
+	if (g_pid == 0)
 		execute_child(data, cmd, fd, &(*pipe_num));
 }
 
