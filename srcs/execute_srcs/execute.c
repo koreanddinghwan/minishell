@@ -6,14 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 20:28:09 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 20:40:48 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
-#include "g_variable.h"
-
-pid_t	g_pid;
 
 void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 {
@@ -41,6 +38,8 @@ void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 
 void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int *fd[2])
 {
+	pid_t	g_pid;
+
 	g_pid = fork();
 	if (g_pid < 0)
 		exit(1);
@@ -57,8 +56,12 @@ void	close_pipe(t_data *data, int pipe, int *fd[2], int *status)
 		close(fd[pipe][0]);
 		close(fd[pipe][1]);
 	}
+	signal(SIGINT, SIG_IGN);
 	while (wait(&(*status)) > 0)
+	{
 		change_exitstatus(data, *status);
+		signal(SIGINT, sigint_handler);
+	}
 	i = 0;
 	while (i < data->cmd_size - 1)
 	{

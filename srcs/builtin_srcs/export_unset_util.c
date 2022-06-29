@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:38:24 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 19:18:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 21:11:22 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void	update_env_arr(t_data *data)
     copy = dup_env_arr(data->env_lst);
 	free_env_arr(data);
     data->env = copy;
+	data->env_size = ft_envlst_size(data->env_lst);
 }
