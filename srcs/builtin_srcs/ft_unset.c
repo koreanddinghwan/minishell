@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:52 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 19:19:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 22:12:50 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,21 @@ int	ft_getcharindex(char *str, char c)
 
 void	ft_unset(t_data *data, char **args)
 {
-	char		**copy;
+	char	**copy;
 
 	args++;
 	copy = args;
 	if (!*args)
 		return ;
-	while(*args)
+	while (*args)
 	{
-		if ((!ft_isalpha(**args) && !ft_isunder(**args)) || ft_strchr(*args, '='))
+		if ((!ft_isalpha(**args)
+				&& !ft_isunder(**args)) || ft_strchr(*args, '='))
 		{
 			printf("mgyush> unset: `%s': not a valid identifier\n", *args);
 			return ;
 		}
-			delete_env_lst(data, ft_strndup(*args, ft_getcharindex(*args, '=')));
+		delete_env_lst(data, ft_strndup(*args, ft_getcharindex(*args, '=')));
 		args++;
 	}
 	data->env_size = ft_envlst_size(data->env_lst);
