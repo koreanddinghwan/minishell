@@ -6,11 +6,24 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:09:14 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 16:05:01 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 15:23:02 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_envlst_size(t_envlst *envlst)
+{
+	int	size;
+
+	size = 1;
+	while (envlst)
+	{
+		size++;
+		envlst = envlst->next;
+	}
+	return (size);
+}
 
 t_envlst	*ft_envlst_last(t_envlst *envlst)
 {
@@ -51,7 +64,7 @@ t_envlst	*ft_envlst_new(void *c)
 		split[1] = ft_strdup("");
 	node->key = split[0];
 	node->value = split[1];
-	node->env_line = (char *)c;
+	node->env_line = ft_strdup((char *)c);
 	node->next = 0;
 	node->back = 0;
 	free(split);

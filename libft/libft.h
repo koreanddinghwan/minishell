@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:21:11 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/27 17:08:16 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 15:14:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ void			ft_btree_postordertrav(t_tree *node,
 t_envlst		*ft_envlst_last(t_envlst *envlst);
 void			ft_envlst_pushback(t_envlst **envlst, t_envlst *new);
 t_envlst		*ft_envlst_new(void *c);
+int				ft_envlst_size(t_envlst *envlst);
 char			*get_next_line(int fd);
 #endif
