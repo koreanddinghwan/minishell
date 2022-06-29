@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:43 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 14:22:37 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 17:37:58 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,37 @@ void	free_env(t_data *data, char **args)
 	}
 }
 
+int	export_error(char *str)
+{
+	if ((!ft_isalpha(*str) && !ft_isunder(*str)))
+	{
+		printf("mgyush: export: `%s': not a valid identifier\n", str);
+		return (FAIL);
+	}
+	else if (!strchr(str, '='))
+		return (FAIL);
+	return (SUCESS);
+}
+
+
+
+void	update_export(t_data *data, char *str)
+{
+	char	**split;
+	t_envlst	*envlst;
+
+	envlst = data->envlst;
+	split = ft_split(str);
+	if (check_update_env(envlst, str) == TRUE)
+		return ;
+	else
+	{
+		node = ft_envlst_new(*args);
+		ft_envlst_pushback(&data->env_lst, node);
+	}
+}
+
+
 void	ft_export(t_data *data, char **args)
 {
 	t_envlst	*node;
@@ -91,19 +122,11 @@ void	ft_export(t_data *data, char **args)
 	}
 	while (*args)
 	{
-		if ((!ft_isalpha(**args) && !ft_isunder(**args)))
-		{
-			printf("mgyush: export: `%s': not a valid identifier\n", *args);
-			return ;
-		}
-		else if (!strchr(*args, '='))
+		if (export_error(*args) == FAIL)
 			return ;
 		else
-		{
-			node = ft_envlst_new(*args);
-			ft_envlst_pushback(&data->env_lst, node);
-		}
+			update_export(data, *args);
 		args++;
 	}
-	data->env = add_env_arr(data, copy);
+	//update
 }

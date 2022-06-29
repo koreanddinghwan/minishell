@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:09:14 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 15:23:02 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 17:37:32 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_envlst_size(t_envlst *envlst)
 {
 	int	size;
 
-	size = 1;
+	size = 0;
 	while (envlst)
 	{
 		size++;

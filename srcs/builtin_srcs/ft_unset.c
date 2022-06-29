@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:52 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 15:26:36 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 17:26:17 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	ft_unset(t_data *data, char **args)
 	copy = args;
 	if (!*args)
 		return ;
-	ft_printf("before unset%d\n", data->env_size);
 	while(*args)
 	{
 		if ((!ft_isalpha(**args) && !ft_isunder(**args)) || ft_strchr(*args, '='))
@@ -102,6 +101,5 @@ void	ft_unset(t_data *data, char **args)
 		args++;
 	}
 	data->env_size = ft_envlst_size(data->env_lst);
-	ft_printf("after unset%d\n", data->env_size);
 	data->env = remove_env_arr(data, copy);
 }
