@@ -6,30 +6,46 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:43:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 12:31:21 by gyumpark         ###   ########.fr       */
+/*   Updated: 2022/06/29 16:31:37 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	check_option(char *option)
+int	isoption(char *str)
 {
 	int	status;
 
 	status = TRUE;
-	if (*option != '-')
+	if (*str != '-')
 		status = FALSE;
 	else
-		option++;
-	while (*option)
+		str++;
+	while (*str)
 	{
 		if (status == FALSE)
 			break ;
-		option++;
-		if (*option && *option != 'n')
+		str++;
+		if (*str && *str != 'n')
 			status = FALSE;
 	}
 	return (status);
+}
+
+int	check_option(char **argv)
+{
+	int	size;
+
+	size = 1;
+	argv++;
+	while (*argv)
+	{
+		if (isoption(*argv) == FALSE)
+			return (size);
+		size++;
+		argv++;
+	}
+	return (size);
 }
 
 int	get_argv_count(char **argv)
@@ -45,20 +61,23 @@ int	get_argv_count(char **argv)
 	return (c);
 }
 
-void	print_echo(char **argv, int option)
+void	print_echo(char **argv, int no_opt_i, int argv_count)
 {
 	int	i;
+	int	option;
 
-	if (option == TRUE)
-		i = 2;
+	i = 0;
+	if (no_opt_i < argv_count)
+		option = FALSE;
 	else
-		i = 1;
-	while (argv[i])
+		option = TRUE;
+	while (argv[no_opt_i])
 	{
-		write(1, argv[i], ft_strlen(argv[i]));
+		write(1, argv[no_opt_i], ft_strlen(argv[no_opt_i]));
 		i++;
-		if (argv[i])
+		if (argv[no_opt_i])
 			write(1, " ", 1);
+		no_opt_i++;
 	}
 	if (option == FALSE)
 		write(1, "\n", 1);
@@ -66,7 +85,7 @@ void	print_echo(char **argv, int option)
 
 void	ft_echo(t_data *data, char **argv)
 {
-	int	option;
+	int	not_option_index;
 	int	argv_count;
 
 	if (!data)
@@ -77,6 +96,6 @@ void	ft_echo(t_data *data, char **argv)
 		write(1, "\n", 1);
 		return ;
 	}
-	option = check_option(argv[1]);
-	print_echo(argv, option);
+	not_option_index = check_option(argv);
+	print_echo(argv, not_option_index, argv_count);
 }

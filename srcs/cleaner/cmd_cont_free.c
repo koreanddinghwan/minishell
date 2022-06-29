@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:40:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 12:24:15 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 16:01:43 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,7 @@ void	cmd_cont_free(void *cont)
 	if (args)
 	{
 		while (args[i])
-		{
-			free(args[i]);
-			i++;
-		}
+			free(args[i++]);
 		free(args);
 	}
 	iocont_free(content);

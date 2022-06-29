@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 12:42:18 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 16:18:09 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,22 @@ void	execute_pipe(t_data *data, t_dlst *cmd, int *pipe_num, int *fd[2])
 
 void	close_pipe(t_data *data, int pipe, int *fd[2], int *status)
 {
+	int	i;
+
 	while (pipe--)
 	{
 		close(fd[pipe][0]);
 		close(fd[pipe][1]);
 	}
-	free(fd);
 	while (wait(&(*status)) > 0)
 		change_exitstatus(data, *status);
+	i = 0;
+	while (i < data->cmd_size - 1)
+	{
+		free(fd[i]);
+		i++;
+	}
+	free(fd);
 }
 
 void	execute_cmd(t_data *data, t_dlst *cmd_lst, int *remain_pipe, int *fd[2])
