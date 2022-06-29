@@ -10,71 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	rest_dup(char **args, char **copy, int *j)
-{
-	while (*args)
-	{
-		copy[*j] = ft_strdup(*args);
-		(*j)++;
-		args++;
-	}	
-}
-
-int	size_envp(char **envp)
-{
-	int	size;
-
-	size = 0;
-	while (*envp)
-	{
-		size++;
-		envp++;
-	}
-	return (size);
-}
-
-char	**add_env_arr(t_data *data, char **args)
-{
-	char	**copy;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	copy = (char **)malloc(sizeof(char *) * (data->env_size + 1));
-	if (!copy)
-		return (0);
-	if (!strchr(*args, '='))
-		return (0);
-	while (data->env[i])
-	{
-		copy[j] = ft_strdup(data->env[i]);
-		free(data->env[i]);
-		j++;
-		i++;
-	}
-	rest_dup(args, copy, &j);
-	copy[j] = 0;
-	free(data->env);
-	return (copy);
-}
+#include "main.h"
 
 void	free_env_arr(t_data *data)
 {
-	while (*data->env)
-	{
-		free(*data->env);
-		data->env++;
-	}
-	free(data->env);
+    char    **envarr;
+    int     i;
+
+
+    envarr = data->env;
+    i = 0;
+	while (envarr[i])
+		free(envarr[i++]);
+	free(envarr);
 }
 
-void	update_env_arr(t_data *data, t_envlst *envp)
+char    **dup_env_arr(t_envlst *envlst)
 {
-	char **copy;
+    t_envlst *node;
+	char	*buffer;
+	char	*ex;
+	int		i;
 
+    data->env = (char **)malloc(sizeof(char *) * (data->env_size +1));
+	i = 0;
+	if (!data->env)
+		return ;
+	while (node)
+	{
+		buffer = ft_strjoin(node->key, "=");
+		ex = buffer;
+		buffer = ft_strjoin(buffer, node->value);
+		free(ex);
+		data->env[i] = buffer;
+		node = node->next;
+	}
+	data->env[i] = 0;
+}
 
-	dup_env_arr();
-	diff size_envp(envp); data->env_size
-	free_env_arr()
+void	update_env_arr(t_data *data)
+{
+	char        **copy;
+
+    copy = dup_env_arr(data->env_lst)
+	free_env_arr(data->env);
+    data->env = copy;
 }

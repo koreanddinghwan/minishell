@@ -30,13 +30,10 @@ void	set_env_lst(t_data *data, char **envp)
 			free(node);
 		}
 		else
-		{
 			ft_envlst_pushback(&data->env_lst, node);
-			data->env_size++;
-		}
-		printf("%s %d\n", *envp, data->env_size);
 		envp++;
 	}
+	data->env_size = ft_envlst_size(data->env_lst);
 }
 
 void	set_env_arr(t_data *data)
@@ -55,7 +52,7 @@ void	set_env_arr(t_data *data)
 	{
 		buffer = ft_strjoin(node->key, "=");
 		ex = buffer;
-		buffer = ft_strjoin(buffer, node->value)
+		buffer = ft_strjoin(buffer, node->value);
 		free(ex);
 		data->env[i] = buffer;
 		node = node->next;

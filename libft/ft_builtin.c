@@ -16,7 +16,7 @@ int	ft_envlst_size(t_envlst *envlst)
 {
 	int	size;
 
-	size = 1;
+	size = 0;
 	while (envlst)
 	{
 		size++;
