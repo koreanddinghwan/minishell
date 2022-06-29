@@ -6,19 +6,19 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:38:24 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 21:11:22 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 22:11:03 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "builtin.h"
 
 void	free_env_arr(t_data *data)
 {
-    char    **envarr;
-    int     i;
+	char	**envarr;
+	int		i;
 
-    envarr = data->env;
-    i = 0;
+	envarr = data->env;
+	i = 0;
 	while (envarr[i])
 		free(envarr[i++]);
 	free(envarr);
@@ -37,29 +37,15 @@ void	free_env_lst(t_envlst *lst)
 		lst = next;
 	}
 }
-void	ft_swap(char **s1, char **s2)
-{
-	char	*temp;
 
-	temp = *s1;
-	*s1 = *s2;
-	*s2 = temp;
-}
-
-int	ft_isunder(int c)
-{
-	if (c == '_')
-		return (1);
-	return (0);
-}
-char    **dup_env_arr(t_envlst *envlst)
+char	**dup_env_arr(t_envlst *envlst)
 {
 	char	*buffer;
 	char	*ex;
 	int		i;
 	char	**copy;
 
-    copy = (char **)malloc(sizeof(char *) * (ft_envlst_size(envlst) +1));
+	copy = (char **)malloc(sizeof(char *) * (ft_envlst_size(envlst) +1));
 	i = 0;
 	if (!copy)
 		return (NULL);
@@ -79,10 +65,10 @@ char    **dup_env_arr(t_envlst *envlst)
 
 void	update_env_arr(t_data *data)
 {
-	char        **copy;
+	char	**copy;
 
-    copy = dup_env_arr(data->env_lst);
+	copy = dup_env_arr(data->env_lst);
 	free_env_arr(data);
-    data->env = copy;
+	data->env = copy;
 	data->env_size = ft_envlst_size(data->env_lst);
 }

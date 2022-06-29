@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:43 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 19:03:08 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 22:11:31 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	only_export(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	j = 0;
 	while (data->env[i])
@@ -89,7 +89,6 @@ void	update_export(t_data *data, char *str)
 		ft_envlst_pushback(&data->env_lst, ft_envlst_new(str));
 }
 
-
 void	ft_export(t_data *data, char **args)
 {
 	char		**copy;
@@ -99,7 +98,7 @@ void	ft_export(t_data *data, char **args)
 	if (!*args)
 	{
 		only_export(data);
-		return;
+		return ;
 	}
 	while (*args)
 	{

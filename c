@@ -1,0 +1,13 @@
+Makefile
+a
+a.txt
+ast.md
+b
+c
+includes
+libft
+libft.a
+minishell
+readme.md
+srcs
+tags
