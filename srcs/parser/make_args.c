@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:59:02 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 12:09:10 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 12:24:17 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,8 @@ void	make_args(t_data *data, t_cmd_cont *cont)
 	if (cmd == NULL)
 		return ;
 	count = get_args_count(data->lexer_token_lst) + 2;
-	ft_printf("%s\n", cmd);
-	ft_printf("%s\n", cmd);
-	ft_printf("%s\n", cmd);
-	ft_printf("%s\n", cmd);
 	rtn = malloc(sizeof(char *) * (count));
-	ft_printf("%s\n", cmd);
 	rtn[0] = ft_strdup(cmd);
-	ft_printf("%s\n", cmd);
 	rtn[count - 1] = NULL;
 	delete_multiple_tokens(data, W_SPACE);
 	join_args(rtn, data, count);
