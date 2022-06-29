@@ -1,50 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_envkey.c                                       :+:      :+:    :+:   */
+/*   export_unset_util.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
+/*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 17:15:54 by myukang          ###   ########.fr       */
+/*   Created: 2022/06/29 17:38:24 by gyumpark          #+#    #+#             */
+/*   Updated: 2022/06/29 17:38:25 by gyumpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	set_env_lst(t_data *data, char **envp)
+void	free_env_arr(t_data *data)
 {
-	t_envlst	*node;
+    char    **envarr;
+    int     i;
 
-	while (*envp)
-	{
-		node = ft_envlst_new(*envp);
-		if (!node)
-			return ;
-		if (!strcmp(node->key, "OLDPWD"))
-		{
-			envp++;
-			free(node->key);
-			free(node->value);
-			free(node->env_line);
-			free(node);
-		}
-		else
-			ft_envlst_pushback(&data->env_lst, node);
-		envp++;
-	}
-	data->env_size = ft_envlst_size(data->env_lst);
+
+    envarr = data->env;
+    i = 0;
+	while (envarr[i])
+		free(envarr[i++]);
+	free(envarr);
 }
 
-void	set_env_arr(t_data *data)
+char    **dup_env_arr(t_envlst *envlst)
 {
-	t_envlst *node;
+    t_envlst *node;
 	char	*buffer;
 	char	*ex;
 	int		i;
 
-	node = data->env_lst;
-	data->env = (char **)malloc(sizeof(char *) * (data->env_size +1));
+    data->env = (char **)malloc(sizeof(char *) * (data->env_size +1));
 	i = 0;
 	if (!data->env)
 		return ;
@@ -58,4 +46,13 @@ void	set_env_arr(t_data *data)
 		node = node->next;
 	}
 	data->env[i] = 0;
+}
+
+void	update_env_arr(t_data *data)
+{
+	char        **copy;
+
+    copy = dup_env_arr(data->env_lst)
+	free_env_arr(data->env);
+    data->env = copy;
 }

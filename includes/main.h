@@ -25,7 +25,7 @@
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
 void	set_env_lst(t_data *data, char **envp);
-void	set_env_arr(t_data *data, char **envp);
+void	set_env_arr(t_data *data);
 char	**add_env_arr(t_data *data, char **args);
 void	display_bash(t_data *data);
 void	initialize_data(t_data *data, char *line);
