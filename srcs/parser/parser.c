@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 23:37:55 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 11:16:13 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 12:08:24 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -29,7 +29,9 @@ void	make_cmdcont(t_data *data)
 		cmd_cont->cmdtype = get_cmdtype(cmd_cont->cmd);
 		if (cmd_cont->cmdtype != E_BUILTIN)
 			cmd_cont->cmd = cmdpath_finder(data->env_lst, cmd_cont->cmd);
-		cmd_cont->args = make_args(data, cmd_cont->cmd);
+		ft_printf("brefore args\"%s\"\n", cmd_cont->cmd);
+		make_args(data, cmd_cont);
+		ft_printf("after args\"%s\"\n", cmd_cont->cmd);
 		cmd_cont->nth = n;
 		ft_dlst_pushback(&data->cmd_lst, ft_dlst_new(cmd_cont));
 		n++;
