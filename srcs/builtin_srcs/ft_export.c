@@ -91,10 +91,7 @@ void	update_export(t_data *data, char *str)
 
 void	ft_export(t_data *data, char **args)
 {
-	char		**copy;
-
 	args++;
-	copy = args;
 	if (!*args)
 	{
 		only_export(data);

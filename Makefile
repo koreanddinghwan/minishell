@@ -12,7 +12,7 @@
 
 NAME = minishell
 GCC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 INC = ./includes
 
 RDINC = ${HOME}/.brew/opt/readline/include #readline include path

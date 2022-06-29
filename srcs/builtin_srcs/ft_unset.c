@@ -57,10 +57,7 @@ int	ft_getcharindex(char *str, char c)
 
 void	ft_unset(t_data *data, char **args)
 {
-	char	**copy;
-
 	args++;
-	copy = args;
 	if (!*args)
 		return ;
 	while (*args)
