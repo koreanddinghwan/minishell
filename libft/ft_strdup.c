@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:34:01 by myukang           #+#    #+#             */
-/*   Updated: 2022/03/10 18:27:45 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 12:12:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*ft_strdup(char *src)
 	int		i;
 
 	size = ft_strlen(src);
+	ft_printf("size : %d\n", size);
 	ptr = malloc(sizeof(char) * size + 1);
 	if (!ptr)
 		return (0);

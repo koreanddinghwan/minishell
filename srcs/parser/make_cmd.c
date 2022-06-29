@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:54:49 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 11:15:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 11:49:27 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ char	*make_cmd(t_data *data)
 		tok_lst = next;
 		offset--;
 	}
-	ft_printf("maked cmd%s\n", rtn);
 	return (rtn);
 }
