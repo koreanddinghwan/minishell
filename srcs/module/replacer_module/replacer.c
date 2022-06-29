@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 02:04:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:15:19 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:55:57 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	replacer(t_data *data)
 	tok_lst = data->lexer_token_lst;
 	while (tok_lst)
 	{
-		if ((get_ltok_cont(tok_lst)->w_type) != W_DELIMETER)
+		if (get_ltok_type(tok_lst) != W_DELIMETER)
 			replacer_exec(data, tok_lst);
 		tok_lst = tok_lst->next;
 	}

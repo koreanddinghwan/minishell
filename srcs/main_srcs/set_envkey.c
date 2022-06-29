@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:45:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 03:02:18 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 08:34:19 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ void	set_env_lst(t_data *data, char **envp)
 		if (!strcmp(node->key, "OLDPWD"))
 		{
 			envp++;
+			free(node->key);
+			free(node->value);
+			free(node->env_line);
 			free(node);
 		}
 		else

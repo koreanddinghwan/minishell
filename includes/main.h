@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:54:09 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 09:04:11 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include "defines_enums.h"
 # include "cleaner.h"
 # include "builtin.h"
-
 void	initialize_main(t_data *data, char **envp);
 void	set_handler(void);
 void	set_env_lst(t_data *data, char **envp);

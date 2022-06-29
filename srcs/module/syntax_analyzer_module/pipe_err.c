@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 01:27:43 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:20:56 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:58:41 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -21,12 +21,12 @@ int	startwith_pipe(t_dlst *lst)
 {
 	enum e_word_type	type;
 
-	type = get_ltok_cont(lst)->w_type;
+	type = get_ltok_type(lst);
 	if (type == W_SPACE || type == W_PIPE)
 	{
-		while (lst && get_ltok_cont(lst)->w_type == W_SPACE)
+		while (lst && get_ltok_type(lst) == W_SPACE)
 			lst = lst->next;
-		if (lst && get_ltok_cont(lst)->w_type == W_PIPE)
+		if (lst && get_ltok_type(lst) == W_PIPE)
 			return (TRUE);
 	}
 	return (FALSE);
@@ -36,14 +36,14 @@ int	double_pipe(t_dlst *lst)
 {
 	while (lst)
 	{
-		if (get_ltok_cont(lst)->w_type == W_PIPE)
+		if (get_ltok_type(lst) == W_PIPE)
 		{
 			lst = lst->next;
 			if (lst)
 			{
-				while (lst && get_ltok_cont(lst)->w_type == W_SPACE)
+				while (lst && get_ltok_type(lst) == W_SPACE)
 					lst = lst->next;
-				if (lst && get_ltok_cont(lst)->w_type == W_PIPE)
+				if (lst && get_ltok_type(lst) == W_PIPE)
 					return (TRUE);
 			}
 		}
@@ -58,14 +58,14 @@ int	endwith_pipe(t_dlst *lst)
 	t_dlst	*last;
 
 	last = ft_dlst_last(lst);
-	if (get_ltok_cont(last)->w_type == W_SPACE)
+	if (get_ltok_type(lst) == W_SPACE)
 	{
-		while (get_ltok_cont(last)->w_type == W_SPACE)
+		while (get_ltok_type(lst) == W_SPACE)
 			last = last->back;
-		if (get_ltok_cont(last)->w_type == W_PIPE)
+		if (get_ltok_type(lst) == W_PIPE)
 			return (TRUE);
 	}
-	else if (get_ltok_cont(last)->w_type == W_PIPE)
+	else if (get_ltok_type(lst) == W_PIPE)
 		return (TRUE);
 	return (FALSE);
 }

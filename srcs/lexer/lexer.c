@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:27:29 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:23:20 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/28 20:49:46 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	set_clobber(t_data *data, t_dlst *lst)
 
 	while (lst)
 	{
-		if (lst && get_ltok_cont(lst)->w_type == W_REDIRECTION_OUTPUT)
+		if (lst && get_ltok_type(lst) == W_REDIRECTION_OUTPUT)
 		{
 			next = lst->next;
 			if (next)

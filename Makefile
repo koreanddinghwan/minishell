@@ -6,14 +6,13 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/28 20:11:49 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/29 09:03:12 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 GCC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-\CFLAGS = -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror
 INC = ./includes
 
 RDINC = ${HOME}/.brew/opt/readline/include #readline include path
@@ -53,7 +52,7 @@ EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)
 BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)
 
-TOOLS_SRCS = $(addprefix ./srcs/tools/, getter1.c fs_bitmasking.c)
+TOOLS_SRCS = $(addprefix ./srcs/tools/, getter1.c getter2.c fs_bitmasking.c)
 TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)
 
 OBJ_FILES = $(MAIN_OBJS) $(BUILTIN_OBJS) $(TOOLS_OBJS) $(TOKEN_OBJS) $(LEXER_OBJS) $(MODULE_OBJS) $(PARSE_OBJS) $(CLEANER_OBJS) $(EXEC_OBJS)
@@ -63,7 +62,7 @@ all : $(NAME)
 $(NAME) : $(OBJ_FILES)
 	make all -j 4 -C $(FTDIR) #recursively create libft
 	cp $(FTDIR)$(FT) ./$(FT) #copy in root dir
-	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ libft.a #RFLAGS for readline lib
+	$(GCC) $(CFLAGS) $(RDFLAGS) -I$(INC) -I$(FTINC) -o $@ $^ libft.a  #RFLAGS for readline lib
 
 %.o : %.c
 	$(GCC) $(CFLAGS) -I$(RDINC) -I$(INC) -I$(FTINC) -c $^ -o $@ #specify readline header in RNINC

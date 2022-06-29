@@ -6,7 +6,7 @@
 #    By: myukang <myukang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/11 17:36:18 by myukang           #+#    #+#              #
-#    Updated: 2022/06/26 12:28:37 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/29 08:24:09 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS = ft_isdigit.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_strlen.c \
 	   ft_btree_postordertrav.c ft_btree_inordertrav.c ft_btree_preordertrav.c ft_btree_get_right.c ft_btree_get_left.c ft_btree_make_left.c ft_btree_make_right.c ft_btree_clear.c ft_btree_new.c \
 	   ft_builtin.c get_next_line.c get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror -c -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -c 
 
 OBJ_FILES = $(OBJS)
 

@@ -10,9 +10,8 @@ BUILTIN_OBJS	Makefile	/^BUILTIN_OBJS = $(BUILTIN_SRCS:.c=.o)$/;"	m
 BUILTIN_SRCS	Makefile	/^BUILTIN_SRCS = $(addprefix .\/srcs\/builtin_srcs\/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c)$/;"	m
 CC	libft/Makefile	/^CC = gcc$/;"	m
 CD	includes/defines_enums.h	/^# define CD	/;"	d
-CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address$/;"	m
-CFLAGS	Makefile	/^\\CFLAGS = -fsanitize=address -g3$/;"	m
-CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror -c -g3 -fsanitize=address$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror -c $/;"	m
 CLEANER_H	includes/cleaner.h	/^# define CLEANER_H$/;"	d
 CLEANER_OBJS	Makefile	/^CLEANER_OBJS = $(CLEANER_SRCS:.c=.o)$/;"	m
 CLEANER_SRCS	Makefile	/^CLEANER_SRCS = $(addprefix .\/srcs\/cleaner\/, cleaner.c cmd_cont_free.c)$/;"	m
@@ -33,7 +32,7 @@ EXECUTE_H	includes/execute.h	/^# define EXECUTE_H$/;"	d
 EXECUTION_FAILURE	includes/defines_enums.h	/^# define EXECUTION_FAILURE /;"	d
 EXECUTION_SUCCESS	includes/defines_enums.h	/^# define EXECUTION_SUCCESS /;"	d
 EXEC_OBJS	Makefile	/^EXEC_OBJS = $(EXEC_SRCS:.c=.o)$/;"	m
-EXEC_SRCS	Makefile	/^EXEC_SRCS = $(addprefix .\/srcs\/execute_srcs\/, execute.c print_cmddata.c set_heredoc.c set_redirection.c set_heredoc_tools.c check_execve_error.c execute_sub.c wait_macros.c)$/;"	m
+EXEC_SRCS	Makefile	/^EXEC_SRCS = $(addprefix .\/srcs\/execute_srcs\/, execute.c set_heredoc.c set_redirection.c set_heredoc_tools.c check_execve_error.c execute_sub.c wait_macros.c)$/;"	m
 EXIT	includes/defines_enums.h	/^# define EXIT	/;"	d
 EXPORT	includes/defines_enums.h	/^# define EXPORT	/;"	d
 EX_BADASSIGN	includes/defines_enums.h	/^# define EX_BADASSIGN	/;"	d
@@ -67,17 +66,7 @@ FTDIR	Makefile	/^FTDIR = .\/libft\/$/;"	m
 FTINC	Makefile	/^FTINC = .\/libft\/$/;"	m
 GCC	Makefile	/^GCC = gcc$/;"	m
 GETTER_H	includes/getter.h	/^# define GETTER_H$/;"	d
-GET_ARGS	includes/defines_enums.h	/^# define GET_ARGS(/;"	d
-GET_CMD	includes/defines_enums.h	/^# define GET_CMD(/;"	d
-GET_FD	includes/defines_enums.h	/^# define GET_FD(/;"	d
-GET_FILEPATH	includes/defines_enums.h	/^# define GET_FILEPATH(/;"	d
-GET_IOTYPE	includes/defines_enums.h	/^# define GET_IOTYPE(/;"	d
-GET_IO_LIST	includes/defines_enums.h	/^# define GET_IO_LIST(/;"	d
 GET_NEXT_LINE_H	libft/get_next_line.h	/^# define GET_NEXT_LINE_H$/;"	d
-GET_TMPNAME	includes/defines_enums.h	/^# define GET_TMPNAME(/;"	d
-GET_TOKEN_BUFFER	includes/defines_enums.h	/^# define GET_TOKEN_BUFFER(/;"	d
-GET_TOKEN_NTH	includes/defines_enums.h	/^# define GET_TOKEN_NTH(/;"	d
-GET_TOKEN_TYPE	includes/defines_enums.h	/^# define GET_TOKEN_TYPE(/;"	d
 GREATER	includes/defines_enums.h	/^	GREATER = '>',$/;"	e	enum:e_char_type
 INC	Makefile	/^INC = .\/includes$/;"	m
 ISDIR	includes/defines_enums.h	/^# define ISDIR /;"	d
@@ -128,7 +117,7 @@ TOKEN_OBJS	Makefile	/^TOKEN_OBJS = $(TOKEN_SRCS:.c=.o)$/;"	m
 TOKEN_SRCS	Makefile	/^TOKEN_SRCS = $(addprefix .\/srcs\/tokenizer\/, tokenizer.c token_buf_build.c)$/;"	m
 TOOLS_H	includes/tools.h	/^# define TOOLS_H$/;"	d
 TOOLS_OBJS	Makefile	/^TOOLS_OBJS = $(TOOLS_SRCS:.c=.o)$/;"	m
-TOOLS_SRCS	Makefile	/^TOOLS_SRCS = $(addprefix .\/srcs\/tools\/, getter1.c fs_bitmasking.c)$/;"	m
+TOOLS_SRCS	Makefile	/^TOOLS_SRCS = $(addprefix .\/srcs\/tools\/, getter1.c getter2.c fs_bitmasking.c)$/;"	m
 TRUE	includes/defines_enums.h	/^# define TRUE /;"	d
 T_SIZE	libft/libft.h	/^#  define T_SIZE$/;"	d
 UNSET	includes/defines_enums.h	/^# define UNSET	/;"	d
@@ -255,6 +244,7 @@ ft_envlst_new	libft/ft_builtin.c	/^t_envlst	*ft_envlst_new(void *c)$/;"	f
 ft_envlst_pushback	libft/ft_builtin.c	/^void	ft_envlst_pushback(t_envlst **envlst, t_envlst *new)$/;"	f
 ft_exit	srcs/builtin_srcs/ft_exit.c	/^void	ft_exit(t_data *data, char **argv)$/;"	f
 ft_export	srcs/builtin_srcs/ft_export.c	/^void	ft_export(t_data *data, char **args)$/;"	f
+ft_free	srcs/builtin_srcs/ft_unset.c	/^void	ft_free(char **split)$/;"	f
 ft_freesplit	libft/ft_split.c	/^void	ft_freesplit(char ***s, int *p_index)$/;"	f
 ft_get_left	libft/ft_strtrim.c	/^static t_size	ft_get_left(char *ds, char *set)$/;"	f	file:
 ft_get_newsave	libft/get_next_line.c	/^char	*ft_get_newsave(char *save)$/;"	f
@@ -322,16 +312,22 @@ ft_toupper	libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 ft_unset	srcs/builtin_srcs/ft_unset.c	/^void	ft_unset(t_data *data, char **args)$/;"	f
 ft_wd_cnt	libft/ft_split.c	/^static	int	ft_wd_cnt(char *str, char c)$/;"	f	file:
 get_ac	srcs/builtin_srcs/ft_exit.c	/^int	get_ac(char **argv)$/;"	f
+get_args	srcs/tools/getter1.c	/^char	**get_args(t_dlst *lst)$/;"	f
 get_args_count	srcs/parser/make_args.c	/^int	get_args_count(t_dlst *tok_lst)$/;"	f
 get_argv_count	srcs/builtin_srcs/ft_echo.c	/^int	get_argv_count(char **argv)$/;"	f
 get_chdir_buf	srcs/builtin_srcs/ft_cd.c	/^char	*get_chdir_buf(char **path, char *home, char *old_save)$/;"	f
+get_cmd	srcs/tools/getter1.c	/^char	*get_cmd(t_dlst *lst)$/;"	f
 get_cmd_cont	srcs/tools/getter1.c	/^t_cmd_cont	*get_cmd_cont(t_dlst *lst)$/;"	f
 get_cmdtype	srcs/parser/get_cmdtype.c	/^enum e_cmdtype	get_cmdtype(char *cmd)$/;"	f
 get_err_message	srcs/module/syntax_analyzer_module/io_err.c	/^char	*get_err_message(enum e_word_type type)$/;"	f
-get_io_cont	srcs/tools/getter1.c	/^t_io_cont	*get_io_cont(t_dlst *lst)$/;"	f
+get_infile	srcs/tools/getter2.c	/^int	get_infile(t_dlst *lst)$/;"	f
+get_io_cont	srcs/tools/getter2.c	/^t_io_cont	*get_io_cont(t_dlst *lst)$/;"	f
+get_io_list	srcs/tools/getter2.c	/^t_dlst	*get_io_list(t_dlst *lst)$/;"	f
 get_ltok_cont	srcs/tools/getter1.c	/^t_lexer_token	*get_ltok_cont(t_dlst *lst)$/;"	f
+get_ltok_type	srcs/tools/getter1.c	/^enum e_word_type	get_ltok_type(t_dlst *lst)$/;"	f
 get_next_line	libft/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f
 get_offset	srcs/parser/parser_tools.c	/^int	get_offset(t_dlst *tok_lst, enum e_word_type type)$/;"	f
+get_outfile	srcs/tools/getter2.c	/^int	get_outfile(t_dlst *lst)$/;"	f
 get_replaced	srcs/module/replacer_module/replacer.c	/^char	*get_replaced(t_data *data, char *str)$/;"	f
 get_replaced_len	srcs/module/replacer_module/get_replaced_len.c	/^int	get_replaced_len(char *str, t_data *data)$/;"	f
 get_word_type	srcs/lexer/lexer_decide_w_type.c	/^int	get_word_type(char *str)$/;"	f
@@ -389,11 +385,8 @@ pipe_exist	includes/structs.h	/^	int			pipe_exist;$/;"	m	struct:s_data
 pipe_first	srcs/execute_srcs/execute_sub.c	/^void	pipe_first(t_data *data, int i, int *fd[2])$/;"	f
 pipe_last	srcs/execute_srcs/execute_sub.c	/^void	pipe_last(t_data *data, int i, int *fd[2])$/;"	f
 pipe_mid	srcs/execute_srcs/execute_sub.c	/^void	pipe_mid(t_data *data, int i, int *fd[2], int pipe_num)$/;"	f
-print_args	srcs/execute_srcs/print_cmddata.c	/^void	print_args(t_dlst *cmdlst)$/;"	f
-print_cmddata	srcs/execute_srcs/print_cmddata.c	/^void	print_cmddata(t_data *data)$/;"	f
 print_echo	srcs/builtin_srcs/ft_echo.c	/^void	print_echo(char **argv, int option)$/;"	f
 print_exec_error	srcs/execute_srcs/check_execve_error.c	/^void	print_exec_error(char *str, char *cmd, int exit_status)$/;"	f
-print_iolst	srcs/execute_srcs/print_cmddata.c	/^void	print_iolst(t_dlst *cmdlst)$/;"	f
 remove_env_arr	srcs/builtin_srcs/ft_unset.c	/^char	**remove_env_arr(t_data *data, char **args)$/;"	f
 replacer	srcs/module/replacer_module/replacer.c	/^void	replacer(t_data *data)$/;"	f
 replacer_exec	srcs/module/replacer_module/replacer.c	/^void	replacer_exec(t_data *data, t_dlst *tok_lst)$/;"	f

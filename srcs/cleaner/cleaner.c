@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:46:42 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/26 16:05:00 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/29 09:09:08 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,9 @@ void	cleaner(t_data *data)
 		return ;
 	ft_dlst_clear(&(data->cmd_lst), cmd_cont_free);
 	data->cmd_lst = NULL;
+	if (data->command)
+	{
+		free(data->command);
+		data->command = NULL;
+	}
 }
