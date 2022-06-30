@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 13:33:27 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 15:10:36 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,6 @@ enum	e_state
 # define EXECUTION_SUCCESS 0
 # define EX_NOEXEC	126
 # define EX_NOTFOUND	127
-# define EX_SHERRBASE	256	/* all special error values are > this. */
-# define EX_BADSYNTAX	257	/* shell syntax error */
+# define EX_BADSYNTAX	257
 # define EX_USAGE	258	/* syntax error in usage */
-# define EX_REDIRFAIL	259	/* redirection failed */
-# define EX_BADASSIGN	260	/* variable assignment error */
-# define EX_EXPFAIL	261	/* word expansion failed */
 #endif

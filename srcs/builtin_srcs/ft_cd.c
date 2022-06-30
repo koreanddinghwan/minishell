@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:16 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/30 10:36:25 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 15:07:39 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ void	chdir_env_free(t_data *data, char *buf, char *cur)
 {
 	if (chdir(buf) == -1)
 	{
-		ft_putstr_fd("mgyush > cd: ", 2);
+		ft_putstr_fd("mgyush > ", 2);
+		ft_putstr_fd(buf, 2);
+		ft_putstr_fd(": ", 2);
 		ft_putendl_fd(strerror(errno), 2);
 		data->exit_status = EXECUTION_FAILURE;
 	}
