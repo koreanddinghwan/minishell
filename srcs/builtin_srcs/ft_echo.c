@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:43:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 16:46:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 20:35:22 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	isoption(char *str)
 	{
 		if (status == FALSE)
 			break ;
-		str++;
 		if (*str && *str != 'n')
 			status = FALSE;
+		str++;
 	}
 	return (status);
 }

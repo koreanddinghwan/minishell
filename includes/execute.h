@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:02:37 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 10:29:06 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 21:06:52 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		make_heredoc(t_data *data);
 void	check_execve_error(t_dlst *cmd);
 void	close_fd(t_data *data);
 int		set_heredocnum(t_dlst *iolst);
-void	write_free_strings(t_data *data, char *input, int fd, char *trimmed);
+void	write_free_strings(t_data *data, char *input, int fd);
 /*
  * execute_sub
  * */

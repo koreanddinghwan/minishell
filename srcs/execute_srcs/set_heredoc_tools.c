@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:32:53 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:34:05 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 21:22:19 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,17 @@ int	set_heredocnum(t_dlst *iolst)
 	return (c);
 }
 
-void	write_free_strings(t_data *data, char *input, int fd, char *trimmed)
+void	write_free_strings(t_data *data, char *input, int fd)
 {
 	char	*replaced;
 
 	replaced = get_replaced(data, input);
+	if (!replaced)
+	{
+		replaced = ft_strdup("");
+		free(input);
+	}
 	write(fd, replaced, ft_strlen(replaced));
+	write(fd, "\n", 1);
 	free(replaced);
-	free(trimmed);
 }

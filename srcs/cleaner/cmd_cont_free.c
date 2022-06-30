@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:40:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 16:01:43 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 20:30:49 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	fnc_free_filepath(void *cont)
 		close(content->fd);
 		content->fd = -1;
 	}
+	free(content);
 }
 
 void	iocont_free(t_cmd_cont *content)

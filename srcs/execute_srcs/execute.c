@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 15:05:43 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 21:26:24 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	close_pipe(t_data *data, int pipe, int *fd[2], int *status)
 {
 	int	i;
 
-	signal(SIGINT, SIG_IGN);
 	while (pipe--)
 	{
 		close(fd[pipe][0]);
 		close(fd[pipe][1]);
 	}
+	signal(SIGINT, SIG_IGN);
 	while (wait(&(*status)) > 0)
 		change_exitstatus(data, *status);
 	signal(SIGINT, sigint_handler);

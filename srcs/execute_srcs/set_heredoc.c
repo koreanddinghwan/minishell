@@ -6,17 +6,18 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 00:13:46 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 10:00:54 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 21:27:15 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execute.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 int	exec_heredoc(t_data *data, t_dlst *iolst)
 {
 	int		fd;
 	char	*input;
-	char	*trimmed;
 
 	fd = open(get_io_cont(iolst)->tmpname,
 			O_CREAT | O_WRONLY | O_TRUNC, 0644);
@@ -24,15 +25,13 @@ int	exec_heredoc(t_data *data, t_dlst *iolst)
 		return (FAIL);
 	while (1)
 	{
-		input = get_next_line(0);
-		trimmed = ft_strtrim(input, "\n");
-		if (!input || ft_strcmp((get_io_cont(iolst))->filepath, trimmed) == 0)
+		input = readline("> ");
+		if (!input || ft_strcmp((get_io_cont(iolst))->filepath, input) == 0)
 		{
 			free(input);
-			free(trimmed);
 			break ;
 		}
-		write_free_strings(data, input, fd, trimmed);
+		write_free_strings(data, input, fd);
 	}
 	close(fd);
 	return (SUCESS);
