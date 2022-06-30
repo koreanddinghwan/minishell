@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 00:17:23 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 11:27:07 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:33:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	check_execve_error(t_dlst *lst)
 	if (exist_slash(cmd))
 	{
 		if (rtn == -1)
-			print_exec_error(NOFILE, cmd, 127);
+			print_exec_error(NOFILE, cmd, EX_NOTFOUND);
 		else if (isdir(finfo.st_mode))
-			print_exec_error(ISDIR, cmd, 126);
+			print_exec_error(ISDIR, cmd, EX_NOEXEC);
 		else
-			print_exec_error(DENY, cmd, 126);
+			print_exec_error(DENY, cmd, EX_NOEXEC);
 	}
 	else
-		print_exec_error(CMDNOTFOUND, cmd, 127);
+		print_exec_error(CMDNOTFOUND, cmd, EX_NOTFOUND);
 }

@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:33:46 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/30 11:53:40 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:39:01 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	execute_builtin(t_data *data, char *cmd, char **args)
 		ft_export(data, args);
 	if (ft_strcmp(UNSET, cmd) == 0)
 		ft_unset(data, args);
-	if (ft_strcmp(ECHO, cmd) == 0)
+	if (ft_strcmp(S_ECHO, cmd) == 0)
 		ft_echo(data, args);
 	if (ft_strcmp(CD, cmd) == 0)
 		ft_cd(data, args);
 	if (ft_strcmp(EXIT, cmd) == 0)
 		ft_exit(data, args);
 	if (ft_strcmp(ENV, cmd) == 0)
-		ft_env(data);
+		ft_env(data, args);
 }
 
 void	pipe_first(t_data *data, int i, int *fd[2])

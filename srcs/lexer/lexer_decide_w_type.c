@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 20:02:03 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 14:49:02 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:13:19 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	fork_builtin(char *str)
 {
 	if (!str)
 		return (0);
-	if (ft_strcmp(ECHO, str) == 0)
+	if (ft_strcmp(S_ECHO, str) == 0)
 		return (1);
 	if (ft_strcmp(ENV, str) == 0)
 		return (1);
@@ -37,7 +37,7 @@ int	check_builtin(char *str)
 {
 	if (!str)
 		return (0);
-	if (ft_strcmp(ECHO, str) == 0)
+	if (ft_strcmp(S_ECHO, str) == 0)
 		return (1);
 	if (ft_strcmp(CD, str) == 0)
 		return (1);

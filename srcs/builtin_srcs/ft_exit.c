@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:27:07 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 12:31:40 by gyumpark         ###   ########.fr       */
+/*   Updated: 2022/06/30 13:32:26 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_exit(t_data *data, char **argv)
 	}
 	else if (exist_alpha(argv) == TRUE)
 	{
-		printf("mgyush: exit: %s: numeric argument required",
+		printf("mgyush: exit: %s: numeric argument required\n",
 			find_first_nonnum(argv));
 		exit(255);
 	}

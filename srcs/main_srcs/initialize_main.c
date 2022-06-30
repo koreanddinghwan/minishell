@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:33:14 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 09:42:38 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:10:51 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	initialize_main(t_data *data, char **envp)
 {
+	struct termios	termios;
+
+	tcgetattr(STDIN_FILENO, &termios);
+	termios.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &termios);
 	set_handler();
 	data->lexer_token_lst = NULL;
 	data->env_lst = NULL;

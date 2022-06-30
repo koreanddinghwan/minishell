@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:44:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 19:02:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:39:02 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 
 void	ft_swap(char **s1, char **s2);
 int		ft_isunder(int c);
+int		get_argv_count(char **argv);
 void	update_env_arr(t_data *data);
 void	free_env_lst(t_envlst *lst);
-void	ft_env(t_data *data);
+void	ft_env(t_data *data, char **args);
 void	ft_cd(t_data *data, char **path);
 void	ft_pwd(void);
 void	ft_export(t_data *data, char **args);

@@ -6,14 +6,14 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 10:48:06 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 13:33:27 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_ENUMS_H
 # define DEFINES_ENUMS_H
 
-# define ECHO	"echo"
+# define S_ECHO	"echo"
 # define CD		"cd"
 # define PWD	"pwd"
 # define EXPORT	"export"
@@ -66,9 +66,7 @@ enum	e_state
 # define FALSE 0
 # define EXECUTION_FAILURE 1
 # define EXECUTION_SUCCESS 0
-# define EX_BINARY_FILE	126
 # define EX_NOEXEC	126
-# define EX_NOINPUT	126
 # define EX_NOTFOUND	127
 # define EX_SHERRBASE	256	/* all special error values are > this. */
 # define EX_BADSYNTAX	257	/* shell syntax error */
