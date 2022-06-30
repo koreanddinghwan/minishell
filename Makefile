@@ -6,13 +6,13 @@
 #    By: myukang <myukang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/05 15:11:43 by myukang           #+#    #+#              #
-#    Updated: 2022/06/30 09:37:42 by myukang          ###   ########.fr        #
+#    Updated: 2022/06/30 11:51:45 by myukang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 GCC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 INC = ./includes
 
 RDINC = ${HOME}/.brew/opt/readline/include #readline include path
@@ -46,7 +46,7 @@ MODULE_OBJS = $(MODULE_SRCS:.c=.o)
 CLEANER_SRCS = $(addprefix ./srcs/cleaner/, cleaner.c cmd_cont_free.c)
 CLEANER_OBJS = $(CLEANER_SRCS:.c=.o)
 
-EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c set_heredoc.c set_redirection.c set_heredoc_tools.c check_execve_error.c execute_sub.c wait_macros.c)
+EXEC_SRCS = $(addprefix ./srcs/execute_srcs/, execute.c set_heredoc.c set_redirection.c set_heredoc_tools.c check_execve_error.c execute_sub.c wait_macros.c print_redir_error.c)
 EXEC_OBJS = $(EXEC_SRCS:.c=.o)
 
 BUILTIN_SRCS = $(addprefix ./srcs/builtin_srcs/, ft_cd.c ft_pwd.c ft_exit.c ft_export.c ft_unset.c ft_echo.c ft_env.c export_unset_util.c export_unset_util2.c)

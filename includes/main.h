@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 14:35:00 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 20:17:17 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 09:42:22 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <unistd.h>
 # include <signal.h>
 # include "structs.h"
-# include "defines_enums.h"
 # include "cleaner.h"
 # include "builtin.h"
 

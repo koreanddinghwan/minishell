@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 15:44:52 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 10:31:10 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:17:23 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	display_bash(t_data *data)
 
 	while (1)
 	{
-		line = readline("mgyush >");
+		line = readline("mgyush > ");
 		if (!line)
 		{
 			printf("\x1b[1A\033[9Cexit\n");

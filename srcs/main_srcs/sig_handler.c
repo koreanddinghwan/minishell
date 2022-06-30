@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/05 15:43:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 20:36:33 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:29:38 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sigint_handler(int sig)
 {
 	(void)sig;
-	printf("\033[%dC  \n", rl_end + 8);
+	printf("\033[%dC  \n", rl_end + 9);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();

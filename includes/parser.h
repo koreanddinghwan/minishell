@@ -6,14 +6,13 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 15:37:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 11:59:10 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:15:48 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 # include "structs.h"
-# include "defines_enums.h"
 # include "path_finder.h"
 # include "getter.h"
 # include "cleaner.h"

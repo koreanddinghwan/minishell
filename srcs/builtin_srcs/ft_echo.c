@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:43:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 18:11:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:22:11 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	ft_echo(t_data *data, char **argv)
 	}
 	not_option_index = check_option(argv);
 	print_echo(argv, not_option_index, argv_count);
+	data->exit_status = EXECUTION_SUCCESS;
 }

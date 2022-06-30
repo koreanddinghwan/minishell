@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:16 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 21:17:56 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:36:25 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ void	change_env(t_data *data, char *oldpwd)
 void	chdir_env_free(t_data *data, char *buf, char *cur)
 {
 	if (chdir(buf) == -1)
-		printf("mgyush: cd: %s\n", strerror(errno));
+	{
+		ft_putstr_fd("mgyush > cd: ", 2);
+		ft_putendl_fd(strerror(errno), 2);
+		data->exit_status = EXECUTION_FAILURE;
+	}
 	else
 		change_env(data, cur);
 	free(buf);

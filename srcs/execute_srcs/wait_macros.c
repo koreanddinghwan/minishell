@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 17:01:10 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 17:31:32 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:49:17 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	wifsignaled(int status)
 void	change_exitstatus(t_data *data, int status)
 {
 	if (wifsignaled(status))
-		data->exit_status = 128 + (wexitstatus(status));
+		data->exit_status = 128 + ((status) & 0177);
 	else if (wexitstatus(status) >= 256)
 		data->exit_status = (wexitstatus(status)) % 256;
 	else

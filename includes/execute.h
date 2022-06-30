@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:02:37 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 20:40:49 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:29:06 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # include "fs_bitmasking.h"
 # include "getter.h"
 # include "wait_macros.h"
-# include <readline/readline.h>
 
 void	print_cmddata(t_data *data);
 int		set_redir(t_cmd_cont *cmd, t_data *data);
+int		print_redir_error(char *path, char *error_str);
 int		make_heredoc(t_data *data);
 void	check_execve_error(t_dlst *cmd);
 void	close_fd(t_data *data);

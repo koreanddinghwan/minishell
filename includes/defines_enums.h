@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 17:44:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 20:17:35 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:48:06 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,6 @@ enum	e_state
 # define FALSE 0
 # define EXECUTION_FAILURE 1
 # define EXECUTION_SUCCESS 0
-# define EX_BADUSAGE	2
-# define EX_MISCERROR	2
-# define EX_RETRYFAIL	124
-# define EX_WEXPCOMSUB	125
 # define EX_BINARY_FILE	126
 # define EX_NOEXEC	126
 # define EX_NOINPUT	126
@@ -80,7 +76,4 @@ enum	e_state
 # define EX_REDIRFAIL	259	/* redirection failed */
 # define EX_BADASSIGN	260	/* variable assignment error */
 # define EX_EXPFAIL	261	/* word expansion failed */
-# define EX_DISKFALLBACK	262	/* fall back to disk command from builtin */
-# define FS_EXISTS		0x1
-# define FS_EXECABLE 	0x2
 #endif

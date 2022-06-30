@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:59:59 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 16:40:07 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:20:28 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	dollar_question_len(char *str, t_data *data)
 {
-	int	num;
+	int		num;
+	char	*tmp;
 
 	num = 0;
 	while (*str)
@@ -26,7 +27,9 @@ int	dollar_question_len(char *str, t_data *data)
 			else if (*(str + 1) == '?')
 			{
 				num -= 2;
-				num += ft_strlen(ft_itoa(data->exit_status));
+				tmp = ft_itoa(data->exit_status);
+				num += ft_strlen(tmp);
+				free(tmp);
 			}
 			else if (*(str + 1) == '$')
 				str++;

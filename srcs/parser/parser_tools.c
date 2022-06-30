@@ -6,12 +6,11 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:45 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 10:08:44 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:14:49 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include <stdio.h>
 
 void	delete_multiple_tokens(t_data *data, enum e_word_type type)
 {

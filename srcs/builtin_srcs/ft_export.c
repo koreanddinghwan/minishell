@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:43 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 22:11:31 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:41:46 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ void	only_export(t_data *data)
 	}
 }
 
-int	export_error(char *str)
+int	export_error(t_data *data, char *str)
 {
 	if ((!ft_isalpha(*str) && !ft_isunder(*str)))
 	{
-		printf("mgyush: export: `%s': not a valid identifier\n", str);
+		ft_putstr_fd("mgyush > export: `", 2);
+		ft_putstr_fd(str, 2);
+		ft_putendl_fd("\': not a valid identifier", 2);
+		data->exit_status = EXECUTION_FAILURE;
 		return (FAIL);
 	}
 	else if (!strchr(str, '='))
@@ -99,11 +102,12 @@ void	ft_export(t_data *data, char **args)
 	}
 	while (*args)
 	{
-		if (export_error(*args) == FAIL)
+		if (export_error(data, *args) == FAIL)
 			return ;
 		else
 			update_export(data, *args);
 		args++;
 	}
 	update_env_arr(data);
+	data->exit_status = EXECUTION_SUCCESS;
 }

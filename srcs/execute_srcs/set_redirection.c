@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 03:48:57 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 15:14:56 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 10:24:38 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,20 @@
 
 int	open_file(t_dlst *iolst, enum e_word_type type)
 {
-	int	fd;
+	int		fd;
+	char	*path;
 
+	path = get_io_cont(iolst)->filepath;
 	if (type == W_APPENDING_TO)
-		fd = open(get_io_cont(iolst)->filepath,
-				O_CREAT | O_WRONLY | O_APPEND, 0644);
+		fd = open(path, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	else if (type == W_REDIRECTION_OUTPUT)
-		fd = open(get_io_cont(iolst)->filepath,
-				O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	else if (type == W_REDIRECTION_INPUT)
-		fd = open(get_io_cont(iolst)->filepath, O_RDONLY);
+		fd = open(path, O_RDONLY);
 	else
 		return (SUCESS);
 	if (fd < 0)
-	{
-		ft_putendl_fd(strerror(errno), 2);
-		return (FAIL);
-	}
+		return (print_redir_error(path, strerror(errno)));
 	get_io_cont(iolst)->fd = fd;
 	return (SUCESS);
 }

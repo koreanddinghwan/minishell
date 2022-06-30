@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 00:17:23 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/28 02:55:15 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:27:07 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	exist_slash(char *cmd)
 
 void	print_exec_error(char *str, char *cmd, int exit_status)
 {
-	ft_putstr_fd("mgyush: ", 2);
+	ft_putstr_fd("mgyush > ", 2);
 	ft_putstr_fd(cmd, 2);
 	ft_putendl_fd(str, 2);
 	exit(exit_status);

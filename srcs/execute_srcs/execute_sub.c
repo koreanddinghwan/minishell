@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:33:46 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/29 16:18:11 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 11:53:40 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	execute_builtin(t_data *data, char *cmd, char **args)
 {
+	if (!cmd)
+		return ;
 	if (ft_strcmp(PWD, cmd) == 0)
 		ft_pwd();
 	if (ft_strcmp(EXPORT, cmd) == 0)
