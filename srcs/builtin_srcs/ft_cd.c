@@ -20,7 +20,12 @@ char	*dup_buf(char *path, char *buf, char *home, char *old_save)
 	else if (!strcmp(path, "~"))
 		buf = ft_strdup(home);
 	else if (!strcmp(path, "-"))
-		buf = ft_strdup(old_save);
+	{
+		if (!old_save)
+			return (NULL);
+		else
+			buf = ft_strdup(old_save);
+	}
 	else
 		buf = ft_strdup(path);
 	return (buf);
@@ -68,10 +73,25 @@ void	chdir_env_free(t_data *data, char *buf, char *cur)
 {
 	if (chdir(buf) == -1)
 	{
-		ft_putstr_fd("mgyush > ", 2);
-		ft_putstr_fd(buf, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putendl_fd(strerror(errno), 2);
+		if (buf)
+		{
+			ft_putstr_fd("mgyush > ", 2);
+			ft_putstr_fd(buf, 2);
+			ft_putstr_fd(": ", 2);
+			ft_putendl_fd(strerror(errno), 2);
+		}
+		else
+		{
+			if (!buf)
+			{
+				ft_putstr_fd("mgyush > ", 2);
+				ft_putstr_fd(buf, 2);
+				ft_putstr_fd(": ", 2);
+				ft_putstr_fd("OLDPWD not set\n", 2);
+				free(cur);
+				return ;
+			}
+		}
 		data->exit_status = EXECUTION_FAILURE;
 	}
 	else
