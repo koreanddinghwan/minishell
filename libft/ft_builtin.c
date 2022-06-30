@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:09:14 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 20:45:08 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 14:21:01 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_envlst	*ft_envlst_new(void *c)
 	t_envlst	*node;
 	char		**split;
 
-	node = malloc(1 * sizeof(t_envlst));
+	node = ft_calloc(sizeof(t_envlst), 1);
 	if (!node)
 		return (0);
 	split = ft_split((char *)c, '=');

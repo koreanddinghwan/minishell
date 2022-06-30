@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:43 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/30 10:41:46 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 14:19:00 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ int	check_update_env(t_envlst *envlst, char *str)
 
 	splited = ft_split(str, '=');
 	key = splited[0];
-	if (!splited[1])
+	if (splited[1] == (void *)0)
 		splited[1] = ft_strdup("");
 	while (envlst)
 	{
 		if (ft_strcmp(key, (char *)envlst->key) == 0)
 		{
 			free(envlst->value);
-			envlst->value = splited[1];
+			envlst->value = ft_strdup(splited[1]);
 			free(splited[0]);
 			free(splited[1]);
 			free(splited);

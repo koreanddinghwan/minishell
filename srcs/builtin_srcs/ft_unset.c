@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:52 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/30 13:26:02 by myukang          ###   ########.fr       */
+/*   Updated: 2022/06/30 14:26:23 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,14 @@ void	ft_unset(t_data *data, char **args)
 			ft_putstr_fd(*args, 2);
 			ft_putendl_fd("\': not a valid identifier", 2);
 			data->exit_status = EXECUTION_FAILURE;
-			return ;
+			args++;
+			continue ;
 		}
 		delete_env_lst(data, ft_strndup(*args, ft_getcharindex(*args, '=')));
 		args++;
 	}
 	data->env_size = ft_envlst_size(data->env_lst);
 	update_env_arr(data);
-	data->exit_status = EXECUTION_SUCCESS;
+	if (data->exit_status != EXECUTION_FAILURE)
+		data->exit_status = EXECUTION_SUCCESS;
 }
