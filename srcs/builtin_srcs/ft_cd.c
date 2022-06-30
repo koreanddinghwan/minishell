@@ -84,10 +84,7 @@ void	chdir_env_free(t_data *data, char *buf, char *cur)
 		{
 			if (!buf)
 			{
-				ft_putstr_fd("mgyush > ", 2);
-				ft_putstr_fd(buf, 2);
-				ft_putstr_fd(": ", 2);
-				ft_putstr_fd("OLDPWD not set\n", 2);
+				printf("bash: cd: OLDPWD not set\n");
 				free(cur);
 				return ;
 			}
