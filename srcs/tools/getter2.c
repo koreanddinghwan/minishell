@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:48:50 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 05:41:41 by myukang          ###   ########.fr       */
+/*   Updated: 2022/07/01 16:45:31 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ int	get_infile(t_dlst *lst)
 int	get_outfile(t_dlst *lst)
 {
 	return (get_cmd_cont(lst)->outfile);
+}
+
+char	*get_tmpname(t_dlst *iolst)
+{
+	return (get_io_cont(iolst)->tmpname);
 }

@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:18:51 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 05:43:04 by myukang          ###   ########.fr       */
+/*   Updated: 2022/07/01 16:45:56 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ char				**get_args(t_dlst *lst);
 t_dlst				*get_io_list(t_dlst *lst);
 int					get_infile(t_dlst *lst);
 int					get_outfile(t_dlst *lst);
+char				*get_tmpname(t_dlst *iolst);
 
 #endif
