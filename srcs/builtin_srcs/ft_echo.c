@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 15:43:39 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 20:35:22 by myukang          ###   ########.fr       */
+/*   Updated: 2022/07/02 14:17:20 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	isoption(char *str)
 
 	status = TRUE;
 	if (*str != '-')
-		status = FALSE;
+		return (FALSE);
 	else
 		str++;
 	while (*str)
@@ -61,13 +61,13 @@ int	get_argv_count(char **argv)
 	return (c);
 }
 
-void	print_echo(char **argv, int no_opt_i, int argv_count)
+void	print_echo(char **argv, int no_opt_i)
 {
 	int	i;
 	int	option;
 
 	i = 0;
-	if (no_opt_i == argv_count)
+	if (no_opt_i == 1)
 		option = FALSE;
 	else
 		option = TRUE;
@@ -97,6 +97,6 @@ void	ft_echo(t_data *data, char **argv)
 		return ;
 	}
 	not_option_index = check_option(argv);
-	print_echo(argv, not_option_index, argv_count);
+	print_echo(argv, not_option_index);
 	data->exit_status = EXECUTION_SUCCESS;
 }

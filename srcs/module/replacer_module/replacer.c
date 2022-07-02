@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 02:04:36 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/30 21:26:23 by myukang          ###   ########.fr       */
+/*   Updated: 2022/07/02 14:19:12 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@ void	replacer_exec(t_data *data, t_dlst *tok_lst)
 	char	*buffer;
 
 	buffer = get_ltok_cont(tok_lst)->buffer;
-	if (buffer[0] == ' ')
+	if ((buffer[0] == '\'' || buffer[0] == '\"')
+		&& get_ltok_type(tok_lst) == W_DELIMETER)
+	{
+		(get_ltok_cont(tok_lst))->buffer = ft_strtrim(buffer, "\'\"");
+		free(buffer);
 		return ;
+	}
 	if (buffer[0] == '\'')
 	{
 		(get_ltok_cont(tok_lst))->buffer = ft_strtrim(buffer, "\'");
@@ -59,7 +64,7 @@ void	replacer(t_data *data)
 	tok_lst = data->lexer_token_lst;
 	while (tok_lst)
 	{
-		if (get_ltok_type(tok_lst) != W_DELIMETER)
+		if (!(get_ltok_type(tok_lst) == W_SPACE))
 			replacer_exec(data, tok_lst);
 		tok_lst = tok_lst->next;
 	}

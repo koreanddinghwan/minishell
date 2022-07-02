@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:46:42 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 11:44:51 by myukang          ###   ########.fr       */
+/*   Updated: 2022/07/02 13:52:01 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ void	token_free(t_data *data)
 {
 	if (data->tok_buf)
 	{
-		if (data->exit_status == EX_USAGE)
-		{	
-			free(data->tok_buf);
-			data->tok_buf = NULL;
-		}
+		free(data->tok_buf);
+		data->tok_buf = NULL;
 	}
 	if (data->command)
 	{
