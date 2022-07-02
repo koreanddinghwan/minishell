@@ -6,7 +6,7 @@
 /*   By: gyumpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 12:31:16 by gyumpark          #+#    #+#             */
-/*   Updated: 2022/06/30 15:07:39 by myukang          ###   ########.fr       */
+/*   Updated: 2022/07/02 12:13:30 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	chdir_env_free(t_data *data, char *buf, char *cur)
 			ft_putstr_fd(buf, 2);
 			ft_putstr_fd(": ", 2);
 			ft_putendl_fd(strerror(errno), 2);
+			free(cur);
 		}
 		else
 		{
