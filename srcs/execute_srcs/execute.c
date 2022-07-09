@@ -6,7 +6,7 @@
 /*   By: myukang <myukang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 20:01:58 by myukang           #+#    #+#             */
-/*   Updated: 2022/06/29 20:40:48 by myukang          ###   ########.fr       */
+/*   Updated: 2022/07/09 21:54:55 by myukang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	execute_child(t_data *data, t_dlst *cmd, int *fd[2], int *pipe_num)
 	i = 0;
 	if (set_redir(cmd->content, data) == FAIL)
 		exit(1);
+	execute_dup2(data, i, fd, *pipe_num);
 	if (get_infile(cmd) != -1)
 		dup2(get_infile(cmd), STDIN_FILENO);
 	if (get_outfile(cmd) != -1)
 		dup2(get_outfile(cmd), STDOUT_FILENO);
-	execute_dup2(data, i, fd, *pipe_num);
 	if (check_builtin(get_cmd(cmd)))
 		execute_builtin(data, get_cmd(cmd), get_args(cmd));
 	else
